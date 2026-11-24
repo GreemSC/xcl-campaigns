@@ -165,13 +165,16 @@ def where_it_stops(con):
         reps = progress.reports(con)
     except Exception:
         return {}
-    out = {}
+    out, people = {}, {}
+    for r in reps:
+        if r.get("platform"):
+            people.setdefault((r["platform"], r["rank"]), set()).add(r["author"])
     for r in reps:
         p = r.get("platform")
         if not p:
             continue
         o = out.setdefault(p, {"furthest_stage": None, "rank": -1, "ends": {}})
-        if r["rank"] > o["rank"]:
+        if r["rank"] > o["rank"] and len(people[(p, r["rank"])]) >= 2:   # one report alone is not where it stops
             o["furthest_stage"], o["rank"] = r["stage"], r["rank"]
         o["ends"][f"{r['stage']}:{r['ended']}"] = o["ends"].get(f"{r['stage']}:{r['ended']}", 0) + 1
     for o in out.values():
