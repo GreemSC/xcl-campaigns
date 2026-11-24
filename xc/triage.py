@@ -63,7 +63,7 @@ READY_RULE = ("PR checks green, CI not failing, merges cleanly, not a draft, no 
 # The maintainer's labels (xcl-dev/xcl#1833, set by a script from titles and file paths, "not read one by one"; he asks
 # for a second person to check them). The board compares each label with what it reads; it never sets a label.
 RUNTIME = re.compile(r"^crates/[^/]+/src/")
-TEST_PATH = re.compile(r"(^|/)tests?/|_test\.rs$|/test_|^scripts/|^\.github/|\.md$|^docs/")
+TEST_PATH = re.compile(r"(^|/)tests?(/|\.rs$)|_tests?\.rs$|(^|/)test_[^/]*$|(^|/)(benches|fuzz|examples)/|^scripts/|^\.github/|\.md$|^docs/")
 LABEL_WHY = {
     "off-goal-but-runtime": "has off-goal, but changes runtime code (crates/*/src outside tests): the label's own rule is tests, scripts, CI or docs only",
     "off-goal-but-goal-issue": "has off-goal, but says it fixes, addresses or is part of a goal:world-load issue",
