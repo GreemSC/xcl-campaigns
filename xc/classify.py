@@ -157,6 +157,25 @@ def pr_context(con, r, c):
     return {"pr": p["number"], "pr_author": p["author"], "pr_title": (p["title"] or "")[:200]} if p else None
 
 
+def inherit_pr_tasks(con, r, card):
+    """A comment on a PR works on the PR's tasks. It never opens a task of its own: campaigns.grow would turn every
+    test report of a PR into a new task (A29 came from two reports on #1301, a PR grow had judged not campaign work)."""
+    card["new_task"] = None
+    # Only numbers and status are inherited: a claim or plan must name its task, or a reviewer would become a holder.
+    if card.get("tasks") or card.get("kind") not in ("result", "correction", "progress", "tool"):
+        return
+    key = f"pr:{r['number']}"
+    pc = con.execute("SELECT card FROM cards WHERE key=?", (key,)).fetchone()
+    tasks = json.loads(pc["card"]).get("tasks") if pc else []
+    if not tasks:
+        m = con.execute("SELECT task FROM task_map WHERE key=? AND task IS NOT NULL", (key,)).fetchone()
+        tasks = [m["task"]] if m else []
+    card["tasks"] = tasks
+    for m in card.get("measurements", []):
+        if m.get("task") is None and len(tasks) == 1:
+            m["task"] = tasks[0]
+
+
 def _num(v):
     return f"{v:.0f}" if float(v).is_integer() else f"{v:g}"
 
@@ -280,6 +299,8 @@ def run(limit=20, con=None):
                 continue
             card = check(card, r)
             card["campaign"] = c["campaign"]
+            if pr_context(con, r, c):
+                inherit_pr_tasks(con, r, card)
             _save(con, r, card, model, "auto")
             con.commit()
             done += 1
