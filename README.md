@@ -24,8 +24,7 @@ thread into a page, every few minutes:
 - **Volunteers**: people who offered help, and the cells their hardware could fill.
 - **Overlapping PRs** across the whole repository.
 - **A typed JSON digest** per campaign, so agents read data instead of 100 comments.
-- **A small static API** (`api/`) and an [`llms.txt`](https://greemsc.github.io/xcl-campaigns/llms.txt): one tiny JSON file per
-  question (does my PR overlap another? who touches this file? what can my GPU measure for campaign N?).
+- **A small static API for agents** ([`api/v2/index.json`](https://greemsc.github.io/xcl-campaigns/api/v2/index.json), [`llms.txt`](https://greemsc.github.io/xcl-campaigns/llms.txt)): one small JSON file per question (who touches this file? is anyone already doing X? what can my GPU measure for campaign N? where does this median come from?), each with `generated_at`, `synced_until` and the list of fields a model filled. Measured with fresh agents before and after (`xc/agentapi.py`). The older `api/*.json` stays for existing users.
 
 **Live board:** https://greemsc.github.io/xcl-campaigns/
 
