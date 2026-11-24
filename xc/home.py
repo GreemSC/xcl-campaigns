@@ -20,6 +20,13 @@ END_PLURAL = {"stalls": "stall", "crashes": "crash", "exits": "end with the game
               "keeps_running": "keep running", "stopped_by_user": "are stopped by the tester"}
 AREA = re.compile(r"^\s*([A-Za-z][A-Za-z0-9 ./+_-]{1,22}):\s")
 
+
+def ft(x):
+    """Free text from GitHub for a page: escaped, withheld when it reads like an instruction (render.ft)."""
+    from .render import ft as f
+    return f(x)
+
+
 CSS = """
 .hero{padding:28px 0 8px}.kicker{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);margin:0 0 6px}
 .hero h1{font-size:clamp(26px,5vw,40px);line-height:1.15;margin:0 0 10px}.answer{font-size:clamp(18px,3vw,23px);margin:0 0 10px}
@@ -149,7 +156,7 @@ def html_stages(e, ss, a):
             facts.append("reported on " + ", ".join(
                 f'<a href="{REPO_URL}/{"pull" if kind == "pr" or n in PR_NUMBERS else "issues"}/{n}">#{n}</a>'
                 + (f' ({c})' if c > 1 else "") for (kind, n), c in s["where"]))
-        quotes = "".join(f'<blockquote>“{e(r["screen_quote"])}”<cite><a href="{e(r["source"])}">{e(r["author"])}</a>'
+        quotes = "".join(f'<blockquote>“{ft(r["screen_quote"])}”<cite><a href="{e(r["source"])}">{e(r["author"])}</a>'
                          f'{", " + e(r["gpu"]) if r.get("gpu") else ""}</cite></blockquote>' for r in s["quotes"])
         state = "done" if k <= a["confirmed"] else "once" if k <= a["once"] else "todo"
         o.append(f'<div class="stage {state}"><div class="sname"><b>{e(name)}</b><small>{e(desc)}</small></div>'
@@ -211,7 +218,7 @@ def describe(r, e):
     if r.get("fps"):
         bits.append(f'({r["fps"]:g} fps)')
     if r.get("screen_quote"):         # verbatim from the author's comment, checked by code
-        bits.append(f'<div class="quote">“{e(r["screen_quote"])}”</div>')
+        bits.append(f'<div class="quote">“{ft(r["screen_quote"])}”</div>')
     return " ".join(bits)
 
 
@@ -325,7 +332,7 @@ report by platform, and a JSON API for AI agents. It is made by contributors, no
     for i, m in enumerate(lm[:60]):
         title = AREA.sub("", m["title"] or "", count=1)
         o.append(f'<li data-area="{e(m["area"])}"{" hidden" if i >= 15 else ""}><span class="area">{e(m["area"])}</span>'
-                 f'<a href="{e(m["url"])}">{e(title)}</a><div class="meta">#{m["number"]} by {e(m["author"])} · {ago(e, m["merged"])}</div></li>')
+                 f'<a href="{e(m["url"])}">{ft(title)}</a><div class="meta">#{m["number"]} by {e(m["author"])} · {ago(e, m["merged"])}</div></li>')
     o.append('</ul><p><button type="button" class="btn" id="merged-more">Show more</button> '
              f'<a class="note" href="{REPO_URL}/commits/main">full history on GitHub →</a></p></div><div>')
     o.append('<h3>Latest test reports</h3><ul class="feed">')
@@ -344,13 +351,13 @@ report by platform, and a JSON API for AI agents. It is made by contributors, no
              f'<p class="note">Counted since this board started reading the repository ({e(ov["since"][:10])}).</p></div><div>'
              '<h3>Most discussed right now</h3><ul class="feed">')
     for h in ov["hot_issues"]:
-        o.append(f'<li><a href="{e(h["url"])}">{e(h["title"])}</a><div class="meta">#{h["number"]} · {h["people"]} people, '
+        o.append(f'<li><a href="{e(h["url"])}">{ft(h["title"])}</a><div class="meta">#{h["number"]} · {h["people"]} people, '
                  f'{h["msgs"]} comments in 24 h</div></li>')
     o.append("</ul></div></div>")
     # 6. Get involved
     o.append('<h2 id="help">Get involved</h2><div class="cards help">')
     for n, c in camps.items():
-        o.append(f'<a class="card" href="campaign-{n}.html"><b>Campaign #{n}</b><p>{e(c["title"])}</p>'
+        o.append(f'<a class="card" href="campaign-{n}.html"><b>Campaign #{n}</b><p>{ft(c["title"])}</p>'
                  '<p class="note">Who does what, what the numbers say, and what your machine can measure.</p></a>')
     o.append('<a class="card" href="overlaps.html"><b>Overlapping pull requests</b><p>Open PRs that change the same thing.</p>'
              '<p class="note">Check before writing a change.</p></a>'
@@ -384,7 +391,7 @@ def html_reports(e, reps):
             seen.add(r["platform"])
             anchor = f' id="{e(r["platform"])}"'
         o.append(f'<tr{anchor} data-pl="{e(r["platform"] or "none")}" data-st="{e(r["stage"])}"><td><a href="{e(r["source"])}">'
-                 f'{ago(e, r["date"])}</a></td><td>{e(pnames.get(r["platform"], "unknown"))}</td><td>{e(r["gpu"] or "")}</td>'
+                 f'{ago(e, r["date"])}</a></td><td>{e(pnames.get(r["platform"], "unknown"))}</td><td>{ft(r["gpu"])}</td>'
                  f'<td>{describe(r, e)}</td><td><code>{e(r["commit"] or "")}</code></td><td>{e(r["author"])}'
                  f'<div class="small">{"issue" if r["kind"] == "issue" else "comment on"} #{r["number"]}</div></td></tr>')
     o.append("</table></div>")

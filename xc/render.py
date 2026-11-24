@@ -28,6 +28,19 @@ def e(x):
     return html.escape(str(x if x is not None else ""))
 
 
+# agentapi.INJECTION without its "@name" rule: on a page a mention pings nobody, and verbatim quotes have them.
+PAGE_INJECTION = re.compile(agentapi.INJECTION.pattern.replace(r"|@\w", ""), re.I)
+assert PAGE_INJECTION.pattern != agentapi.INJECTION.pattern, "agentapi.INJECTION changed: update PAGE_INJECTION"
+
+
+def ft(x):
+    """Free text from GitHub or read by an AI (titles, GPU names, summaries) for a page: escaped, and withheld when it
+    reads like an instruction to an agent (PAGE_INJECTION), since agents read these pages with web tools."""
+    if x is None:
+        return ""
+    return e(agentapi.WITHHELD) if PAGE_INJECTION.search(str(x)) else e(x)
+
+
 def now():
     return dt.datetime.now(dt.timezone.utc)
 
@@ -353,7 +366,7 @@ def header(nav, current_campaign=None):
     def a(h, t, k):
         return f'<a href="{h}"{" aria-current=page" if k == nav else ""}>{t}</a>'
     camps = "".join(f'<a href="campaign-{n}.html"{" aria-current=page" if n == current_campaign else ""}>'
-                    f'<b>#{n}</b> {e(t)}</a>' for n, t in NAV_CAMPS.items())
+                    f'<b>#{n}</b> {ft(t)}</a>' for n, t in NAV_CAMPS.items())
     dd = (f'<details class="dd"><summary{" class=cur" if nav == "campaign" else ""}>Campaigns</summary>'
           f'<div class="ddm">{camps}<a class="all" href="index.html#help">All campaigns and tools →</a></div></details>'
           if NAV_CAMPS else "")
@@ -427,13 +440,13 @@ def html_results(c, msgs, names):
         rows = res.get(t["id"])
         if not rows:
             continue
-        o.append(f"<details><summary><b>{e(t['id'])}</b> {e(t['title'])} <span class='mute'>({len(rows)} numbers)</span></summary>"
+        o.append(f"<details><summary><b>{e(t['id'])}</b> {ft(t['title'])} <span class='mute'>({len(rows)} numbers)</span></summary>"
                  "<div class='scroll'><table class='tbl'>"
                  "<tr><th>What</th><th>Value</th><th>Runs</th><th>Hardware</th><th>Commit</th><th>Who</th></tr>")
         for r in sorted(rows, key=lambda r: (r["class"], r["what"], r["commit"] or "")):
-            o.append(f'<tr><td>{e(r["what"])}</td><td><b>{e(r["value"])}</b> {e(r["unit"])}'
+            o.append(f'<tr><td>{ft(r["what"])}</td><td><b>{e(r["value"])}</b> {ft(r["unit"])}'
                      f'{"" if r["found_in_text"] else " <span class=warn title='not found as such in the comment'>≈</span>"}</td>'
-                     f'<td>{e(r["runs"] or "")}</td><td>{e(r["gpu"] or "")}<div class="small">{e(names.get(r["class"], r["class"]))}</div></td>'
+                     f'<td>{e(r["runs"] or "")}</td><td>{ft(r["gpu"])}<div class="small">{e(names.get(r["class"], r["class"]))}</div></td>'
                      f'<td><code>{e(r["commit"] or "")}</code></td><td><a href="{e(r["source"])}">{e(r["author"])}</a> {prov(r["provenance"])}</td></tr>')
         o.append("</table></div></details>")
     return "\n".join(o)
@@ -453,7 +466,7 @@ def html_findings(c, fcells, names):
          f"within ×{AGREE_TXT} of each other. <span class='bad'>≠</span> = the numbers come from different commits.</p>"]
     for tid, ms in mets.items():
         t = next(x for x in c["tasks"] if x["id"] == tid)
-        o.append(f"<h3><a href='#{e(tid)}'>{e(tid)}</a> {e(t['title'])}</h3><div class='scroll'><table class='tbl'><tr><th>Metric</th>"
+        o.append(f"<h3><a href='#{e(tid)}'>{e(tid)}</a> {ft(t['title'])}</h3><div class='scroll'><table class='tbl'><tr><th>Metric</th>"
                  + "".join(f"<th>{e(k['name'])}</th>" for k in classes) + "</tr>")
         detail = []
         for met in ms:
@@ -506,7 +519,7 @@ def html_todo(c, tasks, g):
                      f"no machine yet" if not who else
                      f"{len(who)} so far ({', '.join(who)}), needs {v['need']} more"
                      + (f", same commit as <code>{e(v['commits'][0])}</code>" if len(v["commits"]) == 1 else ""))
-            items.append(f"<li><a href='#{e(t['id'])}'><b>{e(t['id'])}</b></a> {e(t['title'])} <span class='mute'>· {state}</span> "
+            items.append(f"<li><a href='#{e(t['id'])}'><b>{e(t['id'])}</b></a> {ft(t['title'])} <span class='mute'>· {state}</span> "
                          f"<button type='button' class='btn' data-copy='{e(claim_line(c, t['id'], k['id']))}' "
                          "title='a one-line claim for your GitHub comment'>copy claim line</button></li>")
         main_items = [i for (t, v), i in zip(cells, items) if not t.get("auto")]
@@ -520,10 +533,10 @@ def html_todo(c, tasks, g):
                     "<p class='mute'>Every measurement has enough machines of this class. Reproducing one on the reference "
                     "commit is still useful.</p>")
                  + (f"<p><b>Free code tasks</b> (any machine)</p><ul>"
-                    + "".join(f"<li><a href='#{e(t['id'])}'><b>{e(t['id'])}</b></a> {e(t['title'])}</li>" for t in free_code) + "</ul>"
+                    + "".join(f"<li><a href='#{e(t['id'])}'><b>{e(t['id'])}</b></a> {ft(t['title'])}</li>" for t in free_code) + "</ul>"
                     if free_code else "")
                  + (f"<p><b>Code tasks whose holders went quiet</b> (over {STALE_HOURS} h): ask in the thread before taking them</p><ul>"
-                    + "".join(f"<li><a href='#{e(t['id'])}'><b>{e(t['id'])}</b></a> {e(t['title'])}</li>" for t in stale_code) + "</ul>"
+                    + "".join(f"<li><a href='#{e(t['id'])}'><b>{e(t['id'])}</b></a> {ft(t['title'])}</li>" for t in stale_code) + "</ul>"
                     if stale_code else "")
                  + "<p class='small'>The claim line goes at the end of your comment: it shows as one small link, and the board "
                    "reads the task and the class from it. Results: see <a href='AGENTS-campaign.md'>AGENTS-campaign.md</a>.</p></div>")
@@ -544,7 +557,7 @@ def html_campaign(c, msgs, tasks, g, pr_status, fcells=None):
     conflicts = [t for t in tasks.values() if t["conflict"]]
     empty = sum(1 for (tid, kid), v in g.items() if v["wanted"] and not v["authors"]
                 and not (v["any_hardware"] and (v["done_any"] or kid != c["hardware_classes"][0]["id"])))
-    o = [f'<h1>Campaign #{c["campaign"]}: {e(c["title"])}</h1>',
+    o = [f'<h1>Campaign #{c["campaign"]}: {ft(c["title"])}</h1>',
          f'<div class="mute"><a href="{e(c["issue"])}">{e(c["issue"])}</a> · updated {stamp()} (<span class="fresh"></span>) · '
          f'<a href="campaign-{c["campaign"]}.json">typed JSON for agents</a></div>',
          '<div id="carried" class="banner" hidden><b></b><span></span></div>']
@@ -586,7 +599,7 @@ def html_campaign(c, msgs, tasks, g, pr_status, fcells=None):
         if t["prs_mentioned"]:
             prs += (f' <details class="more"><summary>+{len(t["prs_mentioned"])} mentioned</summary> '
                     + " ".join(prl(p) for p in t["prs_mentioned"]) + "</details>")
-        o.append(f'<tr id="{e(t["id"])}"><td><b>{e(t["id"])}</b> {e(t["title"])}<div class="small">{e(t["type"])}{" · added automatically" if t.get("auto") else ""}</div></td>'
+        o.append(f'<tr id="{e(t["id"])}"><td><b>{e(t["id"])}</b> {ft(t["title"])}<div class="small">{e(t["type"])}{" · added automatically" if t.get("auto") else ""}</div></td>'
                  f'<td>{who or "<span class=empty>free</span>"}</td><td class="prs">{prs}</td>'
                  f'<td>{len({m["key"] for m in t["results"]}) or ""}</td><td>{hhmm(t["last"]) if t["last"] else ""}</td></tr>')
     o.append("</table></div><p class='small'>Chips: holders (a team = people linked by an explicit hand-over in the thread); "
@@ -599,7 +612,7 @@ def html_campaign(c, msgs, tasks, g, pr_status, fcells=None):
     if off:
         o.append(f"<details><summary><b>Work outside the campaign file</b> <span class='mute'>({len(off)} messages: announced in "
                  "the thread, not in the task list)</span></summary><table class='tbl'><tr><th>Who</th><th>What</th><th>Kind</th></tr>")
-        o += [f'<tr><td>{link(m, m["author"])}</td><td>{e(m["c"]["new_task"])}</td><td>{e(m["c"]["kind"])}</td></tr>' for m in off]
+        o += [f'<tr><td>{link(m, m["author"])}</td><td>{ft(m["c"]["new_task"])}</td><td>{e(m["c"]["kind"])}</td></tr>' for m in off]
         o.append("</table></details>")
 
     o.append(html_findings(c, fcells or {}, names) or "<h2 id='findings'>What the numbers say</h2><p class='mute'>No metric "
@@ -619,7 +632,7 @@ def html_campaign(c, msgs, tasks, g, pr_status, fcells=None):
             s = chips(v0["done_any"], "ok", "●") + chips(sorted({m["author"] for k in classes for m in g[(t["id"], k["id"])]["planned"]}),
                                                          "warn", "○", 3)
             s += f'<div class="small">{"needs " + str(v0["need"]) + " more, " if v0["need"] else ""}any machine (no GPU needed)</div>'
-            o.append(f'<tr><td><a href="#{e(t["id"])}"><b>{e(t["id"])}</b></a> {e(t["title"])}</td>'
+            o.append(f'<tr><td><a href="#{e(t["id"])}"><b>{e(t["id"])}</b></a> {ft(t["title"])}</td>'
                      f'<td class="cell" colspan="{len(classes)}">{s}</td></tr>')
             continue
         for k in classes:
@@ -635,7 +648,7 @@ def html_campaign(c, msgs, tasks, g, pr_status, fcells=None):
             if v["need"]:
                 s += f'<div class="small">needs {v["need"]} more</div>'
             cells.append(f'<td class="cell">{s or "<span class=empty>—</span>"}</td>')
-        o.append(f'<tr><td><a href="#{e(t["id"])}"><b>{e(t["id"])}</b></a> {e(t["title"])}</td>{"".join(cells)}</tr>')
+        o.append(f'<tr><td><a href="#{e(t["id"])}"><b>{e(t["id"])}</b></a> {ft(t["title"])}</td>{"".join(cells)}</tr>')
     o.append("</table></div>")
 
     o.append(html_results(c, msgs, names))
@@ -646,7 +659,7 @@ def html_campaign(c, msgs, tasks, g, pr_status, fcells=None):
                  "their hardware class still needs</summary><table class='tbl'><tr><th>Who</th><th>Hardware</th><th>Cells that need this class</th></tr>")
         for a, m in offers.items():
             free = [t["id"] for t in tasks.values() if t["type"] == "measure" and m["cls"] in names and g[(t["id"], m["cls"])]["need"]]
-            o.append(f'<tr><td>{link(m, a)}</td><td>{e(m["c"]["hardware"]["gpu"] or "")} <span class="small">{e(names.get(m["cls"], m["cls"]))}</span></td>'
+            o.append(f'<tr><td>{link(m, a)}</td><td>{ft(m["c"]["hardware"]["gpu"])} <span class="small">{e(names.get(m["cls"], m["cls"]))}</span></td>'
                      f'<td>{" ".join(f"<span class=chip>{e(x)}</span>" for x in free) or "<span class=empty>hardware class unknown</span>"}</td></tr>')
         o.append("</table></details>")
 
@@ -670,9 +683,9 @@ def html_campaign(c, msgs, tasks, g, pr_status, fcells=None):
         css = "ok" if k in RESULTS else "warn" if k in PLANS else "mute"
         o.append(f'<tr data-k="{e(k)}" data-t="{e(" ".join(m["c"]["tasks"]))}" data-c="{e(m["cls"])}"><td>{link(m)}</td>'
                  f'<td>{e(m["author"])}{" ★" if m["author"] in MAINTAINERS else ""}</td><td class="{css}">{e(k)}</td>'
-                 f'<td>{" ".join(f"<span class=chip>{e(x)}</span>" for x in m["c"]["tasks"]) or e(m["c"].get("new_task") or "")}</td>'
-                 f'<td>{e(m["c"]["hardware"]["gpu"] or "")}<div class="small">{e(cl)}</div></td><td><code>{e(m["c"]["commit"] or "")}</code></td>'
-                 f'<td>{e(m["c"]["summary"])} {prov(m["source"])}{" <span class=small>" + e(m["c"]["ai"]) + "</span>" if m["c"].get("ai") else ""}</td></tr>')
+                 f'<td>{" ".join(f"<span class=chip>{e(x)}</span>" for x in m["c"]["tasks"]) or ft(m["c"].get("new_task"))}</td>'
+                 f'<td>{ft(m["c"]["hardware"]["gpu"])}<div class="small">{e(cl)}</div></td><td><code>{e(m["c"]["commit"] or "")}</code></td>'
+                 f'<td>{ft(m["c"]["summary"])} {prov(m["source"])}{" <span class=small>" + ft(m["c"]["ai"]) + "</span>" if m["c"].get("ai") else ""}</td></tr>')
     o.append("</table></div><p><button type='button' class='btn' id='thread-all' hidden>Show every message</button></p>")
     n = c["campaign"]
     return page(f"Campaign #{n}: {c['title']} · XCL board", "\n".join(o), f"api/campaigns/{n}/tasks.json", nav="campaign",

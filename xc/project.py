@@ -23,6 +23,13 @@ AREA_WORDS = [("shaders", r"shader|dxc|dxil|hlsl|recomp|pso|pipeline|spir"), ("m
               ("storage", r"dstorage|directstorage|bcpack|rpf|vfs"), ("video", r"bink|movie|video|mfplat")]
 
 
+def ft(x):
+    """Free text from GitHub for a page: escaped, withheld when it reads like an instruction (render.ft)."""
+    from .render import ft as f
+    return f(x)
+
+
+
 def words(t):
     return {w for w in re.findall(r"[a-z0-9_]{3,}", (t or "").lower()) if w not in STOP}
 
@@ -315,7 +322,7 @@ def html(a, page, e):
                 vd = (v.get("verdicts") or {}).get(str(n), "")
                 best = " · looks most complete (AI reading hint, not a ranking)" if v.get("looks_most_complete") == n else ""
                 o.append(f'<tr><td><a href="{e(p["url"])}">#{n}</a></td><td>{e(p["author"])}</td><td>{e(p["created"][5:16].replace("T", " "))}</td>'
-                         f'<td>{e(p["title"])}</td><td class="small">{e(it.get("subject", ""))}</td>'
+                         f'<td>{ft(p["title"])}</td><td class="small">{ft(it.get("subject", ""))}</td>'
                          f'<td class="{"bad" if vd == "same-change" else "warn" if vd == "partial-overlap" else "mute"}">{e(vd)}{e(best)}</td>'
                          f'<td class="small">{e("; ".join(sorted(why[n])))}</td></tr>')
             o.append("</table></div>")
@@ -332,7 +339,7 @@ def html(a, page, e):
             merged_links = " ".join(f'<a href="{e(a["prs"][m]["url"])}">#{m}</a>' for m in g[1:])
             css = "bad" if vd == "same-change" else "warn" if vd == "partial-overlap" else "mute"
             rows.append((0 if vd == "same-change" else 1 if vd == "partial-overlap" else 2,
-                         f'<tr><td><a href="{e(o["url"])}">#{g[0]}</a></td><td>{e(o["author"])}</td><td>{e(o["title"])}</td>'
+                         f'<tr><td><a href="{e(o["url"])}">#{g[0]}</a></td><td>{e(o["author"])}</td><td>{ft(o["title"])}</td>'
                          f'<td>{merged_links}</td><td class="{css}">{e(vd or "AI check pending")}</td>'
                          f'<td class="small">{e("; ".join(sorted(a["redo_why"][g[0]])))}</td></tr>'))
         if not rows:
