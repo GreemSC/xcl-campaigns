@@ -1,0 +1,14 @@
+[Unit]
+Description=XCL campaigns: collect GitHub + classify + render, every 60 s
+After=network-online.target
+
+[Service]
+WorkingDirectory=%h/xcl-campaigns
+Environment=XC_AI_DIR=%h/xcl-campaigns/.ai-empty
+Environment=PATH=%h/.local/bin:/usr/local/bin:/usr/bin:/bin
+ExecStart=/usr/bin/python3 -m xc loop 40
+Restart=always
+RestartSec=30
+
+[Install]
+WantedBy=default.target

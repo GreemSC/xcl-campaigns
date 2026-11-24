@@ -1,0 +1,9 @@
+[Unit]
+Description=XCL campaigns: publish every 6 minutes
+
+[Timer]
+OnBootSec=2min
+OnUnitActiveSec=6min
+
+[Install]
+WantedBy=timers.target

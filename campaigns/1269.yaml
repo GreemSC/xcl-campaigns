@@ -1,0 +1,44 @@
+# Campaign #1269. UNOFFICIAL draft: written by a contributor from the thread itself, until the maintainer
+# (ivall) adopts or corrects it. Every task below was announced or worked on in the thread.
+campaign: 1269
+title: "Shader compile time (DXC + driver)"
+issue: https://github.com/ivall/xcl/issues/1269
+status: draft            # draft | official | closed
+lead: null               # to be named by the maintainer
+reference:
+  commit: null           # the main commit all measurements should use (to be set)
+  note: "Until it is set, measurements are grouped by commit and cells mixing commits are flagged."
+
+hardware_classes:        # one grid cell = one measurement task x one class
+  - {id: nv-win,     name: "NVIDIA, Windows"}
+  - {id: nv-linux,   name: "NVIDIA, Linux (vkd3d-proton)"}
+  - {id: amd-win,    name: "AMD, Windows (AMD driver)"}
+  - {id: amd-radv,   name: "AMD, Linux (RADV)"}
+  - {id: intel,      name: "Intel Arc / iGPU"}
+  - {id: small-vram, name: "8 GB VRAM or less (any vendor)"}
+
+tasks:
+  # --- Code: one holder (or one team) per task ---
+  - {id: C1, type: code, title: "Direct DXIL backend (no EXEC emulation)"}
+  - {id: C2, type: code, parent: C1, title: "DXIL bitcode writer + container"}
+  - {id: C3, type: code, title: "Skip EXEC guards that are not needed (lane-mask analysis / elision)"}
+  - {id: C4, type: code, title: "-O0 fallback threshold / optimisation level choice in dxc.rs"}
+  - {id: C5, type: code, title: "Compact form: each block emitted once (XCL_COMPACT_CS)"}
+  - {id: C6, type: code, title: "Reuse the EXEC predicate inside a block (HLSL emitter)"}
+  - {id: C7, type: code, title: "Synthetic compile-time benchmark (CI, no game data)"}
+  - {id: C8, type: code, title: "Retry driver-refused compute PSOs with a different DXC option (e.g. GVN off)"}
+  - {id: C9, type: code, title: "Find which DXC pass costs ~150 s on loop-heavy programs (HLSL path)"}
+  # --- Measurements: redundancy is wanted (2 machines per class) ---
+  - {id: M1, type: measure, min_per_class: 2, title: "Driver compile time vs DXIL size"}
+  - {id: M2, type: measure, min_per_class: 2, title: "DXC time and DXIL size: -O0 / -O1 / -O3"}
+  - {id: M3, type: measure, min_per_class: 2, title: "World load: where it stalls (title thread, PSOs, watchdog)"}
+  - {id: M4, type: measure, min_per_class: 1, title: "Giant programs (> 8 MB HLSL): which finish, time, memory"}
+  - {id: M5, type: measure, min_per_class: 1, title: "Reproduce #1315/#1316 (compact form) on other hardware"}
+
+rules:
+  - "Before acting, read the campaign digest (who does what, empty cells) instead of the whole thread."
+  - "One code task = one holder or one team. To take one, post an xcl-claim block rather than a plan in prose."
+  - "One measurement = one xcl-result block: commit, local patches, hardware, scenario, numbers, number of runs."
+  - "When comparing two versions, also measure the reference on the same machine."
+  - "Edit your comment rather than adding a new one."
+  - "No game data: counts and timings only."

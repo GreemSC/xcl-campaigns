@@ -1,0 +1,6 @@
+[Unit]
+Description=XCL campaigns: publish site/ to GitHub Pages
+
+[Service]
+Type=oneshot
+ExecStart=%h/xcl-campaigns/deploy/publish.sh

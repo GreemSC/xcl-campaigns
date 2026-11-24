@@ -1,0 +1,7 @@
+data/
+site/
+.github-token
+.deploy-key*
+.pages*
+.ai-empty/
+__pycache__/
