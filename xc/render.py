@@ -260,6 +260,8 @@ var g=$('meta[name=xc-generated]');if(g){var gen=Date.parse(g.content.replace(' 
  fetch('api/health.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.json()}).then(function(h){
   var last=Date.parse(h.last_pass_started||'');if(last&&last-gen>120000){var b=$('#newer');if(!b)return;
    var u=new URL(location.href);u.searchParams.set('v',Date.now());b.querySelector('a').href=u.toString();b.hidden=false}}).catch(function(){})}
+// pages always come from the server, not from a 10-minute browser copy (sw.js; needs https or localhost, so not on the LAN preview)
+if('serviceWorker' in navigator&&window.isSecureContext)navigator.serviceWorker.register('sw.js').catch(function(){});
 // a board link that carries a claim or a result (see AGENTS-campaign.md): show what it carries
 var q=new URLSearchParams(location.search),task=q.get('r')||q.get('claim'),box=$('#carried');
 if(task&&box){var parts=[(q.get('r')?'Result':'Claim')+' for '+task];['class','gpu','driver','commit','runs','patches','until'].forEach(function(k){
@@ -933,7 +935,7 @@ def _run(con=None):
     out["home"] = home.build(con, OUT, page, e, camps)
     with open(f"{OUT}/llms.txt", "w") as fh:
         fh.write(llms_txt(camps))
-    for f in ("AGENTS-campaign.md", "404.html"):
+    for f in ("AGENTS-campaign.md", "404.html", "sw.js"):
         if os.path.exists(f):
             shutil.copy(f, f"{OUT}/{f}")
     open(f"{OUT}/.nojekyll", "w").close()
