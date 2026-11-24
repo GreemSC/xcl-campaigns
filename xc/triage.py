@@ -24,6 +24,7 @@ import concurrent.futures as cf
 import datetime as dt
 import json
 import os
+import re
 import shutil
 
 from . import ai, db
@@ -49,6 +50,17 @@ REASONS = {
     "rules-failing": "the repo's own required check (PR checks) fails on its last commit, or it conflicts with main (CONTRIBUTING: it waits until fixed)",
     "off-goal": "AI reading, confirmed by a second model: does not touch what stops the title today, shows no run, and fixes a bug only argued from the code (or only moves code)",
 }
+
+# Labels proposed on xcl-dev/xcl#1673 (throny, comment 7144890245): "label first, have a second person spot-check
+# each label, then close each label in one go". The board only suggests them; a person applies them.
+LABEL_OF = {"redoes-merged": "duplicate", "duplicate-open": "duplicate", "rules-stale": "stale",
+            "off-goal": "off-goal"}
+LABELS = {"duplicate": "redoes a merged PR or duplicates an open one (second AI check on the diffs)",
+          "stale": f"fails a required check or conflicts, last commit over {STALE_DAYS} days old",
+          "off-goal": "AI reading confirmed by a second model (see reasons.off-goal)",
+          "goal:world-load": "AI card: changes what stops runs today (world loading stalls and crashes, compile stalls)",
+          "needs-issue": "names no issue of the repo in its title or description"}
+ISSUE_REF = re.compile(r"(?<![\w/])#(\d{1,5})\b")
 
 CARD = {"type": "object", "additionalProperties": False,
         "required": ["n", "touches", "evidence", "speculative", "churn"],
@@ -310,6 +322,7 @@ def build(con, a):
     pr_group = {n: g for g in a["pr_groups"] for n in g}
     prs, counts = [], {k: 0 for k in REASONS}
     counts["ready"] = 0
+    label_counts = {}
     for n in sorted(a["open_prs"]):
         reasons = []
         if n in redo:
@@ -346,12 +359,19 @@ def build(con, a):
         ready = bool(s and card and not s["draft"] and s["ci"] == "success" and s["pr_checks"] == "success"
                      and s["mergeable"] == "MERGEABLE" and card["touches"] in ("wall", "campaign", "reached-stage")
                      and card["evidence"] == "retail-shows-effect" and not reasons)
+        body = f"{a['prs'][n]['title'] or ''} {a['prs'][n]['body'] or ''}"
+        linked = sorted({int(x) for x in ISSUE_REF.findall(body)} & set(a["issues"]))
+        labels = sorted({LABEL_OF[x["reason"]] for x in reasons if x["reason"] in LABEL_OF}
+                        | ({"goal:world-load"} if card and card["touches"] == "wall" else set())
+                        | (set() if linked else {"needs-issue"}))
         for x in reasons:
             counts[x["reason"]] += 1
+        for l in labels:
+            label_counts[l] = label_counts.get(l, 0) + 1
         counts["ready"] += ready
         prs.append({"pr": n, "author": a["prs"][n]["author"], "area": a["area"].get(n),
                     "created": a["prs"][n]["created"],
-                    "closable": reasons, "ready_to_decide": ready,
+                    "closable": reasons, "ready_to_decide": ready, "linked_issues": linked, "suggested_labels": labels,
                     "ai": card, "ai_second_read": conf,
                     "checks": {"ci": s["ci"], "pr_checks": s["pr_checks"], "mergeable": s["mergeable"],
                                "draft": bool(s["draft"]), "last_commit": s["last_commit"],
@@ -359,7 +379,7 @@ def build(con, a):
     return {"generated": now(), "repo": REPO, "open_prs": len(a["open_prs"]),
             "status_read_at": db.get_state(con, "triage_status_at"),
             "ai_cards": sum(1 for p in prs if p["ai"]),
-            "counts": counts, "reasons": REASONS,
+            "counts": counts, "reasons": REASONS, "label_counts": label_counts, "labels": LABELS,
             "by_touches": {k: sum(1 for p in prs if p["ai"] and p["ai"]["touches"] == k) for k in TOUCHES},
             "by_evidence": {k: sum(1 for p in prs if p["ai"] and p["ai"]["evidence"] == k) for k in EVIDENCE},
             "enums": {"touches": TOUCHES, "evidence": EVIDENCE},
