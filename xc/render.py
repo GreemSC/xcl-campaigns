@@ -121,8 +121,9 @@ def task_state(c, msgs, pr_status):
                 t["holders"].pop(a, None)
                 t["plans"] = [p for p in t["plans"] if p["author"] != a]
             else:
-                teams.join(a, tr["to"])
-            t["holders"].setdefault(tr["to"], m)
+                teams.join(a, tr["to"])          # gives / builds_on: same team
+            if tr["how"] != "builds_on":
+                t["holders"].setdefault(tr["to"], m)
             t["last"] = m["created"]
             t["last_by"][tr["to"]] = m["created"]
         for me in card["measurements"]:
@@ -234,7 +235,7 @@ def html_results(c, msgs, names):
     res = results_of(c, msgs)
     if not res:
         return ""
-    o = ["<h2>Reported numbers</h2><p class='mute'>Every number reported for a measurement task, with its context. "
+    o = ["<h2 id='reported-numbers'>Reported numbers</h2><p class='mute'>Every number reported for a measurement task, with its context. "
          "Only compare rows with the same commit and hardware class. <span class='warn'>≈</span> = the number does not appear "
          "as such in the comment (the AI converted a unit or rounded): check the source.</p>"]
     for t in c["tasks"]:

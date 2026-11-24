@@ -19,7 +19,7 @@ from .extract import blocks_of
 MODEL = os.environ.get("XC_MODEL", "haiku")
 WORKERS = int(os.environ.get("XC_WORKERS", "4"))
 PER_AUTHOR_HOUR = int(os.environ.get("XC_PER_AUTHOR_HOUR", "40"))   # AI calls per author per hour (anti-flood; active coordinators post a lot)
-CARD_VERSION = "2"
+CARD_VERSION = "3"
 LOGIN = r"^[A-Za-z0-9-]{1,39}$"
 
 KINDS = ["plan", "claim", "assignment", "handover", "result", "correction", "progress", "pr", "tool",
@@ -66,7 +66,7 @@ def schema(c):
                 "type": "object", "additionalProperties": False, "required": ["task", "to", "how"],
                 "properties": {"task": {"type": "string", "enum": ids},
                                "to": {"type": "string", "pattern": LOGIN},
-                               "how": {"type": "string", "enum": ["gives", "hands_over"]}}}},
+                               "how": {"type": "string", "enum": ["gives", "hands_over", "builds_on"]}}}},
             "ai": {"type": ["string", "null"], "maxLength": 40},
             "summary": {"type": "string", "maxLength": 160},
         }}
@@ -97,7 +97,8 @@ Rules:
 - tasks: only ids the AUTHOR works on, measures or reports on, not ids merely mentioned. If the work matches none,
   tasks=[] and new_task = a short title.
 - transfers: every task the author explicitly GIVES to a login (how=gives, e.g. "X, the writer is yours", "@Y can
-  you take the wave ops") or LEAVES to a login and will not do (how=hands_over). Use the exact task id; a part of a
+  you take the wave ops"), LEAVES to a login and will not do (how=hands_over), or where the author's own work BUILDS
+  ON or extends a login's work (how=builds_on: stacked on their PR, uses their branch or tool, tests their change). Use the exact task id; a part of a
   task (e.g. wave operations of the direct backend) uses the id of the task it belongs to.
 - hardware: what the AUTHOR measured or will measure on, not hardware of someone quoted. class = the most precise.
   small-vram if 8 GB of VRAM or less. unknown if not said.
@@ -171,6 +172,8 @@ def from_block(r, camps):
     c = camps.get(b.get("campaign")) if isinstance(b.get("campaign"), int) else None
     if not c:
         return None
+    if len(blocks) > 1 and kind != "xcl-fix":
+        return merge_blocks(r, c, [x for x in blocks if x[1].get("campaign") == c["campaign"] and x[0] != "xcl-fix"], camps)
     if kind == "xcl-fix":
         return c, {"kind": "fix", "target": str(b.get("target") or "")[:200],
                    "set": {k: b[k] for k in ("kind", "tasks", "class", "commit") if k in b}, "campaign": c["campaign"]}
@@ -194,6 +197,25 @@ def from_block(r, camps):
         "measurements": meas, "replies_to": [], "transfers": [], "ai": None,
         "until": str(b.get("until") or "")[:25] or None,
         "summary": f"{kind} block posted by the author.", "campaign": c["campaign"]}
+
+
+def merge_blocks(r, c, blocks, camps):
+    """Several xcl-claim / xcl-result blocks in one comment: one card with every task and every number."""
+    cards = []
+    for blk in blocks:
+        fake = dict(r)
+        fake["body"] = f"```{blk[0]}\n{json.dumps(blk[1])}\n```"
+        res = from_block(fake, camps)
+        if res:
+            cards.append(res[1])
+    if not cards:
+        return None
+    card = dict(cards[-1])
+    card["kind"] = "result" if any(x["kind"] == "result" for x in cards) else card["kind"]
+    card["tasks"] = sorted({t for x in cards for t in x["tasks"]})
+    card["measurements"] = [m for x in cards for m in x["measurements"]][:24]
+    card["summary"] = f"{len(cards)} blocks posted by the author."
+    return c, card
 
 
 def _save(con, r, card, model, source):

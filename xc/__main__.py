@@ -6,6 +6,7 @@
   intent           AI intent card for open PRs / issues (whole repo)
   check            second AI check of candidate duplicate groups
   render           build the pages and the JSON digests
+  digest N [--posted]  draft a short GitHub update for campaign N with only what is new (never posts)
   loop [N]         collect + extract + classify + render, every 60 s
 """
 import json
@@ -31,6 +32,9 @@ def main(argv):
     elif cmd == "check":
         from . import db, project
         print(json.dumps(project.check(db.connect())))
+    elif cmd == "digest":
+        from .digest import main as digest_main
+        digest_main(argv[2:])
     elif cmd == "render":
         from .render import run
         print(json.dumps(run()))
