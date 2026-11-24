@@ -31,10 +31,14 @@ def jac(a, b):
 
 
 def area_of_path(p):
+    """File paths come from PR authors (untrusted): the area name is reduced to a safe charset."""
     if p.startswith("crates/xcl/src/"):
         parts = p[len("crates/xcl/src/"):].split("/")
-        return "/".join(parts[:2]) if len(parts) > 2 else parts[0].removesuffix(".rs")
-    return p.split("/")[0]
+        a = "/".join(parts[:2]) if len(parts) > 2 else parts[0].removesuffix(".rs")
+    else:
+        a = p.split("/")[0]
+    a = re.sub(r"[^A-Za-z0-9_/-]", "_", a).strip("/._") or "other"
+    return a[:60]
 
 
 def area_of(title, paths):

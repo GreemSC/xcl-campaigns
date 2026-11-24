@@ -319,8 +319,16 @@ def campaign_api(c, tasks, g):
 
 
 def run(con=None):
-    con = con or db.connect()
+    """Holds site.lock while writing, so the publisher never copies a half-written site."""
+    import fcntl
     os.makedirs(OUT, exist_ok=True)
+    with open(f"{OUT}.lock", "w") as lock:
+        fcntl.flock(lock, fcntl.LOCK_EX)
+        return _run(con)
+
+
+def _run(con=None):
+    con = con or db.connect()
     pr_status = {r["number"]: r["status"] for r in con.execute("SELECT number, status FROM items WHERE kind='pr'")}
     out = {}
     camps = campaigns()

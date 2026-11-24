@@ -4,6 +4,7 @@ If the author posted an `xcl-claim` / `xcl-result` / `xcl-fix` block, the card c
 Otherwise an AI (Claude Code in print mode) reads the message as DATA and returns JSON constrained by a
 schema. It has no tools, no network, no MCP, no settings. Code then re-checks the card against the source
 text. Only typed fields (enums, numbers, logins, issue numbers, commits) reach the public digest."""
+import collections
 import concurrent.futures as cf
 import datetime as dt
 import glob
@@ -21,6 +22,7 @@ from .extract import blocks_of
 MODEL = os.environ.get("XC_MODEL", "haiku")
 AI_DIR = os.environ.get("XC_AI_DIR", "/tmp/xc-classify")   # empty dir: no CLAUDE.md is picked up
 WORKERS = int(os.environ.get("XC_WORKERS", "4"))
+PER_AUTHOR_HOUR = int(os.environ.get("XC_PER_AUTHOR_HOUR", "12"))   # AI calls per author per hour (anti-flood)
 CARD_VERSION = "2"
 LOGIN = r"^[A-Za-z0-9-]{1,39}$"
 
@@ -225,6 +227,16 @@ def run(limit=20, con=None):
         else:
             ai_rows.append((r, campaign_of(con, r, camps)))
     con.commit()
+    # Anti-flood: one account posting hundreds of comments must not burn the AI quota. The rest waits for later passes.
+    recent = collections.Counter(x["author"] for x in con.execute(
+        "SELECT i.author FROM cards c JOIN items i USING(key) WHERE c.source='auto' AND c.date > ?",
+        ((dt.datetime.now(dt.timezone.utc) - dt.timedelta(hours=1)).isoformat(timespec="seconds"),)))
+    kept = []
+    for r, c in ai_rows:
+        if recent[r["author"]] < PER_AUTHOR_HOUR:
+            recent[r["author"]] += 1
+            kept.append((r, c))
+    ai_rows = kept
     if ai_rows and not shutil.which("claude"):
         return {"cards": done, "waiting_for_ai": len(ai_rows)}
     with cf.ThreadPoolExecutor(WORKERS) as ex:

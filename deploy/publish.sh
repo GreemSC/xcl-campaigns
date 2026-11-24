@@ -8,9 +8,10 @@ export GIT_SSH_COMMAND="ssh -i $HOME/xcl-campaigns/.deploy-key -o IdentitiesOnly
 W="$HOME/xcl-campaigns/.pages"
 [ -d site ] || exit 0
 # Content fingerprint without the timestamps, so an unchanged board is not re-published.
-NEW=$(find site -type f | sort | xargs cat | sed -E 's/[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2} UTC//g' | sha256sum | cut -c1-16)
+NEW=$(flock site.lock find site -type f | sort | xargs cat | sed -E 's/[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2} UTC//g' | sha256sum | cut -c1-16)
 [ "$NEW" = "$(cat "$W.last" 2>/dev/null || true)" ] && exit 0
-rm -rf "$W" && mkdir -p "$W" && cp -a site/. "$W/"
+rm -rf "$W" && mkdir -p "$W"
+flock site.lock cp -a site/. "$W/"     # render.py holds this lock while it writes site/
 cd "$W"
 git init -q -b gh-pages
 git -c user.name="xcl-campaigns bot" -c user.email="xcl-campaigns@users.noreply.github.com" add -A

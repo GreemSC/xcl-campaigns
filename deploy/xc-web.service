@@ -1,0 +1,12 @@
+[Unit]
+Description=XCL campaigns: LAN preview of site/ (port 8270, LAN address only)
+
+[Service]
+WorkingDirectory=%h/xcl-campaigns
+ExecStartPre=/usr/bin/mkdir -p %h/xcl-campaigns/site
+ExecStart=/usr/bin/python3 -m http.server 8270 --bind ${XC_LAN_IP} --directory site
+Environment=XC_LAN_IP=192.168.1.111
+Restart=always
+
+[Install]
+WantedBy=default.target
