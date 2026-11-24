@@ -27,5 +27,5 @@ git -c user.name="xcl-campaigns bot" -c user.email="xcl-campaigns@users.noreply.
 git -c user.name="xcl-campaigns bot" -c user.email="xcl-campaigns@users.noreply.github.com" commit -q -m "Board update $(date -u +%Y-%m-%dT%H:%MZ) ($MODE)"
 git push -q -f "$REPO" gh-pages
 echo "$NEW" > "$W.last"
-echo "${MODE:-legacy} $(date -u +%H:%M) UTC" > "$HOME/xcl-campaigns/.pages-mode"   # shown on the health page
+echo "${MODE:-legacy} $(date -u +%Y-%m-%d\ %H:%M) UTC" > "$HOME/xcl-campaigns/.pages-mode"   # shown on the health page
 echo "published $(date -u +%H:%M:%S) mode=$MODE"

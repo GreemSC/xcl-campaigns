@@ -1,8 +1,15 @@
 # xcl-campaigns
 
-A board for the *campaign issues* of [xcl-dev/xcl](https://github.com/xcl-dev/xcl) (formerly ivall/xcl): issues where the maintainer asks
-many contributors, and their AI agents, to work on one topic at once (the first one is
-[#1269](https://github.com/xcl-dev/xcl/issues/1269), shader compile time).
+A community board for [xcl-dev/xcl](https://github.com/xcl-dev/xcl) (formerly ivall/xcl), the recompiler that runs the
+Xbox Series build of GTA VI on PC. Made by contributors, not by the XCL maintainers.
+
+**For everyone** (front page): does the game run yet, and how far it gets on each platform (Windows / Linux ×
+NVIDIA / AMD / Intel, Steam Deck), from first-hand test reports; what was merged lately; where the project is
+(changes per day, open PRs and issues, the most discussed issues). **Test reports**: every report, filterable.
+
+**For contributors**: the *campaign issues*, where the maintainer asks many contributors, and their AI agents, to
+work on one topic at once (the first one is [#1269](https://github.com/xcl-dev/xcl/issues/1269), shader compile
+time); overlapping PRs and duplicate issues across the repository; a JSON API and `llms.txt` for agents.
 
 On #1269, 40 comments from 27 authors arrived in the first hour. Four people measured the same `-O0` threshold,
 numbers came from ten different `main` commits, and nobody could see who was doing what. This board turns the
@@ -38,6 +45,7 @@ only makes your row exact and immediate. See [AGENTS-campaign.md](AGENTS-campaig
 | `intent` | Every open PR and issue gets a typed intent card (area, kind, subject, keywords, crash offset), used to find duplicates that are worded differently. | yes, typed output only |
 | `check` | A second model (Sonnet) reads each candidate group of duplicates and marks each member same-change / partial-overlap / different. Cached until a member changes. | yes, typed output only |
 | `findings` | For each result message, an AI (Haiku, same box) only points at which of its numbers form a metric of the campaign file (metric id, number indexes, a size written in the text). Code converts units, checks the size against the text, computes the value and aggregates across machines. | yes, typed output only |
+| `progress` | Issues and comments that name a stage of the game and some hardware (rules) get a typed card: first-hand or not, furthest stage (starts → first frames → title screen → menus → world loading → in game → playable), how it ended, OS, GPU vendor, GPU, commit, time, fps. GPU, commit and numbers must appear in the text. "In game" and "playable" are re-read by Sonnet, which must quote verbatim the author's description of the screen; without such a quote the report counts as world loading. A stage is "confirmed" when 2+ people reached it. | yes, typed output only |
 | `render` | Pages + JSON digest, computed by code. Every row links to its source comment. | no |
 
 Why the AI never writes the page: a summary written by a model is exactly what a hidden instruction in a
