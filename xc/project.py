@@ -73,6 +73,8 @@ class UF:
 
 
 def analyse(con):
+    from . import intent, verify
+    intents = intent.load(con)
     prs = {r["number"]: dict(r) for r in con.execute(
         "SELECT number, author, title, body, created, url, status FROM items WHERE kind='pr'")}
     issues = {r["number"]: dict(r) for r in con.execute(
@@ -111,11 +113,33 @@ def analyse(con):
                 uf.join(a, b)
                 why[a].add("same files, similar title")
                 why[b].add("same files, similar title")
+    # Same intent (AI intent cards): same area, at least 2 shared keywords and keyword overlap >= 50 %,
+    # or the same crash offset / same fixed issue according to the cards. Different authors only.
+    ik = {n: intents.get(f"pr:{n}") for n in open_prs}
+    with_int = [n for n in open_prs if ik[n]]
+    for k, a_ in enumerate(with_int):
+        for b in with_int[k + 1:]:
+            x, y = ik[a_], ik[b]
+            if prs[a_]["author"] == prs[b]["author"]:
+                continue
+            kx, ky = set(x["keywords"]), set(y["keywords"])
+            same_kw = x["area"] == y["area"] and len(kx & ky) >= 2 and jac(kx, ky) >= 0.5
+            same_fix = bool(set(x["fixes"]) & set(y["fixes"]) - trackers)
+            same_crash = x.get("crash_offset") and x["crash_offset"] == y.get("crash_offset")
+            if same_kw or same_fix or same_crash:
+                uf.join(a_, b)
+                w = "same subject (AI keywords)" if same_kw else "same fixed issue (AI)" if same_fix else "same crash offset (AI)"
+                why[a_].add(w)
+                why[b].add(w)
     pr_groups = uf.groups()
 
     # Duplicate open issues.
     open_issues = [n for n, i in issues.items() if i["status"] == "open"]
-    sig = {n: {s.lower() for s in CRASH.findall(issues[n]["body"] or "")} for n in open_issues}
+    sig = {n: {s.lower() for s in CRASH.findall(issues[n]["body"] or "")}
+              | ({intents[f"issue:{n}"]["crash_offset"]} if intents.get(f"issue:{n}", {}).get("crash_offset") else set())
+           for n in open_issues}
+    ikw = {n: set((intents.get(f"issue:{n}") or {}).get("keywords") or []) for n in open_issues}
+    iar = {n: (intents.get(f"issue:{n}") or {}).get("area") for n in open_issues}
     iw = {n: words(issues[n]["title"]) for n in open_issues}
     uf2, why2 = UF(open_issues), collections.defaultdict(set)
     for k, a in enumerate(open_issues):
@@ -129,6 +153,10 @@ def analyse(con):
                 uf2.join(a, b)
                 why2[a].add("very similar title")
                 why2[b].add("very similar title")
+            elif iar[a] and iar[a] == iar[b] and len(ikw[a] & ikw[b]) >= 3 and jac(ikw[a], ikw[b]) >= 0.6:
+                uf2.join(a, b)
+                why2[a].add("same symptom (AI keywords)")
+                why2[b].add("same symptom (AI keywords)")
     issue_groups = uf2.groups()
 
     fixed_by = collections.defaultdict(list)
@@ -137,9 +165,37 @@ def analyse(con):
             fixed_by[i].append(n)
     area = {n: area_of(prs[n]["title"], files[n]) for n in prs}
     iarea = {n: area_of(issues[n]["title"], ()) for n in issues}
+    for n in prs:                                   # the AI area is better than the path-based one when known
+        if intents.get(f"pr:{n}"):
+            area[n] = intents[f"pr:{n}"]["area"]
+    for n in issues:
+        if intents.get(f"issue:{n}"):
+            iarea[n] = intents[f"issue:{n}"]["area"]
+    checks = {("pr", tuple(g)): verify.get(con, "pr", g) for g in pr_groups}
+    checks.update({("issue", tuple(g)): verify.get(con, "issue", g) for g in issue_groups})
     return dict(prs=prs, issues=issues, files=files, open_prs=open_prs, open_issues=open_issues, fixes=fixes,
                 pr_groups=pr_groups, pr_why=why, issue_groups=issue_groups, issue_why=why2, fixed_by=fixed_by,
-                area=area, iarea=iarea)
+                area=area, iarea=iarea, intents=intents, checks=checks)
+
+
+def check(con):
+    """Run the second AI check on candidate groups (outside the render lock: it can take minutes)."""
+    from . import verify
+    a = analyse(con)
+    return verify.run(con, {"pr": a["pr_groups"], "issue": a["issue_groups"]}, a["intents"])
+
+
+def _verdicts(a, kind, g):
+    c = a["checks"].get((kind, tuple(g)))
+    if not c:
+        return None
+    return {"ai_check": c["summary_kind"], "verdicts": {str(m["number"]): m["verdict"] for m in c["members"]},
+            "most_complete": next((m["number"] for m in c["members"] if m["most_complete"]), None)}
+
+
+def _intent(a, key):
+    i = a["intents"].get(key)
+    return {k: i[k] for k in ("area", "kind", "subject", "keywords")} if i else None
 
 
 def write_api(a, out, campaigns_api):
@@ -155,14 +211,17 @@ def write_api(a, out, campaigns_api):
             json.dump(obj, fh, ensure_ascii=False, separators=(",", ":"))
 
     for n in a["open_prs"]:
-        dump(f"prs/{n}.json", {"pr": n, "area": a["area"][n], "files": len(a["files"][n]),
+        g = pr_group.get(n, [])
+        dump(f"prs/{n}.json", {"pr": n, "status": "open", "author": a["prs"][n]["author"], "area": a["area"][n],
+                               "intent": _intent(a, f"pr:{n}"), "files": len(a["files"][n]),
                                "fixes": sorted(a["fixes"][n]),
-                               "overlaps": [x for x in pr_group.get(n, []) if x != n],
-                               "why": sorted(a["pr_why"][n]),
+                               "overlaps": [x for x in g if x != n],
+                               "why": sorted(a["pr_why"][n]), "check": _verdicts(a, "pr", g) if g else None,
                                "other_prs_fixing_same_issue": sorted({x for i in a["fixes"][n] for x in a["fixed_by"][i]} - {n})})
     for n in a["open_issues"]:
-        dump(f"issues/{n}.json", {"issue": n, "area": a["iarea"][n],
-                                  "duplicates": [x for x in is_group.get(n, []) if x != n],
+        g = is_group.get(n, [])
+        dump(f"issues/{n}.json", {"issue": n, "area": a["iarea"][n], "intent": _intent(a, f"issue:{n}"),
+                                  "duplicates": [x for x in g if x != n], "check": _verdicts(a, "issue", g) if g else None,
                                   "why": sorted(a["issue_why"][n]), "open_prs_fixing_it": sorted(a["fixed_by"].get(n, []))})
     by_area = collections.defaultdict(lambda: {"open_prs": [], "overlap_groups": 0})
     for n in a["open_prs"]:
@@ -172,40 +231,64 @@ def write_api(a, out, campaigns_api):
     for name, v in by_area.items():
         dump(f"areas/{name.replace('/', '__')}.json", {"area": name, "open_prs": sorted(v["open_prs"]),
                                                        "overlap_groups": v["overlap_groups"]})
-    dump("duplicates.json", {"pr_groups": a["pr_groups"], "issue_groups": a["issue_groups"]})
+    dump("duplicates.json", {
+        "pr_groups": [{"members": g, "check": _verdicts(a, "pr", g)} for g in a["pr_groups"]],
+        "issue_groups": [{"members": g, "check": _verdicts(a, "issue", g)} for g in a["issue_groups"]],
+        "note": "check = second AI review of the group (null while pending). Candidates for a human, not verdicts."})
+    by_file = collections.defaultdict(list)
+    for n in a["open_prs"]:
+        for f in a["files"][n]:
+            by_file[f].append(n)
+    dump("files.json", {f: sorted(v) for f, v in sorted(by_file.items())})
     dump("areas.json", sorted(({"area": k, "open_prs": len(v["open_prs"]), "overlap_groups": v["overlap_groups"]}
                                for k, v in by_area.items()), key=lambda x: -x["open_prs"]))
     dump("index.json", {
         "about": "Typed, read-only data about ivall/xcl, rebuilt every few minutes from public GitHub data. No prose, no instructions.",
         "endpoints": {
-            "api/prs/<n>.json": "one open PR: area, PRs it overlaps, issues it says it fixes, other PRs fixing the same issue",
+            "api/prs/<n>.json": "one open PR: area, AI intent (kind, subject, keywords), PRs it overlaps with the AI check, issues it fixes",
             "api/issues/<n>.json": "one open issue: likely duplicates, open PRs that say they fix it",
             "api/duplicates.json": "all groups of overlapping open PRs and duplicate open issues",
+            "api/files.json": "path -> open PRs touching it: before writing a change, see who already touches the same files",
             "api/areas.json": "open PRs and overlap groups per code area",
             "api/areas/<area>.json": "open PRs of one area ('/' written as '__')",
             **campaigns_api}})
 
 
 def html(a, page, e):
+    labels = {"duplicates": ("bad", "AI check: duplicates"), "partial-overlap": ("warn", "AI check: partial overlap"),
+              "same-area-different-changes": ("mute", "AI check: same area, different changes"),
+              "unrelated": ("mute", "AI check: unrelated"), None: ("mute", "AI check pending")}
+    order = {"duplicates": 0, "partial-overlap": 1, None: 2, "same-area-different-changes": 3, "unrelated": 4}
+
     def table(groups, items, why, kind):
         o = []
-        for g in groups:
-            o.append("<div class='scroll'><table class='tbl' style='margin:14px 0'><tr><th>#</th><th>Author</th><th>Opened</th><th>Title</th><th>Why</th></tr>")
+        for g in sorted(groups, key=lambda g: order[(_verdicts(a, kind, g) or {}).get("ai_check")]):
+            v = _verdicts(a, kind, g) or {}
+            css, lab = labels[v.get("ai_check")]
+            o.append(f"<h3 class='{css}' style='font-size:14px;margin:22px 0 4px'>{e(lab)} · {len(g)} {kind}s</h3>"
+                     "<div class='scroll'><table class='tbl'><tr><th>#</th><th>Author</th><th>Opened</th><th>Title</th>"
+                     "<th>AI subject</th><th>AI verdict</th><th>Why grouped</th></tr>")
             for n in sorted(g, key=lambda n: items[n]["created"]):
                 p = items[n]
+                it = a["intents"].get(f"{kind}:{n}") or {}
+                vd = (v.get("verdicts") or {}).get(str(n), "")
+                best = " ★ most complete" if v.get("most_complete") == n else ""
                 o.append(f'<tr><td><a href="{e(p["url"])}">#{n}</a></td><td>{e(p["author"])}</td><td>{e(p["created"][5:16].replace("T", " "))}</td>'
-                         f'<td>{e(p["title"])}</td><td class="small">{e("; ".join(sorted(why[n])))}</td></tr>')
+                         f'<td>{e(p["title"])}</td><td class="small">{e(it.get("subject", ""))}</td>'
+                         f'<td class="{"bad" if vd == "same-change" else "warn" if vd == "partial-overlap" else "mute"}">{e(vd)}{e(best)}</td>'
+                         f'<td class="small">{e("; ".join(sorted(why[n])))}</td></tr>')
             o.append("</table></div>")
         return "\n".join(o)
 
     known = sum(1 for n in a["open_prs"] if a["files"][n])
     pr_page = page("Overlapping PRs", f"<h1>Open PRs that overlap</h1><p class='mute'>{len(a['open_prs'])} open PRs, "
-                   f"{known} with their file list so far. {len(a['pr_groups'])} groups that probably do the same thing: they say they "
-                   "fix the same issue, or touch mostly the same files with similar titles. Candidates for a human to check; "
-                   "oldest first in each group.</p>" + table(a["pr_groups"], a["prs"], a["pr_why"], "pr"))
+                   f"{known} with their file list so far, {sum(1 for n in a['open_prs'] if a['intents'].get(f'pr:{n}'))} with an AI intent card. "
+                   f"{len(a['pr_groups'])} candidate groups: they say they fix the same issue, touch mostly the same files with similar titles, "
+                   "or have the same subject according to the AI. A second AI (Sonnet) then reads each group and says which members make "
+                   "the same change. Candidates for a human to check; oldest first in each group, confirmed groups first.</p>" + table(a["pr_groups"], a["prs"], a["pr_why"], "pr"))
     is_page = page("Duplicate issues", f"<h1>Open issues that are probably duplicates</h1><p class='mute'>{len(a['open_issues'])} open "
-                   f"issues. {len(a['issue_groups'])} groups: same crash offset (xcl.exe+0x…) or very similar titles. Candidates for a human "
-                   "to check.</p>" + table(a["issue_groups"], a["issues"], a["issue_why"], "issue"))
+                   f"issues. {len(a['issue_groups'])} groups: same crash offset (xcl.exe+0x…), very similar titles, or the same symptom "
+                   "according to the AI, then checked by a second AI. Candidates for a human to check.</p>" + table(a["issue_groups"], a["issues"], a["issue_why"], "issue"))
     return pr_page, is_page
 
 

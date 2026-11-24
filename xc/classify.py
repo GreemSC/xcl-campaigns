@@ -7,20 +7,16 @@ text. Only typed fields (enums, numbers, logins, issue numbers, commits) reach t
 import collections
 import concurrent.futures as cf
 import datetime as dt
-import glob
 import json
 import os
 import re
 import shutil
-import subprocess
 
-import yaml
 
 from . import db
 from .extract import blocks_of
 
 MODEL = os.environ.get("XC_MODEL", "haiku")
-AI_DIR = os.environ.get("XC_AI_DIR", "/tmp/xc-classify")   # empty dir: no CLAUDE.md is picked up
 WORKERS = int(os.environ.get("XC_WORKERS", "4"))
 PER_AUTHOR_HOUR = int(os.environ.get("XC_PER_AUTHOR_HOUR", "12"))   # AI calls per author per hour (anti-flood)
 CARD_VERSION = "2"
@@ -30,16 +26,13 @@ KINDS = ["plan", "claim", "assignment", "handover", "result", "correction", "pro
          "question", "answer", "offer", "noise", "other"]
 
 
-def campaigns():
-    res = {}
-    for f in sorted(glob.glob("campaigns/*.yaml")):
-        c = yaml.safe_load(open(f))
-        res[int(c["campaign"])] = c
-    return res
+def campaigns(con=None):
+    from . import campaigns as camp
+    return camp.load(con or db.connect())
 
 
 def schema(c):
-    ids = [t["id"] for t in c["tasks"]]
+    ids = [t["id"] for t in c["tasks"]] or ["NONE"]   # an empty enum is not valid JSON Schema
     classes = [k["id"] for k in c["hardware_classes"]] + ["unknown"]
     return {
         "type": "object", "additionalProperties": False,
@@ -140,18 +133,10 @@ def campaign_of(con, r, camps):
 
 
 def call_ai(c, r):
-    os.makedirs(AI_DIR, exist_ok=True)
-    data = json.dumps({"author": r["author"], "date": r["created"], "kind": r["kind"], "number": r["number"],
-                       "title": r["title"], "text": (r["body"] or "")[:14000]}, ensure_ascii=False)
-    p = subprocess.run(
-        ["claude", "-p", "--setting-sources", "", "--strict-mcp-config", "--tools", "", "--model", MODEL,
-         "--no-session-persistence", "--output-format", "json", "--json-schema", json.dumps(schema(c)),
-         "--system-prompt", instructions(c)],
-        input="Message to file (JSON data):\n" + data, capture_output=True, text=True, timeout=300, cwd=AI_DIR)
-    out = json.loads(p.stdout)
-    if out.get("is_error") or not out.get("structured_output"):
-        raise RuntimeError(str(out.get("result"))[:200])
-    return out["structured_output"], ",".join((out.get("modelUsage") or {}).keys())
+    from . import ai
+    return ai.ask(instructions(c), {"author": r["author"], "date": r["created"], "kind": r["kind"],
+                                    "number": r["number"], "title": r["title"], "text": (r["body"] or "")[:14000]},
+                  schema(c), model=MODEL)
 
 
 def _num(v):
@@ -164,6 +149,10 @@ def check(card, r):
     low = text.lower()
     if card.get("commit"):
         card["commit"] = card["commit"][:7] if card["commit"] in text else None
+    card["tasks"] = [t for t in card.get("tasks", []) if t != "NONE"]
+    for m in card.get("measurements", []):
+        if m.get("task") == "NONE":
+            m["task"] = None
     card["prs"] = sorted({n for n in card.get("prs", []) if re.search(rf"\b{n}\b", text)})
     card["replies_to"] = sorted({v for v in card.get("replies_to", []) if v.lower() in low} - {r["author"]})
     card["transfers"] = [t for t in card.get("transfers", []) if t["to"].lower() in low and t["to"] != r["author"]]
@@ -214,8 +203,10 @@ def _save(con, r, card, model, source):
 
 
 def run(limit=20, con=None):
+    from . import campaigns as camp
     con = con or db.connect()
-    camps = campaigns()
+    opened = camp.detect(con)
+    camps = campaigns(con)
     rows = pending(con, camps, limit)
     done, errors, ai_rows = 0, [], []
     for r in rows:
@@ -238,7 +229,7 @@ def run(limit=20, con=None):
             kept.append((r, c))
     ai_rows = kept
     if ai_rows and not shutil.which("claude"):
-        return {"cards": done, "waiting_for_ai": len(ai_rows)}
+        return {"cards": done, "waiting_for_ai": len(ai_rows), "opened": opened}
     with cf.ThreadPoolExecutor(WORKERS) as ex:
         futs = {ex.submit(call_ai, c, r): (r, c) for r, c in ai_rows}
         for fut in cf.as_completed(futs):
@@ -253,4 +244,6 @@ def run(limit=20, con=None):
             _save(con, r, card, model, "auto")
             con.commit()
             done += 1
-    return {"cards": done, "errors": errors[:3], "left": len(pending(con, camps, 100000))}
+    grown = camp.grow(con, camps)
+    return {"cards": done, "errors": errors[:3], "left": len(pending(con, camps, 100000)),
+            "opened": opened, "grown": grown}

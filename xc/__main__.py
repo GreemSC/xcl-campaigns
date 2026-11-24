@@ -3,6 +3,8 @@
   collect          one read pass over GitHub
   extract          pass 1 (rules, no AI) on what changed
   classify [N]     pass 2 (author blocks, else AI) on at most N pending messages
+  intent           AI intent card for open PRs / issues (whole repo)
+  check            second AI check of candidate duplicate groups
   render           build the pages and the JSON digests
   loop [N]         collect + extract + classify + render, every 60 s
 """
@@ -23,15 +25,22 @@ def main(argv):
     elif cmd == "classify":
         from .classify import run
         print(json.dumps(run(n)))
+    elif cmd == "intent":
+        from .intent import run
+        print(json.dumps(run()))
+    elif cmd == "check":
+        from . import db, project
+        print(json.dumps(project.check(db.connect())))
     elif cmd == "render":
         from .render import run
         print(json.dumps(run()))
     elif cmd == "loop":
-        from . import classify, collect, extract, render
+        from . import classify, collect, db, extract, intent, project, render
         while True:
             start = time.time()
             try:
-                out = {"collect": collect.run(), "extract": extract.run(), "classify": classify.run(n), "render": render.run()}
+                out = {"collect": collect.run(), "extract": extract.run(), "classify": classify.run(n),
+                       "intent": intent.run(), "check": project.check(db.connect()), "render": render.run()}
                 print(time.strftime("%H:%M:%S"), json.dumps(out), flush=True)
             except Exception as ex:  # one failed pass never kills the loop
                 print(time.strftime("%H:%M:%S"), "ERROR", repr(ex), flush=True)
