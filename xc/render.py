@@ -186,7 +186,11 @@ def digest(c, msgs, tasks, g, pr_status):
                    "prs": [{"number": p, "status": pr_status.get(p), "cited_by": len(t["cites"][p])} for p in t["prs"]],
                    "prs_mentioned": t["prs_mentioned"],
                    "results": len({m["key"] for m in t["results"]})} for t in tasks.values()],
-        "grid": [{"task": tid, "class": kid, "authors": v["authors"], "commits": v["commits"], "need": v["need"],
+        # class_wanted=false: an automatic task whose title names another GPU vendor (A2 "on NVIDIA" in an AMD
+        # class); its need is shown as 0 so agents reading need > 0 do not take it.
+        "grid": [{"task": tid, "class": kid, "authors": v["authors"], "commits": v["commits"],
+                  "need": v["need"] if kid in agentapi.task_classes(tasks[tid], c["hardware_classes"]) else 0,
+                  "class_wanted": kid in agentapi.task_classes(tasks[tid], c["hardware_classes"]),
                   "planned": [m["author"] for m in v["planned"]]} for (tid, kid), v in g.items()],
         "commits_used": collections.Counter(m["c"]["commit"] for m in msgs if m["c"]["commit"]).most_common(),
         "messages": [{"source": m["url"], "author": m["author"], "date": m["created"], "kind": m["c"]["kind"],
@@ -775,8 +779,8 @@ def llms_txt(camps):
         "> GitHub comments.", "",
         "Fetch the JSON with `curl -s URL | jq`, not with a tool that summarises pages: summaries lose exact values.",
         f"Start with {v2}/index.json (endpoints, hardware classes, code areas, definitions, link formats).",
-        "Every file has generated_at, synced_until and ai_fields (fields a model filled from GitHub text), and its",
-        "answer under `data`.", "",
+        "Every file has generated_at and synced_until, ai_fields when a model filled some fields from GitHub text,",
+        "and its answer under `data`.", "",
         "## Before you work on xcl-dev/xcl", "",
         f"- Changing a file: {v2}/files/<path>.json (open PRs touching it; 404 = none), then {v2}/prs/<n>.json.",
         f"- Starting a feature or a fix: {v2}/areas/<area>.json (every open PR of the area, subject and keywords).",
