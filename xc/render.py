@@ -189,8 +189,8 @@ def digest(c, msgs, tasks, g, pr_status):
         # class_wanted=false: an automatic task whose title names another GPU vendor (A2 "on NVIDIA" in an AMD
         # class); its need is shown as 0 so agents reading need > 0 do not take it.
         "grid": [{"task": tid, "class": kid, "authors": v["authors"], "commits": v["commits"],
-                  "need": v["need"] if kid in agentapi.task_classes(tasks[tid], c["hardware_classes"]) else 0,
-                  "class_wanted": kid in agentapi.task_classes(tasks[tid], c["hardware_classes"]),
+                  "need": v["need"] if v.get("wanted", True) else 0, "class_wanted": v.get("wanted", True),
+                  "any_hardware": bool(v.get("any_hardware")),
                   "planned": [m["author"] for m in v["planned"]]} for (tid, kid), v in g.items()],
         "commits_used": collections.Counter(m["c"]["commit"] for m in msgs if m["c"]["commit"]).most_common(),
         "messages": [{"source": m["url"], "author": m["author"], "date": m["created"], "kind": m["c"]["kind"],
@@ -834,12 +834,10 @@ def campaign_api(c, tasks, g, msgs=None):
                            {"task": tid, "title": tasks[tid]["title"], "need": v["need"], "commits_so_far": v["commits"],
                             "planned_by": [m["author"] for m in v["planned"]],
                             "need_after_planned": max(0, v["need"] - len(v["planned"]))}
-                           for (tid, kid), v in g.items() if kid == k["id"] and v["need"] > 0
-                           and kid in agentapi.task_classes(tasks[tid], c["hardware_classes"])],
+                           for (tid, kid), v in g.items() if kid == k["id"] and v["need"] > 0 and v.get("wanted", True)],
                        "not_for_this_class": [
                            {"task": tid, "title": tasks[tid]["title"], "why": "its title names another GPU vendor"}
-                           for (tid, kid), v in g.items() if kid == k["id"] and v["need"] > 0
-                           and kid not in agentapi.task_classes(tasks[tid], c["hardware_classes"])],
+                           for (tid, kid), v in g.items() if kid == k["id"] and not v.get("wanted", True)],
                        "newer_version": f"api/v2/campaigns/{c['campaign']}/free/{k['id']}.json",
                        "free_code_tasks": [t["id"] for t in tasks.values() if t["type"] == "code" and not t["holders"]]},
                       fh, separators=(",", ":"))
