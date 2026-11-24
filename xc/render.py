@@ -371,6 +371,9 @@ def write_health(con, out):
          "duplicate_groups_waiting_for_ai_check": None if res("check", "more") is None else bool(res("check", "more")),
          "errors": {k: v["error"] for k, v in steps.items() if v.get("error")},
          "step_seconds": {k: v.get("seconds") for k, v in steps.items()}}
+    from . import ai
+    h["ai_usage_last_hour"] = ai.usage(con, 1)
+    h["ai_usage_last_24h"] = ai.usage(con, 24)
     os.makedirs(f"{OUT}/api", exist_ok=True)
     with open(f"{OUT}/api/health.json", "w") as fh:
         json.dump(h, fh, indent=1)
