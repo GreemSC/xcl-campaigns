@@ -306,7 +306,8 @@ def definitions():
         "conflict": "a code task held by two or more separate teams (people not linked by a hand-over or builds-on)",
         "stale_holders": f"holders silent on the task for more than {render.STALE_HOURS} hours",
         "provenance": "author: a board link or block written by the comment's author (exact); auto: read by a model "
-                      "from free text (check the source); author-fixed: corrected by the author with xcl-fix",
+                      "from free text (check the source); author-fixed: corrected by the author with xcl-fix; board-fixed: "
+                      "corrected by the board maintainers in the campaign file (a reason is kept with it)",
         "duplicate_candidates": "found by code (same files and similar title, same fixed issue, same AI keywords); "
                                 "duplicate_ai_check is a second model's verdict per member: same-change, "
                                 "partial-overlap, different",
