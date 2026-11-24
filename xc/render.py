@@ -55,10 +55,11 @@ def load(con, c, task_map=None):
             card["tasks"] = [task_map[r["key"]]]       # work matched to a task added later (campaigns.grow)
         (fixes if card.get("kind") == "fix" else msgs).append({**dict(r), "c": card})
     # xcl-fix: applied only when posted by the author of the target message or by a maintainer.
-    by_url = {m["url"]: m for m in msgs}
+    same = lambda u: str(u or "").replace("github.com/ivall/xcl/", "github.com/xcl-dev/xcl/")   # repository moved
+    by_url = {same(m["url"]): m for m in msgs}
     by_key = {m["key"]: m for m in msgs}
     for f in fixes:
-        t = by_url.get(f["c"]["target"]) or by_key.get(f["c"]["target"])
+        t = by_url.get(same(f["c"]["target"])) or by_key.get(f["c"]["target"])
         if t and (f["author"] == t["author"] or f["author"] in MAINTAINERS):
             s = f["c"]["set"]
             if s.get("kind") in ("plan", "claim", "result", "correction", "progress", "pr", "offer", "noise", "other"):
@@ -593,10 +594,13 @@ def write_health(con, out):
     from . import ai
     h["ai_usage_last_hour"] = ai.usage(con, 1)
     h["ai_usage_last_24h"] = ai.usage(con, 24)
-    os.makedirs(f"{OUT}/api", exist_ok=True)
-    with open(f"{OUT}/api/health.json", "w") as fh:
-        json.dump(h, fh, indent=1)
     h["findings_waiting_for_ai"] = res("findings", "left")
+    try:                                    # written by deploy/publish.sh: "<build mode> <time of the last publish>"
+        mode, _, last = open(os.environ.get("XC_PAGES_STATE", ".pages-mode")).read().strip().partition(" ")
+        h["pages_mode"], h["last_publish"] = mode or None, last or None
+    except OSError:
+        h["pages_mode"] = h["last_publish"] = None
+    os.makedirs(f"{OUT}/api", exist_ok=True)
     with open(f"{OUT}/api/health.json", "w") as fh:
         json.dump(h, fh, indent=1)
     return page("Board health", html_health(h), "api/health.json")
@@ -613,7 +617,9 @@ def html_health(h):
          f"<p class='{'ok' if ok else 'bad'}'><b>{'All steps ran without error in the last pass.' if ok else 'Some steps failed in the last pass.'}</b> "
          f"<span class='mute'>Last pass started {e((h['last_pass_started'] or '').replace('T', ' ').replace('Z', ' UTC'))} "
          f"(<span class='fresh'></span>).</span></p>",
-         "<p class='mute'>The pages are rebuilt every minute on the server and published to GitHub Pages every ~6 minutes. "
+         f"<p class='mute'>The pages are rebuilt about every minute on the server and published to GitHub Pages every "
+         f"{'2 minutes (deployed by GitHub Actions)' if h.get('pages_mode') == 'workflow' else '~6 minutes'}"
+         f"{' (previous publish at ' + e(h['last_publish']) + ')' if h.get('last_publish') else ''}. "
          "Items waiting for the AI are filed by rules only until their turn comes.</p>",
          '<div class="kpis">' + "".join(f'<div class="kpi"><b>{v}</b>{k}</div>' for k, v in [
              ("seconds per pass", num(h["pass_seconds"])), ("GitHub API calls left this hour", num(h["github_rate_left"])),

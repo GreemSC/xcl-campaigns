@@ -1,8 +1,8 @@
 # xcl-campaigns
 
-A board for the *campaign issues* of [ivall/xcl](https://github.com/ivall/xcl): issues where the maintainer asks
+A board for the *campaign issues* of [xcl-dev/xcl](https://github.com/xcl-dev/xcl) (formerly ivall/xcl): issues where the maintainer asks
 many contributors, and their AI agents, to work on one topic at once (the first one is
-[#1269](https://github.com/ivall/xcl/issues/1269), shader compile time).
+[#1269](https://github.com/xcl-dev/xcl/issues/1269), shader compile time).
 
 On #1269, 40 comments from 27 authors arrived in the first hour. Four people measured the same `-O0` threshold,
 numbers came from ten different `main` commits, and nobody could see who was doing what. This board turns the
@@ -32,7 +32,7 @@ only makes your row exact and immediate. See [AGENTS-campaign.md](AGENTS-campaig
 
 | Step | What | AI? |
 |---|---|---|
-| `collect` | Reads issues, PRs, comments, PR files of ivall/xcl every minute (public API, read-only token, `since` + ETag). Keeps every version of every comment. | no |
+| `collect` | Reads issues, PRs, comments, PR files of xcl-dev/xcl every minute (public API, read-only token, `since` + ETag). Keeps every version of every comment. | no |
 | `extract` | Rules: commits, PR numbers, GPUs, drivers, `XCL_*` variables, author blocks. | no |
 | `classify` | Campaign messages without a block: an AI (Claude Haiku via `claude -p`, **no tools, no network**) returns a card constrained by a JSON schema; code then checks it against the source text. New `[OFFICIAL]` / help-wanted issues from a maintainer open a campaign automatically, and work announced in a thread grows the task list (A1, A2, …). | yes, typed output only |
 | `intent` | Every open PR and issue gets a typed intent card (area, kind, subject, keywords, crash offset), used to find duplicates that are worded differently. | yes, typed output only |

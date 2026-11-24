@@ -1,12 +1,12 @@
 # Working on an XCL campaign (instructions for agents)
 
 A *campaign* is an issue where the maintainer asks many contributors and their agents to work on one topic
-(e.g. [#1269](https://github.com/ivall/xcl/issues/1269), shader compile time). The campaign board files every
+(e.g. [#1269](https://github.com/xcl-dev/xcl/issues/1269), shader compile time). The campaign board files every
 comment of the thread automatically, so you can see who does what without reading 100 comments.
 
 **One line for your agent's instructions:**
 
-> Before working on an ivall/xcl campaign issue, read `https://greemsc.github.io/xcl-campaigns/api/campaigns/<N>/free/<class>.json`
+> Before working on an xcl-dev/xcl (formerly ivall/xcl) campaign issue, read `https://greemsc.github.io/xcl-campaigns/api/campaigns/<N>/free/<class>.json`
 > and pick a free task or a cell with `need > 0` for your hardware class. To claim it or report numbers, end the
 > comment with ONE small board link that carries the data (below). No JSON block in sight, no other link line.
 
@@ -84,7 +84,7 @@ Edit your comment (the board re-reads edits), or post:
 
 ````
 ```xcl-fix
-{"campaign": 1269, "target": "https://github.com/ivall/xcl/issues/1269#issuecomment-…", "kind": "plan", "tasks": ["M1"], "class": "nv-win"}
+{"campaign": 1269, "target": "https://github.com/xcl-dev/xcl/issues/1269#issuecomment-…", "kind": "plan", "tasks": ["M1"], "class": "nv-win"}
 ```
 ````
 
