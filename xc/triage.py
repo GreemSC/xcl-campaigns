@@ -160,7 +160,7 @@ def fetch_status(con, gh=None, force=False):
 
 def where_it_stops(con):
     """From the board's own first-hand reports (progress.py): furthest stage per platform and how runs end there."""
-    from . import progress
+    from . import home, progress
     try:
         reps = progress.reports(con)
     except Exception:
@@ -174,7 +174,7 @@ def where_it_stops(con):
         if not p:
             continue
         o = out.setdefault(p, {"furthest_stage": None, "rank": -1, "ends": {}})
-        if r["rank"] > o["rank"] and len(people[(p, r["rank"])]) >= 2:   # one report alone is not where it stops
+        if r["rank"] > o["rank"] and len(people[(p, r["rank"])]) >= home.FEW:   # = progress.json furthest_by_few
             o["furthest_stage"], o["rank"] = r["stage"], r["rank"]
         o["ends"][f"{r['stage']}:{r['ended']}"] = o["ends"].get(f"{r['stage']}:{r['ended']}", 0) + 1
     for o in out.values():
