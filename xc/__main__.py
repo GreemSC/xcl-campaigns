@@ -9,7 +9,7 @@
   progress         AI files first-hand reports of how far the game gets (whole repository)
   render           build the pages and the JSON digests
   digest N [--posted]  draft a short GitHub update for campaign N with only what is new (never posts)
-  loop [N]         collect + extract + classify + render, every 60 s
+  loop [N]         collect + extract + render, then the AI steps + render again, every 60 s
 """
 import json
 import sys
@@ -48,7 +48,10 @@ def main(argv):
         print(json.dumps(run()))
     elif cmd == "loop":
         from . import classify, collect, db, extract, findings, intent, progress, project, render
-        steps = [("collect", collect.run), ("extract", extract.run), ("classify", lambda: classify.run(n)),
+        # render_early: the pages and JSON get what GitHub said right after collect (~15 s), without waiting for the
+        # AI steps (up to ~150 s in a burst); what the AI reads in this pass shows at the final render.
+        steps = [("collect", collect.run), ("extract", extract.run), ("render_early", render.run),
+                 ("classify", lambda: classify.run(n)),
                  ("intent", intent.run), ("check", lambda: project.check(db.connect())),
                  ("findings", lambda: findings.run(db.connect(), classify.campaigns(), 20)),
                  ("progress", lambda: progress.run(db.connect())), ("render", render.run)]
