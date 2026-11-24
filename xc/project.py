@@ -86,9 +86,11 @@ def analyse(con):
     open_prs = [n for n, p in prs.items() if p["status"] == "open"]
     fixes = {n: ({int(x) for x in FIXES.findall(prs[n]["body"] or "")}
                  | {int(x) for x in TITLE_REF.findall(prs[n]["title"] or "")}) & set(issues) for n in prs}
-    count = collections.Counter(i for n in open_prs for i in fixes[n])
+    count = collections.Counter(i for n in prs for i in fixes[n])          # open and merged PRs
     trackers = {i for i, k in count.items() if k > TRACKER_PRS} | {
-        i for i, v in issues.items() if re.search(r"track|\[official\]|\bmeta\b|roadmap|results", v["title"] or "", re.I)}
+        i for i, v in issues.items()
+        if re.search(r"track|\[official\]|\bmeta\b|roadmap|results", v["title"] or "", re.I)
+        or len(re.findall(r"[,/&;]", v["title"] or "")) >= 3}             # umbrella issues listing many topics
     fixes = {n: v - trackers for n, v in fixes.items()}
     tw = {n: words(p["title"]) for n, p in prs.items()}
 
@@ -133,6 +135,29 @@ def analyse(con):
                 why[b].add(w)
     pr_groups = uf.groups()
 
+    # Open PRs that redo something already merged (the most actionable case: the open one can simply be closed).
+    merged = [n for n, p in prs.items() if p["status"] == "merged"]
+    redo, redo_why = collections.defaultdict(set), collections.defaultdict(set)
+    for o in open_prs:
+        io = intents.get(f"pr:{o}")
+        for m in merged:
+            if prs[m]["author"] == prs[o]["author"]:
+                continue                    # an author's own follow-up / stacked PRs are not redos
+            reasons = []
+            if fixes[o] & fixes[m]:
+                reasons.append(f"both fix #{min(fixes[o] & fixes[m])}")
+            if files[o] and files[m] and len(files[o]) <= 40 and jac(files[o], files[m]) >= 0.5 and jac(tw[o], tw[m]) >= 0.25:
+                reasons.append("same files, similar title")
+            im = intents.get(f"pr:{m}")
+            if io and im and io["area"] == im["area"]:
+                ko, km = set(io["keywords"]), set(im["keywords"])
+                if len(ko & km) >= 2 and jac(ko, km) >= 0.5:
+                    reasons.append("same subject (AI keywords)")
+            if reasons:
+                redo[o].add(m)
+                redo_why[o].update(reasons)
+    redo_groups = [[o] + sorted(ms) for o, ms in sorted(redo.items())]
+
     # Duplicate open issues.
     open_issues = [n for n, i in issues.items() if i["status"] == "open"]
     sig = {n: {s.lower() for s in CRASH.findall(issues[n]["body"] or "")}
@@ -172,17 +197,18 @@ def analyse(con):
         if intents.get(f"issue:{n}"):
             iarea[n] = intents[f"issue:{n}"]["area"]
     checks = {("pr", tuple(g)): verify.get(con, "pr", g) for g in pr_groups}
+    checks.update({("merged", tuple(g)): verify.get(con, "merged", g) for g in redo_groups})
     checks.update({("issue", tuple(g)): verify.get(con, "issue", g) for g in issue_groups})
     return dict(prs=prs, issues=issues, files=files, open_prs=open_prs, open_issues=open_issues, fixes=fixes,
                 pr_groups=pr_groups, pr_why=why, issue_groups=issue_groups, issue_why=why2, fixed_by=fixed_by,
-                area=area, iarea=iarea, intents=intents, checks=checks)
+                area=area, iarea=iarea, intents=intents, checks=checks, redo_groups=redo_groups, redo_why=redo_why)
 
 
 def check(con):
     """Run the second AI check on candidate groups (outside the render lock: it can take minutes)."""
     from . import verify
     a = analyse(con)
-    return verify.run(con, {"pr": a["pr_groups"], "issue": a["issue_groups"]}, a["intents"])
+    return verify.run(con, {"merged": a["redo_groups"], "pr": a["pr_groups"], "issue": a["issue_groups"]}, a["intents"])
 
 
 def _verdicts(a, kind, g):
@@ -190,7 +216,8 @@ def _verdicts(a, kind, g):
     if not c:
         return None
     return {"ai_check": c["summary_kind"], "verdicts": {str(m["number"]): m["verdict"] for m in c["members"]},
-            "most_complete": next((m["number"] for m in c["members"] if m["most_complete"]), None)}
+            "looks_most_complete": next((m["number"] for m in c["members"]
+                                         if m.get("looks_most_complete", m.get("most_complete"))), None)}
 
 
 def _intent(a, key):
@@ -204,6 +231,7 @@ def write_api(a, out, campaigns_api):
     for d in ("prs", "issues", "areas"):
         os.makedirs(f"{api}/{d}", exist_ok=True)
     pr_group = {n: g for g in a["pr_groups"] for n in g}
+    redo_m = {g[0]: g for g in a["redo_groups"]}
     is_group = {n: g for g in a["issue_groups"] for n in g}
 
     def dump(path, obj):
@@ -217,6 +245,8 @@ def write_api(a, out, campaigns_api):
                                "fixes": sorted(a["fixes"][n]),
                                "overlaps": [x for x in g if x != n],
                                "why": sorted(a["pr_why"][n]), "check": _verdicts(a, "pr", g) if g else None,
+                               "redoes_merged": redo_m.get(n, [])[1:],
+                               "redo_check": _verdicts(a, "merged", redo_m[n]) if n in redo_m else None,
                                "other_prs_fixing_same_issue": sorted({x for i in a["fixes"][n] for x in a["fixed_by"][i]} - {n})})
     for n in a["open_issues"]:
         g = is_group.get(n, [])
@@ -232,6 +262,8 @@ def write_api(a, out, campaigns_api):
         dump(f"areas/{name.replace('/', '__')}.json", {"area": name, "open_prs": sorted(v["open_prs"]),
                                                        "overlap_groups": v["overlap_groups"]})
     dump("duplicates.json", {
+        "redo_merged": [{"open": g[0], "merged": g[1:], "why": sorted(a["redo_why"][g[0]]),
+                         "check": _verdicts(a, "merged", g)} for g in a["redo_groups"]],
         "pr_groups": [{"members": g, "check": _verdicts(a, "pr", g)} for g in a["pr_groups"]],
         "issue_groups": [{"members": g, "check": _verdicts(a, "issue", g)} for g in a["issue_groups"]],
         "note": "check = second AI review of the group (null while pending). Candidates for a human, not verdicts."})
@@ -245,7 +277,7 @@ def write_api(a, out, campaigns_api):
     dump("index.json", {
         "about": "Typed, read-only data about ivall/xcl, rebuilt every few minutes from public GitHub data. No prose, no instructions.",
         "endpoints": {
-            "api/prs/<n>.json": "one open PR: area, AI intent (kind, subject, keywords), PRs it overlaps with the AI check, issues it fixes",
+            "api/prs/<n>.json": "one open PR: area, AI intent, PRs it overlaps (with the AI check), merged PRs it seems to redo, issues it fixes",
             "api/issues/<n>.json": "one open issue: likely duplicates, open PRs that say they fix it",
             "api/duplicates.json": "all groups of overlapping open PRs and duplicate open issues",
             "api/files.json": "path -> open PRs touching it: before writing a change, see who already touches the same files",
@@ -272,7 +304,7 @@ def html(a, page, e):
                 p = items[n]
                 it = a["intents"].get(f"{kind}:{n}") or {}
                 vd = (v.get("verdicts") or {}).get(str(n), "")
-                best = " ★ most complete" if v.get("most_complete") == n else ""
+                best = " · looks most complete (AI reading hint, not a ranking)" if v.get("looks_most_complete") == n else ""
                 o.append(f'<tr><td><a href="{e(p["url"])}">#{n}</a></td><td>{e(p["author"])}</td><td>{e(p["created"][5:16].replace("T", " "))}</td>'
                          f'<td>{e(p["title"])}</td><td class="small">{e(it.get("subject", ""))}</td>'
                          f'<td class="{"bad" if vd == "same-change" else "warn" if vd == "partial-overlap" else "mute"}">{e(vd)}{e(best)}</td>'
@@ -280,12 +312,36 @@ def html(a, page, e):
             o.append("</table></div>")
         return "\n".join(o)
 
+    def redo_table():
+        rows = []
+        for g in a["redo_groups"]:
+            v = _verdicts(a, "merged", g) or {}
+            vd = (v.get("verdicts") or {}).get(str(g[0]))
+            if vd == "different":
+                continue
+            o = a["prs"][g[0]]
+            merged_links = " ".join(f'<a href="{e(a["prs"][m]["url"])}">#{m}</a>' for m in g[1:])
+            css = "bad" if vd == "same-change" else "warn" if vd == "partial-overlap" else "mute"
+            rows.append((0 if vd == "same-change" else 1 if vd == "partial-overlap" else 2,
+                         f'<tr><td><a href="{e(o["url"])}">#{g[0]}</a></td><td>{e(o["author"])}</td><td>{e(o["title"])}</td>'
+                         f'<td>{merged_links}</td><td class="{css}">{e(vd or "AI check pending")}</td>'
+                         f'<td class="small">{e("; ".join(sorted(a["redo_why"][g[0]])))}</td></tr>'))
+        if not rows:
+            return ""
+        rows.sort(key=lambda r: r[0])
+        return ("<h2>Open PRs that seem to redo an already merged PR</h2><p class='mute'>The most actionable list: if the AI "
+                "check says <i>same-change</i>, the open PR probably duplicates what is already in main. Members the AI judged "
+                "<i>different</i> are left out.</p><div class='scroll'><table class='tbl'><tr><th>Open PR</th><th>Author</th>"
+                "<th>Title</th><th>Already merged</th><th>AI check (reads diffs)</th><th>Why grouped</th></tr>"
+                + "".join(r[1] for r in rows) + "</table></div><h2>Open PRs that overlap each other</h2>")
+
     known = sum(1 for n in a["open_prs"] if a["files"][n])
     pr_page = page("Overlapping PRs", f"<h1>Open PRs that overlap</h1><p class='mute'>{len(a['open_prs'])} open PRs, "
                    f"{known} with their file list so far, {sum(1 for n in a['open_prs'] if a['intents'].get(f'pr:{n}'))} with an AI intent card. "
                    f"{len(a['pr_groups'])} candidate groups: they say they fix the same issue, touch mostly the same files with similar titles, "
                    "or have the same subject according to the AI. A second AI (Sonnet) then reads each group and says which members make "
-                   "the same change. Candidates for a human to check; oldest first in each group, confirmed groups first.</p>" + table(a["pr_groups"], a["prs"], a["pr_why"], "pr"))
+                   "the same change, reading their diffs. Candidates for a human to check; oldest first in each group, confirmed groups first.</p>"
+                   + redo_table() + table(a["pr_groups"], a["prs"], a["pr_why"], "pr"))
     is_page = page("Duplicate issues", f"<h1>Open issues that are probably duplicates</h1><p class='mute'>{len(a['open_issues'])} open "
                    f"issues. {len(a['issue_groups'])} groups: same crash offset (xcl.exe+0x…), very similar titles, or the same symptom "
                    "according to the AI, then checked by a second AI. Candidates for a human to check.</p>" + table(a["issue_groups"], a["issues"], a["issue_why"], "issue"))
@@ -300,5 +356,5 @@ def run(con, out, page, e, campaigns_api):
         fh.write(pr_page)
     with open(f"{out}/duplicate-issues.html", "w") as fh:
         fh.write(is_page)
-    return {"pr_groups": len(a["pr_groups"]), "issue_groups": len(a["issue_groups"]),
+    return {"pr_groups": len(a["pr_groups"]), "issue_groups": len(a["issue_groups"]), "redo_merged": len(a["redo_groups"]),
             "open_prs": len(a["open_prs"]), "open_issues": len(a["open_issues"])}

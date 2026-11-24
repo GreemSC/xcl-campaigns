@@ -73,13 +73,17 @@ def _review_comment(b):
             "raw": {"path": b.get("path"), "author_association": b.get("author_association")}}
 
 
-def _pr_files(con, gh, budget):
-    """Files touched by open PRs whose head commit has not been seen yet (most recently updated first)."""
+def _pr_files(con, gh, budget, state="open"):
+    """Files touched by PRs whose head commit has not been seen yet (most recently updated first).
+    state='closed' covers merged PRs (closed without merge are skipped): needed to spot open PRs that
+    redo something already merged."""
     done = 0
     for _, page, _ in gh.pages(f"/repos/{REPO}/pulls",
-                               {"state": "open", "sort": "updated", "direction": "desc", "per_page": 100}):
+                               {"state": state, "sort": "updated", "direction": "desc", "per_page": 100}):
         fresh = 0
         for p in page:
+            if state == "closed" and not p.get("merged_at"):
+                continue
             sha = p["head"]["sha"]
             if con.execute("SELECT 1 FROM pr_files WHERE number=? AND sha=? LIMIT 1", (p["number"], sha)).fetchone():
                 continue
@@ -110,6 +114,7 @@ def run(con=None, gh=None, pr_file_budget=150):
         seen, changed = _stream(con, gh, name, path, conv)
         out[name] = {"seen": seen, "changed": len(changed)}
     out["pr_files"] = _pr_files(con, gh, pr_file_budget)
+    out["merged_pr_files"] = _pr_files(con, gh, max(0, pr_file_budget - out["pr_files"]) // 2, "closed")
     out["rate_left"] = gh.remaining
     db.set_state(con, "last_pass", now())
     con.commit()

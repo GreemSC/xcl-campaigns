@@ -27,8 +27,17 @@ class GitHub:
         self.remaining = None
         self.reset = None
 
-    def _req(self, url, etag=None):
-        h = {"Accept": "application/vnd.github+json", "X-GitHub-Api-Version": "2022-11-28",
+    def diff(self, repo, number, limit=200000):
+        """Unified diff of a PR (text), truncated to `limit` bytes."""
+        h = {"Accept": "application/vnd.github.diff", "User-Agent": "xcl-campaigns"}
+        if self.token:
+            h["Authorization"] = f"Bearer {self.token}"
+        req = urllib.request.Request(f"{API}/repos/{repo}/pulls/{number}", headers=h)
+        with urllib.request.urlopen(req, timeout=60) as r:
+            return r.read(limit).decode("utf-8", "replace")
+
+    def _req(self, url, etag=None, accept="application/vnd.github+json"):
+        h = {"Accept": accept, "X-GitHub-Api-Version": "2022-11-28",
              "User-Agent": "xcl-campaigns"}
         if self.token:
             h["Authorization"] = f"Bearer {self.token}"

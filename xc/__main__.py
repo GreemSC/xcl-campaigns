@@ -36,14 +36,23 @@ def main(argv):
         print(json.dumps(run()))
     elif cmd == "loop":
         from . import classify, collect, db, extract, intent, project, render
+        steps = [("collect", collect.run), ("extract", extract.run), ("classify", lambda: classify.run(n)),
+                 ("intent", intent.run), ("check", lambda: project.check(db.connect())), ("render", render.run)]
         while True:
             start = time.time()
-            try:
-                out = {"collect": collect.run(), "extract": extract.run(), "classify": classify.run(n),
-                       "intent": intent.run(), "check": project.check(db.connect()), "render": render.run()}
-                print(time.strftime("%H:%M:%S"), json.dumps(out), flush=True)
-            except Exception as ex:  # one failed pass never kills the loop
-                print(time.strftime("%H:%M:%S"), "ERROR", repr(ex), flush=True)
+            status = {"started": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()), "steps": {}}
+            for name, fn in steps:   # one failed step never stops the others, nor the loop
+                t = time.time()
+                try:
+                    res, err = fn(), None
+                except Exception as ex:
+                    res, err = None, repr(ex)[:300]
+                status["steps"][name] = {"seconds": round(time.time() - t, 1), "result": res, "error": err}
+            status["seconds"] = round(time.time() - start, 1)
+            con = db.connect()
+            db.set_state(con, "loop_status", json.dumps(status))
+            con.commit()
+            print(time.strftime("%H:%M:%S"), json.dumps(status), flush=True)
             time.sleep(max(5, 60 - (time.time() - start)))
     else:
         print(__doc__)
