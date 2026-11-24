@@ -9,7 +9,18 @@ import re
 
 from . import progress as P
 
-CONFIRM = int(os.environ.get("XC_CONFIRM_PEOPLE", "2"))     # people needed to call a stage "confirmed"
+# A stage is "confirmed" when this many different people report getting at least that far; from "World on screen"
+# on (the claims people share), it takes more. Fewer than FEW people (one report) colours nothing: one comment,
+# read by an AI, is not enough to tell people the game gets there.
+CONFIRM = int(os.environ.get("XC_CONFIRM_PEOPLE", "5"))
+CONFIRM_LATE = int(os.environ.get("XC_CONFIRM_PEOPLE_LATE", "10"))
+FEW = int(os.environ.get("XC_FEW_PEOPLE", "2"))
+LATE = P.STAGE_IDS.index("in_game")
+
+
+def need(k):
+    """People needed to confirm stage k."""
+    return CONFIRM_LATE if k >= LATE else CONFIRM
 RECENT_DAYS = int(os.environ.get("XC_RECENT_DAYS", "7"))
 REPO_URL = "https://github.com/" + os.environ.get("XC_REPO", "xcl-dev/xcl")
 STAGE_NAME = {i: n for i, n, _ in P.STAGES}
@@ -81,7 +92,7 @@ def area_of(title):
 
 
 def ladder_state(reps):
-    """Per platform and overall: the furthest stage reached by CONFIRM+ people, and by at least one."""
+    """Per platform and overall: the furthest stage confirmed (need(k) people), reported by FEW+ people, and by one."""
     recent = [r for r in reps if (_now() - _iso(r["date"])).days < RECENT_DAYS]
     people = collections.defaultdict(set)              # (platform, rank) -> authors who reached at least it
     for r in recent:
@@ -90,13 +101,14 @@ def ladder_state(reps):
             people[("all", k)].add(r["author"])
     out = {}
     for p in [x for x, _ in P.PLATFORMS] + ["all"]:
-        conf = max([k for k in range(len(P.STAGES)) if len(people[(p, k)]) >= CONFIRM], default=-1)
+        conf = max([k for k in range(len(P.STAGES)) if len(people[(p, k)]) >= need(k)], default=-1)
+        few = max([k for k in range(len(P.STAGES)) if len(people[(p, k)]) >= FEW], default=-1)
         once = max([k for k in range(len(P.STAGES)) if people[(p, k)]], default=-1)
         mine = [r for r in recent if p == "all" or r["platform"] == p]
-        top = [r for r in mine if r["rank"] == once]
+        top = [r for r in mine if r["rank"] == max(few, 0 if once >= 0 else -1)]    # the runs behind the stage shown
         secs = sorted(r["at_seconds"] for r in top if r.get("at_seconds"))
         ends = collections.Counter(r["ended"] for r in top if r["ended"] != "unknown")
-        out[p] = {"confirmed": conf, "once": once, "people": {k: len(people[(p, k)]) for k in range(len(P.STAGES))},
+        out[p] = {"confirmed": conf, "few": few, "once": once, "people": {k: len(people[(p, k)]) for k in range(len(P.STAGES))},
                   "reports": len(mine), "latest": mine[0] if mine else None, "top": top,
                   "median_end_s": secs[len(secs) // 2] if secs else None,
                   "usual_end": ends.most_common(1)[0][0] if ends else None}
@@ -151,14 +163,14 @@ def html_stages(e, ss, a):
                          f'<span class="mute">({s["fps_n"]} report{"s" if s["fps_n"] > 1 else ""})</span>')
         if s["usual_end"] in END_PLURAL:
             facts.append("most runs " + e(END_PLURAL[s["usual_end"]]) +
-                         (f', median {s["end_s"]:g} s after start' if s["end_s"] else ""))
+                         (f', median {s["end_s"]:.0f} s after start' if s["end_s"] else ""))
         if s["runs"] and s["people"] <= 5:      # rare stages: say where they were reported (often with an unmerged PR)
             facts.append("reported on " + ", ".join(
                 f'<a href="{REPO_URL}/{"pull" if kind == "pr" or n in PR_NUMBERS else "issues"}/{n}">#{n}</a>'
                 + (f' ({c})' if c > 1 else "") for (kind, n), c in s["where"]))
         quotes = "".join(f'<blockquote>“{ft(r["screen_quote"])}”<cite><a href="{e(r["source"])}">{e(r["author"])}</a>'
                          f'{", " + e(r["gpu"]) if r.get("gpu") else ""}</cite></blockquote>' for r in s["quotes"])
-        state = "done" if k <= a["confirmed"] else "once" if k <= a["once"] else "todo"
+        state = "done" if k <= a["confirmed"] else "once" if k <= a["few"] else "todo"
         o.append(f'<div class="stage {state}"><div class="sname"><b>{e(name)}</b><small>{e(desc)}</small></div>'
                  f'<div class="sfacts">{" · ".join(facts) or "<span class=mute>nobody has reported this yet</span>"}</div>'
                  f'<div class="squotes">{quotes}</div></div>')
@@ -240,8 +252,10 @@ wrong: open the source.</li>
 <li>"{e(STAGE_NAME["in_game"])}", "{e(STAGE_NAME["playable"])}" and "{e(STAGE_NAME["plays_well"])}" need a second model (Claude Sonnet) to agree, and to
 copy word for word the author's description of what was on screen; without it the report counts as
 "{e(STAGE_NAME["world_load"])}".</li>
-<li>"Reported by {CONFIRM}+ people" means {CONFIRM} or more different GitHub accounts. Their runs can use different
-commits, patches and settings: the board does not check that they are comparable or reproducible.</li>
+<li>A stage is ticked (green) when {CONFIRM} or more different GitHub accounts report getting at least that far,
+{CONFIRM_LATE} or more from "{e(STAGE_NAME["in_game"])}" on. {FEW} to {CONFIRM - 1} people: orange, not confirmed. A
+single report colours nothing. Their runs can use different commits, patches and settings: the board does not check
+that they are comparable or reproducible.</li>
 <li>Only reports of the last {RECENT_DAYS} days count. {e(SPOT_CHECK)}</li>
 </ul></details>"""
 
@@ -263,24 +277,23 @@ def html_home(e, st, ov, reps, camps):
                       + ("one person reports it plays well, not confirmed yet." if a["once"] >= pw
                          else "nobody reports it playing well yet (an hour or more, stable)."))
         else:
-            answer = "<b>Not playable yet.</b> " + ("One person reports playing it, not confirmed yet. " if a["once"] >= pl
-                                                    else "Nobody has reported playing it. ")
+            def where(k):    # a rare stage often comes from a pull request that is not merged yet: say so
+                w = ss[k]["where"] if ss[k]["people"] <= 5 else []
+                prs = [(n, PR_NUMBERS[n]) for (kind, n), _ in w if n in PR_NUMBERS]
+                return (" (reported on " + ", ".join(
+                    f'pull request <a href="{REPO_URL}/pull/{n}">#{n}</a>, '
+                    + ("merged" if st_ == "merged" else "not merged yet" if st_ == "open" else "closed")
+                    for n, st_ in prs) + ")") if prs else ""
+            answer = "<b>Not playable yet.</b> "
             if a["confirmed"] >= 0:
-                answer += (f'The furthest stage reported by at least {CONFIRM} people is '
-                           f'<b>{e(STAGE_NAME[P.STAGE_IDS[a["confirmed"]]])}</b> ({a["people"][a["confirmed"]]} people')
-                where = ss[a["confirmed"]]["where"] if ss[a["confirmed"]]["people"] <= 5 else []
-                prs = [(n, PR_NUMBERS[n]) for (kind, n), _ in where if n in PR_NUMBERS]
-                if prs:      # a rare top stage often comes from a pull request that is not merged yet: say so
-                    answer += "; reported on " + ", ".join(
-                        f'<a href="{REPO_URL}/pull/{n}">#{n}</a>, '
-                        + ("a merged pull request" if st_ == "merged" else "a pull request not merged yet" if st_ == "open"
-                           else "a closed pull request") for n, st_ in prs)
-                answer += ")."
-            if pl > a["once"] > a["confirmed"]:
-                nxt = P.STAGE_IDS[a["once"]]
-                n1 = a["people"][a["once"]]
-                answer += (f' {"One person reports" if n1 == 1 else f"{n1} people report"} the next one, '
-                           f'<b>{e(STAGE_NAME[nxt])}</b>: {e(STAGE_DESC[nxt])}.')
+                answer += (f'Confirmed: <b>{e(STAGE_NAME[P.STAGE_IDS[a["confirmed"]]])}</b> '
+                           f'({a["people"][a["confirmed"]]} people{where(a["confirmed"])}).')
+            else:
+                answer += f"No stage is confirmed yet ({CONFIRM}+ different people)."
+            if a["few"] > a["confirmed"]:
+                nxt = P.STAGE_IDS[a["few"]]
+                answer += (f' <b>{e(STAGE_NAME[nxt])}</b>: {a["people"][a["few"]]} people{where(a["few"])}, '
+                           f'not confirmed ({need(a["few"])} needed).')
     o.append(f"""<section class="hero" id="status"><p class="kicker">A community tool for XCL contributors</p>
 <h1>Does GTA VI run with XCL yet?</h1><p class="answer">{answer}</p>
 <p class="lede">XCL is a recompiler that aims to run the Xbox Series build of the game on a PC: Windows, and Linux through
@@ -293,11 +306,14 @@ report by platform, and a JSON API for AI agents. It is made by contributors, no
     # 2. The ladder
     o.append('<div class="ladder" aria-label="How far the game gets">')
     for k, (sid, name, desc) in enumerate(P.STAGES):
-        cls = "done" if k <= a["confirmed"] else "once" if k <= a["once"] else ""
-        o.append(f'<div class="step {cls}" title="{e(desc)}">{e(name)}<small>{a["people"].get(k, 0)} '
-                 f'{"person" if a["people"].get(k, 0) == 1 else "people"}</small></div>')
-    o.append(f'</div><div class="legend"><span><i style="background:var(--ok)"></i>reported by {CONFIRM}+ people</span>'
-             '<span><i style="background:var(--warn)"></i>reported by one person only</span>'
+        cls = "done" if k <= a["confirmed"] else "once" if k <= a["few"] else ""
+        n = a["people"].get(k, 0)
+        o.append(f'<div class="step {cls}" title="{e(desc)} · {need(k)} people needed to confirm">{e(name)}<small>{n} '
+                 f'{"person" if n == 1 else "people"}{" / " + str(need(k)) if k > a["confirmed"] and n else ""}</small></div>')
+    o.append(f'</div><div class="legend"><span><i style="background:var(--ok)"></i>confirmed: {CONFIRM}+ people '
+             f'({CONFIRM_LATE}+ from {e(STAGE_NAME["in_game"])})</span>'
+             '<span><i style="background:var(--warn)"></i>a few people, not confirmed</span>'
+             '<span>one report: not shown</span>'
              f'<span>People who report getting at least this far, last {RECENT_DAYS} days. '
              '<a href="reports.html">All reports →</a> · <a href="#method">How this is counted</a></span></div>')
     o.append(html_stages(e, ss, a))
@@ -306,18 +322,30 @@ report by platform, and a JSON API for AI agents. It is made by contributors, no
     o.append('<h2 id="platforms">By platform</h2><div class="cards">')
     for pid, pname in P.PLATFORMS:
         s = st[pid]
-        mini = "".join(f'<span class="{"done" if k <= s["confirmed"] else "once" if k <= s["once"] else ""}"></span>'
+        mini = "".join(f'<span class="{"done" if k <= s["confirmed"] else "once" if k <= s["few"] else ""}"></span>'
                        for k in range(len(P.STAGES)))
         if s["once"] < 0:
             body = '<p class="mute">No report yet. Tried it on this platform? Tell the project on GitHub.</p>'
         else:
-            far = P.STAGE_IDS[s["once"]]
+            k = s["confirmed"] if s["confirmed"] >= 0 else s["few"]
             end = (f' {e(END_TXT[s["usual_end"]])}' if s.get("usual_end") and END_TXT.get(s["usual_end"]) else "")
-            end += f' (median {s["median_end_s"]:g} s after start)' if s.get("median_end_s") else ""
+            end += f' (median {s["median_end_s"]:.0f} s after start)' if s.get("median_end_s") else ""
             lt = s["latest"]
-            body = (f'<p>Furthest reported: <b>{e(STAGE_NAME[far])}</b>{end}</p>'
-                    f'<p class="note">reported by {s["people"][s["once"]]} {"person" if s["people"][s["once"]] == 1 else "people"} · '
-                    f'{s["reports"]} reports · latest <a href="{e(lt["source"])}">{ago(e, lt["date"])}</a> by {e(lt["author"])}</p>')
+            if k < 0:
+                head = f'<p>One report so far, not confirmed: <b>{e(STAGE_NAME[P.STAGE_IDS[s["once"]]])}</b></p>'
+            else:
+                head = (f'<p>{"Confirmed" if k == s["confirmed"] else "Reported by a few people"}: '
+                        f'<b>{e(STAGE_NAME[P.STAGE_IDS[k]])}</b>{end if k == s["few"] else ""} '
+                        f'<span class="mute">({s["people"][k]} people)</span></p>')
+                if s["few"] > k:
+                    head += (f'<p class="note">{s["people"][s["few"]]} people report '
+                             f'{e(STAGE_NAME[P.STAGE_IDS[s["few"]]])}, not confirmed ({need(s["few"])} needed)</p>')
+                if s["once"] > max(k, s["few"]):
+                    nb = s["people"][s["once"]]
+                    head += (f'<p class="note">{"one person reports" if nb == 1 else f"{nb} people report"} '
+                             f'{e(STAGE_NAME[P.STAGE_IDS[s["once"]]])}, not confirmed</p>')
+            body = (head + f'<p class="note">{s["reports"]} report{"s" if s["reports"] != 1 else ""} · latest <a href="{e(lt["source"])}">'
+                    f'{ago(e, lt["date"])}</a> by {e(lt["author"])}</p>')
         more = f'<p class="note"><a href="reports.html#{pid}">reports →</a></p>' if s["once"] >= 0 else ""   # no report: no anchor there
         o.append(f'<div class="card"><h3>{e(pname)}</h3><div class="mini">{mini}</div>{body}{more}</div>')
     o.append("</div>")
@@ -399,9 +427,11 @@ def html_reports(e, reps):
 
 
 def api(reps, st, ov):
-    return ({"stages": [{"id": i, "name": n, "meaning": d} for i, n, d in P.STAGES], "confirm_people": CONFIRM,
+    return ({"stages": [{"id": i, "name": n, "meaning": d, "confirm_people": need(k)} for k, (i, n, d) in enumerate(P.STAGES)],
+             "confirm_people": CONFIRM, "confirm_people_late": CONFIRM_LATE, "few_people": FEW,
              "recent_days": RECENT_DAYS,
              "by_platform": {p: {"furthest_confirmed": P.STAGE_IDS[s["confirmed"]] if s["confirmed"] >= 0 else None,
+                                 "furthest_by_few": P.STAGE_IDS[s["few"]] if s["few"] >= 0 else None,
                                  "furthest_reported": P.STAGE_IDS[s["once"]] if s["once"] >= 0 else None,
                                  "people_per_stage": {P.STAGE_IDS[k]: v for k, v in s["people"].items()},
                                  "reports": s["reports"], "median_end_s": s["median_end_s"]} for p, s in st.items()},
