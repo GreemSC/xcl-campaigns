@@ -40,8 +40,31 @@ def now_iso():
     return dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
 
+# Short texts a model wrote from GitHub text (task titles, PR subjects, measurement names, GPU names) are the only
+# prose that reaches the reader's agent. They are already short and limited in charset; this also withholds the ones
+# that read like an instruction to an agent, a command, a link or a secret, so a comment cannot speak through them.
+# Kept narrow on purpose: "EXEC guards", "RDNA2 instruction count", "PowerShell 5.1", "CLAUDE.md" and "credentials
+# in crash dumps" are real subjects in this repository (checked against all of them: 0 withheld on 2026-11-24).
+INJECTION = re.compile(
+    r"\b(ignore|disregard|forget|override|bypass)\b\W+(\w+\W+){0,4}?(previous|prior|above|earlier|all|any|your|the)?\W*"
+    r"(instructions?|rules?|prompts?|guidelines?|messages?|context)\b"
+    r"|\b(system|developer|hidden)\s*prompts?\b|\byou\s+(are|must|should|will|now)\b|\bas\s+an?\s+(ai|assistant|agent|llm)\b"
+    r"|\b(dear|hey|hi|attention)\s+(ai|assistant|agent|llm|model|bot)s?\b|\b(curl|wget|sudo|bash\s+-c|rm\s+-rf|iex|base64\s+-d)\b"
+    r"|https?:|www\.|\b(send|post|paste|share|leak|print|reveal|exfiltrate)\b\W+(\w+\W+){0,4}?"
+    r"(tokens?|passwords?|secrets?|credentials?|api[\s_-]?keys?|ssh[\s_-]?keys?|private\s+keys?|env(ironment)?)\b"
+    r"|<\s*/?\s*(system|instructions?|im_start)\b|@\w", re.I)
+WITHHELD = "[withheld: read like an instruction, see the source]"
+withheld = []                                   # texts withheld in this pass (count shown in health.json)
+
+
 def clean(s, n=90):
-    return SAFE.sub("", str(s))[:n] if s is not None else None
+    if s is None:
+        return None
+    t = SAFE.sub("", str(s))[:n]
+    if INJECTION.search(str(s)):
+        withheld.append(t)
+        return WITHHELD
+    return t
 
 
 def gh_url(u):
@@ -319,6 +342,7 @@ def write(con, out, camp_data, a):
     """Write api/v2 from scratch into a new folder, then swap it in (no stale files survive)."""
     final, tmp, old = f"{out}/api/v2", f"{out}/api/.v2-new", f"{out}/api/.v2-old"
     shutil.rmtree(tmp, ignore_errors=True)
+    withheld.clear()
     w = Writer(tmp, db.get_state(con, "last_pass"))
     camps = [write_campaign(w, *d) for d in camp_data]
     areas, paths = write_project(w, a) if a else ([], 0)
@@ -376,7 +400,8 @@ def write(con, out, camp_data, a):
         "campaign_messages_waiting_for_ai": h.get("campaign_messages_waiting_for_ai"),
         "intent_cards_waiting": h.get("intent_cards_waiting"), "errors": h.get("errors") or {},
         "files": len(w.sizes) + 1, "file_paths_indexed": paths,
-        "largest_file_bytes": max(w.sizes.values(), default=0), "oversize_files": big})
+        "largest_file_bytes": max(w.sizes.values(), default=0), "oversize_files": big,
+        "texts_withheld_as_instructions": len(withheld)})
     shutil.rmtree(old, ignore_errors=True)
     if os.path.exists(final):
         os.replace(final, old)

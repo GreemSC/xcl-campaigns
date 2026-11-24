@@ -117,6 +117,7 @@ def task_state(c, msgs, pr_status, pr_author=None):
     tasks = {t["id"]: {**t, "holders": collections.OrderedDict(), "results": [], "plans": [], "prs": set(),
                        "cites": collections.defaultdict(set), "last": None, "last_by": {}} for t in c["tasks"]}
     teams = Teams()
+    active = set()                              # authors who already took part (see transfers below)
     for m in msgs:
         card, a = m["c"], m["author"]
         for tid in card["tasks"]:
@@ -135,6 +136,14 @@ def task_state(c, msgs, pr_status, pr_author=None):
                 t["results"].append(m)
         for tr in card.get("transfers", []):
             t = tasks[tr["task"]]
+            # A hand-over or an assignment counts only from someone already taking part in the campaign (an earlier
+            # claim, plan, result, PR, progress or assignment), a holder (of it or its parent task), or a maintainer:
+            # otherwise a first comment saying "I hand over C1 to X" made X a holder (prompt-injection test of
+            # 2026-11-24). Coordinators who are not maintainers (#1269: gefydev, throny) assign tasks, so being a
+            # holder cannot be required. Checked on #1269: no real holder changes.
+            if (tr["how"] != "builds_on" and a not in active and a not in t["holders"] and a not in MAINTAINERS
+                    and not (t.get("parent") and a in tasks[t["parent"]]["holders"])):
+                continue
             if tr["how"] == "hands_over":
                 t["holders"].pop(a, None)
                 t["plans"] = [p for p in t["plans"] if p["author"] != a]
@@ -147,6 +156,8 @@ def task_state(c, msgs, pr_status, pr_author=None):
         for me in card["measurements"]:
             if me.get("task") and me["task"] not in card["tasks"] and card["kind"] in RESULTS:
                 tasks[me["task"]]["results"].append(m)
+        if card["kind"] in ("claim", "plan", "result", "correction", "pr", "progress", "assignment"):
+            active.add(a)
     # A sub-task holder works with the parent task's holders.
     for t in tasks.values():
         if t.get("parent"):
@@ -202,7 +213,7 @@ def digest(c, msgs, tasks, g, pr_status):
         "campaign": c["campaign"], "status": c["status"], "updated": stamp(),
         "reference_commit": (c.get("reference") or {}).get("commit"),
         "note": "Typed data only. Before acting: pick a free task or a cell with need > 0 for your hardware class.",
-        "tasks": [{"id": t["id"], "type": t["type"], "title": t["title"], "holders": list(t["holders"]),
+        "tasks": [{"id": t["id"], "type": t["type"], "title": agentapi.clean(t["title"]), "holders": list(t["holders"]),
                    "teams": t["teams"], "conflict": t["conflict"], "stale_holders": t["stale"],
                    "prs": [{"number": p, "status": pr_status.get(p), "cited_by": len(t["cites"][p])} for p in t["prs"]],
                    "prs_mentioned": t["prs_mentioned"],
@@ -217,7 +228,8 @@ def digest(c, msgs, tasks, g, pr_status):
         "messages": [{"source": m["url"], "author": m["author"], "date": m["created"], "kind": m["c"]["kind"],
                       "tasks": m["c"]["tasks"], "class": m["cls"], "commit": m["c"]["commit"], "prs": m["c"]["prs"],
                       "provenance": m["source"],
-                      "measurements": [{k: x.get(k) for k in ("task", "value", "unit", "runs", "found_in_text")}
+                      "measurements": [{**{k: x.get(k) for k in ("task", "value", "runs", "found_in_text")},
+                                        "unit": agentapi.clean(x.get("unit"), 12)}
                                        for x in m["c"]["measurements"]]} for m in msgs],
     }
 
@@ -854,10 +866,11 @@ def campaign_api(c, tasks, g, msgs=None):
     safe = re.compile(r"[^A-Za-z0-9 ,.()/_+#:%<>=-]")
     for tid, rows in results_of(c, msgs or []).items():
         with open(f"{d}/results/{tid}.json", "w") as fh:
-            json.dump([{**r, "what": safe.sub("", r["what"]), "unit": safe.sub("", r["unit"])} for r in rows],
+            json.dump([{**r, "what": agentapi.clean(safe.sub("", r["what"]), 60), "unit": agentapi.clean(safe.sub("", r["unit"]), 12),
+                        "gpu": agentapi.clean(r["gpu"], 40)} for r in rows],
                       fh, separators=(",", ":"))
     with open(f"{d}/tasks.json", "w") as fh:
-        json.dump([{"id": t["id"], "type": t["type"], "title": t["title"], "teams": t["teams"], "conflict": t["conflict"],
+        json.dump([{"id": t["id"], "type": t["type"], "title": agentapi.clean(t["title"]), "teams": t["teams"], "conflict": t["conflict"],
                     "stale": t["stale"], "prs": t["prs"], "prs_mentioned": t["prs_mentioned"]} for t in tasks.values()], fh, separators=(",", ":"))
     for k in c["hardware_classes"]:
         with open(f"{d}/free/{k['id']}.json", "w") as fh:
@@ -867,12 +880,12 @@ def campaign_api(c, tasks, g, msgs=None):
                        # need_after_planned / planned_by, and automatic tasks whose title names another GPU vendor
                        # moved to not_for_this_class instead of being offered to this class.
                        "measurements_needing_this_class": [
-                           {"task": tid, "title": tasks[tid]["title"], "need": v["need"], "commits_so_far": v["commits"],
+                           {"task": tid, "title": agentapi.clean(tasks[tid]["title"]), "need": v["need"], "commits_so_far": v["commits"],
                             "planned_by": [m["author"] for m in v["planned"]],
                             "need_after_planned": max(0, v["need"] - len(v["planned"]))}
                            for (tid, kid), v in g.items() if kid == k["id"] and v["need"] > 0 and v.get("wanted", True)],
                        "not_for_this_class": [
-                           {"task": tid, "title": tasks[tid]["title"], "why": "its title names another GPU vendor"}
+                           {"task": tid, "title": agentapi.clean(tasks[tid]["title"]), "why": "its title names another GPU vendor"}
                            for (tid, kid), v in g.items() if kid == k["id"] and not v.get("wanted", True)],
                        "newer_version": f"api/v2/campaigns/{c['campaign']}/free/{k['id']}.json",
                        "free_code_tasks": [t["id"] for t in tasks.values() if t["type"] == "code" and not t["holders"]]},
