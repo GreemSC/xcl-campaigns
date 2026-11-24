@@ -70,12 +70,18 @@ def load(con, c, task_map=None):
     rows = con.execute("""SELECT i.key, i.kind, i.number, i.author, i.created, i.updated, i.url, i.status, i.title,
                                  c.card, c.source FROM cards c JOIN items i USING(key) ORDER BY i.created""").fetchall()
     msgs, fixes = [], []
+    known = {t["id"] for t in c["tasks"]}
     for r in rows:
         card = json.loads(r["card"])
         if card.get("campaign") != c["campaign"]:
             continue
         if not card.get("tasks") and task_map and task_map.get(r["key"]):
             card["tasks"] = [task_map[r["key"]]]       # work matched to a task added later (campaigns.grow)
+        if card.get("kind") != "fix" and any(t not in known for t in card.get("tasks") or []):
+            set_tasks(card, [t for t in card["tasks"] if t in known])   # a task removed from the spec or extra_tasks
+        for me in card.get("measurements") or []:
+            if me.get("task") is not None and me["task"] not in known:
+                me["task"] = None
         (fixes if card.get("kind") == "fix" else msgs).append({**dict(r), "c": card})
     # xcl-fix: applied only when posted by the author of the target message or by a maintainer.
     same = lambda u: str(u or "").replace("github.com/ivall/xcl/", "github.com/xcl-dev/xcl/")   # repository moved
