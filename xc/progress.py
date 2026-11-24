@@ -19,13 +19,17 @@ WORKERS = int(os.environ.get("XC_WORKERS", "4"))
 VERSION = "3"
 
 # The ladder, in order. "none" = the message does not report a run of the game.
-STAGES = [("launch", "Starts", "XCL starts the game; no picture yet"),
-          ("first_frame", "First frames", "logos, intro or loading picture"),
-          ("title", "Title screen", "title screen, EULA, account or profile prompt"),
-          ("menus", "Menus", "main menu and settings menus can be used"),
-          ("world_load", "World loading", "the story or world starts loading after the menus"),
-          ("in_game", "In game", "the 3D world is shown in game, even briefly"),
-          ("playable", "Playable", "plays for minutes: walking, driving, missions")]
+# Names say what was reported, nothing more: "World on screen" is not "playing" (ids kept for the API).
+STAGES = [("launch", "Starts", "the game process starts under XCL; nothing on screen yet"),
+          ("first_frame", "First pictures", "logos, intro video or a loading picture"),
+          ("title", "Title screen", "title screen, legal terms, account or profile prompt"),
+          ("menus", "Menus", "the main menu or settings menus respond"),
+          ("world_load", "World loading", "the story or world starts loading after the menus; the world is not shown yet"),
+          ("in_game", "World on screen", "the game world is drawn, even untextured or for a few seconds; not playable"),
+          ("playable", "Playable", "someone controls the character in the world for minutes (walking, driving), even "
+                                   "with glitches, slowdowns or crashes"),
+          ("plays_well", "Plays well", "a real session: an hour or more without a crash, a steady frame rate, missions "
+                                       "that can be finished")]
 STAGE_IDS = [s[0] for s in STAGES]
 ENDS = ["stalls", "crashes", "exits", "keeps_running", "stopped_by_user", "unknown"]
 PLATFORMS = [("win-nvidia", "Windows · NVIDIA"), ("win-amd", "Windows · AMD"), ("win-intel", "Windows · Intel"),
@@ -71,15 +75,17 @@ When in doubt, choose none, unknown or null."""
 
 
 VERIFY_MODEL = os.environ.get("XC_PROGRESS_VERIFY_MODEL", "sonnet")
-STRICT = {"in_game", "playable"}
+STRICT = {"in_game", "playable", "plays_well"}
 STRICT_NOTE = """
 Be strict about the top of the ladder. in_game needs the author to say they SAW the game world rendered in game
 (streets, buildings, characters, the prologue scene), even untextured or for a moment. Log lines such as
 "Game Running", a world-loading screen, a cutscene card, streaming progress, or a GPU watchdog during loading are
 world_load. So are counts of draws, presents or dispatches, "the world streams", or textures loading, unless the
 author also describes what was on the screen. playable needs the author to have controlled the game in the world
-(walked, drove) for minutes.
-For in_game or playable, screen_quote must be the author's sentence describing the game world on screen."""
+(walked, drove) for minutes. plays_well needs the author to say they played for an hour or more without a crash, at a
+steady frame rate, finishing missions; anything less is playable.
+For in_game, playable or plays_well, screen_quote must be the author's sentence describing the game world on screen
+or what they did in it."""
 VERIFY_SCHEMA = SCHEMA
 QUOTE_MAX = 100      # shown on the HTML pages only, escaped; never in the JSON API
 

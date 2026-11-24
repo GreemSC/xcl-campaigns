@@ -15,7 +15,6 @@ import yaml
 
 from . import ai, db
 
-MAINTAINERS = set(os.environ.get("XC_MAINTAINERS", "ivall,theaustinayers,Mavixot,raylitebull").split(","))
 TASK_MODEL = os.environ.get("XC_TASK_MODEL", "sonnet")
 DEFAULT_CLASSES = [
     {"id": "nv-win", "name": "NVIDIA, Windows"}, {"id": "nv-linux", "name": "NVIDIA, Linux (vkd3d-proton)"},
@@ -79,6 +78,8 @@ def detect(con):
     """Open a campaign for every new [OFFICIAL] / help-wanted issue opened by a maintainer."""
     con.executescript(SCHEMA_SQL)
     opened = []
+    from .people import maintainers
+    MAINTAINERS = maintainers(con)          # from GitHub's author_association, not a hand-written list
     known = set(load(con))
     for r in con.execute("SELECT number, author, title, body, url, raw, status FROM items WHERE kind='issue'"):
         labels = json.loads(r["raw"] or "{}").get("labels") or []

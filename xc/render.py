@@ -15,8 +15,8 @@ from .extract import link_blocks
 from .classify import campaigns
 
 OUT = os.environ.get("XC_OUT", "site")
-MAINTAINERS = set(os.environ.get("XC_MAINTAINERS", "ivall,theaustinayers,Mavixot,raylitebull").split(","))
 GENERATED_AT = None   # ISO time of the current pass ("2026-11-24T18:05:12Z"), same value as api/v2 generated_at
+MAINTAINERS = set()     # filled by _run from GitHub's author_association (xc/people.py)
 STALE_HOURS = int(os.environ.get("XC_STALE_HOURS", "48"))
 PLANS = {"plan", "claim"}
 RESULTS = {"result", "correction"}
@@ -241,7 +241,7 @@ header.site .dd summary:hover{color:var(--fg)}header.site .ddm{position:absolute
 header.site .ddm a{display:block;padding:7px 10px;border:0;border-radius:6px;color:var(--fg);white-space:normal}
 header.site .ddm a:hover{background:var(--chip)}header.site .ddm a[aria-current=page]{background:var(--chip)}
 header.site .ddm a.all{color:var(--ok);font-size:13px;border-top:1px solid var(--line);border-radius:0;margin-top:4px}
-@media (max-width:720px){header.site nav{position:relative}header.site .dd{position:static}
+@media (max-width:720px){header.site nav{position:relative}header.site .dd{position:static}header.site .dd summary{padding:6px 0}
  header.site .ddm{left:0;right:0;min-width:0;max-width:none}}
 .tbl td.num,.tbl th.num{text-align:right;font-variant-numeric:tabular-nums}
 """
@@ -331,15 +331,18 @@ def site_css():
 CSS_VERSION = __import__("hashlib").sha256(b"").hexdigest()[:8]     # set by _run from the stylesheet's content
 
 
-def page(title, body, json_url=None, extra_css="", nav=None, campaign=None):
-    """extra_css is kept for callers; every page shares style.css (one cached copy, small pages)."""
+def page(title, body, json_url=None, extra_css="", nav=None, campaign=None, path=None, description=None, crumb=None):
+    """extra_css is kept for callers; every page shares style.css (one cached copy, small pages).
+    path/description/crumb: search and link-preview tags (xc/seo.py); path also puts the page in sitemap.xml."""
+    from . import seo
     alt = f'<link rel="alternate" type="application/json" href="{e(json_url)}">' if json_url else ""
     return f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="xc-generated" content="{stamp()}"><title>{e(title)}</title>{alt}<link rel="help" href="llms.txt"><link rel="alternate" type="application/atom+xml" title="xcl-campaigns" href="feed.xml"><link rel="stylesheet" href="style.css?v={CSS_VERSION}"></head><body>{header(nav, campaign)}<main>
+<meta name="xc-generated" content="{stamp()}"><title>{e(title)}</title>{seo.head(title, description, path, crumb)}{alt}<link rel="help" href="llms.txt"><link rel="alternate" type="application/atom+xml" title="xcl-campaigns" href="feed.xml"><link rel="stylesheet" href="style.css?v={CSS_VERSION}"></head><body>{header(nav, campaign)}<main>
 {AGENT_BOX}<div id="newer" class="banner" hidden>This copy is older than the board on the server (your browser cached it). <a href="">Load the latest</a></div>
 {body}
 <footer><p>Made by contributors, not by the XCL maintainers. Built by code from public GitHub data ({stamp()}, <span class="fresh"></span>);
-rows marked <span class="b">auto</span> were filled by an AI from free text and checked by code; every row links to its source.
+rows marked <span class="b">auto</span> were read from free text by an AI: code checks that the numbers, commits and GPUs
+it copied appear in the comment, not that its reading is right. Every row links to its source.
 Wrong about you? Edit your comment, or post an <code>xcl-fix</code> block (<a href="AGENTS-campaign.md">how</a>).</p>
 <p><a href="https://github.com/GreemSC/xcl-campaigns">Source of this board</a> · <a href="feed.xml">Atom feed</a> ·
 <a href="api/index.json">JSON API</a> · <a href="llms.txt">llms.txt</a></p></footer></main><script>{JS}</script></body></html>"""
@@ -511,7 +514,7 @@ def html_campaign(c, msgs, tasks, g, pr_status, fcells=None):
     o.append('<div class="kpis">' + "".join(f'<div class="kpi"><b>{v}</b>{e(k)}</div>' for k, v in [
         ("messages filed", len(msgs)), ("authors", len({m["author"] for m in msgs})),
         ("declare AI use", sum(1 for m in msgs if m["c"].get("ai"))), ("maintainer replies", len(maint)),
-        ("different commits", len(commits)), ("code tasks with competing teams", len(conflicts)),
+        ("different commits", len(commits)), ("code tasks claimed by 2+ separate teams", len(conflicts)),
         ("empty measurement cells", empty)]) + "</div>")
     toc = [("todo", "What can I do?"), ("tasks", "Tasks"), ("findings", "What the numbers say"), ("grid", "Measurement grid"),
            ("reported-numbers", "Reported numbers"), ("volunteers", "Volunteers"), ("commits", "Commits"), ("thread", "The thread")]
@@ -616,8 +619,11 @@ def html_campaign(c, msgs, tasks, g, pr_status, fcells=None):
                  f'<td>{e(m["c"]["hardware"]["gpu"] or "")}<div class="small">{e(cl)}</div></td><td><code>{e(m["c"]["commit"] or "")}</code></td>'
                  f'<td>{e(m["c"]["summary"])} {prov(m["source"])}{" <span class=small>" + e(m["c"]["ai"]) + "</span>" if m["c"].get("ai") else ""}</td></tr>')
     o.append("</table></div><p><button type='button' class='btn' id='thread-all' hidden>Show every message</button></p>")
-    return page(f"Campaign #{c['campaign']} · XCL board", "\n".join(o), f"api/campaigns/{c['campaign']}/tasks.json", nav="campaign",
-                campaign=c["campaign"])
+    n = c["campaign"]
+    return page(f"Campaign #{n}: {c['title']} · XCL board", "\n".join(o), f"api/campaigns/{n}/tasks.json", nav="campaign",
+                campaign=n, path=f"campaign-{n}.html", crumb=f"Campaign #{n}",
+                description=f"XCL campaign #{n} ({c['title']}): open tasks, who claimed them, results per GPU and OS, "
+                            "and what a tester can take now. Coordination board for XCL contributors.")
 
 
 def adoption(con):
@@ -671,7 +677,9 @@ def write_health(con, out):
     os.makedirs(f"{OUT}/api", exist_ok=True)
     with open(f"{OUT}/api/health.json", "w") as fh:
         json.dump(h, fh, indent=1)
-    return page("Board health · XCL board", html_health(h), "api/health.json", nav="health")
+    return page("Board health · XCL board", html_health(h), "api/health.json", nav="health", path="health.html",
+                description="Is the XCL contributor board up to date? Freshness of the data, GitHub API budget, AI backlog, "
+                            "errors, and how many people use the board on GitHub.")
 
 
 def html_health(h):
@@ -692,7 +700,7 @@ def html_health(h):
          '<div class="kpis">' + "".join(f'<div class="kpi"><b>{v}</b>{k}</div>' for k, v in [
              ("seconds per pass", num(h["pass_seconds"])), ("GitHub API calls left this hour", num(h["github_rate_left"])),
              ("messages waiting for the AI", num(h["campaign_messages_waiting_for_ai"])),
-             ("people using the board", num(h["adoption"]["users"]))]) + "</div>"]
+             ("people seen using the board on GitHub", num(h["adoption"]["users"]))]) + "</div>"]
     if h["errors"]:
         o.append("<h2>Errors</h2><table class='tbl'><tr><th>Step</th><th>Error</th></tr>" + "".join(
             f"<tr><td>{e(k)}</td><td><code>{e(v)}</code></td></tr>" for k, v in h["errors"].items()) + "</table>")
@@ -841,6 +849,9 @@ def _run(con=None):
     CSS_VERSION = __import__("hashlib").sha256(css.encode()).hexdigest()[:8]
     with open(f"{OUT}/style.css", "w") as fh:
         fh.write(css)
+    from . import people
+    MAINTAINERS.clear()
+    MAINTAINERS.update(people.maintainers(con))
     camps = campaigns(con)
     NAV_CAMPS.clear()
     NAV_CAMPS.update({n: c["title"] for n, c in camps.items()})
@@ -914,4 +925,6 @@ def _run(con=None):
         if os.path.exists(f):
             shutil.copy(f, f"{OUT}/{f}")
     open(f"{OUT}/.nojekyll", "w").close()
+    from . import seo
+    out["seo"] = seo.write(OUT)             # after every page: the sitemap lists the pages written this pass
     return out

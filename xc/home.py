@@ -16,13 +16,15 @@ STAGE_NAME = {i: n for i, n, _ in P.STAGES}
 STAGE_DESC = {i: d for i, _, d in P.STAGES}
 END_TXT = {"stalls": "then stalls", "crashes": "then crashes", "exits": "then the game quits",
            "keeps_running": "and keeps running", "stopped_by_user": "run stopped by the tester", "unknown": ""}
+END_PLURAL = {"stalls": "stall", "crashes": "crash", "exits": "end with the game quitting",
+              "keeps_running": "keep running", "stopped_by_user": "are stopped by the tester"}
 AREA = re.compile(r"^\s*([A-Za-z][A-Za-z0-9 ./+_-]{1,22}):\s")
 
 CSS = """
 .hero{padding:28px 0 8px}.kicker{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);margin:0 0 6px}
 .hero h1{font-size:clamp(26px,5vw,40px);line-height:1.15;margin:0 0 10px}.answer{font-size:clamp(18px,3vw,23px);margin:0 0 10px}
 .answer b{color:var(--warn)}.lede{max-width:760px;color:var(--mute);margin:0}
-.ladder{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin:22px 0 6px}
+.ladder{display:grid;grid-template-columns:repeat(8,1fr);gap:4px;margin:22px 0 6px}
 .step{position:relative;padding:10px 8px 8px;border-radius:6px;background:var(--chip);font-size:13px;line-height:1.25;min-height:58px}
 .step small{display:block;color:var(--mute);font-size:11px;margin-top:3px}
 .step.done{background:var(--ok);color:var(--bg)}.step.done small{color:var(--bg);opacity:.85}
@@ -31,7 +33,7 @@ CSS = """
 .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin:12px 0}
 .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .card h3{margin:0 0 6px;font-size:16px}.card p{margin:6px 0;font-size:14px}
-.mini{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;margin:8px 0}.mini span{height:8px;border-radius:2px;background:var(--chip)}
+.mini{display:grid;grid-template-columns:repeat(8,1fr);gap:2px;margin:8px 0}.mini span{height:8px;border-radius:2px;background:var(--chip)}
 .mini span.done{background:var(--ok)}.mini span.once{background:var(--warn)}
 .cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px}
 .feed{list-style:none;padding:0;margin:0}.feed li{padding:8px 0;border-bottom:1px solid var(--line);font-size:14px}
@@ -40,7 +42,8 @@ CSS = """
  border:1px solid var(--line);background:var(--card);color:var(--fg);cursor:pointer}.areas button[aria-pressed=true]{border-color:var(--ok);color:var(--ok);font-weight:600}
 .chart{width:100%;height:auto;display:block}.chart text{fill:var(--mute);font-size:10px}.chart rect{fill:var(--ok)}
 .help a.card{display:block;text-decoration:none;color:var(--fg)}.help a.card:hover{border-color:var(--ok)}.help .card b{color:var(--ok)}
-.note{font-size:12.5px;color:var(--mute)}
+.note{font-size:12.5px;color:var(--mute)}.method{background:var(--card);border:1px solid var(--line);border-radius:8px;
+ padding:10px 14px;margin:14px 0;font-size:14px}.method ul{margin:8px 0 2px;padding-left:20px}.method li{margin:4px 0}
 .stages{display:flex;flex-direction:column;gap:8px;margin:10px 0}.stage{display:grid;grid-template-columns:220px 1fr 1.3fr;gap:6px 16px;
  background:var(--card);border:1px solid var(--line);border-left:4px solid var(--line);border-radius:8px;padding:10px 14px;font-size:14px}
 .stage.done{border-left-color:var(--ok)}.stage.once{border-left-color:var(--warn)}.stage.todo{opacity:.7}
@@ -97,6 +100,9 @@ def _median(xs):
     return xs[len(xs) // 2] if xs else None
 
 
+PR_NUMBERS = {}           # filled by build(): pull request number -> status (comments carry only the number)
+
+
 def stage_stats(reps):
     """For each stage: the recent runs that ended there, their frame rate, how they ended, what people saw."""
     recent = [r for r in reps if (_now() - _iso(r["date"])).days < RECENT_DAYS]
@@ -110,7 +116,9 @@ def stage_stats(reps):
             if r.get("screen_quote") and r["author"] not in seen:
                 seen.add(r["author"])
                 quotes.append(r)
+        where = collections.Counter((r["kind"], r["number"]) for r in here)
         out[k] = {"runs": len(here), "people": len({r["author"] for r in here}), "fps": _median(fps), "fps_n": len(fps),
+                  "where": where.most_common(),
                   "end_s": _median([r["at_seconds"] for r in here if r.get("at_seconds")]),
                   "usual_end": ends.most_common(1)[0][0] if ends else None, "quotes": quotes[:2]}
     return out
@@ -119,8 +127,8 @@ def stage_stats(reps):
 def html_stages(e, ss, a):
     """What each stage looks like, from the people who stopped there."""
     last = max([k for k in ss if ss[k]["runs"]] + [a["once"], 0])
-    o = ['<h2 id="stages">What you see at each stage</h2><p class="mute">From the runs that stopped at each stage '
-         f'(last {RECENT_DAYS} days). Quotes are copied word for word from the testers\' comments; click to read them.</p>'
+    o = ['<h2 id="stages">What you see at each stage</h2><p class="mute">From the reports whose furthest point is each '
+         f'stage (last {RECENT_DAYS} days). Quotes are copied word for word from the testers\' comments; click to read them.</p>'
          '<div class="stages">']
     for k, (sid, name, desc) in enumerate(P.STAGES):
         if k > last + 1:
@@ -128,13 +136,18 @@ def html_stages(e, ss, a):
         s = ss[k]
         facts = []
         if s["runs"]:
-            facts.append(f'{s["runs"]} run{"s" if s["runs"] > 1 else ""} stopped here ({s["people"]} '
+            facts.append(f'{s["runs"]} report{"s" if s["runs"] > 1 else ""} stop here ({s["people"]} '
                          f'{"person" if s["people"] == 1 else "people"})')
         if s["fps"] is not None:
-            facts.append(f'<b>~{s["fps"]:g} fps</b> <span class="mute">({s["fps_n"]} report{"s" if s["fps_n"] > 1 else ""})</span>')
-        if s["usual_end"] and END_TXT.get(s["usual_end"]):
-            facts.append("usually " + e(END_TXT[s["usual_end"]].replace("then ", "")) +
-                         (f' around {s["end_s"]:g} s' if s["end_s"] else ""))
+            facts.append(f'frame rate reported at this point: <b>~{s["fps"]:g} fps</b> '
+                         f'<span class="mute">({s["fps_n"]} report{"s" if s["fps_n"] > 1 else ""})</span>')
+        if s["usual_end"] in END_PLURAL:
+            facts.append("most runs " + e(END_PLURAL[s["usual_end"]]) +
+                         (f', median {s["end_s"]:g} s after start' if s["end_s"] else ""))
+        if s["runs"] and s["people"] <= 5:      # rare stages: say where they were reported (often with an unmerged PR)
+            facts.append("reported on " + ", ".join(
+                f'<a href="{REPO_URL}/{"pull" if kind == "pr" or n in PR_NUMBERS else "issues"}/{n}">#{n}</a>'
+                + (f' ({c})' if c > 1 else "") for (kind, n), c in s["where"]))
         quotes = "".join(f'<blockquote>“{e(r["screen_quote"])}”<cite><a href="{e(r["source"])}">{e(r["author"])}</a>'
                          f'{", " + e(r["gpu"]) if r.get("gpu") else ""}</cite></blockquote>' for r in s["quotes"])
         state = "done" if k <= a["confirmed"] else "once" if k <= a["once"] else "todo"
@@ -201,6 +214,30 @@ def describe(r, e):
     return " ".join(bits)
 
 
+# A hand check, dated; update it when it is redone (xc/progress.py has the method).
+SPOT_CHECK = ("Spot check on 2026-11-24, a second model re-reading random reports: it agreed on 19 of 20 \"World loading\", "
+              "9 of 10 \"First pictures\" and 7 of 10 \"Title screen\" reports, and on 4 of 10 \"Menus\" reports. Of the "
+              "10 disagreements, 8 put the run further and 2 less far: the first reading tends to be cautious.")
+
+
+def html_method(e):
+    return f"""<details id="method" class="method"><summary><b>How this is counted</b> (and what is not checked)</summary>
+<ul>
+<li>Source: issues and comments on <a href="{REPO_URL}">GitHub</a> that name a stage of the game and some hardware.
+Nobody runs the game for this page; these are what people write.</li>
+<li>An AI (Claude Haiku) reads each one as data and fills fixed fields: did the author run it themselves, the furthest
+stage, how the run ended, platform, GPU, commit, time, frame rate, and a sentence describing the screen. Code then drops
+any GPU, commit, number or sentence that does not appear in the comment. The stage itself is the AI's reading and can be
+wrong: open the source.</li>
+<li>"{e(STAGE_NAME["in_game"])}", "{e(STAGE_NAME["playable"])}" and "{e(STAGE_NAME["plays_well"])}" need a second model (Claude Sonnet) to agree, and to
+copy word for word the author's description of what was on screen; without it the report counts as
+"{e(STAGE_NAME["world_load"])}".</li>
+<li>"Reported by {CONFIRM}+ people" means {CONFIRM} or more different GitHub accounts. Their runs can use different
+commits, patches and settings: the board does not check that they are comparable or reproducible.</li>
+<li>Only reports of the last {RECENT_DAYS} days count. {e(SPOT_CHECK)}</li>
+</ul></details>"""
+
+
 def html_home(e, st, ov, reps, camps):
     pnames = dict(P.PLATFORMS)
     ss = stage_stats(reps)
@@ -210,28 +247,50 @@ def html_home(e, st, ov, reps, camps):
     if a["once"] < 0:
         answer = "No first-hand report filed yet."
     else:
-        played = a["confirmed"] >= P.STAGE_IDS.index("playable")
-        answer = ("<b>Yes</b>, people report playing it." if played else
-                  f'<b>Not playable yet.</b> Furthest point reached by {a["people"][a["confirmed"]]} people: '
-                  f'<b>{e(STAGE_NAME[P.STAGE_IDS[a["confirmed"]]])}</b>' if a["confirmed"] >= 0 else "<b>Not playable yet.</b>")
-        if a["once"] > a["confirmed"]:
-            answer += (f'; reported once: <b>{e(STAGE_NAME[P.STAGE_IDS[a["once"]]])}</b>')
-        answer += "."
+        pl, pw = P.STAGE_IDS.index("playable"), P.STAGE_IDS.index("plays_well")
+        if a["confirmed"] >= pw:
+            answer = f'<b>Yes:</b> {a["people"][pw]} people report it plays well (an hour or more, stable).'
+        elif a["confirmed"] >= pl:
+            answer = (f'<b>Playable, not yet a good experience:</b> {a["people"][pl]} people report playing it; '
+                      + ("one person reports it plays well, not confirmed yet." if a["once"] >= pw
+                         else "nobody reports it playing well yet (an hour or more, stable)."))
+        else:
+            answer = "<b>Not playable yet.</b> " + ("One person reports playing it, not confirmed yet. " if a["once"] >= pl
+                                                    else "Nobody has reported playing it. ")
+            if a["confirmed"] >= 0:
+                answer += (f'The furthest stage reported by at least {CONFIRM} people is '
+                           f'<b>{e(STAGE_NAME[P.STAGE_IDS[a["confirmed"]]])}</b> ({a["people"][a["confirmed"]]} people')
+                where = ss[a["confirmed"]]["where"] if ss[a["confirmed"]]["people"] <= 5 else []
+                prs = [(n, PR_NUMBERS[n]) for (kind, n), _ in where if n in PR_NUMBERS]
+                if prs:      # a rare top stage often comes from a pull request that is not merged yet: say so
+                    answer += "; reported on " + ", ".join(
+                        f'<a href="{REPO_URL}/pull/{n}">#{n}</a>, '
+                        + ("a merged pull request" if st_ == "merged" else "a pull request not merged yet" if st_ == "open"
+                           else "a closed pull request") for n, st_ in prs)
+                answer += ")."
+            if pl > a["once"] > a["confirmed"]:
+                nxt = P.STAGE_IDS[a["once"]]
+                n1 = a["people"][a["once"]]
+                answer += (f' {"One person reports" if n1 == 1 else f"{n1} people report"} the next one, '
+                           f'<b>{e(STAGE_NAME[nxt])}</b>: {e(STAGE_DESC[nxt])}.')
     o.append(f"""<section class="hero" id="status"><p class="kicker">Community board for the XCL project</p>
 <h1>Does GTA VI run with XCL yet?</h1><p class="answer">{answer}</p>
-<p class="lede">XCL recompiles the Xbox Series build of the game so it runs on a PC: Windows, and Linux through Wine or Proton.
-This page sums up what testers and developers report on <a href="{REPO_URL}">GitHub</a>, every few minutes, with a link to
-each source. It hosts no game files and no downloads.</p></section>""")
+<p class="lede">XCL is a recompiler that aims to run the Xbox Series build of the game on a PC: Windows, and Linux through
+Wine or Proton. This page sums up what testers and developers report on <a href="{REPO_URL}">GitHub</a>, every few minutes,
+with a link to each source. These are their reports, not tests run by this board. It hosts no game files and no
+downloads.</p></section>""")
     # 2. The ladder
     o.append('<div class="ladder" aria-label="How far the game gets">')
     for k, (sid, name, desc) in enumerate(P.STAGES):
         cls = "done" if k <= a["confirmed"] else "once" if k <= a["once"] else ""
-        fps = f' · ~{ss[k]["fps"]:g} fps' if ss[k]["fps"] is not None else ""
-        o.append(f'<div class="step {cls}" title="{e(desc)}">{e(name)}<small>{a["people"].get(k, 0)} people{fps}</small></div>')
-    o.append(f'</div><div class="legend"><span><i style="background:var(--ok)"></i>reached by {CONFIRM}+ people</span>'
-             '<span><i style="background:var(--warn)"></i>reported by one person</span>'
-             f'<span>Reports of the last {RECENT_DAYS} days. <a href="reports.html">All reports →</a></span></div>')
+        o.append(f'<div class="step {cls}" title="{e(desc)}">{e(name)}<small>{a["people"].get(k, 0)} '
+                 f'{"person" if a["people"].get(k, 0) == 1 else "people"}</small></div>')
+    o.append(f'</div><div class="legend"><span><i style="background:var(--ok)"></i>reported by {CONFIRM}+ people</span>'
+             '<span><i style="background:var(--warn)"></i>reported by one person only</span>'
+             f'<span>People who report getting at least this far, last {RECENT_DAYS} days. '
+             '<a href="reports.html">All reports →</a> · <a href="#method">How this is counted</a></span></div>')
     o.append(html_stages(e, ss, a))
+    o.append(html_method(e))
     # 3. Per platform
     o.append('<h2 id="platforms">By platform</h2><div class="cards">')
     for pid, pname in P.PLATFORMS:
@@ -243,10 +302,10 @@ each source. It hosts no game files and no downloads.</p></section>""")
         else:
             far = P.STAGE_IDS[s["once"]]
             end = (f' {e(END_TXT[s["usual_end"]])}' if s.get("usual_end") and END_TXT.get(s["usual_end"]) else "")
-            end += f' (median {s["median_end_s"]:g} s)' if s.get("median_end_s") else ""
+            end += f' (median {s["median_end_s"]:g} s after start)' if s.get("median_end_s") else ""
             lt = s["latest"]
-            body = (f'<p>Furthest: <b>{e(STAGE_NAME[far])}</b>{end}</p>'
-                    f'<p class="note">{s["people"][s["once"]]} {"person" if s["people"][s["once"]] == 1 else "people"} there · '
+            body = (f'<p>Furthest reported: <b>{e(STAGE_NAME[far])}</b>{end}</p>'
+                    f'<p class="note">reported by {s["people"][s["once"]]} {"person" if s["people"][s["once"]] == 1 else "people"} · '
                     f'{s["reports"]} reports · latest <a href="{e(lt["source"])}">{ago(e, lt["date"])}</a> by {e(lt["author"])}</p>')
         o.append(f'<div class="card"><h3>{e(pname)}</h3><div class="mini">{mini}</div>{body}'
                  f'<p class="note"><a href="reports.html#{pid}">reports →</a></p></div>')
@@ -255,7 +314,7 @@ each source. It hosts no game files and no downloads.</p></section>""")
     o.append('<h2 id="news">What\'s new</h2><div class="cols"><div>')
     lm = ov["latest_merged"]
     areas = collections.Counter(m["area"] for m in lm[:60])
-    o.append(f'<h3>Merged into XCL <span class="mute">· {ov["merged_24h"]} changes in 24 h</span></h3>'
+    o.append(f'<h3>Pull requests merged into XCL <span class="mute">· {ov["merged_24h"]} in 24 h</span></h3>'
              '<div class="areas" data-filter="merged"><button type="button" aria-pressed="true" data-area="">all</button>'
              + "".join(f'<button type="button" data-area="{e(k)}">{e(k)} <span class="mute">{v}</span></button>' for k, v in areas.most_common(8))
              + '</div><ul class="feed" id="merged">')
@@ -270,14 +329,14 @@ each source. It hosts no game files and no downloads.</p></section>""")
         o.append(f'<li><span class="area">{e(pnames.get(r["platform"], "platform unknown"))}</span>{describe(r, e)}'
                  f'<div class="meta">{e(r["gpu"] or "")}{" · " if r["gpu"] else ""}by {e(r["author"])} · '
                  f'<a href="{e(r["source"])}">{ago(e, r["date"])}</a></div></li>')
-    o.append('</ul><p class="note"><a href="reports.html">All reports →</a> Lines are composed from fields an AI filled from '
-             'the comment and that code checked against it; open the source to read it.</p></div></div>')
+    o.append('</ul><p class="note"><a href="reports.html">All reports →</a> Each line is built from fields an AI read in '
+             'the comment; open the source to read what the person wrote. <a href="#method">How this is counted</a>.</p></div></div>')
     # 5. Pulse
     o.append(f'<h2 id="pulse">Where the project is</h2><div class="kpis">' + "".join(
         f'<div class="kpi"><b>{v}</b>{k}</div>' for k, v in [
-            ("changes merged in 24 h", ov["merged_24h"]), ("open pull requests", ov["open_prs"]),
-            ("open issues", ov["open_issues"]), ("people active in 24 h", ov["people_24h"])]) + "</div>")
-    o.append(f'<div class="cols"><div><h3>Changes merged per day</h3>{svg_bars(e, ov["merged_per_day"])}'
+            ("pull requests merged in 24 h", ov["merged_24h"]), ("open pull requests", ov["open_prs"]),
+            ("open issues", ov["open_issues"]), ("people who posted on GitHub in 24 h", ov["people_24h"])]) + "</div>")
+    o.append(f'<div class="cols"><div><h3>Pull requests merged per day</h3>{svg_bars(e, ov["merged_per_day"])}'
              f'<p class="note">Counted since this board started reading the repository ({e(ov["since"][:10])}).</p></div><div>'
              '<h3>Most discussed right now</h3><ul class="feed">')
     for h in ov["hot_issues"]:
@@ -304,8 +363,9 @@ def html_reports(e, reps):
     """Every first-hand report, by platform, newest first."""
     pnames = dict(P.PLATFORMS)
     o = ['<h1>Test reports</h1><p class="mute">Every GitHub message where someone says how far the game got on their '
-         'machine. An AI filled the fields (stage, platform, GPU, time) from the comment; code checked them against the '
-         'text. Open the source before relying on a line.</p>',
+         'machine. An AI read the comment and filled the fields (stage, platform, GPU, time); code checked that the GPU, '
+         'commit and numbers appear in it, not that the stage is right. Nobody here reproduced these runs. Open the '
+         'source before relying on a line. <a href="index.html#method">How this is counted</a>.</p>',
          '<div class="filters"><select name="pl"><option value="">all platforms</option>'
          + "".join(f'<option value="{e(k)}">{e(v)}</option>' for k, v in P.PLATFORMS)
          + '<option value="none">platform unknown</option></select><select name="st"><option value="">all stages</option>'
@@ -342,14 +402,19 @@ def api(reps, st, ov):
 
 
 def build(con, out, page, e, camps):
+    PR_NUMBERS.clear()
+    PR_NUMBERS.update((r[0], r[1]) for r in con.execute("SELECT number, status FROM items WHERE kind='pr'"))
     reps = P.reports(con)
     st = ladder_state(reps)
     ov = overview(con)
     with open(f"{out}/index.html", "w") as fh:
-        fh.write(page("XCL board: does GTA VI run yet?", html_home(e, st, ov, reps, camps), "api/progress.json",
-                      extra_css=CSS, nav="home"))
+        fh.write(page("XCL contributor board: tasks, test reports, duplicates, GTA VI progress",
+                      html_home(e, st, ov, reps, camps), "api/progress.json", extra_css=CSS, nav="home", path="index.html"))
     with open(f"{out}/reports.html", "w") as fh:
-        fh.write(page("Test reports · XCL board", html_reports(e, reps), "api/progress.json", extra_css=CSS, nav="reports"))
+        fh.write(page("GTA VI on PC with XCL: test reports (Windows, Linux, GPUs) · XCL board", html_reports(e, reps),
+                      "api/progress.json", extra_css=CSS, nav="reports", path="reports.html", crumb="Test reports",
+                      description="Every GTA VI (GTA 6) test report posted on XCL's GitHub: commit, OS, GPU, how far the game "
+                                  "got and where it stopped. Helps XCL developers see which change moved the game forward."))
     prog, pulse = api(reps, st, ov)
     os.makedirs(f"{out}/api", exist_ok=True)
     with open(f"{out}/api/progress.json", "w") as fh:
