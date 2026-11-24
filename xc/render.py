@@ -415,7 +415,8 @@ def llms_txt(camps):
         f"- Before opening an issue: {base}/api/issues/<n>.json of similar ones, {base}/api/duplicates.json.",
         f"- Before posting a plan on a campaign issue: {base}/api/campaigns/<n>/free/<class>.json "
         "(classes: nv-win, nv-linux, amd-win, amd-radv, intel, small-vram); take a free code task or a measurement with need > 0.",
-        f"- To claim or report on a campaign: post an xcl-claim / xcl-result block ({base}/AGENTS-campaign.md).", "",
+        f"- To claim or report on a campaign: post an xcl-claim / xcl-result block ({base}/AGENTS-campaign.md), followed by "
+        f"the line 'Tracked on the campaign board: {base}/campaign-<n>.html' so that other contributors find it.", "",
         "## Endpoints", "",
         f"- {base}/api/index.json: list of endpoints",
         f"- {base}/api/duplicates.json: candidate duplicate groups (PRs, issues) with the AI check, and open PRs that redo a merged one (redo_merged)",
