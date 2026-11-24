@@ -81,7 +81,8 @@ def analyse(con):
     fixes = {n: ({int(x) for x in FIXES.findall(prs[n]["body"] or "")}
                  | {int(x) for x in TITLE_REF.findall(prs[n]["title"] or "")}) & set(issues) for n in prs}
     count = collections.Counter(i for n in open_prs for i in fixes[n])
-    trackers = {i for i, k in count.items() if k > TRACKER_PRS}
+    trackers = {i for i, k in count.items() if k > TRACKER_PRS} | {
+        i for i, v in issues.items() if re.search(r"track|\[official\]|\bmeta\b|roadmap|results", v["title"] or "", re.I)}
     fixes = {n: v - trackers for n, v in fixes.items()}
     tw = {n: words(p["title"]) for n, p in prs.items()}
 
