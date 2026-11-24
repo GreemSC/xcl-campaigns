@@ -358,6 +358,29 @@ def html_campaign(c, msgs, tasks, g, pr_status):
     return page(f"Campaign #{c['campaign']}", "\n".join(o), f"api/campaigns/{c['campaign']}/tasks.json")
 
 
+def adoption(con):
+    """Visible use of the board on GitHub: people who post a block, link the board, cite it, or title a post with a
+    board task id. Readers who never post are invisible (GitHub Pages has no statistics)."""
+    since = os.environ.get("XC_ANNOUNCED", "2026-11-24T16:22:00Z")
+    users, per_day = {}, collections.defaultdict(set)
+    for r in con.execute("SELECT author, created, body FROM items WHERE created > ? AND author != 'GreemSC'", (since,)):
+        b = r["body"] or ""
+        sig = set()
+        if re.search(r"```xcl-(claim|result|fix)", b):
+            sig.add("block")
+        if "Tracked on the campaign board" in b:
+            sig.add("link")
+        if re.search(r"greemsc|campaign board|xcl-campaigns", b.replace("Tracked on the campaign board", ""), re.I):
+            sig.add("cites")
+        if sig:
+            users.setdefault(r["author"], {"first": r["created"], "signals": set()})["signals"] |= sig
+            per_day[r["created"][:10]].add(r["author"])
+    return {"since_announcement": since, "users": len(users),
+            "users_by_first_use": [{"login": k, "first": v["first"], "signals": sorted(v["signals"])}
+                                   for k, v in sorted(users.items(), key=lambda kv: kv[1]["first"])],
+            "users_per_day": {d: len(v) for d, v in sorted(per_day.items())}}
+
+
 def write_health(con, out):
     """Health page: when the board was last updated, what is waiting for the AI, errors. Transparency first."""
     st = json.loads(db.get_state(con, "loop_status") or "{}")
@@ -372,6 +395,7 @@ def write_health(con, out):
          "duplicate_groups_waiting_for_ai_check": None if res("check", "more") is None else bool(res("check", "more")),
          "errors": {k: v["error"] for k, v in steps.items() if v.get("error")},
          "step_seconds": {k: v.get("seconds") for k, v in steps.items()}}
+    h["adoption"] = adoption(con)
     from . import ai
     h["ai_usage_last_hour"] = ai.usage(con, 1)
     h["ai_usage_last_24h"] = ai.usage(con, 24)
