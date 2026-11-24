@@ -18,7 +18,7 @@ from .extract import blocks_of
 
 MODEL = os.environ.get("XC_MODEL", "haiku")
 WORKERS = int(os.environ.get("XC_WORKERS", "4"))
-PER_AUTHOR_HOUR = int(os.environ.get("XC_PER_AUTHOR_HOUR", "12"))   # AI calls per author per hour (anti-flood)
+PER_AUTHOR_HOUR = int(os.environ.get("XC_PER_AUTHOR_HOUR", "40"))   # AI calls per author per hour (anti-flood; active coordinators post a lot)
 CARD_VERSION = "2"
 LOGIN = r"^[A-Za-z0-9-]{1,39}$"
 
