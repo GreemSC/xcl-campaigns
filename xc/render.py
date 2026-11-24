@@ -71,6 +71,17 @@ def load(con, c, task_map=None):
             if s.get("class") in {k["id"] for k in c["hardware_classes"]}:
                 t["c"]["hardware"]["class"] = s["class"]
             t["source"] = "author-fixed"
+    # Board corrections (campaign spec, `corrections:`): public, each with its reason; for AI readings that are wrong
+    # and that neither the author nor a maintainer has fixed. Shown as "board-fixed".
+    for fx in c.get("corrections") or []:
+        t = by_url.get(same(fx.get("source")))
+        if not t:
+            continue
+        if isinstance(fx.get("tasks"), list):
+            t["c"]["tasks"] = [x for x in fx["tasks"] if x in {y["id"] for y in c["tasks"]}]
+        if fx.get("drop_metrics"):
+            t["c"]["drop_metrics"] = list(fx["drop_metrics"])
+        t["source"] = "board-fixed"
     # Hardware: if a message does not say, reuse the author's last known class (marked "inferred").
     known = {}
     for m in msgs:
@@ -162,17 +173,27 @@ def task_state(c, msgs, pr_status, pr_author=None):
 
 
 def grid(c, tasks):
+    """One cell per measurement task x hardware class. need = machines of that class still wanted, and 0 when:
+    - the class is not asked (wanted=False): an automatic task whose title names another GPU vendor
+      (agentapi.task_classes), or a hand-written task limited by `classes:`;
+    - the task has `hardware: any` (no GPU in the loop: dump analysis, static counts) and min_per_class people
+      already did it, on any machine. Such a task asks for that many machines in all, not per class."""
     g = {}
     for t in tasks.values():
         if t["type"] != "measure":
             continue
+        anyhw = t.get("hardware") == "any"          # a GPU named in its title is the console's (A7 "RDNA2"), not yours
+        wanted = {k["id"] for k in c["hardware_classes"]} if anyhw else set(agentapi.task_classes(t, c["hardware_classes"]))
+        done_any = {m["author"] for m in t["results"]}
         for k in c["hardware_classes"]:
             res = list({m["key"]: m for m in t["results"] if m["cls"] == k["id"]}.values())
             done = {m["author"] for m in res}
             planned = list({m["author"]: m for m in t["plans"] if m["cls"] == k["id"] and m["author"] not in done}.values())
+            need = max(0, t.get("min_per_class", 1) - len(done_any if anyhw else done))
             g[(t["id"], k["id"])] = {"results": res, "planned": planned, "authors": sorted(done),
                                      "commits": sorted({m["c"]["commit"] for m in res if m["c"]["commit"]}),
-                                     "need": max(0, t.get("min_per_class", 1) - len(done))}
+                                     "need": need if k["id"] in wanted else 0, "wanted": k["id"] in wanted,
+                                     "any_hardware": anyhw, "done_any": sorted(done_any) if anyhw else None}
     return g
 
 
@@ -361,7 +382,8 @@ def link(m, text=None):
 
 def prov(source):
     """Where a row comes from: the author's own block or link, an author fix, or an AI reading free text."""
-    return {"author": '<span class="b author">author</span>', "author-fixed": '<span class="b author">author-fixed</span>'}.get(
+    return {"author": '<span class="b author">author</span>', "author-fixed": '<span class="b author">author-fixed</span>',
+            "board-fixed": '<span class="b" title="corrected by the board (campaign file, with the reason)">board-fixed</span>'}.get(
         source, f'<span class="b">{e(source)}</span>')
 
 
@@ -464,11 +486,13 @@ def html_todo(c, tasks, g):
     stale_code = [t for t in tasks.values() if t["type"] == "code" and t["holders"] and set(t["holders"]) <= set(t["stale"])]
     for k in c["hardware_classes"]:
         cells = [(tasks[tid], v) for (tid, kid), v in g.items() if kid == k["id"] and v["need"] > 0]
-        cells.sort(key=lambda x: (bool(x[1]["authors"]), x[0]["id"]))       # empty cells first
+        cells.sort(key=lambda x: (bool(x[1]["done_any"] if x[1]["any_hardware"] else x[1]["authors"]), x[0]["id"]))  # empty first
         items = []
         for t, v in cells:
-            state = (f"no machine yet" if not v["authors"] else
-                     f"{len(v['authors'])} so far ({', '.join(v['authors'])}), needs {v['need']} more"
+            who = v["done_any"] if v["any_hardware"] else v["authors"]
+            state = ("any machine, no GPU needed · " if v["any_hardware"] else "") + (
+                     f"no machine yet" if not who else
+                     f"{len(who)} so far ({', '.join(who)}), needs {v['need']} more"
                      + (f", same commit as <code>{e(v['commits'][0])}</code>" if len(v["commits"]) == 1 else ""))
             items.append(f"<li><a href='#{e(t['id'])}'><b>{e(t['id'])}</b></a> {e(t['title'])} <span class='mute'>· {state}</span> "
                          f"<button type='button' class='btn' data-copy='{e(claim_line(c, t['id'], k['id']))}' "
@@ -506,7 +530,8 @@ def html_campaign(c, msgs, tasks, g, pr_status, fcells=None):
     commits = collections.Counter(m["c"]["commit"] for m in msgs if m["c"]["commit"])
     maint = [m for m in msgs if m["author"] in MAINTAINERS]
     conflicts = [t for t in tasks.values() if t["conflict"]]
-    empty = sum(1 for v in g.values() if not v["authors"])
+    empty = sum(1 for (tid, kid), v in g.items() if v["wanted"] and not v["authors"]
+                and not (v["any_hardware"] and (v["done_any"] or kid != c["hardware_classes"][0]["id"])))
     o = [f'<h1>Campaign #{c["campaign"]}: {e(c["title"])}</h1>',
          f'<div class="mute"><a href="{e(c["issue"])}">{e(c["issue"])}</a> · updated {stamp()} (<span class="fresh"></span>) · '
          f'<a href="campaign-{c["campaign"]}.json">typed JSON for agents</a></div>',
@@ -577,8 +602,19 @@ def html_campaign(c, msgs, tasks, g, pr_status, fcells=None):
         if t["type"] != "measure":
             continue
         cells = []
+        v0 = g[(t["id"], classes[0]["id"])] if classes else None
+        if v0 and v0["any_hardware"]:
+            s = chips(v0["done_any"], "ok", "●") + chips(sorted({m["author"] for k in classes for m in g[(t["id"], k["id"])]["planned"]}),
+                                                         "warn", "○", 3)
+            s += f'<div class="small">{"needs " + str(v0["need"]) + " more, " if v0["need"] else ""}any machine (no GPU needed)</div>'
+            o.append(f'<tr><td><a href="#{e(t["id"])}"><b>{e(t["id"])}</b></a> {e(t["title"])}</td>'
+                     f'<td class="cell" colspan="{len(classes)}">{s}</td></tr>')
+            continue
         for k in classes:
             v = g[(t["id"], k["id"])]
+            if not v["wanted"] and not v["authors"]:
+                cells.append('<td class="cell"><span class="empty" title="this task names another GPU vendor">not asked</span></td>')
+                continue
             s = chips(v["authors"], "ok", "●") + chips([m["author"] for m in v["planned"]], "warn", "○", 3)
             if len(v["commits"]) > 1:
                 s += f'<div class="bad" title="{e(" ".join(v["commits"]))}">≠ {len(v["commits"])} commits</div>'

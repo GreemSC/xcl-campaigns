@@ -68,6 +68,23 @@ tasks:
       - {id: dxil_shrink, how: ratio, unit: x, title: "DXIL size without the compact form divided by with it, same program"}
       - {id: pso_time, how: value, unit: s, title: "Pipeline creation time of one program with the compact form"}
 
+# Corrections to automatic tasks (A1, A2…, added from the thread), merged into them: `hardware: any` = no GPU in the
+# loop, so the task asks for min_per_class machines in all instead of one per hardware class; `classes: [...]` limits it.
+auto_tasks:
+  A1: {hardware: any}    # per-opcode size breakdown of HLSL dumps: text analysis
+  A7: {hardware: any}    # ranking shaders by RDNA2 instruction count: static analysis of the guest code
+
+# Corrections by the board operator to AI readings that neither the author nor a maintainer fixed (shown as
+# "board-fixed"). Keyed by the source comment or PR URL; tasks: [...] replaces the tasks read; drop_metrics: removes
+# "task.metric" values read from that message. Each one says why.
+corrections:
+  - source: https://github.com/xcl-dev/xcl/pull/1345
+    tasks: []
+    why: "One shared skip variable for forward jumps of structured code (HLSL size): not C6, reusing the EXEC predicate"
+  - source: https://github.com/xcl-dev/xcl/issues/1269#issuecomment-7137651754
+    drop_metrics: [M5.dxil_shrink, M5.pso_speedup, M5.pso_time]
+    why: "The two rows compare switch and heap memory windows (#680, task A13), with the compact form on in both"
+
 rules:
   - "Before acting, read the campaign digest (who does what, empty cells) instead of the whole thread."
   - "One code task = one holder or one team. To take one, post an xcl-claim block rather than a plan in prose."

@@ -53,7 +53,8 @@ def load(con):
                              (c["campaign"],)):
             if r["id"] not in have:
                 c["tasks"].append({"id": r["id"], "type": r["type"], "title": r["title"], "auto": True,
-                                   **({"min_per_class": 1} if r["type"] == "measure" else {})})
+                                   **({"min_per_class": 1} if r["type"] == "measure" else {}),
+                                   **(c.get("auto_tasks") or {}).get(r["id"], {})})     # hand corrections (spec)
     return res
 
 

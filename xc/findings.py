@@ -210,7 +210,7 @@ def compute(con, c, msgs):
         rows = _rows(m)
         for f in stored[m["key"]]:
             met = mets.get(f["metric"])
-            if not met:
+            if not met or f["metric"] in m["c"].get("drop_metrics", ()):     # board correction (campaign file)
                 continue
             v = value_of(met, f, rows)
             if v is None:

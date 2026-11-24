@@ -311,8 +311,8 @@ report by platform, and a JSON API for AI agents. It is made by contributors, no
             body = (f'<p>Furthest reported: <b>{e(STAGE_NAME[far])}</b>{end}</p>'
                     f'<p class="note">reported by {s["people"][s["once"]]} {"person" if s["people"][s["once"]] == 1 else "people"} · '
                     f'{s["reports"]} reports · latest <a href="{e(lt["source"])}">{ago(e, lt["date"])}</a> by {e(lt["author"])}</p>')
-        o.append(f'<div class="card"><h3>{e(pname)}</h3><div class="mini">{mini}</div>{body}'
-                 f'<p class="note"><a href="reports.html#{pid}">reports →</a></p></div>')
+        more = f'<p class="note"><a href="reports.html#{pid}">reports →</a></p>' if s["once"] >= 0 else ""   # no report: no anchor there
+        o.append(f'<div class="card"><h3>{e(pname)}</h3><div class="mini">{mini}</div>{body}{more}</div>')
     o.append("</div>")
     # 4. What's new
     o.append('<h2 id="news">What\'s new</h2><div class="cols"><div>')
