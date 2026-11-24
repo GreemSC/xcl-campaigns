@@ -60,6 +60,18 @@ def main(argv):
                  ("triage", lambda: triage.run(db.connect())),
                  ("findings", lambda: findings.run(db.connect(), classify.campaigns(), 20)),
                  ("progress", lambda: progress.run(db.connect())), ("render", render.run)]
+        import glob, hashlib, os
+
+        def code_stamp():     # content, not mtime: rsync -a keeps the source's (older) times
+            h = hashlib.sha256()
+            for f in sorted(glob.glob(os.path.join(os.path.dirname(os.path.abspath(__file__)), "*.py"))):
+                with open(f, "rb") as fh:
+                    h.update(f.encode() + fh.read())
+            return h.hexdigest()
+
+        # A deploy only copies the files: the loop restarts itself between two passes when xc/*.py changed, so
+        # nobody has to restart the service (which cut the AI step running at that moment).
+        boot = code_stamp()
         while True:
             start = time.time()
             status = {"started": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()), "steps": {}}
@@ -75,6 +87,9 @@ def main(argv):
             db.set_state(con, "loop_status", json.dumps(status))
             con.commit()
             print(time.strftime("%H:%M:%S"), json.dumps(status), flush=True)
+            if code_stamp() != boot:
+                print(time.strftime("%H:%M:%S"), "code changed: restarting between passes", flush=True)
+                os.execv(sys.executable, [sys.executable, "-m", "xc"] + sys.argv[1:])
             time.sleep(max(5, 60 - (time.time() - start)))
     else:
         print(__doc__)
