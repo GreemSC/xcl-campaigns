@@ -42,6 +42,7 @@ BATCH = int(os.environ.get("XC_TRIAGE_BATCH", "8"))
 WORKERS = int(os.environ.get("XC_WORKERS", "4"))
 STATUS_EVERY_S = int(os.environ.get("XC_TRIAGE_STATUS_EVERY", "900"))
 STALE_DAYS = 7
+ORDER = "ASC" if os.environ.get("XC_TRIAGE_ORDER") == "asc" else "DESC"   # a one-off filler takes the oldest first
 VERSION = "2"   # v2: evidence separates "the run shows the effect" from "regression run only"
 
 TOUCHES = ["wall", "reached-stage", "campaign", "general", "no-runtime-change"]
@@ -215,7 +216,7 @@ def _pending(con, limit):
     return con.execute(f"""
         SELECT i.key, i.number, i.title, i.body, i.hash FROM items i LEFT JOIN triage t USING(key)
         WHERE i.kind='pr' AND i.status='open' AND (t.hash IS NULL OR t.hash != i.hash || ':{VERSION}')
-        ORDER BY i.updated DESC LIMIT ?""", (limit,)).fetchall()
+        ORDER BY i.updated {ORDER} LIMIT ?""", (limit,)).fetchall()
 
 
 def _pr_data(con, r, diff_size):
