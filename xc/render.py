@@ -398,14 +398,15 @@ def header(nav, current_campaign=None):
           f'<div class="ddm">{camps}<a class="all" href="index.html#help">All campaigns and tools →</a></div></details>'
           if NAV_CAMPS else "")
     links = (a("index.html", "Status", "home") + a("reports.html", "Test reports", "reports") + dd
-             + a("overlaps.html", "Duplicates", "dups") + a("health.html", "Board health", "health"))
+             + a("overlaps.html", "Duplicates", "dups") + a("triage.html", "PR triage", "triage")
+             + a("health.html", "Board health", "health"))
     return (f'<header class="site"><div class="in"><a class="brand" href="index.html">XCL board<small>for contributors</small></a><nav>{links}</nav>'
             f'<a class="gh" href="https://github.com/{os.environ.get("XC_REPO", "xcl-dev/xcl")}">XCL on GitHub ↗</a></div></header>')
 
 
 def site_css():
-    from . import home
-    return CSS + home.CSS
+    from . import home, triage_page
+    return CSS + home.CSS + triage_page.CSS
 
 
 CSS_VERSION = __import__("hashlib").sha256(b"").hexdigest()[:8]     # set by _run from the stylesheet's content

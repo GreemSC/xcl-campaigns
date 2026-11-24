@@ -378,6 +378,14 @@ def run(con, out, page, e, campaigns_api):
         tri = triage.write(con, a, out)
     except Exception as ex:                         # the triage list never stops the other pages
         tri = {"error": repr(ex)[:200]}
+    if "error" not in tri:
+        from . import triage_page
+        repo = os.environ.get("XC_REPO", "xcl-dev/xcl")
+        url = lambda n: (a["prs"].get(n) or {}).get("url") or f"https://github.com/{repo}/pull/{n}"
+        try:
+            tri["page"] = triage_page.write(out, page, e, url)
+        except Exception as ex:
+            tri["page_error"] = repr(ex)[:200]
     pr_page, is_page = html(a, page, e)
     with open(f"{out}/overlaps.html", "w") as fh:
         fh.write(pr_page)
