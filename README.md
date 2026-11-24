@@ -13,6 +13,8 @@ thread into a page, every few minutes:
 - **Volunteers**: people who offered help, and the cells their hardware could fill.
 - **Overlapping PRs** across the whole repository.
 - **A typed JSON digest** per campaign, so agents read data instead of 100 comments.
+- **A small static API** (`api/`) and an [`llms.txt`](https://greemsc.github.io/xcl-campaigns/llms.txt): one tiny JSON file per
+  question (does my PR overlap another? who touches this file? what can my GPU measure for campaign N?).
 
 **Live board:** https://greemsc.github.io/xcl-campaigns/
 
@@ -27,7 +29,9 @@ It reads GitHub. Every comment is filed whether or not its author knows the boar
 |---|---|---|
 | `collect` | Reads issues, PRs, comments, PR files of ivall/xcl every minute (public API, read-only token, `since` + ETag). Keeps every version of every comment. | no |
 | `extract` | Rules: commits, PR numbers, GPUs, drivers, `XCL_*` variables, author blocks. | no |
-| `classify` | Campaign messages without a block: an AI (Claude Haiku via `claude -p`, **no tools, no network**) returns a card constrained by a JSON schema; code then checks it against the source text. | yes, typed output only |
+| `classify` | Campaign messages without a block: an AI (Claude Haiku via `claude -p`, **no tools, no network**) returns a card constrained by a JSON schema; code then checks it against the source text. New `[OFFICIAL]` / help-wanted issues from a maintainer open a campaign automatically, and work announced in a thread grows the task list (A1, A2, …). | yes, typed output only |
+| `intent` | Every open PR and issue gets a typed intent card (area, kind, subject, keywords, crash offset), used to find duplicates that are worded differently. | yes, typed output only |
+| `check` | A second model (Sonnet) reads each candidate group of duplicates and marks each member same-change / partial-overlap / different. Cached until a member changes. | yes, typed output only |
 | `render` | Pages + JSON digest, computed by code. Every row links to its source comment. | no |
 
 Why the AI never writes the page: a summary written by a model is exactly what a hidden instruction in a
