@@ -92,6 +92,9 @@ Rules:
   handover = the author leaves a task to someone else; result = measured numbers; correction = fixes a number or
   conclusion already posted; progress = status of the author's own work; pr = presents a PR; tool = provides a
   script or tool; offer = offers help without work done yet; noise = off topic or empty.
+- comment_on_pr (when present): the message is a comment on that PR, not on the campaign issue. Test reports and
+  numbers about the PR are results of the task the PR works on; review remarks, questions and thanks are answer or
+  other with tasks=[]. Offering to test or review the PR is offer, not claim.
 - Lines starting with ">" are QUOTES of another author: they say nothing about what the author does. Never file
   a message by what it quotes.
 - tasks: only ids the AUTHOR works on, measures or reports on, not ids merely mentioned. If the work matches none,
@@ -121,23 +124,37 @@ def pending(con, camps, limit):
         WHERE (c.hash IS NULL OR c.hash != i.hash || ':{CARD_VERSION}')
           AND ( (i.kind IN ('comment','issue') AND i.number IN ({q}))
                 OR (i.kind='pr' AND EXISTS (SELECT 1 FROM facts x WHERE x.key=i.key AND x.sort='ref'
-                                            AND CAST(x.value AS INTEGER) IN ({q}))) )
-        ORDER BY i.created LIMIT ?""", nums + nums + [limit]).fetchall()
+                                            AND CAST(x.value AS INTEGER) IN ({q})))
+                -- the work moves to the PRs that cite the campaign (tests, results, hand-offs posted there, without blocks)
+                OR (i.kind='comment' AND EXISTS (SELECT 1 FROM facts x WHERE x.key='pr:' || i.number AND x.sort='ref'
+                                                 AND CAST(x.value AS INTEGER) IN ({q}))) )
+        ORDER BY i.created LIMIT ?""", nums + nums + nums + [limit]).fetchall()
 
 
 def campaign_of(con, r, camps):
     if r["number"] in camps and r["kind"] != "pr":
         return camps[r["number"]]
-    for x in con.execute("SELECT value FROM facts WHERE key=? AND sort='ref'", (r["key"],)):
+    key = f"pr:{r['number']}" if r["kind"] == "comment" else r["key"]   # a comment on a PR that cites the campaign
+    for x in con.execute("SELECT value FROM facts WHERE key=? AND sort='ref'", (key,)):
         if int(x["value"]) in camps:
             return camps[int(x["value"])]
 
 
-def call_ai(c, r):
+def call_ai(c, r, on_pr=None):
     from . import ai
-    return ai.ask(instructions(c), {"author": r["author"], "date": r["created"], "kind": r["kind"],
-                                    "number": r["number"], "title": r["title"], "text": (r["body"] or "")[:14000]},
-                  schema(c), model=MODEL)
+    msg = {"author": r["author"], "date": r["created"], "kind": r["kind"],
+           "number": r["number"], "title": r["title"], "text": (r["body"] or "")[:14000]}
+    if on_pr:
+        msg["comment_on_pr"] = on_pr
+    return ai.ask(instructions(c), msg, schema(c), model=MODEL)
+
+
+def pr_context(con, r, c):
+    """For a comment posted on a PR (not on the campaign issue): the PR it discusses, so the AI files it right."""
+    if r["kind"] != "comment" or r["number"] == c["campaign"]:
+        return None
+    p = con.execute("SELECT number, author, title FROM items WHERE key=?", (f"pr:{r['number']}",)).fetchone()
+    return {"pr": p["number"], "pr_author": p["author"], "pr_title": (p["title"] or "")[:200]} if p else None
 
 
 def _num(v):
@@ -253,7 +270,7 @@ def run(limit=20, con=None):
     if ai_rows and not shutil.which("claude"):
         return {"cards": done, "waiting_for_ai": len(ai_rows), "opened": opened}
     with cf.ThreadPoolExecutor(WORKERS) as ex:
-        futs = {ex.submit(call_ai, c, r): (r, c) for r, c in ai_rows}
+        futs = {ex.submit(call_ai, c, r, pr_context(con, r, c)): (r, c) for r, c in ai_rows}
         for fut in cf.as_completed(futs):
             r, c = futs[fut]
             try:
