@@ -299,6 +299,7 @@ def write_api(a, out, campaigns_api):
             "api/files.json": "path -> open PRs touching it: before writing a change, see who already touches the same files",
             "api/areas.json": "open PRs and overlap groups per code area",
             "api/areas/<area>.json": "open PRs of one area ('/' written as '__')",
+            "api/triage.json": "open PRs a maintainer could close first (reason + evidence per PR: redoes merged, duplicate, stale and failing the repo rules, off goal) and PRs ready to decide",
             **campaigns_api}})
 
 
@@ -372,10 +373,15 @@ def html(a, page, e):
 def run(con, out, page, e, campaigns_api):
     a = analyse(con)
     write_api(a, out, campaigns_api)
+    from . import triage
+    try:
+        tri = triage.write(con, a, out)
+    except Exception as ex:                         # the triage list never stops the other pages
+        tri = {"error": repr(ex)[:200]}
     pr_page, is_page = html(a, page, e)
     with open(f"{out}/overlaps.html", "w") as fh:
         fh.write(pr_page)
     with open(f"{out}/duplicate-issues.html", "w") as fh:
         fh.write(is_page)
     return {"pr_groups": len(a["pr_groups"]), "issue_groups": len(a["issue_groups"]), "redo_merged": len(a["redo_groups"]),
-            "open_prs": len(a["open_prs"]), "open_issues": len(a["open_issues"])}
+            "open_prs": len(a["open_prs"]), "open_issues": len(a["open_issues"]), "triage": tri}

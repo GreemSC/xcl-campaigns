@@ -5,6 +5,7 @@
   classify [N]     pass 2 (author blocks, else AI) on at most N pending messages
   intent           AI intent card for open PRs / issues (whole repo)
   check            second AI check of candidate duplicate groups
+  triage           PR status (checks, conflicts) + AI goal cards for the "could close / ready to decide" list
   findings [N]     AI points at which reported numbers form a campaign metric (N messages)
   progress         AI files first-hand reports of how far the game gets (whole repository)
   render           build the pages and the JSON digests
@@ -34,6 +35,9 @@ def main(argv):
     elif cmd == "check":
         from . import db, project
         print(json.dumps(project.check(db.connect())))
+    elif cmd == "triage":
+        from . import db, triage
+        print(json.dumps(triage.run(db.connect())))
     elif cmd == "digest":
         from .digest import main as digest_main
         digest_main(argv[2:])
@@ -47,12 +51,13 @@ def main(argv):
         from .render import run
         print(json.dumps(run()))
     elif cmd == "loop":
-        from . import classify, collect, db, extract, findings, intent, progress, project, render
+        from . import classify, collect, db, extract, findings, intent, progress, project, render, triage
         # render_early: the pages and JSON get what GitHub said right after collect (~15 s), without waiting for the
         # AI steps (up to ~150 s in a burst); what the AI reads in this pass shows at the final render.
         steps = [("collect", collect.run), ("extract", extract.run), ("render_early", render.run),
                  ("classify", lambda: classify.run(n)),
                  ("intent", intent.run), ("check", lambda: project.check(db.connect())),
+                 ("triage", lambda: triage.run(db.connect())),
                  ("findings", lambda: findings.run(db.connect(), classify.campaigns(), 20)),
                  ("progress", lambda: progress.run(db.connect())), ("render", render.run)]
         while True:

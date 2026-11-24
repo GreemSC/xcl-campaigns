@@ -36,6 +36,29 @@ class GitHub:
         with urllib.request.urlopen(req, timeout=60) as r:
             return r.read(limit).decode("utf-8", "replace")
 
+    def graphql(self, query, variables):
+        """One read-only GraphQL query; returns `data` (raises on errors)."""
+        h = {"Content-Type": "application/json", "User-Agent": "xcl-campaigns"}
+        if self.token:
+            h["Authorization"] = f"Bearer {self.token}"
+        body = json.dumps({"query": query, "variables": variables}).encode()
+        for attempt in range(5):
+            try:
+                with urllib.request.urlopen(urllib.request.Request(f"{API}/graphql", data=body, headers=h),
+                                            timeout=90) as r:
+                    out = json.loads(r.read())
+                if out.get("errors") and not out.get("data"):
+                    raise RuntimeError(str(out["errors"])[:200])
+                return out["data"]
+            except urllib.error.HTTPError as e:
+                if e.code in (403, 429, 500, 502, 503, 504):
+                    time.sleep(min(60, 2 ** attempt * 5))
+                    continue
+                raise
+            except (urllib.error.URLError, TimeoutError):
+                time.sleep(2 ** attempt)
+        raise RuntimeError("GitHub GraphQL does not answer")
+
     def _req(self, url, etag=None, accept="application/vnd.github+json"):
         h = {"Accept": accept, "X-GitHub-Api-Version": "2022-11-28",
              "User-Agent": "xcl-campaigns"}
