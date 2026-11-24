@@ -413,8 +413,8 @@ def build(con, out, page, e, camps):
     with open(f"{out}/reports.html", "w") as fh:
         fh.write(page("GTA VI on PC with XCL: test reports (Windows, Linux, GPUs) · XCL board", html_reports(e, reps),
                       "api/progress.json", extra_css=CSS, nav="reports", path="reports.html", crumb="Test reports",
-                      description="Every GTA VI (GTA 6) test report posted on XCL's GitHub: commit, OS, GPU, how far the game "
-                                  "got and where it stopped. Helps XCL developers see which change moved the game forward."))
+                      description="Every GTA VI (GTA 6) test report on XCL's GitHub by commit, OS and GPU: how far it got, where it "
+                                  "stopped, which change moved it forward."))
     prog, pulse = api(reps, st, ov)
     os.makedirs(f"{out}/api", exist_ok=True)
     with open(f"{out}/api/progress.json", "w") as fh:

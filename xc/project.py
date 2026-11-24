@@ -345,15 +345,20 @@ def html(a, page, e):
                 + "".join(r[1] for r in rows) + "</table></div><h2>Open PRs that overlap each other</h2>")
 
     known = sum(1 for n in a["open_prs"] if a["files"][n])
-    pr_page = page("Overlapping PRs · XCL board", "<p class='mute'><b>Overlapping PRs</b> · <a href='duplicate-issues.html'>Duplicate issues</a></p>" + f"<h1>Open PRs that overlap</h1><p class='mute'>{len(a['open_prs'])} open PRs, "
+    pr_page = page("Duplicate and overlapping XCL pull requests · XCL board", "<p class='mute'><b>Overlapping PRs</b> · <a href='duplicate-issues.html'>Duplicate issues</a></p>" + f"<h1>Open PRs that overlap</h1><p class='mute'>{len(a['open_prs'])} open PRs, "
                    f"{known} with their file list so far, {sum(1 for n in a['open_prs'] if a['intents'].get(f'pr:{n}'))} with an AI intent card. "
                    f"{len(a['pr_groups'])} candidate groups: they say they fix the same issue, touch mostly the same files with similar titles, "
                    "or have the same subject according to the AI. A second AI (Sonnet) then reads each group and says which members make "
                    "the same change, reading their diffs. Candidates for a human to check; oldest first in each group, confirmed groups first.</p>"
-                   + redo_table() + table(a["pr_groups"], a["prs"], a["pr_why"], "pr"), nav="dups")
-    is_page = page("Duplicate issues · XCL board", "<p class='mute'><a href='overlaps.html'>Overlapping PRs</a> · <b>Duplicate issues</b></p>" + f"<h1>Open issues that are probably duplicates</h1><p class='mute'>{len(a['open_issues'])} open "
+                   + redo_table() + table(a["pr_groups"], a["prs"], a["pr_why"], "pr"), nav="dups", path="overlaps.html", crumb="Overlapping PRs",
+                   description="Open XCL pull requests that overlap or redo a merged PR, grouped by files and issues and checked by "
+                   "an AI that reads the diffs: avoid duplicate work.")
+    is_page = page("Duplicate XCL issues (same crash, same symptom) · XCL board", "<p class='mute'><a href='overlaps.html'>Overlapping PRs</a> · <b>Duplicate issues</b></p>" + f"<h1>Open issues that are probably duplicates</h1><p class='mute'>{len(a['open_issues'])} open "
                    f"issues. {len(a['issue_groups'])} groups: same crash offset (xcl.exe+0x…), very similar titles, or the same symptom "
-                   "according to the AI, then checked by a second AI. Candidates for a human to check.</p>" + table(a["issue_groups"], a["issues"], a["issue_why"], "issue"), nav="dups")
+                   "according to the AI, then checked by a second AI. Candidates for a human to check.</p>" + table(a["issue_groups"], a["issues"], a["issue_why"], "issue"), nav="dups",
+                   path="duplicate-issues.html", crumb="Duplicate issues",
+                   description="Probable duplicate XCL issues (same xcl.exe+0x crash offset, similar title or symptom), checked by an "
+                   "AI, so contributors can merge reports.")
     return pr_page, is_page
 
 

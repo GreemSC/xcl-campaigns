@@ -226,7 +226,8 @@ details>summary{cursor:pointer}details.more{display:inline}details.more>summary{
 td.prs{min-width:230px}td.prs .pr{white-space:nowrap;margin-right:4px}
 header.site{background:var(--card);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10}
 header.site .in{max-width:1180px;margin:0 auto;padding:0 16px;display:flex;align-items:center;gap:6px 18px;flex-wrap:wrap;min-height:48px}
-header.site .brand{font-weight:700;color:var(--fg);text-decoration:none;font-size:16px}header.site nav{display:flex;gap:2px 14px;flex-wrap:wrap;flex:1}
+header.site .brand{font-weight:700;color:var(--fg);text-decoration:none;font-size:16px;line-height:1.1}
+header.site .brand small{display:block;font-weight:400;font-size:11px;color:var(--mute);letter-spacing:.02em}header.site nav{display:flex;gap:2px 14px;flex-wrap:wrap;flex:1}
 header.site nav a,header.site .gh{color:var(--mute);text-decoration:none;font-size:14px;padding:12px 0;border-bottom:2px solid transparent}
 header.site nav a:hover,header.site .gh:hover{color:var(--fg)}header.site nav a[aria-current=page]{color:var(--fg);border-bottom-color:var(--ok)}
 nav.toc{top:48px}footer p{margin:6px 0}.agents-line{font-size:12px;color:var(--mute);margin:0 0 4px;padding:6px 0;border-bottom:1px dashed var(--line)}footer .banner{margin-top:14px}header.site nav a{white-space:nowrap}
@@ -319,7 +320,7 @@ def header(nav, current_campaign=None):
           if NAV_CAMPS else "")
     links = (a("index.html", "Status", "home") + a("reports.html", "Test reports", "reports") + dd
              + a("overlaps.html", "Duplicates", "dups") + a("health.html", "Board health", "health"))
-    return (f'<header class="site"><div class="in"><a class="brand" href="index.html">XCL board</a><nav>{links}</nav>'
+    return (f'<header class="site"><div class="in"><a class="brand" href="index.html">XCL board<small>for contributors</small></a><nav>{links}</nav>'
             f'<a class="gh" href="https://github.com/{os.environ.get("XC_REPO", "xcl-dev/xcl")}">XCL on GitHub ↗</a></div></header>')
 
 
@@ -622,8 +623,8 @@ def html_campaign(c, msgs, tasks, g, pr_status, fcells=None):
     n = c["campaign"]
     return page(f"Campaign #{n}: {c['title']} · XCL board", "\n".join(o), f"api/campaigns/{n}/tasks.json", nav="campaign",
                 campaign=n, path=f"campaign-{n}.html", crumb=f"Campaign #{n}",
-                description=f"XCL campaign #{n} ({c['title']}): open tasks, who claimed them, results per GPU and OS, "
-                            "and what a tester can take now. Coordination board for XCL contributors.")
+                description=f"Coordinate XCL campaign #{n} ({c['title']}): open tasks, who claimed them, results per GPU "
+                            "and OS, and what you can take now.")
 
 
 def adoption(con):
