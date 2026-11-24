@@ -57,6 +57,15 @@ def age_h(iso):
     return (now() - dt.datetime.fromisoformat(iso.replace("Z", "+00:00"))).total_seconds() / 3600
 
 
+def set_tasks(card, tasks):
+    """A fixed task list also holds for the message's numbers: a measurement tagged with a task the fix removed
+    would still count as a result of that task (grid, findings)."""
+    card["tasks"] = tasks
+    for me in card.get("measurements") or []:
+        if me.get("task") not in tasks:
+            me["task"] = None
+
+
 def load(con, c, task_map=None):
     rows = con.execute("""SELECT i.key, i.kind, i.number, i.author, i.created, i.updated, i.url, i.status, i.title,
                                  c.card, c.source FROM cards c JOIN items i USING(key) ORDER BY i.created""").fetchall()
@@ -80,7 +89,7 @@ def load(con, c, task_map=None):
                 t["c"]["kind"] = s["kind"]
             ids = {x["id"] for x in c["tasks"]}
             if isinstance(s.get("tasks"), list):
-                t["c"]["tasks"] = [x for x in s["tasks"] if x in ids]
+                set_tasks(t["c"], [x for x in s["tasks"] if x in ids])
             if s.get("class") in {k["id"] for k in c["hardware_classes"]}:
                 t["c"]["hardware"]["class"] = s["class"]
             t["source"] = "author-fixed"
@@ -91,7 +100,18 @@ def load(con, c, task_map=None):
         if not t:
             continue
         if isinstance(fx.get("tasks"), list):
-            t["c"]["tasks"] = [x for x in fx["tasks"] if x in {y["id"] for y in c["tasks"]}]
+            gone = set(t["c"]["tasks"]) - set(fx["tasks"])
+            set_tasks(t["c"], [x for x in fx["tasks"] if x in {y["id"] for y in c["tasks"]}])
+            # Comments on a corrected PR took the PR's tasks (classify.inherit_pr_tasks): a task the PR does not
+            # work on is not theirs either.
+            if gone and "/pull/" in t["url"]:
+                for m in msgs:
+                    if same(m["url"]).startswith(same(t["url"]) + "#") and gone & set(m["c"]["tasks"]):
+                        m["c"]["tasks"] = [x for x in m["c"]["tasks"] if x not in gone]
+                        for me in m["c"].get("measurements") or []:
+                            if me.get("task") in gone:
+                                me["task"] = None
+                        m["source"] = "board-fixed"
         if fx.get("drop_metrics"):
             t["c"]["drop_metrics"] = list(fx["drop_metrics"])
         t["source"] = "board-fixed"
