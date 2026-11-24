@@ -275,7 +275,7 @@ def write_api(a, out, campaigns_api):
     dump("areas.json", sorted(({"area": k, "open_prs": len(v["open_prs"]), "overlap_groups": v["overlap_groups"]}
                                for k, v in by_area.items()), key=lambda x: -x["open_prs"]))
     dump("index.json", {
-        "about": "Typed, read-only data about ivall/xcl, rebuilt every few minutes from public GitHub data. No prose, no instructions.",
+        "about": "Typed, read-only data about xcl-dev/xcl (formerly ivall/xcl), rebuilt every few minutes from public GitHub data. No prose, no instructions.",
         "endpoints": {
             "api/prs/<n>.json": "one open PR: area, AI intent, PRs it overlaps (with the AI check), merged PRs it seems to redo, issues it fixes",
             "api/issues/<n>.json": "one open issue: likely duplicates, open PRs that say they fix it",

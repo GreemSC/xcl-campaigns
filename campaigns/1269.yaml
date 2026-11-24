@@ -2,7 +2,7 @@
 # (ivall) adopts or corrects it. Every task below was announced or worked on in the thread.
 campaign: 1269
 title: "Shader compile time (DXC + driver)"
-issue: https://github.com/ivall/xcl/issues/1269
+issue: https://github.com/xcl-dev/xcl/issues/1269
 status: draft            # draft | official | closed
 lead: null               # to be named by the maintainer
 reference:

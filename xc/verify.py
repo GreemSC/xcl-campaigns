@@ -45,7 +45,7 @@ def pr_diff(con, gh, n, size=3500):
     if c:
         return c["diff"]
     try:
-        d = gh.diff(os.environ.get("XC_REPO", "ivall/xcl"), n, 60000)
+        d = gh.diff(os.environ.get("XC_REPO", "xcl-dev/xcl"), n, 60000)
     except Exception:
         return ""
     # keep code lines; drop lockfiles and docs that only add noise

@@ -11,7 +11,7 @@ from . import db
 
 RX = {
     "commit": re.compile(r"(?:`|\bmain\s+|\bcommit\s+|@)([0-9a-f]{7,40})\b"),
-    "ref": re.compile(r"(?:(?<![\w/])#|github\.com/ivall/xcl/(?:issues|pull)/)(\d{2,5})\b"),
+    "ref": re.compile(r"(?:(?<![\w/])#|github\.com/(?:ivall|xcl-dev)/xcl/(?:issues|pull)/)(\d{2,5})\b"),
     "gpu": re.compile(r"\b(RTX\s?\d{4}(?:\s?(?:Ti|SUPER|Super))?|GTX\s?\d{3,4}(?:\s?Ti)?|RX\s?\d{4}(?:\s?(?:XTX|XT|GRE))?"
                       r"|Arc\s?[AB]\d{3}|Radeon\s+\d{3,4}M|Steam\s?Deck)\b", re.I),
     "os": re.compile(r"\b(Windows\s?1[01]|Linux|Steam\s?Deck|CachyOS|Arch|Ubuntu|Fedora|Proton|Wine)\b", re.I),

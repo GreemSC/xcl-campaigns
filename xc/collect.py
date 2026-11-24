@@ -8,7 +8,7 @@ import os
 from . import db
 from .gh import GitHub
 
-REPO = os.environ.get("XC_REPO", "ivall/xcl")
+REPO = os.environ.get("XC_REPO", "xcl-dev/xcl")   # was ivall/xcl until 2026-11-24 (GitHub redirects)
 
 
 def now():
