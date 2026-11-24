@@ -33,8 +33,6 @@ HOW = ("Typed data from public GitHub, rebuilt every few minutes. Fetch with cur
 VENDOR = [(re.compile(r"\b(nvidia|geforce|rtx|gtx)\b", re.I), {"nv-win", "nv-linux", "small-vram"}),
           (re.compile(r"\b(amd|radeon|radv|rdna\d?)\b", re.I), {"amd-win", "amd-radv", "small-vram"}),
           (re.compile(r"\b(intel|arc)\b", re.I), {"intel", "small-vram"})]
-OS_ = [(re.compile(r"\bwindows\b", re.I), {"nv-win", "amd-win", "intel", "small-vram"}),
-       (re.compile(r"\b(linux|wine|proton|radv|vkd3d)\b", re.I), {"nv-linux", "amd-radv", "intel", "small-vram"})]
 
 
 def now_iso():
@@ -52,17 +50,15 @@ def gh_url(u):
 
 def task_classes(t, classes):
     """Hardware classes a measurement task asks for. A hand-written task may list them (`classes:`); an automatic
-    task (A1, A2…, title written by the AI from the thread) is narrowed by the vendor or OS its title names."""
+    task (A1, A2…, title written by the AI from the thread) is narrowed by the GPU vendor its title names.
+    No rule on the OS: "windows" also means memory windows ("Heap windows"), and one false match hides a task."""
     ids = [k["id"] for k in classes]
     if t.get("classes"):
         return [k for k in ids if k in t["classes"]]
     if not t.get("auto"):
         return ids
-    keep = set(ids)
-    for rules in (VENDOR, OS_):
-        hit = [allowed for rx, allowed in rules if rx.search(t.get("title") or "")]
-        if len(hit) == 1:                       # one vendor (or one OS) named: only those classes
-            keep &= hit[0]
+    hit = [allowed for rx, allowed in VENDOR if rx.search(t.get("title") or "")]
+    keep = hit[0] if len(hit) == 1 else set(ids)        # exactly one vendor named: only its classes
     return [k for k in ids if k in keep]
 
 

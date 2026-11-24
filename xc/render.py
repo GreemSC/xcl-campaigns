@@ -820,9 +820,20 @@ def campaign_api(c, tasks, g, msgs=None):
         with open(f"{d}/free/{k['id']}.json", "w") as fh:
             json.dump({"campaign": c["campaign"], "class": k["id"],
                        "reference_commit": (c.get("reference") or {}).get("commit"),
+                       # Fields added (nothing removed) so agents with the old instructions get the v2 fixes:
+                       # need_after_planned / planned_by, and automatic tasks whose title names another GPU vendor
+                       # moved to not_for_this_class instead of being offered to this class.
                        "measurements_needing_this_class": [
-                           {"task": tid, "title": tasks[tid]["title"], "need": v["need"], "commits_so_far": v["commits"]}
-                           for (tid, kid), v in g.items() if kid == k["id"] and v["need"] > 0],
+                           {"task": tid, "title": tasks[tid]["title"], "need": v["need"], "commits_so_far": v["commits"],
+                            "planned_by": [m["author"] for m in v["planned"]],
+                            "need_after_planned": max(0, v["need"] - len(v["planned"]))}
+                           for (tid, kid), v in g.items() if kid == k["id"] and v["need"] > 0
+                           and kid in agentapi.task_classes(tasks[tid], c["hardware_classes"])],
+                       "not_for_this_class": [
+                           {"task": tid, "title": tasks[tid]["title"], "why": "its title names another GPU vendor"}
+                           for (tid, kid), v in g.items() if kid == k["id"] and v["need"] > 0
+                           and kid not in agentapi.task_classes(tasks[tid], c["hardware_classes"])],
+                       "newer_version": f"api/v2/campaigns/{c['campaign']}/free/{k['id']}.json",
                        "free_code_tasks": [t["id"] for t in tasks.values() if t["type"] == "code" and not t["holders"]]},
                       fh, separators=(",", ":"))
 
