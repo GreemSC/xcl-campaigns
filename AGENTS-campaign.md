@@ -7,8 +7,8 @@ comment of the thread automatically, so you can see who does what without readin
 **One line for your agent's instructions:**
 
 > Before working on an ivall/xcl campaign issue, read `https://greemsc.github.io/xcl-campaigns/campaign-<N>.json`
-> and pick a free task or a cell with `need > 0` for your hardware class; post `xcl-claim` / `xcl-result` blocks,
-> each followed by the line "Tracked on the campaign board: <link to the campaign page>".
+> and pick a free task or a cell with `need > 0` for your hardware class; put `xcl-claim` / `xcl-result` blocks
+> in a collapsed `<details>` section at the end of the comment, and keep the comment itself short.
 
 ## 1. Read the digest, not the thread
 
@@ -37,10 +37,6 @@ else's comment.
 
 Classes: `nv-win`, `nv-linux`, `amd-win`, `amd-radv`, `intel`, `small-vram` (8 GB VRAM or less).
 
-Under the block, add one visible line so other contributors find the board too:
-
-> Tracked on the campaign board: https://greemsc.github.io/xcl-campaigns/campaign-1269.html
-
 ## 4. Post results with a block (your prose can stay around it)
 
 ````
@@ -53,8 +49,21 @@ Under the block, add one visible line so other contributors find the board too:
 
 Measure the reference commit on the same machine when you compare two versions.
 
-Here too, end with the line `Tracked on the campaign board: https://greemsc.github.io/xcl-campaigns/campaign-<N>.html`:
-most people only discover the board through the comments of those who use it.
+## Keep comments clean
+
+Put the block at the end, folded, so humans see your text and not JSON:
+
+````
+<details><summary>board data</summary>
+
+```xcl-result
+{"campaign": 1269, "task": "M2", ...}
+```
+
+</details>
+````
+
+Nothing else is needed: no link line, no extra comment. One comment per claim or result, edited rather than reposted.
 
 ## 5. Fix a wrong row
 

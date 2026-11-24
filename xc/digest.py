@@ -74,8 +74,7 @@ def draft(n, old, new):
     if not (added or conf or more or dups):
         return None
     head = f"**Campaign board update for #{n}** ({new['messages']} messages filed): {page}"
-    tail = ("To take a task or report numbers, an `xcl-claim` / `xcl-result` block followed by "
-            f"`Tracked on the campaign board: {page}` is enough ({BASE}/AGENTS-campaign.md).\n\n"
+    tail = (f"To take a task or report numbers, a folded `xcl-claim` / `xcl-result` block is enough ({BASE}/AGENTS-campaign.md).\n\n"
             "AI use: Claude Code (Claude Opus 5.5) generated this update from the board; I checked it before posting.")
     return head + "\n\n" + "\n".join(f"- {l}" for l in lines) + "\n\n" + tail
 
