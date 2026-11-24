@@ -56,6 +56,9 @@ REASONS = {
     "off-goal": "AI reading, confirmed by a second model: does not touch what stops the title today, shows no run, and fixes a bug only argued from the code (or only moves code)",
 }
 
+READY_RULE = ("PR checks green, CI not failing, merges cleanly, not a draft, no reason to close, and at least 2 test "
+              "reports from other people posted after its last commit (a #1607 batch that passed counts as one)")
+
 # Labels proposed on xcl-dev/xcl#1673 (throny, comment 7144890245): "label first, have a second person spot-check
 # each label, then close each label in one go". The board only suggests them; a person applies them.
 LABEL_OF = {"duplicate-checked": "duplicate", "redoes-merged": "duplicate", "duplicate-open": "duplicate", "rules-stale": "stale",
@@ -435,6 +438,7 @@ def build(con, a):
     return {"generated": now(), "repo": REPO, "open_prs": len(a["open_prs"]),
             "status_read_at": db.get_state(con, "triage_status_at"),
             "ai_cards": sum(1 for p in prs if p["ai"]),
+            "ready_rule": READY_RULE,
             "counts": counts, "reasons": REASONS, "label_counts": label_counts, "labels": LABELS,
             "by_touches": {k: sum(1 for p in prs if p["ai"] and p["ai"]["touches"] == k) for k in TOUCHES},
             "by_evidence": {k: sum(1 for p in prs if p["ai"] and p["ai"]["evidence"] == k) for k in EVIDENCE},
