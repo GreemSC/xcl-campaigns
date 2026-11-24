@@ -24,6 +24,7 @@ CSS = """
 .hero{padding:28px 0 8px}.kicker{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);margin:0 0 6px}
 .hero h1{font-size:clamp(26px,5vw,40px);line-height:1.15;margin:0 0 10px}.answer{font-size:clamp(18px,3vw,23px);margin:0 0 10px}
 .answer b{color:var(--warn)}.lede{max-width:760px;color:var(--mute);margin:0}
+.forwho{max-width:760px;margin:12px 0 0;padding:10px 14px;border-left:3px solid var(--ok);background:var(--card);border-radius:0 8px 8px 0;font-size:14.5px}
 .ladder{display:grid;grid-template-columns:repeat(8,1fr);gap:4px;margin:22px 0 6px}
 .step{position:relative;padding:10px 8px 8px;border-radius:6px;background:var(--chip);font-size:13px;line-height:1.25;min-height:58px}
 .step small{display:block;color:var(--mute);font-size:11px;margin-top:3px}
@@ -273,12 +274,15 @@ def html_home(e, st, ov, reps, camps):
                 n1 = a["people"][a["once"]]
                 answer += (f' {"One person reports" if n1 == 1 else f"{n1} people report"} the next one, '
                            f'<b>{e(STAGE_NAME[nxt])}</b>: {e(STAGE_DESC[nxt])}.')
-    o.append(f"""<section class="hero" id="status"><p class="kicker">Community board for the XCL project</p>
+    o.append(f"""<section class="hero" id="status"><p class="kicker">A community tool for XCL contributors</p>
 <h1>Does GTA VI run with XCL yet?</h1><p class="answer">{answer}</p>
 <p class="lede">XCL is a recompiler that aims to run the Xbox Series build of the game on a PC: Windows, and Linux through
 Wine or Proton. This page sums up what testers and developers report on <a href="{REPO_URL}">GitHub</a>, every few minutes,
 with a link to each source. These are their reports, not tests run by this board. It hosts no game files and no
-downloads.</p></section>""")
+downloads.</p>
+<p class="forwho"><b>For people working on XCL</b>, the board helps coordinate: who works on what in the
+<a href="#help">campaign issues</a>, open pull requests that change the same thing, duplicate issues, every test
+report by platform, and a JSON API for AI agents. It is made by contributors, not by the XCL maintainers.</p></section>""")
     # 2. The ladder
     o.append('<div class="ladder" aria-label="How far the game gets">')
     for k, (sid, name, desc) in enumerate(P.STAGES):
