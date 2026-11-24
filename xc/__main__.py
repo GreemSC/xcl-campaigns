@@ -5,6 +5,7 @@
   classify [N]     pass 2 (author blocks, else AI) on at most N pending messages
   intent           AI intent card for open PRs / issues (whole repo)
   check            second AI check of candidate duplicate groups
+  findings [N]     AI points at which reported numbers form a campaign metric (N messages)
   render           build the pages and the JSON digests
   digest N [--posted]  draft a short GitHub update for campaign N with only what is new (never posts)
   loop [N]         collect + extract + classify + render, every 60 s
@@ -35,13 +36,17 @@ def main(argv):
     elif cmd == "digest":
         from .digest import main as digest_main
         digest_main(argv[2:])
+    elif cmd == "findings":
+        from . import classify, db, findings
+        print(json.dumps(findings.run(db.connect(), classify.campaigns(), n)))
     elif cmd == "render":
         from .render import run
         print(json.dumps(run()))
     elif cmd == "loop":
-        from . import classify, collect, db, extract, intent, project, render
+        from . import classify, collect, db, extract, findings, intent, project, render
         steps = [("collect", collect.run), ("extract", extract.run), ("classify", lambda: classify.run(n)),
-                 ("intent", intent.run), ("check", lambda: project.check(db.connect())), ("render", render.run)]
+                 ("intent", intent.run), ("check", lambda: project.check(db.connect())),
+                 ("findings", lambda: findings.run(db.connect(), classify.campaigns(), 20)), ("render", render.run)]
         while True:
             start = time.time()
             status = {"started": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()), "steps": {}}

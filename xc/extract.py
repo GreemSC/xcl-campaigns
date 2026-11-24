@@ -3,7 +3,9 @@
 Commits, issue/PR numbers, GPUs, OS, drivers, RAM, XCL_* variables, declared AI tool/model, and the
 `xcl-claim` / `xcl-result` / `xcl-fix` blocks posted by authors."""
 import json
+import os
 import re
+import urllib.parse
 
 from . import db
 
@@ -21,6 +23,42 @@ RX = {
                            r"|Gemini\s[\d.]+(?:\s\w+)?|Codex|Copilot|Cursor|Devin)\b"),
 }
 BLOCK = re.compile(r"```(xcl-result|xcl-claim|xcl-fix)\s*\n(.*?)```", re.S)
+BASE = os.environ.get("XC_BASE_URL", "https://greemsc.github.io/xcl-campaigns").split("://")[-1]
+# A board link that carries the data itself, one small line instead of a block:
+#   <sub>[board: C4 result](https://…/campaign-1269.html?r=C4&class=nv-win&commit=122017d&m=dxc_s:23.6:s#C4)</sub>
+# r=<task> a result, claim=<task> a claim; m=what:value:unit (repeat it); patches=871,684.
+LINK = re.compile(r"https?://" + re.escape(BASE) + r"/campaign-(\d+)\.html\?([^\s)\]#\"'<>`]+)")
+
+
+def link_blocks(text):
+    res = []
+    for n, q in LINK.findall(text or ""):
+        a = urllib.parse.parse_qs(q.replace("&amp;", "&"), keep_blank_values=False)
+        one = lambda k: a[k][-1].strip() if a.get(k) else None
+        kind = "xcl-result" if one("r") else "xcl-claim" if one("claim") else None
+        if not kind:
+            continue
+        b = {"campaign": int(n), "task": one("r") or one("claim")}
+        for k in ("class", "gpu", "driver", "commit", "until", "scenario"):
+            if one(k):
+                b[k] = one(k)[:80]
+        if one("runs") and one("runs").isdigit():
+            b["runs"] = int(one("runs"))
+        if one("patches"):
+            b["local_patches"] = [int(x) for x in re.findall(r"\d+", one("patches"))][:20]
+        meas = []
+        for m in a.get("m", [])[:12]:
+            parts = m.rsplit(":", 2)
+            if len(parts) == 3:
+                try:
+                    meas.append({"what": parts[0].replace("_", " ").strip()[:60], "value": float(parts[1]),
+                                 "unit": parts[2].strip()[:12]})
+                except ValueError:
+                    pass
+        if meas:
+            b["measurements"] = meas
+        res.append((kind, b))
+    return res
 
 
 def facts_of(text):
@@ -50,7 +88,7 @@ def blocks_of(text):
             res.append((kind, v if isinstance(v, dict) else {"_invalid": True}))
         except ValueError:
             res.append((kind, {"_invalid": True}))
-    return res
+    return res + link_blocks(text)
 
 
 def run(con=None):

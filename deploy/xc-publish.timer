@@ -1,9 +1,9 @@
 [Unit]
-Description=XCL campaigns: publish every 6 minutes
+Description=XCL campaigns: publish (every 2 min when Pages builds from Actions, else every 6 min)
 
 [Timer]
 OnBootSec=2min
-OnUnitActiveSec=6min
+OnUnitActiveSec=2min
 
 [Install]
 WantedBy=timers.target

@@ -1,0 +1,28 @@
+# Deploys the gh-pages branch with GitHub Actions instead of the branch builder: the branch builder is limited to
+# about 10 builds per hour, a custom workflow is not, so the board can be published every 2 minutes.
+# publish.sh adds this file to the gh-pages commit when Pages builds from Actions (Settings > Pages > Source =
+# "GitHub Actions"). The github-pages environment must allow deployments from the gh-pages branch.
+name: pages
+on:
+  push:
+    branches: [gh-pages]
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: true
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+      - id: deploy
+        uses: actions/deploy-pages@v4

@@ -29,11 +29,44 @@ tasks:
   - {id: C8, type: code, title: "Retry driver-refused compute PSOs with a different DXC option (e.g. GVN off)"}
   - {id: C9, type: code, title: "Find which DXC pass costs ~150 s on loop-heavy programs (HLSL path)"}
   # --- Measurements: redundancy is wanted (2 machines per class) ---
-  - {id: M1, type: measure, min_per_class: 2, title: "Driver compile time vs DXIL size"}
-  - {id: M2, type: measure, min_per_class: 2, title: "DXC time and DXIL size: -O0 / -O1 / -O3"}
-  - {id: M3, type: measure, min_per_class: 2, title: "World load: where it stalls (title thread, PSOs, watchdog)"}
-  - {id: M4, type: measure, min_per_class: 1, title: "Giant programs (> 8 MB HLSL): which finish, time, memory"}
-  - {id: M5, type: measure, min_per_class: 1, title: "Reproduce #1315/#1316 (compact form) on other hardware"}
+  # metrics: the few numbers that compare across machines (see xc/findings.py).
+  #   how: value (the number itself) | ratio (a / b, same program and setup) | per_size (time per KB of DXIL)
+  - id: M1
+    type: measure
+    min_per_class: 2
+    title: "Driver compile time vs DXIL size"
+    metrics:
+      - {id: ms_per_kb, how: per_size, unit: ms/KB, title: "Driver (pipeline creation) time per KB of DXIL, one program or a size bucket"}
+      - {id: slowest, how: value, unit: s, title: "Slowest single driver compile of one program"}
+  - id: M2
+    type: measure
+    min_per_class: 2
+    title: "DXC time and DXIL size: -O0 / -O1 / -O3"
+    metrics:
+      - {id: o1_over_o0_time, how: ratio, unit: x, title: "DXC time at -O1 divided by DXC time at -O0, same program"}
+      - {id: o0_over_o1_size, how: ratio, unit: x, title: "DXIL size at -O0 divided by DXIL size at -O1, same program"}
+  - id: M3
+    type: measure
+    min_per_class: 2
+    title: "World load: where it stalls (title thread, PSOs, watchdog)"
+    metrics:
+      - {id: stall_at, how: value, unit: s, title: "Game time when world load stalls: last present, or title watchdog fires"}
+      - {id: peak_memory, how: value, unit: GB, title: "Peak memory of the game process during world load (commit, or RAM + swap)"}
+  - id: M4
+    type: measure
+    min_per_class: 1
+    title: "Giant programs (> 8 MB HLSL): which finish, time, memory"
+    metrics:
+      - {id: time, how: value, unit: s, title: "Time spent on one giant program (DXC or driver), finished or stopped"}
+      - {id: peak_memory, how: value, unit: GB, title: "Peak memory while compiling one giant program"}
+  - id: M5
+    type: measure
+    min_per_class: 1
+    title: "Reproduce #1315/#1316 (compact form) on other hardware"
+    metrics:
+      - {id: pso_speedup, how: ratio, unit: x, title: "Pipeline creation time without the compact form divided by with it, same program"}
+      - {id: dxil_shrink, how: ratio, unit: x, title: "DXIL size without the compact form divided by with it, same program"}
+      - {id: pso_time, how: value, unit: s, title: "Pipeline creation time of one program with the compact form"}
 
 rules:
   - "Before acting, read the campaign digest (who does what, empty cells) instead of the whole thread."

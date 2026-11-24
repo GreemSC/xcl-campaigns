@@ -9,6 +9,10 @@ numbers came from ten different `main` commits, and nobody could see who was doi
 thread into a page, every few minutes:
 
 - **Tasks**: who holds each one, which teams formed, where two teams work on the same thing, linked PRs.
+- **What can I do?**: pick your machine, see the measurements that still need it and the free code tasks, with a
+  claim line ready to copy.
+- **What the numbers say**: for each measurement, the few metrics that compare across machines (e.g. driver time
+  per KB of DXIL), with the median, the range and whether the machines agree, per hardware class.
 - **Measurement grid**: measurement × hardware class, which cells are empty, which mix commits.
 - **Volunteers**: people who offered help, and the cells their hardware could fill.
 - **Overlapping PRs** across the whole repository.
@@ -20,8 +24,9 @@ thread into a page, every few minutes:
 
 ## Nobody has to use it
 
-It reads GitHub. Every comment is filed whether or not its author knows the board exists. Posting a small
-`xcl-claim` / `xcl-result` block only makes your row exact and immediate. See [AGENTS-campaign.md](AGENTS-campaign.md).
+It reads GitHub. Every comment is filed whether or not its author knows the board exists. Ending a comment with
+one small board link that carries the data (`<sub>[board: M2 result](…/campaign-1269.html?r=M2&class=amd-radv&m=…)</sub>`)
+only makes your row exact and immediate. See [AGENTS-campaign.md](AGENTS-campaign.md).
 
 ## How it works
 
@@ -32,6 +37,7 @@ It reads GitHub. Every comment is filed whether or not its author knows the boar
 | `classify` | Campaign messages without a block: an AI (Claude Haiku via `claude -p`, **no tools, no network**) returns a card constrained by a JSON schema; code then checks it against the source text. New `[OFFICIAL]` / help-wanted issues from a maintainer open a campaign automatically, and work announced in a thread grows the task list (A1, A2, …). | yes, typed output only |
 | `intent` | Every open PR and issue gets a typed intent card (area, kind, subject, keywords, crash offset), used to find duplicates that are worded differently. | yes, typed output only |
 | `check` | A second model (Sonnet) reads each candidate group of duplicates and marks each member same-change / partial-overlap / different. Cached until a member changes. | yes, typed output only |
+| `findings` | For each result message, an AI (Haiku, same box) only points at which of its numbers form a metric of the campaign file (metric id, number indexes, a size written in the text). Code converts units, checks the size against the text, computes the value and aggregates across machines. | yes, typed output only |
 | `render` | Pages + JSON digest, computed by code. Every row links to its source comment. | no |
 
 Why the AI never writes the page: a summary written by a model is exactly what a hidden instruction in a
@@ -47,6 +53,15 @@ python3 -m xc loop 30        # collect + extract + classify + render, every 60 s
 Needs Python 3 with PyYAML, a read-only GitHub token in `.github-token` (fine-grained, public repositories,
 no permissions), and the `claude` CLI logged in for the classify step (without it, everything else still runs).
 A campaign is one file: `campaigns/<issue>.yaml`.
+
+## Publishing faster
+
+`xc-publish.timer` runs every 2 minutes and `publish.sh` asks GitHub how Pages builds the site. With the branch
+builder (about 10 builds per hour) it publishes at most every 6 minutes. Once Settings > Pages > Source is
+"GitHub Actions", it publishes every run and adds `deploy/pages-workflow.yml` to each published commit (the
+`github-pages` environment must allow the `gh-pages` branch).
+Browsers may keep a page up to 10 minutes (GitHub's cache header): the page checks `api/health.json` and offers to
+load the latest copy when it is older than the server's.
 
 ## Limits
 
