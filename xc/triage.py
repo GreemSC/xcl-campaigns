@@ -5,19 +5,22 @@ us away from the goal". The board closes nothing and writes nothing on GitHub. I
 rule that put it there, so a human can check one reason in a few seconds.
 
 Reasons, strongest first:
+- duplicate-checked: two contributors checked the group in xcl-dev/xcl#1607 (throny's table) and suggest keeping
+  another PR. People read the diffs.
 - redoes-merged: the second AI check (verify.py, Sonnet, reads the diffs) says the PR makes the same change as a
   merged one. CONTRIBUTING: "A PR that duplicates one already merged is closed."
 - duplicate-open: the second AI check says "same-change" as another open PR, and that other PR is the one it
   marks most complete (or is older, when it marks none).
-- rules-failing: the same, younger than 7 days (it "waits"); shown so the author can fix it.
 - rules-stale: a required check (CI or PR checks) fails, or the PR conflicts with main, and its last commit is more
   than 7 days old. CONTRIBUTING: a PR that does not meet the rules "waits (or is closed after a week)".
+- rules-failing: the same, younger than 7 days (it "waits"); shown so the author can fix it.
 - off-goal: an AI card (Haiku) says the PR does not touch what stops the title today, shows no run of it, and fixes
   a bug argued only from reading code (or only moves code around); a second read (Sonnet, with the diff) agrees.
   This one is a reading, not a rule: it is shown apart.
 
-"Ready to decide" is the other side: required checks green, merges cleanly, not a draft, touches what stops the
-title (or the maintainer's campaign), and a run of the title shows the problem or the gain.
+"Ready to decide" is the other side (an AutoCraft idea, read-only): PR checks green, CI not failing, merges cleanly,
+not a draft, no reason above, and at least 2 test reports on its current head (other people's comments that read
+like a run, posted after the last commit; a #1607 batch that passed counts as one).
 
 GitHub text is DATA for the AI (boxed in, see ai.py); only enums, booleans and numbers reach the JSON."""
 import concurrent.futures as cf
@@ -44,6 +47,7 @@ VERSION = "2"   # v2: evidence separates "the run shows the effect" from "regres
 TOUCHES = ["wall", "reached-stage", "campaign", "general", "no-runtime-change"]
 EVIDENCE = ["retail-shows-effect", "retail-regression-only", "other-run", "tests-only", "none"]
 REASONS = {
+    "duplicate-checked": "two contributors checked it in xcl-dev/xcl#1607 and suggest keeping another PR with the same change",
     "redoes-merged": "the second AI check (it reads the diffs) says it makes the same change as a merged PR",
     "duplicate-open": "the second AI check says it makes the same change as another open PR, which looks more complete or is older",
     "rules-stale": f"a required check fails or it conflicts with main, and its last commit is over {STALE_DAYS} days old (CONTRIBUTING: closed after a week)",
@@ -53,7 +57,7 @@ REASONS = {
 
 # Labels proposed on xcl-dev/xcl#1673 (throny, comment 7144890245): "label first, have a second person spot-check
 # each label, then close each label in one go". The board only suggests them; a person applies them.
-LABEL_OF = {"redoes-merged": "duplicate", "duplicate-open": "duplicate", "rules-stale": "stale",
+LABEL_OF = {"duplicate-checked": "duplicate", "redoes-merged": "duplicate", "duplicate-open": "duplicate", "rules-stale": "stale",
             "off-goal": "off-goal"}
 LABELS = {"duplicate": "redoes a merged PR or duplicates an open one (second AI check on the diffs)",
           "stale": f"fails a required check or conflicts, last commit over {STALE_DAYS} days old",
@@ -310,6 +314,52 @@ def _age_days(ts):
     return (dt.datetime.now(dt.timezone.utc) - dt.datetime.fromisoformat(ts.replace("Z", "+00:00"))).days
 
 
+TEST_REPORT = re.compile(r"```xcl-smoke|\bpass(ed|es)?\b.{0,200}\b(fail(ed)?|ignored)\b"
+                         r"|\b(tested|ran|run|runs)\b.{0,80}\b(RTX|RX ?\d{3,4}|RDNA\d?|Radeon|GeForce|Arc ?[AB]\d|Steam ?Deck|RADV)",
+                         re.I | re.S)
+
+
+def test_reports(con, n, author, since):
+    """People other than the author who posted a test report on the PR after its last commit (one per person).
+    A comment counts when it reads like a run: an xcl-smoke block, a passed/failed count, or a run on named hardware."""
+    if not since:
+        return []
+    who = set()
+    for r in con.execute("""SELECT author, body FROM items WHERE kind IN ('comment','revcomment') AND number=?
+                            AND created > ? AND author != ?""", (n, since, author or "")):
+        b = r["body"] or ""
+        if "1607" in b and len(b) < 700:              # the #1607 script's short hints are not test reports
+            continue
+        if TEST_REPORT.search(b):
+            who.add(r["author"])
+    return sorted(who)
+
+
+def tracker_1607(con):
+    """Groups that two contributors checked in xcl-dev/xcl#1607 (throny's table, rebuilt by a script in the issue
+    body): {pr: {"unit", "keep"}} for duplicates with a suggested PR, and {pr: unit} for batches that passed."""
+    r = con.execute("SELECT body FROM items WHERE key='issue:1607'").fetchone()
+    body = (r["body"] if r else "") or ""
+    m = re.search(r"### Checked by two contributors.*?(?=\n### |\Z)", body, re.S)
+    dups, batches = {}, {}
+    for line in (m.group(0) if m else "").splitlines():
+        cells = [c.strip() for c in line.strip().strip("|").split("|")]
+        if len(cells) < 4 or not re.fullmatch(r"[DB]\d+", cells[0]):
+            continue
+        unit, finding = cells[0], cells[3].split(" / ")[0]
+        prs = [int(x) for x in re.findall(r"#(\d+)(?! \(closed\))", cells[2])]
+        k = re.match(r"suggest (\d+); same change as", finding)
+        if unit.startswith("D") and k:
+            keep = int(k.group(1))
+            for n in prs:
+                if n != keep:
+                    dups[n] = {"unit": unit, "keep": keep}
+        elif unit.startswith("B") and finding.startswith("pass"):
+            for n in prs:
+                batches[n] = unit
+    return dups, batches
+
+
 def build(con, a):
     """a = project.analyse(con). Returns the triage object written to api/triage.json."""
     _setup(con)
@@ -319,6 +369,7 @@ def build(con, a):
     confirms = {r["key"]: json.loads(r["card"]) for r in con.execute(
         "SELECT c.key, c.card FROM triage_confirm c JOIN items i USING(key) WHERE c.hash = i.hash || ':' || ?", (VERSION,))}
     redo = {g[0]: g for g in a["redo_groups"]}
+    dups_1607, batches_1607 = tracker_1607(con)
     pr_group = {n: g for g in a["pr_groups"] for n in g}
     prs, counts = [], {k: 0 for k in REASONS}
     counts["ready"] = 0
@@ -332,8 +383,10 @@ def build(con, a):
                         and m["number"] in redo[n][1:]]
                 if same:
                     reasons.append({"reason": "redoes-merged", "merged": same})
+        if n in dups_1607:
+            reasons.append({"reason": "duplicate-checked", **dups_1607[n]})
         g = pr_group.get(n)
-        if g:
+        if g and n not in dups_1607:
             c = a["checks"].get(("pr", tuple(g)))
             if c:
                 v = {m["number"]: m["verdict"] for m in c["members"]}
@@ -356,9 +409,10 @@ def build(con, a):
         card, conf = cards.get(f"pr:{n}"), confirms.get(f"pr:{n}")
         if card and conf and first_read_off_goal(card) and conf["off_goal"]:
             reasons.append({"reason": "off-goal", "touches": conf["touches"], "evidence": conf["evidence"]})
-        ready = bool(s and card and not s["draft"] and s["ci"] == "success" and s["pr_checks"] == "success"
-                     and s["mergeable"] == "MERGEABLE" and card["touches"] in ("wall", "campaign", "reached-stage")
-                     and card["evidence"] == "retail-shows-effect" and not reasons)
+        testers = test_reports(con, n, a["prs"][n]["author"], s["last_commit"] if s else None)
+        reports = len(testers) + (1 if n in batches_1607 else 0)
+        ready = bool(s and not s["draft"] and s["ci"] != "failure" and s["pr_checks"] == "success"
+                     and s["mergeable"] == "MERGEABLE" and reports >= 2 and not reasons)
         body = f"{a['prs'][n]['title'] or ''} {a['prs'][n]['body'] or ''}"
         linked = sorted({int(x) for x in ISSUE_REF.findall(body)} & set(a["issues"]))
         labels = sorted({LABEL_OF[x["reason"]] for x in reasons if x["reason"] in LABEL_OF}
@@ -371,7 +425,8 @@ def build(con, a):
         counts["ready"] += ready
         prs.append({"pr": n, "author": a["prs"][n]["author"], "area": a["area"].get(n),
                     "created": a["prs"][n]["created"],
-                    "closable": reasons, "ready_to_decide": ready, "linked_issues": linked, "suggested_labels": labels,
+                    "closable": reasons, "ready_to_decide": ready,
+                    "test_reports_on_head": {"people": testers, "batch_1607": batches_1607.get(n), "count": reports}, "linked_issues": linked, "suggested_labels": labels,
                     "ai": card, "ai_second_read": conf,
                     "checks": {"ci": s["ci"], "pr_checks": s["pr_checks"], "mergeable": s["mergeable"],
                                "draft": bool(s["draft"]), "last_commit": s["last_commit"],
