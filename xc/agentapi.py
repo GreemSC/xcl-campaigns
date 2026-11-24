@@ -53,6 +53,9 @@ INJECTION = re.compile(
     r"|https?:|www\.|\b(send|post|paste|share|leak|print|reveal|exfiltrate)\b\W+(\w+\W+){0,4}?"
     r"(tokens?|passwords?|secrets?|credentials?|api[\s_-]?keys?|ssh[\s_-]?keys?|private\s+keys?|env(ironment)?)\b"
     r"|<\s*/?\s*(system|instructions?|im_start)\b|@\w", re.I)
+# render.PAGE_INJECTION (HTML pages) reuses this pattern without its final "|@\w" piece, which it asserts is there:
+# keep that piece last. It stays in JSON: no field here holds a quote, so a mention is never a real need (0 real
+# texts withheld), and an agent copying one into a comment would notify that person.
 WITHHELD = "[withheld: read like an instruction, see the source]"
 withheld = []                                   # texts withheld in this pass (count shown in health.json)
 
