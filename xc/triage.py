@@ -14,7 +14,7 @@ Reasons, strongest first:
 - rules-stale: a required check (CI or PR checks) fails, or the PR conflicts with main, and its last commit is more
   than 7 days old. CONTRIBUTING: a PR that does not meet the rules "waits (or is closed after a week)".
 - rules-failing: the same, younger than 7 days (it "waits"); shown so the author can fix it.
-- off-goal: an AI card (Haiku) says the PR does not touch what stops the title today, shows no run of it, and fixes
+- ai-off-goal: an AI card (Haiku) says the PR does not touch what stops the title today, shows no run of it, and fixes
   a bug argued only from reading code (or only moves code around); a second read (Sonnet, with the diff) agrees.
   This one is a reading, not a rule: it is shown apart.
 
@@ -43,6 +43,7 @@ WORKERS = int(os.environ.get("XC_WORKERS", "4"))
 STATUS_EVERY_S = int(os.environ.get("XC_TRIAGE_STATUS_EVERY", "900"))
 STALE_DAYS = 7
 ORDER = "ASC" if os.environ.get("XC_TRIAGE_ORDER") == "asc" else "DESC"   # a one-off filler takes the oldest first
+CONFIRM_VERSION = "c2"   # c2: tools, diagnostics, tests and docs are never off goal
 VERSION = "2"   # v2: evidence separates "the run shows the effect" from "regression run only"
 
 TOUCHES = ["wall", "reached-stage", "campaign", "general", "no-runtime-change"]
@@ -53,21 +54,26 @@ REASONS = {
     "duplicate-open": "the second AI check says it makes the same change as another open PR, which looks more complete or is older",
     "rules-stale": f"a required check fails or it conflicts with main, and its last commit is over {STALE_DAYS} days old (CONTRIBUTING: closed after a week)",
     "rules-failing": "the repo's own required check (PR checks) fails on its last commit, or it conflicts with main (CONTRIBUTING: it waits until fixed)",
-    "off-goal": "AI reading, confirmed by a second model: does not touch what stops the title today, shows no run, and fixes a bug only argued from the code (or only moves code)",
+    "ai-off-goal": "AI reading, confirmed by a second model: a runtime change that does not touch what stops the title today, no run shows the bug, and the bug is only argued from the code (or it only moves code); tools, diagnostics, tests and docs are never listed",
 }
 
 READY_RULE = ("PR checks green, CI not failing, merges cleanly, not a draft, no reason to close, and at least 2 test "
               "reports from other people posted after its last commit (a #1607 batch that passed counts as one)")
 
-# Labels proposed on xcl-dev/xcl#1673 (throny, comment 7144890245): "label first, have a second person spot-check
-# each label, then close each label in one go". The board only suggests them; a person applies them.
-LABEL_OF = {"duplicate-checked": "duplicate", "redoes-merged": "duplicate", "duplicate-open": "duplicate", "rules-stale": "stale",
-            "off-goal": "off-goal"}
-LABELS = {"duplicate": "redoes a merged PR or duplicates an open one (second AI check on the diffs)",
-          "stale": f"fails a required check or conflicts, last commit over {STALE_DAYS} days old",
-          "off-goal": "AI reading confirmed by a second model (see reasons.off-goal)",
-          "goal:world-load": "AI card: changes what stops runs today (world loading stalls and crashes, compile stalls)",
-          "needs-issue": "names no issue of the repo in its title or description"}
+# The maintainer's labels (xcl-dev/xcl#1833, set by a script from titles and file paths, "not read one by one"; he asks
+# for a second person to check them). The board compares each label with what it reads; it never sets a label.
+RUNTIME = re.compile(r"^crates/[^/]+/src/")
+TEST_PATH = re.compile(r"(^|/)tests?/|_test\.rs$|/test_|^scripts/|^\.github/|\.md$|^docs/")
+LABEL_WHY = {
+    "off-goal-but-runtime": "has off-goal, but changes runtime code (crates/*/src outside tests): the label's own rule is tests, scripts, CI or docs only",
+    "off-goal-but-goal-issue": "has off-goal, but says it fixes, addresses or is part of a goal:world-load issue",
+    "off-goal-but-ai-goal": "has off-goal, but the AI card says it bears on the goal (world-load wall or #1269)",
+    "goal-missing-issue": "no goal:world-load, but says it fixes, addresses or is part of a goal:world-load issue",
+    "goal-missing-ai": "no goal:world-load, but the AI card says it changes what stops runs today (#1269 or the world-load wall)",
+    "goal-but-ai-no-runtime": "has goal:world-load, but the AI card says it changes no runtime code (tests, tools, docs)",
+    "duplicate-not-1607": "has duplicate, but no group checked by two people in #1607 names it",
+}
+WORKS_ON = re.compile(r"\b(?:fix(?:es|ed)?|close[sd]?|resolve[sd]?|part of|address(?:es)?|towards?)\s+(?:issue\s+)?#(\d{1,5})\b", re.I)
 ISSUE_REF = re.compile(r"(?<![\w/])#(\d{1,5})\b")
 
 CARD = {"type": "object", "additionalProperties": False,
@@ -108,7 +114,9 @@ off_goal = true only if ALL hold: it does not change what stops the title today 
 maintainer's open call ("maintainer_calls"); no run of the title shows the problem it fixes (the two smoke blocks the
 repo requires for every runtime change only show nothing broke); and the bug it fixes is only argued from
 reading code (or the diff mostly moves/renames/reformats code). A real crash fix, a measured speed-up, a test that
-fails before the fix, or a change on a path the title is known to use make it false. When unsure, false.
+fails before the fix, or a change on a path the title is known to use make it false. A diagnostic, a log, a debug
+switch or a tool that helps find or measure problems is never off goal; neither is a change to tests, scripts or docs.
+When unsure, false.
 Also give your own touches and evidence values (same meanings as the first reader's)."""
 
 
@@ -272,7 +280,8 @@ def run(con=None):
 
 
 def first_read_off_goal(card):
-    return (card["touches"] in ("general", "no-runtime-change") and card["evidence"] in ("retail-regression-only", "tests-only", "none")
+    """Only a runtime change can push away from the goal: tests, tools, logs and docs are never "off goal"."""
+    return (card["touches"] == "general" and card["evidence"] in ("retail-regression-only", "tests-only", "none")
             and (card["speculative"] or card["churn"]))
 
 
@@ -290,7 +299,7 @@ def confirm(con, goal):
     for r in con.execute("""SELECT i.key, i.number, i.title, i.body, i.hash, t.card FROM items i JOIN triage t USING(key)
                             LEFT JOIN triage_confirm c USING(key)
                             WHERE i.kind='pr' AND i.status='open' AND t.hash = i.hash || ':' || ?
-                              AND (c.hash IS NULL OR c.hash != t.hash)""", (VERSION,)):
+                              AND (c.hash IS NULL OR c.hash != t.hash || ':' || ?)""", (VERSION, CONFIRM_VERSION)):
         if first_read_off_goal(json.loads(r["card"])):
             todo.append(r)
         if len(todo) >= CONFIRM_PER_PASS:
@@ -304,7 +313,7 @@ def confirm(con, goal):
             continue
         card, model = got
         con.execute("INSERT OR REPLACE INTO triage_confirm VALUES (?,?,?,?,?)",
-                    (r["key"], f"{r['hash']}:{VERSION}", json.dumps(card), model, now()))
+                    (r["key"], f"{r['hash']}:{VERSION}:{CONFIRM_VERSION}", json.dumps(card), model, now()))
         con.commit()
         done += 1
     return done
@@ -371,9 +380,17 @@ def build(con, a):
     cards = {r["key"]: json.loads(r["card"]) for r in con.execute(
         "SELECT t.key, t.card FROM triage t JOIN items i USING(key) WHERE t.hash = i.hash || ':' || ?", (VERSION,))}
     confirms = {r["key"]: json.loads(r["card"]) for r in con.execute(
-        "SELECT c.key, c.card FROM triage_confirm c JOIN items i USING(key) WHERE c.hash = i.hash || ':' || ?", (VERSION,))}
+        "SELECT c.key, c.card FROM triage_confirm c JOIN items i USING(key) WHERE c.hash = i.hash || ':' || ? || ':' || ?",
+        (VERSION, CONFIRM_VERSION))}
     redo = {g[0]: g for g in a["redo_groups"]}
     dups_1607, batches_1607 = tracker_1607(con)
+    gh_labels, goal_issues = {}, set()
+    for r in con.execute("SELECT kind, number, raw FROM items WHERE kind IN ('pr','issue')"):
+        ls = set((json.loads(r["raw"] or "{}") or {}).get("labels") or [])
+        if r["kind"] == "pr":
+            gh_labels[r["number"]] = ls
+        elif "goal:world-load" in ls:
+            goal_issues.add(r["number"])
     pr_group = {n: g for g in a["pr_groups"] for n in g}
     prs, counts = [], {k: 0 for k in REASONS}
     counts["ready"] = 0
@@ -412,25 +429,46 @@ def build(con, a):
                                 "conflicts": s["mergeable"] == "CONFLICTING", "last_commit_days": age})
         card, conf = cards.get(f"pr:{n}"), confirms.get(f"pr:{n}")
         if card and conf and first_read_off_goal(card) and conf["off_goal"]:
-            reasons.append({"reason": "off-goal", "touches": conf["touches"], "evidence": conf["evidence"]})
+            reasons.append({"reason": "ai-off-goal", "touches": conf["touches"], "evidence": conf["evidence"]})
         testers = test_reports(con, n, a["prs"][n]["author"], s["last_commit"] if s else None)
         reports = len(testers) + (1 if n in batches_1607 else 0)
         ready = bool(s and not s["draft"] and s["ci"] != "failure" and s["pr_checks"] == "success"
                      and s["mergeable"] == "MERGEABLE" and reports >= 2 and not reasons)
         body = f"{a['prs'][n]['title'] or ''} {a['prs'][n]['body'] or ''}"
         linked = sorted({int(x) for x in ISSUE_REF.findall(body)} & set(a["issues"]))
-        labels = sorted({LABEL_OF[x["reason"]] for x in reasons if x["reason"] in LABEL_OF}
-                        | ({"goal:world-load"} if card and card["touches"] == "wall" else set())
-                        | (set() if linked else {"needs-issue"}))
+        works_on = {int(x) for x in WORKS_ON.findall(body)}
+        on_gh = gh_labels.get(n, set())
+        paths = a["files"].get(n, set())
+        runtime = sorted(p for p in paths if RUNTIME.search(p) and not TEST_PATH.search(p))
+        ai_goal = bool(card and card["touches"] in ("wall", "campaign"))
+        why = []
+        if "off-goal" in on_gh:
+            if runtime:
+                why.append("off-goal-but-runtime")
+            if works_on & goal_issues:
+                why.append("off-goal-but-goal-issue")
+            if ai_goal:
+                why.append("off-goal-but-ai-goal")
+        if "goal:world-load" not in on_gh:
+            if works_on & goal_issues:
+                why.append("goal-missing-issue")
+            elif ai_goal and card["touches"] == "wall":
+                why.append("goal-missing-ai")
+        elif card and card["touches"] == "no-runtime-change":
+            why.append("goal-but-ai-no-runtime")
+        if "duplicate" in on_gh and n not in dups_1607:
+            why.append("duplicate-not-1607")
         for x in reasons:
             counts[x["reason"]] += 1
-        for l in labels:
-            label_counts[l] = label_counts.get(l, 0) + 1
+        for w in why:
+            label_counts[w] = label_counts.get(w, 0) + 1
         counts["ready"] += ready
         prs.append({"pr": n, "author": a["prs"][n]["author"], "area": a["area"].get(n),
                     "created": a["prs"][n]["created"],
                     "closable": reasons, "ready_to_decide": ready,
-                    "test_reports_on_head": {"people": testers, "batch_1607": batches_1607.get(n), "count": reports}, "linked_issues": linked, "suggested_labels": labels,
+                    "test_reports_on_head": {"people": testers, "batch_1607": batches_1607.get(n), "count": reports}, "linked_issues": linked, "suggested_labels": [],   # kept empty for old pages: see label_check
+                    "labels_on_github": sorted(on_gh & {"goal:world-load", "off-goal", "duplicate"}),
+                    "label_check": why, "runtime_files": len(runtime),
                     "ai": card, "ai_second_read": conf,
                     "checks": {"ci": s["ci"], "pr_checks": s["pr_checks"], "mergeable": s["mergeable"],
                                "draft": bool(s["draft"]), "last_commit": s["last_commit"],
@@ -439,7 +477,10 @@ def build(con, a):
             "status_read_at": db.get_state(con, "triage_status_at"),
             "ai_cards": sum(1 for p in prs if p["ai"]),
             "ready_rule": READY_RULE,
-            "counts": counts, "reasons": REASONS, "label_counts": label_counts, "labels": LABELS,
+            "label_rule": "the maintainer's labels (xcl-dev/xcl#1833) compared with what the board reads; a second look, never a verdict",
+            "label_why": LABEL_WHY, "label_check_counts": label_counts, "label_counts": {}, "labels": {},
+            "labels_on_github_counts": {l: sum(1 for p in prs if l in p["labels_on_github"]) for l in ("goal:world-load", "off-goal", "duplicate")},
+            "counts": counts, "reasons": REASONS,
             "by_touches": {k: sum(1 for p in prs if p["ai"] and p["ai"]["touches"] == k) for k in TOUCHES},
             "by_evidence": {k: sum(1 for p in prs if p["ai"] and p["ai"]["evidence"] == k) for k in EVIDENCE},
             "enums": {"touches": TOUCHES, "evidence": EVIDENCE},
