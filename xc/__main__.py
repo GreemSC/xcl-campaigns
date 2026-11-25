@@ -8,6 +8,7 @@
   triage           PR status (checks, conflicts) + AI goal cards for the "could close / ready to decide" list
   findings [N]     AI points at which reported numbers form a campaign metric (N messages)
   progress         AI files first-hand reports of how far the game gets (whole repository)
+  roadmap          read tags, releases and milestones now (the loop does it every 10 min)
   render           build the pages and the JSON digests
   digest N [--posted]  draft a short GitHub update for campaign N with only what is new (never posts)
   loop [N]         collect + extract + render, then the AI steps + render again, every 60 s
@@ -47,14 +48,17 @@ def main(argv):
     elif cmd == "progress":
         from . import db, progress
         print(json.dumps(progress.run(db.connect())))
+    elif cmd == "roadmap":
+        from . import roadmap
+        print(json.dumps(roadmap.fetch(force=True)))
     elif cmd == "render":
         from .render import run
         print(json.dumps(run()))
     elif cmd == "loop":
-        from . import classify, collect, db, extract, findings, intent, progress, project, render, triage
+        from . import classify, collect, db, extract, findings, intent, progress, project, render, roadmap, triage
         # render_early: the pages and JSON get what GitHub said right after collect (~15 s), without waiting for the
         # AI steps (up to ~150 s in a burst); what the AI reads in this pass shows at the final render.
-        steps = [("collect", collect.run), ("extract", extract.run), ("render_early", render.run),
+        steps = [("collect", collect.run), ("roadmap_refs", roadmap.fetch), ("extract", extract.run), ("render_early", render.run),
                  ("classify", lambda: classify.run(n)),
                  ("intent", intent.run), ("check", lambda: project.check(db.connect())),
                  ("triage", lambda: triage.run(db.connect())),

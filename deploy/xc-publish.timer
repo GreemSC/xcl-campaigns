@@ -4,6 +4,8 @@ Description=XCL campaigns: publish (every 2 min when Pages builds from Actions, 
 [Timer]
 OnBootSec=2min
 OnUnitActiveSec=2min
+# Without this, systemd may fire up to 1 min late (default AccuracySec): every 3 min instead of 2.
+AccuracySec=1s
 
 [Install]
 WantedBy=timers.target

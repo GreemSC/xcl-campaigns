@@ -397,7 +397,7 @@ def header(nav, current_campaign=None):
     dd = (f'<details class="dd"><summary{" class=cur" if nav == "campaign" else ""}>Campaigns</summary>'
           f'<div class="ddm">{camps}<a class="all" href="index.html#help">All campaigns and tools →</a></div></details>'
           if NAV_CAMPS else "")
-    links = (a("index.html", "Status", "home") + a("reports.html", "Test reports", "reports") + dd
+    links = (a("index.html", "Status", "home") + a("roadmap.html", "Roadmap", "roadmap") + a("reports.html", "Test reports", "reports") + dd
              + a("overlaps.html", "Duplicates", "dups") + a("triage.html", "PR triage", "triage")
              + a("health.html", "Board health", "health"))
     return (f'<header class="site"><div class="in"><a class="brand" href="index.html">XCL board<small>for contributors</small></a><nav>{links}</nav>'
@@ -405,8 +405,8 @@ def header(nav, current_campaign=None):
 
 
 def site_css():
-    from . import home, triage_page
-    return CSS + home.CSS + triage_page.CSS
+    from . import home, roadmap, triage_page
+    return CSS + home.CSS + triage_page.CSS + roadmap.CSS
 
 
 CSS_VERSION = __import__("hashlib").sha256(b"").hexdigest()[:8]     # set by _run from the stylesheet's content
@@ -789,9 +789,10 @@ def html_health(h):
          f"<p class='{'ok' if ok else 'bad'}'><b>{'All steps ran without error in the last pass.' if ok else 'Some steps failed in the last pass.'}</b> "
          f"<span class='mute'>Last pass started {e((h['last_pass_started'] or '').replace('T', ' ').replace('Z', ' UTC'))} "
          f"(<span class='fresh'></span>).</span></p>",
-         f"<p class='mute'>The pages are rebuilt about every minute on the server and published to GitHub Pages every "
-         f"{'2 minutes (deployed by GitHub Actions)' if h.get('pages_mode') == 'workflow' else '~6 minutes'}"
-         f"{' (previous publish at ' + e(h['last_publish']) + ')' if h.get('last_publish') else ''}. "
+         f"<p class='mute'>The pages are rebuilt about every minute on the server and published to GitHub Pages about every "
+         f"{'2 minutes (GitHub Actions, then about 30 s to deploy)' if h.get('pages_mode') == 'workflow' else '6 minutes'}. "
+         f"GitHub's cache can then serve a copy up to 10 minutes old: this copy was built {e(stamp())} "
+         "(<span class='fresh'></span>); when the server has newer data, a banner at the top says so. "
          "Items waiting for the AI are filed by rules only until their turn comes.</p>",
          '<div class="kpis">' + "".join(f'<div class="kpi"><b>{v}</b>{k}</div>' for k, v in [
              ("seconds per pass", num(h["pass_seconds"])), ("GitHub API calls left this hour", num(h["github_rate_left"])),
@@ -885,6 +886,8 @@ def llms_txt(camps):
                      f"what each machine can take: {v2}/campaigns/{n}/free/<class>.json, "
                      f"numbers: {v2}/campaigns/{n}/findings/<task>.json")
     lines += ["", "## Optional", "",
+              f"- {base}/api/roadmap.json: the maintainer's current goal, its blockers in order, what each waits for "
+              "(a PR, tests, a decision, a retest), PRs naming them, tags, releases, milestones",
               f"- {v2}/health.json: freshness, AI backlog, errors",
               f"- {base}/feed.xml: Atom feed of new AI-checked duplicates, collisions and campaigns",
               f"- {base}/api/index.json: the older API (api/*.json, campaign-<n>.json digests), kept for existing users",
@@ -998,6 +1001,12 @@ def _run(con=None):
         events.append({"id": f"campaign-{n}", "title": f"Campaign #{n} has a board", "link": f"{base}/campaign-{n}.html"})
     for ev in conflict_events:
         events.append(ev)
+    from . import home, roadmap
+    try:                                    # the roadmap page never stops the rest of the site
+        out["roadmap"], rm_events = roadmap.write(con, OUT, page, e, ft, home.ago)
+        events += rm_events
+    except Exception as ex:
+        out["roadmap"] = {"error": repr(ex)[:300]}
     dup = json.load(open(f"{OUT}/api/duplicates.json"))
     for g in dup["pr_groups"]:
         ck = g.get("check") or {}
