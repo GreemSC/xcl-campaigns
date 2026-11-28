@@ -1,0 +1,1 @@
+{"pr":2370,"status":"open","author":"fladit123","area":"tooling","intent":{"area":"tooling","kind":"feature","subject":"Require locked Cargo dependencies in test.ps1 workspace runs","keywords":["cargo","cargo-lock","locked","powershell","test-script"]},"files":2,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

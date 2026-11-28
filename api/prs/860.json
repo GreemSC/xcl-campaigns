@@ -1,0 +1,1 @@
+{"pr":860,"status":"open","author":"mastrr9","area":"shaders","intent":{"area":"shaders","kind":"test","subject":"Add DXBC signature, PSV0 and shader pack round-trip tests","keywords":["dxbc","isgn","osgn","psv0","shader-pack","round-trip"]},"files":1,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

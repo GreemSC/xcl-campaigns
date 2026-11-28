@@ -1,0 +1,1 @@
+{"issue":1909,"area":"gpu-sync","intent":{"area":"gpu-sync","kind":"bug-report","subject":"D3D12 allocator pool keeps internal fences after queue release","keywords":["fence","alloc-pool","command-queue","refcount","d3d12","leak"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[1945,1967]}

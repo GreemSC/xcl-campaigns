@@ -1,0 +1,1 @@
+{"issue":2468,"area":"pipelines","intent":{"area":"pipelines","kind":"bug-report","subject":"Shader pipeline queue stalls at about 500 of 57000 on black screen","keywords":["pipeline-queue","shader-compile","black-screen","pipeline-cache","progress-stall"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

@@ -1,0 +1,1 @@
+{"schema":"xcl-campaigns/v2/file","generated_at":"2026-11-28T15:19:27Z","synced_until":"2026-11-28T15:18:48Z","ai_fields":["subject"],"data":{"path":"crates/xcl/tests/desc_d3d12_e2e.rs","open_prs":[{"number":540,"author":"amazedturnip","subject":"Tests: image_d3d12 and sampler_d3d12 descriptors against real D3D12"}]}}

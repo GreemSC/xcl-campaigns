@@ -1,0 +1,1 @@
+{"issue":2397,"area":"textures","intent":{"area":"textures","kind":"performance","subject":"refresh_once: index title textures by source, walk only written pages","keywords":["texture-index","refresh_once","dirty-pages","btreemap","write-watch"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

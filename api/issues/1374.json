@@ -1,0 +1,1 @@
+{"issue":1374,"area":"other","intent":{"area":"other","kind":"bug-report","subject":"Retail GDK title crashes at 7,970 presents mesh pipelines refused","keywords":["null-write","d3d12x","mesh-shader","amplification","command-list","present-count"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

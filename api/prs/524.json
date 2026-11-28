@@ -1,0 +1,1 @@
+{"pr":524,"status":"open","author":"amazedturnip","area":"tests","intent":{"area":"tests","kind":"test","subject":"Add disasm_e2e tests for multi-program RDNA2 scan and PC DXBC/DXIL","keywords":["disasm_e2e","rdna2-raw","s_endpgm","dxbc","dxil"]},"files":1,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

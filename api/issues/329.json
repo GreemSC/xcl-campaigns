@@ -1,0 +1,1 @@
+{"issue":329,"area":"audio","intent":{"area":"audio","kind":"bug-report","subject":"acphal: hal_pop bool ABI, stale disconnect message, frame drift","keywords":["hal_pop","bool-abi","win32-bool","frame-clock","ppm-drift","msg-disconnected"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

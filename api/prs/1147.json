@@ -1,0 +1,1 @@
+{"pr":1147,"status":"open","author":"b3IKK","area":"shaders","intent":{"area":"shaders","kind":"bugfix","subject":"Preserve untouched half and honour OP_SEL3 in v_sat_pk_u8_i16","keywords":["v_sat_pk_u8_i16","op_sel","vdst","saturation","vop3","vop1"]},"files":2,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

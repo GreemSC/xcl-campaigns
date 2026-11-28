@@ -1,0 +1,1 @@
+{"issue":1968,"area":"pipelines","intent":{"area":"pipelines","kind":"bug-report","subject":"Access violation in translated_mesh_stream on world load, then hang","keywords":["translated-mesh","mesh-stream","world-load","shader-parse","access-violation","hang"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

@@ -1,0 +1,1 @@
+{"issue":1246,"area":"linux-wine","intent":{"area":"linux-wine","kind":"bug-report","subject":"Test jumps_to_outer_loop_heads_are_structured exits 5 on Wine RDNA3","keywords":["jumps-to-outer-loop","structured","recomp-test","wine","rdna3","exit-status"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

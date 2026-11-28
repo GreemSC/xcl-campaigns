@@ -1,0 +1,1 @@
+{"issue":2109,"area":"gpu-sync","intent":{"area":"gpu-sync","kind":"bug-report","subject":"D3D12 texture upload fence timeouts before a game access violation","keywords":["texture-upload","fence-timeout","d3d12","access-violation","title-texture","gpu-fence"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

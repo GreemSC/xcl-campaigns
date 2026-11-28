@@ -1,0 +1,1 @@
+{"issue":815,"area":"rendering","intent":{"area":"rendering","kind":"bug-report","subject":"1.0.2.1 RTX 3060: D3D12 device removed during world load","keywords":["device-removed","dxgi-error","world-load","gpu-hang","rtx-3060"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

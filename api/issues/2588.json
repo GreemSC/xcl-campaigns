@@ -1,0 +1,1 @@
+{"issue":2588,"area":"rendering","intent":{"area":"rendering","kind":"bug-report","subject":"class_for reuses released compute list vtable, breaking direct list","keywords":["vtable","class_for","command-list","cache","clear-depth-stencil"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[2593]}

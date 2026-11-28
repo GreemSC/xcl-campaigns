@@ -1,0 +1,1 @@
+{"pr":2848,"status":"open","author":"guinpereira","area":"shaders","intent":{"area":"shaders","kind":"bugfix","subject":"Shaders: key DXIL toolchain identity off DLL bytes, not mtime","keywords":["dxc","dxil-cache","mtime","cache-key","dxcompiler"]},"files":1,"fixes":[2824],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

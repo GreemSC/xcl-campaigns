@@ -1,0 +1,1 @@
+{"pr":2091,"status":"open","author":"ramon-victor","area":"tests","intent":{"area":"tests","kind":"test","subject":"Add GPU DXIL vs HLSL parity tests for 32/64-bit SALU ops","keywords":["salu","dxil","parity","wave64","scc","gpu-test"]},"files":1,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

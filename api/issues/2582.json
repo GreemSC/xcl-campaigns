@@ -1,0 +1,1 @@
+{"issue":2582,"area":"memory","intent":{"area":"memory","kind":"bug-report","subject":"amd-dev: 0xc0000005 write to unmapped sparse memory at game+0x501eb50","keywords":["sparse-memory","access-violation","outside-uma","rx-6800","page-mapping","amd-dev"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

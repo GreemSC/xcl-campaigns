@@ -1,0 +1,1 @@
+{"issue":2453,"area":"shaders","intent":{"area":"shaders","kind":"bug-report","subject":"Precompiled pipeline blobs rejected on run 1: NodeMask, samplers","keywords":["precompile","nodemask","static-samplers","compute-retry","driver-cache","pso-cache"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[2515]}

@@ -1,0 +1,1 @@
+{"issue":3126,"area":"tests","intent":{"area":"tests","kind":"test","subject":"Propose CPU reference model of RDNA2 ALU ops for GPU tests","keywords":["rdna2","cpu-reference","s_ff1_i32_b32","vop3","dx10-clamp","denormal"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

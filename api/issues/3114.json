@@ -1,0 +1,1 @@
+{"issue":3114,"area":"gpu-sync","intent":{"area":"gpu-sync","kind":"bug-report","subject":"Direct DXIL one-wave split compute groups spin on counter exchange","keywords":["dxil","group-barrier","wave-split","nvidia-dev","compute-group","partner"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

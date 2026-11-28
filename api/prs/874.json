@@ -1,0 +1,1 @@
+{"pr":874,"status":"open","author":"Koro4e","area":"tests","intent":{"area":"tests","kind":"test","subject":"Tests: cover rpf --find fragment filtering in rpf_e2e","keywords":["rpf","find","rpf9","rpf-e2e","shader-records","name-filter"]},"files":1,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

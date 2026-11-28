@@ -1,0 +1,1 @@
+{"issue":2602,"area":"gpu-sync","intent":{"area":"gpu-sync","kind":"bug-report","subject":"D3D12.X: deferred command list ignores failed Close HRESULTs","keywords":["d3d12","command-list","close-hresult","deferred-dispatch","kickoff","error-handling"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

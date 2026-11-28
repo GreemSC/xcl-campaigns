@@ -1,0 +1,1 @@
+{"pr":537,"status":"open","author":"a-lebailly","area":"tests","intent":{"area":"tests","kind":"test","subject":"Honor XCL_ADAPTER in texture upload state test","keywords":["xcl-adapter","d3d12","adapter-luid","texture-upload","adapter-selector"]},"files":1,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

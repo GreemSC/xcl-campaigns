@@ -1,0 +1,1 @@
+{"issue":1505,"area":"memory","intent":{"area":"memory","kind":"bug-report","subject":"Intel Arc A770: int3 with E_OUTOFMEMORY after EULA and account screens","keywords":["intel-arc","vulkan","e_outofmemory","mesh-shader","memory-ceiling"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

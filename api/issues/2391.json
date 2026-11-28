@@ -1,0 +1,1 @@
+{"issue":2391,"area":"tooling","intent":{"area":"tooling","kind":"bug-report","subject":"Add XCL_ACTIVITY stats for list_x buffer mirror sync cost","keywords":["xcl_activity","sync_title_buffers","buffer-mirror","diagnostics","drawindexedx"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[2416]}

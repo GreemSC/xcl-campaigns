@@ -1,0 +1,1 @@
+{"issue":702,"area":"crash-reporting","intent":{"area":"crash-reporting","kind":"bug-report","subject":"Crash dumps carry the PC's full environment block, credentials too","keywords":["minidump","environment","breakpad","credentials","xcl_network","env-block"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[730,740]}

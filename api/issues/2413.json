@@ -1,0 +1,1 @@
+{"issue":2413,"area":"shaders","intent":{"area":"shaders","kind":"bug-report","subject":"DXC: null blob pointer UB and leaked dxil.dll on failed load","keywords":["dxc","dxil","from_raw_parts","null-pointer","freelibrary","dxcompiler"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[2441,2467,2643]}

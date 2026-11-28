@@ -1,0 +1,1 @@
+{"issue":2460,"area":"textures","intent":{"area":"textures","kind":"bug-report","subject":"LAST_CONTENT not cleared on shadow unmap, textures stay unmapped","keywords":["last-content","level-pages","unchanged-skip","remap","unmap-superseded","texture-upload"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[2578]}

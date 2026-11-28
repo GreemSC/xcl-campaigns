@@ -1,0 +1,1 @@
+{"issue":2876,"area":"shaders","intent":{"area":"shaders","kind":"bug-report","subject":"Legacy GS PSOs retranslate the same ES+GS pair for every pixel shader","keywords":["console_geometry","es-gs","geometry-shader","translated_gs_pso","dxil-lowering","hlsl-cache"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[2918]}

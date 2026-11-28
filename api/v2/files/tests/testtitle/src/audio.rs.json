@@ -1,0 +1,1 @@
+{"schema":"xcl-campaigns/v2/file","generated_at":"2026-11-28T15:19:27Z","synced_until":"2026-11-28T15:18:48Z","ai_fields":["subject"],"data":{"path":"tests/testtitle/src/audio.rs","open_prs":[{"number":1881,"author":"microwave805","subject":"e2e: destroy XAudio2 voices before freeing buffers on early error"}]}}

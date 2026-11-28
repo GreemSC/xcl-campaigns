@@ -1,0 +1,1 @@
+{"issue":685,"area":"shaders","intent":{"area":"shaders","kind":"bug-report","subject":"f16 add and sub truncate toward zero in default mode, not RNE","keywords":["v_add_f16","f16","rounding","rne","f32tof16","v_pk_add_f16"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

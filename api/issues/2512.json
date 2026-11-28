@@ -1,0 +1,1 @@
+{"issue":2512,"area":"pipelines","intent":{"area":"pipelines","kind":"bug-report","subject":"AMD: 954-byte driver blob stubs remove device when reused","keywords":["driver_cache","cachedpso","pso-stub","device-hung","dxgi_error_device_hung","amd"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[2577]}

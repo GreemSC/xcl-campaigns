@@ -1,0 +1,1 @@
+{"pr":1946,"status":"open","author":"luckyteagirl","area":"shaders","intent":{"area":"shaders","kind":"bugfix","subject":"Lower i64 min/max DXIL binary ops to compare and select","keywords":["i64","imax","umin","select","dxil","dx.op.binary"]},"files":2,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

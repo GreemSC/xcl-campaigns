@@ -1,0 +1,1 @@
+{"issue":1293,"area":"shaders","intent":{"area":"shaders","kind":"bug-report","subject":"16-bit VOPC compares honor op_sel RDNA2 hardware ignores it","keywords":["v_cmp_f16","op_sel","vopc","rdna2","16-bit-compare"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

@@ -1,0 +1,1 @@
+{"issue":2347,"area":"shaders","intent":{"area":"shaders","kind":"bug-report","subject":"v_cubetc_f32 returns signed zero for denormal S1 on NVIDIA HLSL","keywords":["v_cubetc_f32","denormal","flush-to-zero","fsub","nvidia","cube"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[2348]}

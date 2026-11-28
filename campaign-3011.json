@@ -1,0 +1,3908 @@
+{
+ "campaign": 3011,
+ "status": "auto",
+ "updated": "2026-11-28 15:19 UTC",
+ "reference_commit": null,
+ "note": "Typed data only. Before acting: pick a free task or a cell with need > 0 for your hardware class.",
+ "tasks": [
+  {
+   "id": "A1",
+   "type": "measure",
+   "title": "Baseline FPS, GPU load, commit and VRAM use on NVIDIA, AMD and Intel machines",
+   "holders": [],
+   "teams": [],
+   "conflict": false,
+   "stale_holders": [],
+   "prs": [
+    {
+     "number": 2590,
+     "status": "open",
+     "cited_by": 1
+    }
+   ],
+   "prs_mentioned": [
+    609,
+    2229,
+    2938,
+    3024,
+    3025,
+    3026
+   ],
+   "results": 3
+  },
+  {
+   "id": "A2",
+   "type": "measure",
+   "title": "Profile GPU time by pass, including split compute program pieces, across GPUs",
+   "holders": [],
+   "teams": [],
+   "conflict": false,
+   "stale_holders": [],
+   "prs": [],
+   "prs_mentioned": [
+    609,
+    2229,
+    2434,
+    2551,
+    2794,
+    2938,
+    3003,
+    3004,
+    3005,
+    3006
+   ],
+   "results": 2
+  },
+  {
+   "id": "A3",
+   "type": "measure",
+   "title": "Time large compute pipeline creation, cold and from stored blob, per driver",
+   "holders": [],
+   "teams": [],
+   "conflict": false,
+   "stale_holders": [],
+   "prs": [
+    {
+     "number": 3040,
+     "status": "open",
+     "cited_by": 1
+    },
+    {
+     "number": 3042,
+     "status": "open",
+     "cited_by": 1
+    }
+   ],
+   "prs_mentioned": [
+    1426,
+    2554,
+    2590,
+    2892,
+    3024,
+    3025
+   ],
+   "results": 5
+  },
+  {
+   "id": "A4",
+   "type": "code",
+   "title": "Compare VIctory-line solutions and list portable pieces with files, size and order",
+   "holders": [
+    "throny"
+   ],
+   "teams": [
+    [
+     "throny"
+    ]
+   ],
+   "conflict": false,
+   "stale_holders": [],
+   "prs": [],
+   "prs_mentioned": [
+    2572,
+    2892,
+    3008,
+    3028
+   ],
+   "results": 0
+  },
+  {
+   "id": "A5",
+   "type": "code",
+   "title": "Port VIctory-line split compute handling to cut GPU frame time, behind a switch",
+   "holders": [
+    "throny",
+    "coolpersonnn"
+   ],
+   "teams": [
+    [
+     "throny"
+    ],
+    [
+     "coolpersonnn"
+    ]
+   ],
+   "conflict": true,
+   "stale_holders": [],
+   "prs": [
+    {
+     "number": 3040,
+     "status": "open",
+     "cited_by": 3
+    },
+    {
+     "number": 3042,
+     "status": "open",
+     "cited_by": 2
+    }
+   ],
+   "prs_mentioned": [
+    1426,
+    2554,
+    2892
+   ],
+   "results": 9
+  },
+  {
+   "id": "A6",
+   "type": "code",
+   "title": "Port texture streaming and heap placement to reduce 1:1 memory backing, behind a switch",
+   "holders": [
+    "Decodere"
+   ],
+   "teams": [
+    [
+     "Decodere"
+    ]
+   ],
+   "conflict": false,
+   "stale_holders": [],
+   "prs": [
+    {
+     "number": 2987,
+     "status": "open",
+     "cited_by": 1
+    },
+    {
+     "number": 3037,
+     "status": "open",
+     "cited_by": 1
+    },
+    {
+     "number": 3039,
+     "status": "open",
+     "cited_by": 1
+    }
+   ],
+   "prs_mentioned": [
+    2357
+   ],
+   "results": 1
+  },
+  {
+   "id": "A7",
+   "type": "code",
+   "title": "Port pipeline scheduling to reduce stalls and skipped draws or dispatches, behind a switch",
+   "holders": [
+    "VolenNakov",
+    "tiagonleal"
+   ],
+   "teams": [
+    [
+     "VolenNakov"
+    ],
+    [
+     "tiagonleal"
+    ]
+   ],
+   "conflict": true,
+   "stale_holders": [],
+   "prs": [],
+   "prs_mentioned": [],
+   "results": 0
+  },
+  {
+   "id": "A8",
+   "type": "code",
+   "title": "Port two-pass geometry buffer handling to stop dropped draws at the cap, behind a switch",
+   "holders": [],
+   "teams": [],
+   "conflict": false,
+   "stale_holders": [],
+   "prs": [],
+   "prs_mentioned": [],
+   "results": 0
+  },
+  {
+   "id": "A9",
+   "type": "code",
+   "title": "Add ray-tracing root-node gate with XCL_RT_LEAVE_OUT switch",
+   "holders": [
+    "VolenNakov"
+   ],
+   "teams": [
+    [
+     "VolenNakov"
+    ]
+   ],
+   "conflict": false,
+   "stale_holders": [],
+   "prs": [
+    {
+     "number": 880,
+     "status": "merged",
+     "cited_by": 1
+    },
+    {
+     "number": 3026,
+     "status": "open",
+     "cited_by": 1
+    }
+   ],
+   "prs_mentioned": [
+    1824,
+    2987,
+    3043
+   ],
+   "results": 9
+  },
+  {
+   "id": "A10",
+   "type": "code",
+   "title": "Stability: finish pipeline queue entry when a build panics",
+   "holders": [
+    "tiagonleal"
+   ],
+   "teams": [
+    [
+     "tiagonleal"
+    ]
+   ],
+   "conflict": false,
+   "stale_holders": [],
+   "prs": [],
+   "prs_mentioned": [
+    1665,
+    2424,
+    2547
+   ],
+   "results": 4
+  },
+  {
+   "id": "A11",
+   "type": "measure",
+   "title": "Test root-signature creation order effect on D3D12 pipeline library reload",
+   "holders": [],
+   "teams": [],
+   "conflict": false,
+   "stale_holders": [],
+   "prs": [],
+   "prs_mentioned": [],
+   "results": 1
+  },
+  {
+   "id": "A12",
+   "type": "measure",
+   "title": "Check sampler border-color creation on D3D12 across GPUs",
+   "holders": [],
+   "teams": [],
+   "conflict": false,
+   "stale_holders": [],
+   "prs": [],
+   "prs_mentioned": [],
+   "results": 1
+  },
+  {
+   "id": "A13",
+   "type": "code",
+   "title": "Add watertight BVH ray/triangle test behind XCL_BVH_WATERTIGHT",
+   "holders": [
+    "tiagonleal"
+   ],
+   "teams": [
+    [
+     "tiagonleal"
+    ]
+   ],
+   "conflict": false,
+   "stale_holders": [],
+   "prs": [
+    {
+     "number": 3038,
+     "status": "open",
+     "cited_by": 1
+    }
+   ],
+   "prs_mentioned": [
+    1322,
+    2087,
+    2302,
+    2913
+   ],
+   "results": 0
+  },
+  {
+   "id": "A14",
+   "type": "code",
+   "title": "Stability: keep in-flight allocators from reuse after sparse queue timeout",
+   "holders": [
+    "KOLESNiii"
+   ],
+   "teams": [
+    [
+     "KOLESNiii"
+    ]
+   ],
+   "conflict": false,
+   "stale_holders": [],
+   "prs": [
+    {
+     "number": 3062,
+     "status": "closed",
+     "cited_by": 2
+    },
+    {
+     "number": 3063,
+     "status": "closed",
+     "cited_by": 1
+    }
+   ],
+   "prs_mentioned": [
+    1385
+   ],
+   "results": 2
+  },
+  {
+   "id": "A15",
+   "type": "code",
+   "title": "Stability: skip sparse readback CPU-view copy when fence wait times out",
+   "holders": [
+    "KOLESNiii"
+   ],
+   "teams": [
+    [
+     "KOLESNiii"
+    ]
+   ],
+   "conflict": false,
+   "stale_holders": [],
+   "prs": [
+    {
+     "number": 3062,
+     "status": "closed",
+     "cited_by": 2
+    },
+    {
+     "number": 3063,
+     "status": "closed",
+     "cited_by": 1
+    }
+   ],
+   "prs_mentioned": [],
+   "results": 4
+  },
+  {
+   "id": "A16",
+   "type": "code",
+   "title": "Port BC7 mode 4/5 channel rotation gate in BCPack from ScarlettPort",
+   "holders": [
+    "mokkamokacaffe"
+   ],
+   "teams": [
+    [
+     "mokkamokacaffe"
+    ]
+   ],
+   "conflict": false,
+   "stale_holders": [],
+   "prs": [
+    {
+     "number": 3081,
+     "status": "open",
+     "cited_by": 1
+    }
+   ],
+   "prs_mentioned": [
+    108
+   ],
+   "results": 0
+  }
+ ],
+ "grid": [
+  {
+   "task": "A1",
+   "class": "nv-win",
+   "authors": [
+    "afpruivo"
+   ],
+   "commits": [
+    "0567c71"
+   ],
+   "need": 0,
+   "class_wanted": true,
+   "any_hardware": false,
+   "planned": []
+  },
+  {
+   "task": "A1",
+   "class": "nv-linux",
+   "authors": [],
+   "commits": [],
+   "need": 1,
+   "class_wanted": true,
+   "any_hardware": false,
+   "planned": []
+  },
+  {
+   "task": "A1",
+   "class": "amd-win",
+   "authors": [
+    "kleborgn"
+   ],
+   "commits": [
+    "7c795f5"
+   ],
+   "need": 0,
+   "class_wanted": true,
+   "any_hardware": false,
+   "planned": []
+  },
+  {
+   "task": "A1",
+   "class": "amd-radv",
+   "authors": [
+    "ClosetPie107"
+   ],
+   "commits": [
+    "83b0081"
+   ],
+   "need": 0,
+   "class_wanted": true,
+   "any_hardware": false,
+   "planned": []
+  },
+  {
+   "task": "A1",
+   "class": "intel",
+   "authors": [],
+   "commits": [],
+   "need": 1,
+   "class_wanted": true,
+   "any_hardware": false,
+   "planned": []
+  },
+  {
+   "task": "A1",
+   "class": "small-vram",
+   "authors": [],
+   "commits": [],
+   "need": 1,
+   "class_wanted": true,
+   "any_hardware": false,
+   "planned": []
+  },
+  {
+   "task": "A2",
+   "class": "nv-win",
+   "authors": [
+    "afpruivo"
+   ],
+   "commits": [
+    "54225f5",
+    "d1be810"
+   ],
+   "need": 0,
+   "class_wanted": true,
+   "any_hardware": false,
+   "planned": []
+  },
+  {
+   "task": "A2",
+   "class": "nv-linux",
+   "authors": [],
+   "commits": [],
+   "need": 1,
+   "class_wanted": true,
+   "any_hardware": false,
+   "planned": []
+  },
+  {
+   "task": "A2",
+   "class": "amd-win",
+   "authors": [],
+   "commits": [],
+   "need": 1,
+   "class_wanted": true,
+   "any_hardware": false,
+   "planned": []
+  },
+  {
+   "task": "A2",
+   "class": "amd-radv",
+   "authors": [],
+   "commits": [],
+   "need": 1,
+   "class_wanted": true,
+   "any_hardware": false,
+   "planned": []
+  },
+  {
+   "task": "A2",
+   "class": "intel",
+   "authors": [],
+   "commits": [],
+   "need": 1,
+   "class_wanted": true,
+   "any_hardware": false,
+   "planned": []
+  },
+  {
+   "task": "A2",
+   "class": "small-vram",
+   "authors": [],
+   "commits": [],
+   "need": 1,
+   "class_wanted": true,
+   "any_hardware": false,
+   "planned": []
+  },
+  {
+   "task": "A3",
+   "class": "nv-win",
+   "authors": [
+    "KOLESNiii",
+    "coolpersonnn"
+   ],
+   "commits": [
+    "4c60999",
+    "becdecf"
+   ],
+   "need": 0,
+   "class_wanted": true,
+   "any_hardware": false,
+   "planned": []
+  },
+  {
+   "task": "A3",
+   "class": "nv-linux",
+   "authors": [],
+   "commits": [],
+   "need": 1,
+   "class_wanted": true,
+   "any_hardware": false,
+   "planned": []
+  },
+  {
+   "task": "A3",
+   "class": "amd-win",
+   "authors": [
+    "kleborgn"
+   ],
+   "commits": [
+    "7c795f5"
+   ],
+   "need": 0,
+   "class_wanted": true,
+   "any_hardware": false,
+   "planned": []
+  },
+  {
+   "task": "A3",
+   "class": "amd-radv",
+   "authors": [
+    "ClosetPie107"
+   ],
+   "commits": [
+    "83b0081"
+   ],
+   "need": 0,
+   "class_wanted": true,
+   "any_hardware": false,
+   "planned": []
+  },
+  {
+   "task": "A3",
+   "class": "intel",
+   "authors": [],
+   "commits": [],
+   "need": 1,
+   "class_wanted": true,
+   "any_hardware": false,
+   "planned": []
+  },
+  {
+   "task": "A3",
+   "class": "small-vram",
+   "authors": [],
+   "commits": [],
+   "need": 1,
+   "class_wanted": true,
+   "any_hardware": false,
+   "planned": []
+  },
+  {
+   "task": "A11",
+   "class": "nv-win",
+   "authors": [
+    "UncommonDLL"
+   ],
+   "commits": [
+    "31e8fd1"
+   ],
+   "need": 0,
+   "class_wanted": true,
+   "any_hardware": false,
+   "planned": []
+  },
+  {
+   "task": "A11",
+   "class": "nv-linux",
+   "authors": [],
+   "commits": [],
+   "need": 1,
+   "class_wanted": true,
+   "any_hardware": false,
+   "planned": []
+  },
+  {
+   "task": "A11",
+   "class": "amd-win",
+   "authors": [],
+   "commits": [],
+   "need": 1,
+   "class_wanted": true,
+   "any_hardware": false,
+   "planned": []
+  },
+  {
+   "task": "A11",
+   "class": "amd-radv",
+   "authors": [],
+   "commits": [],
+   "need": 1,
+   "class_wanted": true,
+   "any_hardware": false,
+   "planned": []
+  },
+  {
+   "task": "A11",
+   "class": "intel",
+   "authors": [],
+   "commits": [],
+   "need": 1,
+   "class_wanted": true,
+   "any_hardware": false,
+   "planned": []
+  },
+  {
+   "task": "A11",
+   "class": "small-vram",
+   "authors": [],
+   "commits": [],
+   "need": 1,
+   "class_wanted": true,
+   "any_hardware": false,
+   "planned": []
+  },
+  {
+   "task": "A12",
+   "class": "nv-win",
+   "authors": [
+    "UncommonDLL"
+   ],
+   "commits": [],
+   "need": 0,
+   "class_wanted": true,
+   "any_hardware": false,
+   "planned": []
+  },
+  {
+   "task": "A12",
+   "class": "nv-linux",
+   "authors": [],
+   "commits": [],
+   "need": 1,
+   "class_wanted": true,
+   "any_hardware": false,
+   "planned": []
+  },
+  {
+   "task": "A12",
+   "class": "amd-win",
+   "authors": [],
+   "commits": [],
+   "need": 1,
+   "class_wanted": true,
+   "any_hardware": false,
+   "planned": []
+  },
+  {
+   "task": "A12",
+   "class": "amd-radv",
+   "authors": [],
+   "commits": [],
+   "need": 1,
+   "class_wanted": true,
+   "any_hardware": false,
+   "planned": []
+  },
+  {
+   "task": "A12",
+   "class": "intel",
+   "authors": [],
+   "commits": [],
+   "need": 1,
+   "class_wanted": true,
+   "any_hardware": false,
+   "planned": []
+  },
+  {
+   "task": "A12",
+   "class": "small-vram",
+   "authors": [],
+   "commits": [],
+   "need": 1,
+   "class_wanted": true,
+   "any_hardware": false,
+   "planned": []
+  }
+ ],
+ "commits_used": [
+  [
+   "becdecf",
+   7
+  ],
+  [
+   "571aea4",
+   5
+  ],
+  [
+   "89bcf0d",
+   5
+  ],
+  [
+   "962cdca",
+   4
+  ],
+  [
+   "94fdaa3",
+   3
+  ],
+  [
+   "721121b",
+   3
+  ],
+  [
+   "4c60999",
+   3
+  ],
+  [
+   "d1be810",
+   3
+  ],
+  [
+   "d098726",
+   2
+  ],
+  [
+   "e9e84e8",
+   2
+  ],
+  [
+   "197d987",
+   2
+  ],
+  [
+   "83b0081",
+   1
+  ],
+  [
+   "3f39671",
+   1
+  ],
+  [
+   "31e8fd1",
+   1
+  ],
+  [
+   "0567c71",
+   1
+  ],
+  [
+   "1409b38",
+   1
+  ],
+  [
+   "7c795f5",
+   1
+  ],
+  [
+   "2217336",
+   1
+  ],
+  [
+   "2c717a0",
+   1
+  ],
+  [
+   "54225f5",
+   1
+  ]
+ ],
+ "messages": [
+  {
+   "source": "https://github.com/xcl-dev/xcl/issues/3011",
+   "author": "throny",
+   "date": "2026-11-27T12:11:15Z",
+   "kind": "plan",
+   "tasks": [
+    "A4"
+   ],
+   "class": "unknown",
+   "commit": null,
+   "prs": [
+    2088,
+    2403,
+    2892,
+    3002
+   ],
+   "provenance": "auto",
+   "measurements": []
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/issues/3011#issuecomment-7218087843",
+   "author": "throny",
+   "date": "2026-11-27T12:18:32Z",
+   "kind": "claim",
+   "tasks": [
+    "A4",
+    "A5"
+   ],
+   "class": "unknown",
+   "commit": null,
+   "prs": [
+    2892
+   ],
+   "provenance": "auto",
+   "measurements": [
+    {
+     "task": "A2",
+     "value": 46,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "%"
+    }
+   ]
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/issues/3011#issuecomment-7218139224",
+   "author": "VolenNakov",
+   "date": "2026-11-27T12:21:06Z",
+   "kind": "claim",
+   "tasks": [
+    "A7"
+   ],
+   "class": "unknown",
+   "commit": null,
+   "prs": [],
+   "provenance": "auto",
+   "measurements": []
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/issues/3011#issuecomment-7218722363",
+   "author": "throny",
+   "date": "2026-11-27T12:49:44Z",
+   "kind": "result",
+   "tasks": [
+    "A3"
+   ],
+   "class": "unknown",
+   "commit": null,
+   "prs": [
+    2892
+   ],
+   "provenance": "auto",
+   "measurements": [
+    {
+     "task": "A3",
+     "value": 245,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "count"
+    },
+    {
+     "task": "A3",
+     "value": 0.8,
+     "runs": 2,
+     "found_in_text": true,
+     "unit": "s"
+    },
+    {
+     "task": "A3",
+     "value": 4.6,
+     "runs": 2,
+     "found_in_text": true,
+     "unit": "s"
+    }
+   ]
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/issues/3011#issuecomment-7218950158",
+   "author": "throny",
+   "date": "2026-11-27T13:00:49Z",
+   "kind": "correction",
+   "tasks": [],
+   "class": "unknown",
+   "commit": null,
+   "prs": [
+    2892
+   ],
+   "provenance": "auto",
+   "measurements": []
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/issues/3011#issuecomment-7219216881",
+   "author": "ClosetPie107",
+   "date": "2026-11-27T13:13:46Z",
+   "kind": "result",
+   "tasks": [
+    "A1",
+    "A3"
+   ],
+   "class": "amd-radv",
+   "commit": "83b0081",
+   "prs": [],
+   "provenance": "auto",
+   "measurements": [
+    {
+     "task": "A1",
+     "value": 10,
+     "runs": 4,
+     "found_in_text": true,
+     "unit": "GiB"
+    },
+    {
+     "task": "A1",
+     "value": 16.2,
+     "runs": 4,
+     "found_in_text": true,
+     "unit": "GiB"
+    },
+    {
+     "task": "A1",
+     "value": 4200,
+     "runs": 4,
+     "found_in_text": true,
+     "unit": "draws"
+    },
+    {
+     "task": "A3",
+     "value": 33,
+     "runs": 4,
+     "found_in_text": true,
+     "unit": "s"
+    },
+    {
+     "task": "A3",
+     "value": 40,
+     "runs": null,
+     "found_in_text": false,
+     "unit": "min"
+    }
+   ]
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/issues/3011#issuecomment-7219947677",
+   "author": "coolpersonnn",
+   "date": "2026-11-27T13:47:27Z",
+   "kind": "claim",
+   "tasks": [
+    "A5"
+   ],
+   "class": "nv-win",
+   "commit": null,
+   "prs": [],
+   "provenance": "auto",
+   "measurements": []
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/pull/3026",
+   "author": "VolenNakov",
+   "date": "2026-11-27T13:47:41Z",
+   "kind": "pr",
+   "tasks": [
+    "A9"
+   ],
+   "class": "nv-win",
+   "commit": "94fdaa3",
+   "prs": [
+    505,
+    3026
+   ],
+   "provenance": "auto",
+   "measurements": [
+    {
+     "task": "A9",
+     "value": 5.25,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "presents/s"
+    },
+    {
+     "task": "A9",
+     "value": 3.98,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "presents/s"
+    },
+    {
+     "task": "A9",
+     "value": 418,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "compiles"
+    },
+    {
+     "task": "A9",
+     "value": 957,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "compiles"
+    },
+    {
+     "task": "A9",
+     "value": 98,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "%"
+    },
+    {
+     "task": "A9",
+     "value": 96,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "%"
+    },
+    {
+     "task": "A9",
+     "value": 29.7,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "GB"
+    },
+    {
+     "task": "A9",
+     "value": 11.9,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "GB"
+    },
+    {
+     "task": "A9",
+     "value": 8232,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "s"
+    },
+    {
+     "task": "A9",
+     "value": 18167,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "s"
+    }
+   ]
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/issues/3011#issuecomment-7219973154",
+   "author": "VolenNakov",
+   "date": "2026-11-27T13:48:42Z",
+   "kind": "pr",
+   "tasks": [
+    "A9"
+   ],
+   "class": "nv-win",
+   "commit": null,
+   "prs": [
+    3026
+   ],
+   "provenance": "auto",
+   "measurements": [
+    {
+     "task": null,
+     "value": 3.98,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "presents/s"
+    },
+    {
+     "task": null,
+     "value": 5.25,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "presents/s"
+    },
+    {
+     "task": null,
+     "value": 957,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "compiles"
+    },
+    {
+     "task": null,
+     "value": 418,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "compiles"
+    }
+   ]
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/pull/3026#issuecomment-7220038312",
+   "author": "TaynanGT",
+   "date": "2026-11-27T13:51:52Z",
+   "kind": "answer",
+   "tasks": [],
+   "class": "unknown",
+   "commit": null,
+   "prs": [],
+   "provenance": "auto",
+   "measurements": []
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/issues/3011#issuecomment-7220242505",
+   "author": "vitor127wt",
+   "date": "2026-11-27T14:01:46Z",
+   "kind": "noise",
+   "tasks": [],
+   "class": "unknown",
+   "commit": null,
+   "prs": [],
+   "provenance": "auto",
+   "measurements": []
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/issues/3011#issuecomment-7220372020",
+   "author": "throny",
+   "date": "2026-11-27T14:07:31Z",
+   "kind": "other",
+   "tasks": [],
+   "class": "unknown",
+   "commit": null,
+   "prs": [],
+   "provenance": "auto",
+   "measurements": []
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/issues/3011#issuecomment-7220661427",
+   "author": "tiagonleal",
+   "date": "2026-11-27T14:20:35Z",
+   "kind": "claim",
+   "tasks": [
+    "A10"
+   ],
+   "class": "unknown",
+   "commit": null,
+   "prs": [],
+   "provenance": "auto",
+   "measurements": []
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/pull/3028",
+   "author": "tiagonleal",
+   "date": "2026-11-27T14:20:56Z",
+   "kind": "pr",
+   "tasks": [
+    "A7"
+   ],
+   "class": "nv-win",
+   "commit": "571aea4",
+   "prs": [
+    3011
+   ],
+   "provenance": "auto",
+   "measurements": [
+    {
+     "task": "A1",
+     "value": 1586,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "frames"
+    },
+    {
+     "task": "A1",
+     "value": 1689,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "frames"
+    },
+    {
+     "task": "A1",
+     "value": 16546,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "MB"
+    },
+    {
+     "task": "A1",
+     "value": 14902,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "MB"
+    }
+   ]
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/issues/3011#issuecomment-7220669591",
+   "author": "tiagonleal",
+   "date": "2026-11-27T14:20:58Z",
+   "kind": "pr",
+   "tasks": [],
+   "class": "nv-win",
+   "commit": null,
+   "prs": [
+    3028
+   ],
+   "provenance": "auto",
+   "measurements": []
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/issues/3011#issuecomment-7220701508",
+   "author": "Decodere",
+   "date": "2026-11-27T14:22:27Z",
+   "kind": "claim",
+   "tasks": [
+    "A6"
+   ],
+   "class": "small-vram",
+   "commit": null,
+   "prs": [],
+   "provenance": "auto",
+   "measurements": []
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/pull/3026#issuecomment-7221039477",
+   "author": "throny",
+   "date": "2026-11-27T14:38:28Z",
+   "kind": "result",
+   "tasks": [
+    "A9"
+   ],
+   "class": "nv-win",
+   "commit": "3f39671",
+   "prs": [],
+   "provenance": "auto",
+   "measurements": [
+    {
+     "task": "A9",
+     "value": 1.75,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "presents/s"
+    },
+    {
+     "task": "A9",
+     "value": 1.99,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "presents/s"
+    },
+    {
+     "task": "A9",
+     "value": 721,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "compiles"
+    },
+    {
+     "task": "A9",
+     "value": 482,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "compiles"
+    },
+    {
+     "task": "A9",
+     "value": 988,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "s"
+    },
+    {
+     "task": "A9",
+     "value": 7,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "s"
+    },
+    {
+     "task": "A9",
+     "value": 45.7,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "GB"
+    },
+    {
+     "task": "A9",
+     "value": 17.9,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "GB"
+    }
+   ]
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/pull/3026#issuecomment-7221268846",
+   "author": "TaynanGT",
+   "date": "2026-11-27T14:49:13Z",
+   "kind": "answer",
+   "tasks": [],
+   "class": "unknown",
+   "commit": null,
+   "prs": [],
+   "provenance": "auto",
+   "measurements": []
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/issues/3011#issuecomment-7221400611",
+   "author": "UncommonDLL",
+   "date": "2026-11-27T14:55:24Z",
+   "kind": "result",
+   "tasks": [
+    "A11"
+   ],
+   "class": "nv-win",
+   "commit": "31e8fd1",
+   "prs": [],
+   "provenance": "auto",
+   "measurements": [
+    {
+     "task": null,
+     "value": 2202,
+     "runs": 2,
+     "found_in_text": true,
+     "unit": "bytes"
+    },
+    {
+     "task": null,
+     "value": 8,
+     "runs": 8,
+     "found_in_text": true,
+     "unit": "dispatches"
+    }
+   ]
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/pull/3028#issuecomment-7221442110",
+   "author": "JJAutoCompare",
+   "date": "2026-11-27T14:57:22Z",
+   "kind": "result",
+   "tasks": [
+    "A10"
+   ],
+   "class": "unknown",
+   "commit": "571aea4",
+   "prs": [],
+   "provenance": "auto",
+   "measurements": [
+    {
+     "task": "A10",
+     "value": 2,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "tests"
+    },
+    {
+     "task": "A10",
+     "value": 0,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "tests"
+    }
+   ]
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/issues/3011#issuecomment-7221465277",
+   "author": "throny",
+   "date": "2026-11-27T14:58:29Z",
+   "kind": "answer",
+   "tasks": [],
+   "class": "nv-win",
+   "commit": null,
+   "prs": [],
+   "provenance": "auto",
+   "measurements": []
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/issues/3011#issuecomment-7221484669",
+   "author": "pvfreis",
+   "date": "2026-11-27T14:59:26Z",
+   "kind": "other",
+   "tasks": [],
+   "class": "unknown",
+   "commit": null,
+   "prs": [
+    1860
+   ],
+   "provenance": "auto",
+   "measurements": []
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/pull/3026#issuecomment-7221494017",
+   "author": "pvfreis",
+   "date": "2026-11-27T14:59:53Z",
+   "kind": "result",
+   "tasks": [
+    "A9"
+   ],
+   "class": "nv-win",
+   "commit": "721121b",
+   "prs": [],
+   "provenance": "auto",
+   "measurements": [
+    {
+     "task": "A9",
+     "value": 90,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "s"
+    },
+    {
+     "task": "A9",
+     "value": 95,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "s"
+    },
+    {
+     "task": "A9",
+     "value": 1407,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "frames"
+    },
+    {
+     "task": "A9",
+     "value": 446,
+     "runs": 2,
+     "found_in_text": true,
+     "unit": "compiles"
+    },
+    {
+     "task": "A9",
+     "value": 597,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "compiles"
+    },
+    {
+     "task": "A9",
+     "value": 651,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "compiles"
+    },
+    {
+     "task": "A9",
+     "value": 312,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "pipelines"
+    },
+    {
+     "task": "A9",
+     "value": 444,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "pipelines"
+    },
+    {
+     "task": "A9",
+     "value": 504,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "pipelines"
+    },
+    {
+     "task": "A9",
+     "value": 30.3,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "GiB"
+    },
+    {
+     "task": "A9",
+     "value": 30.7,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "GiB"
+    }
+   ]
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/issues/3011#issuecomment-7221616947",
+   "author": "UncommonDLL",
+   "date": "2026-11-27T15:05:43Z",
+   "kind": "result",
+   "tasks": [
+    "A12"
+   ],
+   "class": "nv-win",
+   "commit": null,
+   "prs": [],
+   "provenance": "auto",
+   "measurements": []
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/pull/3026#issuecomment-7221686079",
+   "author": "TaynanGT",
+   "date": "2026-11-27T15:08:55Z",
+   "kind": "result",
+   "tasks": [
+    "A9"
+   ],
+   "class": "unknown",
+   "commit": null,
+   "prs": [],
+   "provenance": "auto",
+   "measurements": [
+    {
+     "task": "A9",
+     "value": 444,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "pipelines"
+    },
+    {
+     "task": "A9",
+     "value": 504,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "pipelines"
+    },
+    {
+     "task": "A9",
+     "value": 312,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "pipelines"
+    },
+    {
+     "task": "A9",
+     "value": 307,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "pipelines"
+    }
+   ]
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/pull/3026#issuecomment-7221706951",
+   "author": "fromthemoonx",
+   "date": "2026-11-27T15:09:51Z",
+   "kind": "result",
+   "tasks": [
+    "A9"
+   ],
+   "class": "nv-win",
+   "commit": "721121b",
+   "prs": [
+    1824,
+    3043,
+    3093
+   ],
+   "provenance": "auto",
+   "measurements": [
+    {
+     "task": "A9",
+     "value": 1464,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "tests"
+    },
+    {
+     "task": "A9",
+     "value": 0,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "tests"
+    },
+    {
+     "task": "A9",
+     "value": 1471,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "tests"
+    },
+    {
+     "task": "A9",
+     "value": 3,
+     "runs": 3,
+     "found_in_text": true,
+     "unit": "of 3"
+    },
+    {
+     "task": "A9",
+     "value": 2,
+     "runs": 2,
+     "found_in_text": true,
+     "unit": "runs"
+    }
+   ]
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/issues/3011#issuecomment-7221743405",
+   "author": "KOLESNiii",
+   "date": "2026-11-27T15:11:27Z",
+   "kind": "offer",
+   "tasks": [
+    "A3"
+   ],
+   "class": "small-vram",
+   "commit": null,
+   "prs": [],
+   "provenance": "auto",
+   "measurements": []
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/issues/3011#issuecomment-7221813052",
+   "author": "UncommonDLL",
+   "date": "2026-11-27T15:14:43Z",
+   "kind": "answer",
+   "tasks": [],
+   "class": "nv-win",
+   "commit": null,
+   "prs": [],
+   "provenance": "auto",
+   "measurements": []
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/pull/3026#issuecomment-7221898834",
+   "author": "TaynanGT",
+   "date": "2026-11-27T15:18:42Z",
+   "kind": "other",
+   "tasks": [],
+   "class": "unknown",
+   "commit": null,
+   "prs": [],
+   "provenance": "auto",
+   "measurements": []
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/issues/3011#issuecomment-7221920689",
+   "author": "Decodere",
+   "date": "2026-11-27T15:19:44Z",
+   "kind": "pr",
+   "tasks": [
+    "A6"
+   ],
+   "class": "small-vram",
+   "commit": null,
+   "prs": [
+    3037
+   ],
+   "provenance": "auto",
+   "measurements": []
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/issues/3011#issuecomment-7222127356",
+   "author": "KOLESNiii",
+   "date": "2026-11-27T15:29:47Z",
+   "kind": "other",
+   "tasks": [],
+   "class": "small-vram",
+   "commit": null,
+   "prs": [
+    549
+   ],
+   "provenance": "auto",
+   "measurements": []
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/issues/3011#issuecomment-7222154154",
+   "author": "UncommonDLL",
+   "date": "2026-11-27T15:31:07Z",
+   "kind": "tool",
+   "tasks": [
+    "A3"
+   ],
+   "class": "nv-win",
+   "commit": "4c60999",
+   "prs": [],
+   "provenance": "auto",
+   "measurements": []
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/pull/3026#issuecomment-7222164388",
+   "author": "ClosetPie107",
+   "date": "2026-11-27T15:31:37Z",
+   "kind": "result",
+   "tasks": [
+    "A9"
+   ],
+   "class": "amd-radv",
+   "commit": "721121b",
+   "prs": [
+    880
+   ],
+   "provenance": "auto",
+   "measurements": [
+    {
+     "task": "A9",
+     "value": 302,
+     "runs": 3,
+     "found_in_text": true,
+     "unit": "lines"
+    },
+    {
+     "task": "A9",
+     "value": 79,
+     "runs": 3,
+     "found_in_text": true,
+     "unit": "lines"
+    },
+    {
+     "task": "A9",
+     "value": 35,
+     "runs": 3,
+     "found_in_text": true,
+     "unit": "s"
+    },
+    {
+     "task": "A9",
+     "value": 27,
+     "runs": 3,
+     "found_in_text": true,
+     "unit": "s"
+    },
+    {
+     "task": "A9",
+     "value": 45,
+     "runs": 3,
+     "found_in_text": true,
+     "unit": "s"
+    },
+    {
+     "task": "A9",
+     "value": 39,
+     "runs": 3,
+     "found_in_text": true,
+     "unit": "s"
+    },
+    {
+     "task": "A9",
+     "value": 331,
+     "runs": 3,
+     "found_in_text": true,
+     "unit": "presents"
+    },
+    {
+     "task": "A9",
+     "value": 153,
+     "runs": 3,
+     "found_in_text": true,
+     "unit": "presents"
+    },
+    {
+     "task": "A9",
+     "value": 43,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "min"
+    }
+   ]
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/pull/3026#issuecomment-7222617549",
+   "author": "TaynanGT",
+   "date": "2026-11-27T15:54:07Z",
+   "kind": "answer",
+   "tasks": [],
+   "class": "unknown",
+   "commit": null,
+   "prs": [],
+   "provenance": "auto",
+   "measurements": []
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/issues/3011#issuecomment-7222789242",
+   "author": "tiagonleal",
+   "date": "2026-11-27T16:02:44Z",
+   "kind": "claim",
+   "tasks": [
+    "A13"
+   ],
+   "class": "nv-win",
+   "commit": null,
+   "prs": [
+    3038
+   ],
+   "provenance": "auto",
+   "measurements": []
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/pull/3038",
+   "author": "tiagonleal",
+   "date": "2026-11-27T16:02:46Z",
+   "kind": "pr",
+   "tasks": [
+    "A13"
+   ],
+   "class": "nv-win",
+   "commit": "d098726",
+   "prs": [
+    1322,
+    2087,
+    2302,
+    2913,
+    3011
+   ],
+   "provenance": "auto",
+   "measurements": [
+    {
+     "task": "A13",
+     "value": 382,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "frames"
+    },
+    {
+     "task": "A13",
+     "value": 333,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "frames"
+    },
+    {
+     "task": "A13",
+     "value": 322,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "frames"
+    },
+    {
+     "task": "A13",
+     "value": 14225,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "MB"
+    },
+    {
+     "task": "A13",
+     "value": 14931,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "MB"
+    },
+    {
+     "task": "A13",
+     "value": 13664,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "MB"
+    },
+    {
+     "task": "A13",
+     "value": 434,
+     "runs": 2,
+     "found_in_text": true,
+     "unit": "tests"
+    }
+   ]
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/issues/3011#issuecomment-7222943369",
+   "author": "afpruivo",
+   "date": "2026-11-27T16:10:24Z",
+   "kind": "result",
+   "tasks": [
+    "A1"
+   ],
+   "class": "nv-win",
+   "commit": "0567c71",
+   "prs": [
+    609,
+    2229,
+    2590,
+    2938,
+    3026
+   ],
+   "provenance": "auto",
+   "measurements": [
+    {
+     "task": "A1",
+     "value": 12,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "fps"
+    },
+    {
+     "task": "A1",
+     "value": 15,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "fps"
+    },
+    {
+     "task": "A1",
+     "value": 5,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "fps"
+    },
+    {
+     "task": "A1",
+     "value": 8,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "fps"
+    },
+    {
+     "task": "A1",
+     "value": 55,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "ms"
+    },
+    {
+     "task": "A1",
+     "value": 69,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "ms"
+    },
+    {
+     "task": "A1",
+     "value": 117,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "ms"
+    },
+    {
+     "task": "A1",
+     "value": 183,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "ms"
+    }
+   ]
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/pull/3040",
+   "author": "coolpersonnn",
+   "date": "2026-11-27T16:47:20Z",
+   "kind": "pr",
+   "tasks": [
+    "A5"
+   ],
+   "class": "nv-win",
+   "commit": "962cdca",
+   "prs": [
+    3011
+   ],
+   "provenance": "auto",
+   "measurements": [
+    {
+     "task": "A5",
+     "value": 358,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "shaders"
+    },
+    {
+     "task": "A5",
+     "value": 1154,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "shaders"
+    },
+    {
+     "task": "A5",
+     "value": 13,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "of 18"
+    },
+    {
+     "task": "A5",
+     "value": 339,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "shaders"
+    },
+    {
+     "task": "A5",
+     "value": 19,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "shaders"
+    },
+    {
+     "task": "A5",
+     "value": 1684,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "frames"
+    },
+    {
+     "task": "A5",
+     "value": 1699,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "frames"
+    },
+    {
+     "task": "A5",
+     "value": 15930,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "MB"
+    },
+    {
+     "task": "A5",
+     "value": 16720,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "MB"
+    }
+   ]
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/pull/3042",
+   "author": "coolpersonnn",
+   "date": "2026-11-27T16:47:58Z",
+   "kind": "pr",
+   "tasks": [
+    "A5",
+    "A3"
+   ],
+   "class": "nv-win",
+   "commit": "becdecf",
+   "prs": [
+    1426,
+    3040
+   ],
+   "provenance": "auto",
+   "measurements": [
+    {
+     "task": "A5",
+     "value": 2.8,
+     "runs": 40,
+     "found_in_text": true,
+     "unit": "us"
+    },
+    {
+     "task": "A5",
+     "value": 2.112,
+     "runs": 40,
+     "found_in_text": true,
+     "unit": "us"
+    },
+    {
+     "task": "A5",
+     "value": 2.4,
+     "runs": 40,
+     "found_in_text": true,
+     "unit": "us"
+    },
+    {
+     "task": "A5",
+     "value": 2.016,
+     "runs": 40,
+     "found_in_text": true,
+     "unit": "us"
+    },
+    {
+     "task": "A5",
+     "value": 2.384,
+     "runs": 40,
+     "found_in_text": true,
+     "unit": "us"
+    },
+    {
+     "task": "A5",
+     "value": 2.064,
+     "runs": 40,
+     "found_in_text": true,
+     "unit": "us"
+    },
+    {
+     "task": "A5",
+     "value": 1697,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "frames"
+    },
+    {
+     "task": "A3",
+     "value": 70.252,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "ms"
+    },
+    {
+     "task": "A3",
+     "value": 37.591,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "ms"
+    }
+   ]
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/issues/3011#issuecomment-7223691763",
+   "author": "coolpersonnn",
+   "date": "2026-11-27T16:48:25Z",
+   "kind": "result",
+   "tasks": [
+    "A5",
+    "A3"
+   ],
+   "class": "nv-win",
+   "commit": "becdecf",
+   "prs": [
+    1426,
+    2554,
+    3040,
+    3042
+   ],
+   "provenance": "auto",
+   "measurements": [
+    {
+     "task": "A5",
+     "value": 31,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "%"
+    },
+    {
+     "task": "A5",
+     "value": 2.8,
+     "runs": 40,
+     "found_in_text": true,
+     "unit": "us"
+    },
+    {
+     "task": "A5",
+     "value": 2.112,
+     "runs": 40,
+     "found_in_text": true,
+     "unit": "us"
+    },
+    {
+     "task": "A5",
+     "value": 2.016,
+     "runs": 40,
+     "found_in_text": true,
+     "unit": "us"
+    },
+    {
+     "task": "A3",
+     "value": 81.409,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "ms"
+    },
+    {
+     "task": "A3",
+     "value": 30.969,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "ms"
+    },
+    {
+     "task": "A5",
+     "value": 1697,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "frames"
+    }
+   ]
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/issues/3011#issuecomment-7223932636",
+   "author": "KOLESNiii",
+   "date": "2026-11-27T17:01:08Z",
+   "kind": "progress",
+   "tasks": [
+    "A3"
+   ],
+   "class": "nv-win",
+   "commit": "4c60999",
+   "prs": [
+    2590
+   ],
+   "provenance": "auto",
+   "measurements": []
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/pull/3026#issuecomment-7224436278",
+   "author": "VolenNakov",
+   "date": "2026-11-27T17:27:57Z",
+   "kind": "result",
+   "tasks": [
+    "A9"
+   ],
+   "class": "nv-win",
+   "commit": "d1be810",
+   "prs": [
+    2987
+   ],
+   "provenance": "auto",
+   "measurements": [
+    {
+     "task": "A9",
+     "value": 1340,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "tests"
+    },
+    {
+     "task": "A9",
+     "value": 8,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "tests"
+    },
+    {
+     "task": "A9",
+     "value": 112,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "min"
+    },
+    {
+     "task": "A9",
+     "value": 6625,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "s"
+    }
+   ]
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/pull/3026#issuecomment-7224464803",
+   "author": "TaynanGT",
+   "date": "2026-11-27T17:29:28Z",
+   "kind": "other",
+   "tasks": [],
+   "class": "unknown",
+   "commit": null,
+   "prs": [],
+   "provenance": "auto",
+   "measurements": []
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/issues/3011#issuecomment-7224647963",
+   "author": "throny",
+   "date": "2026-11-27T17:39:35Z",
+   "kind": "other",
+   "tasks": [],
+   "class": "nv-win",
+   "commit": null,
+   "prs": [
+    505,
+    3026
+   ],
+   "provenance": "auto",
+   "measurements": []
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/pull/3026#issuecomment-7224665452",
+   "author": "VolenNakov",
+   "date": "2026-11-27T17:40:33Z",
+   "kind": "answer",
+   "tasks": [],
+   "class": "nv-win",
+   "commit": null,
+   "prs": [
+    2844,
+    2987
+   ],
+   "provenance": "auto",
+   "measurements": []
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/pull/3026#issuecomment-7224743435",
+   "author": "TaynanGT",
+   "date": "2026-11-27T17:44:53Z",
+   "kind": "answer",
+   "tasks": [],
+   "class": "unknown",
+   "commit": null,
+   "prs": [],
+   "provenance": "auto",
+   "measurements": []
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/issues/3011#issuecomment-7224761424",
+   "author": "KOLESNiii",
+   "date": "2026-11-27T17:45:53Z",
+   "kind": "claim",
+   "tasks": [
+    "A14"
+   ],
+   "class": "small-vram",
+   "commit": null,
+   "prs": [
+    505,
+    646,
+    675,
+    846,
+    1385,
+    3062,
+    3063
+   ],
+   "provenance": "auto",
+   "measurements": []
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/issues/3011#issuecomment-7225031307",
+   "author": "UncommonDLL",
+   "date": "2026-11-27T18:01:11Z",
+   "kind": "question",
+   "tasks": [],
+   "class": "nv-win",
+   "commit": null,
+   "prs": [],
+   "provenance": "auto",
+   "measurements": []
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/pull/3040#issuecomment-7225721978",
+   "author": "Gevroska",
+   "date": "2026-11-27T18:39:17Z",
+   "kind": "result",
+   "tasks": [
+    "A5"
+   ],
+   "class": "unknown",
+   "commit": "962cdca",
+   "prs": [],
+   "provenance": "auto",
+   "measurements": [
+    {
+     "task": "A5",
+     "value": 17,
+     "runs": 17,
+     "found_in_text": true,
+     "unit": "fixtures"
+    }
+   ]
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/pull/3062",
+   "author": "KOLESNiii",
+   "date": "2026-11-27T18:42:06Z",
+   "kind": "pr",
+   "tasks": [
+    "A14"
+   ],
+   "class": "small-vram",
+   "commit": "e9e84e8",
+   "prs": [
+    505,
+    646,
+    675,
+    846,
+    1385,
+    3011,
+    3063
+   ],
+   "provenance": "auto",
+   "measurements": [
+    {
+     "task": "A14",
+     "value": 1287,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "frames"
+    },
+    {
+     "task": "A14",
+     "value": 1490,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "frames"
+    },
+    {
+     "task": "A14",
+     "value": 16057,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "MB"
+    },
+    {
+     "task": "A14",
+     "value": 15877,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "MB"
+    },
+    {
+     "task": "A14",
+     "value": 1467,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "tests"
+    },
+    {
+     "task": "A14",
+     "value": 19,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "tests"
+    }
+   ]
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/pull/3063",
+   "author": "KOLESNiii",
+   "date": "2026-11-27T18:42:17Z",
+   "kind": "pr",
+   "tasks": [
+    "A15"
+   ],
+   "class": "nv-win",
+   "commit": "89bcf0d",
+   "prs": [
+    3062
+   ],
+   "provenance": "auto",
+   "measurements": [
+    {
+     "task": "A15",
+     "value": 1287,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "frames"
+    },
+    {
+     "task": "A15",
+     "value": 1497,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "frames"
+    },
+    {
+     "task": "A15",
+     "value": 16057,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "MB"
+    },
+    {
+     "task": "A15",
+     "value": 15865,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "MB"
+    },
+    {
+     "task": "A15",
+     "value": 1468,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "tests"
+    },
+    {
+     "task": "A15",
+     "value": 20,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "tests"
+    },
+    {
+     "task": "A15",
+     "value": 3,
+     "runs": 3,
+     "found_in_text": true,
+     "unit": "runs"
+    }
+   ]
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/pull/3063#issuecomment-7226211184",
+   "author": "pickles976",
+   "date": "2026-11-27T19:07:22Z",
+   "kind": "result",
+   "tasks": [
+    "A14",
+    "A15"
+   ],
+   "class": "nv-linux",
+   "commit": "1409b38",
+   "prs": [
+    3062
+   ],
+   "provenance": "auto",
+   "measurements": [
+    {
+     "task": "A15",
+     "value": 33.8,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "us"
+    },
+    {
+     "task": "A15",
+     "value": 20.3044,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "ms"
+    },
+    {
+     "task": "A15",
+     "value": 1.32,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "s"
+    },
+    {
+     "task": "A15",
+     "value": 26.13,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "s"
+    }
+   ]
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/pull/3040#issuecomment-7226940092",
+   "author": "JJAutoCompare",
+   "date": "2026-11-27T19:51:37Z",
+   "kind": "result",
+   "tasks": [
+    "A5"
+   ],
+   "class": "unknown",
+   "commit": "962cdca",
+   "prs": [],
+   "provenance": "auto",
+   "measurements": [
+    {
+     "task": "A5",
+     "value": 3,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "tests"
+    },
+    {
+     "task": "A5",
+     "value": 0,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "tests"
+    }
+   ]
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/issues/3011#issuecomment-7226985779",
+   "author": "kleborgn",
+   "date": "2026-11-27T19:54:26Z",
+   "kind": "result",
+   "tasks": [
+    "A1",
+    "A3"
+   ],
+   "class": "amd-win",
+   "commit": "7c795f5",
+   "prs": [
+    505,
+    2996,
+    3024,
+    3025,
+    3069
+   ],
+   "provenance": "auto",
+   "measurements": [
+    {
+     "task": "A1",
+     "value": 5.5,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "presents/s"
+    },
+    {
+     "task": "A1",
+     "value": 16,
+     "runs": null,
+     "found_in_text": false,
+     "unit": "GB"
+    },
+    {
+     "task": "A1",
+     "value": 38,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "GB"
+    },
+    {
+     "task": "A3",
+     "value": 17,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "s"
+    },
+    {
+     "task": "A1",
+     "value": 1,
+     "runs": 8,
+     "found_in_text": true,
+     "unit": "count"
+    }
+   ]
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/pull/3042#issuecomment-7227302795",
+   "author": "DarkPanda69",
+   "date": "2026-11-27T20:13:57Z",
+   "kind": "result",
+   "tasks": [
+    "A5"
+   ],
+   "class": "amd-win",
+   "commit": "becdecf",
+   "prs": [
+    2115
+   ],
+   "provenance": "auto",
+   "measurements": [
+    {
+     "task": "A5",
+     "value": 735,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "tests"
+    },
+    {
+     "task": "A5",
+     "value": 2,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "tests"
+    },
+    {
+     "task": "A5",
+     "value": 737,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "tests"
+    },
+    {
+     "task": "A5",
+     "value": 0,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "tests"
+    },
+    {
+     "task": "A5",
+     "value": 22,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "tests"
+    }
+   ]
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/issues/3011#issuecomment-7227709884",
+   "author": "throny",
+   "date": "2026-11-27T20:39:06Z",
+   "kind": "other",
+   "tasks": [],
+   "class": "nv-win",
+   "commit": null,
+   "prs": [],
+   "provenance": "auto",
+   "measurements": []
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/issues/3011#issuecomment-7227996657",
+   "author": "DzXAnt22",
+   "date": "2026-11-27T20:57:24Z",
+   "kind": "other",
+   "tasks": [],
+   "class": "unknown",
+   "commit": null,
+   "prs": [],
+   "provenance": "auto",
+   "measurements": []
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/issues/3011#issuecomment-7228078640",
+   "author": "treybertram06",
+   "date": "2026-11-27T21:02:35Z",
+   "kind": "result",
+   "tasks": [
+    "A6"
+   ],
+   "class": "nv-win",
+   "commit": "d1be810",
+   "prs": [
+    2357,
+    2987,
+    3039
+   ],
+   "provenance": "auto",
+   "measurements": [
+    {
+     "task": "A6",
+     "value": 18.7,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "GB"
+    },
+    {
+     "task": "A6",
+     "value": 14.2,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "GB"
+    },
+    {
+     "task": "A6",
+     "value": 10.2,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "GB"
+    },
+    {
+     "task": "A6",
+     "value": 8.4,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "GB"
+    },
+    {
+     "task": "A6",
+     "value": 1.1,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "fps"
+    },
+    {
+     "task": "A6",
+     "value": 1.9,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "fps"
+    },
+    {
+     "task": "A6",
+     "value": 145,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "ms"
+    },
+    {
+     "task": "A6",
+     "value": 2.8,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "ms"
+    },
+    {
+     "task": "A6",
+     "value": 1,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "ms"
+    },
+    {
+     "task": "A6",
+     "value": 2.6,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "GB"
+    }
+   ]
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/pull/3026#issuecomment-7228834515",
+   "author": "VolenNakov",
+   "date": "2026-11-27T21:52:43Z",
+   "kind": "result",
+   "tasks": [
+    "A9"
+   ],
+   "class": "nv-win",
+   "commit": "2217336",
+   "prs": [],
+   "provenance": "auto",
+   "measurements": [
+    {
+     "task": "A9",
+     "value": 1470,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "tests"
+    },
+    {
+     "task": "A9",
+     "value": 0,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "tests"
+    },
+    {
+     "task": "A9",
+     "value": 47,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "tests"
+    },
+    {
+     "task": "A9",
+     "value": 5070,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "frames"
+    },
+    {
+     "task": "A9",
+     "value": 4789,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "frames"
+    }
+   ]
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/issues/3011#issuecomment-7229023662",
+   "author": "afpruivo",
+   "date": "2026-11-27T22:05:47Z",
+   "kind": "result",
+   "tasks": [
+    "A2"
+   ],
+   "class": "nv-win",
+   "commit": "d1be810",
+   "prs": [
+    609,
+    2229,
+    2434,
+    2551,
+    2938,
+    3003,
+    3004,
+    3005,
+    3006
+   ],
+   "provenance": "auto",
+   "measurements": [
+    {
+     "task": "A2",
+     "value": 170,
+     "runs": 4,
+     "found_in_text": true,
+     "unit": "ms"
+    },
+    {
+     "task": "A2",
+     "value": 56,
+     "runs": 4,
+     "found_in_text": true,
+     "unit": "ms"
+    },
+    {
+     "task": "A2",
+     "value": 33,
+     "runs": 4,
+     "found_in_text": true,
+     "unit": "ms"
+    },
+    {
+     "task": "A2",
+     "value": 25,
+     "runs": 4,
+     "found_in_text": true,
+     "unit": "ms"
+    },
+    {
+     "task": "A2",
+     "value": 23.2,
+     "runs": 4,
+     "found_in_text": false,
+     "unit": "ms"
+    },
+    {
+     "task": "A2",
+     "value": 26,
+     "runs": 4,
+     "found_in_text": true,
+     "unit": "ms"
+    },
+    {
+     "task": "A2",
+     "value": 4,
+     "runs": 4,
+     "found_in_text": true,
+     "unit": "ms"
+    }
+   ]
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/pull/3081",
+   "author": "mokkamokacaffe",
+   "date": "2026-11-27T23:09:39Z",
+   "kind": "pr",
+   "tasks": [
+    "A16"
+   ],
+   "class": "nv-win",
+   "commit": "197d987",
+   "prs": [],
+   "provenance": "auto",
+   "measurements": [
+    {
+     "task": null,
+     "value": 1467,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "tests"
+    },
+    {
+     "task": null,
+     "value": 0,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "tests"
+    },
+    {
+     "task": null,
+     "value": 1230,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "frames"
+    },
+    {
+     "task": null,
+     "value": 1176,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "frames"
+    },
+    {
+     "task": null,
+     "value": 14961,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "MB"
+    },
+    {
+     "task": null,
+     "value": 15008,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "MB"
+    }
+   ]
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/issues/3011#issuecomment-7229927991",
+   "author": "mokkamokacaffe",
+   "date": "2026-11-27T23:10:16Z",
+   "kind": "claim",
+   "tasks": [
+    "A16"
+   ],
+   "class": "nv-win",
+   "commit": "197d987",
+   "prs": [
+    108,
+    3081
+   ],
+   "provenance": "auto",
+   "measurements": []
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/pull/3081#issuecomment-7229997181",
+   "author": "upipibi",
+   "date": "2026-11-27T23:15:22Z",
+   "kind": "other",
+   "tasks": [],
+   "class": "unknown",
+   "commit": "2c717a0",
+   "prs": [],
+   "provenance": "auto",
+   "measurements": []
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/issues/3011#issuecomment-7230305338",
+   "author": "throny",
+   "date": "2026-11-27T23:39:13Z",
+   "kind": "other",
+   "tasks": [],
+   "class": "nv-win",
+   "commit": null,
+   "prs": [],
+   "provenance": "auto",
+   "measurements": []
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/pull/3028#issuecomment-7230312366",
+   "author": "Anon64",
+   "date": "2026-11-27T23:39:46Z",
+   "kind": "result",
+   "tasks": [
+    "A10"
+   ],
+   "class": "nv-win",
+   "commit": "571aea4",
+   "prs": [],
+   "provenance": "auto",
+   "measurements": [
+    {
+     "task": "A10",
+     "value": 2198,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "frames"
+    },
+    {
+     "task": "A10",
+     "value": 2234,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "frames"
+    },
+    {
+     "task": "A10",
+     "value": 38494,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "MB"
+    },
+    {
+     "task": "A10",
+     "value": 38242,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "MB"
+    },
+    {
+     "task": "A10",
+     "value": 18979,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "MB"
+    },
+    {
+     "task": "A10",
+     "value": 18893,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "MB"
+    }
+   ]
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/issues/3011#issuecomment-7230723528",
+   "author": "KOLESNiii",
+   "date": "2026-11-28T00:11:51Z",
+   "kind": "result",
+   "tasks": [
+    "A3"
+   ],
+   "class": "nv-win",
+   "commit": "4c60999",
+   "prs": [],
+   "provenance": "auto",
+   "measurements": [
+    {
+     "task": "A3",
+     "value": 0.08,
+     "runs": 7,
+     "found_in_text": true,
+     "unit": "ms"
+    },
+    {
+     "task": "A3",
+     "value": -0.95,
+     "runs": 7,
+     "found_in_text": false,
+     "unit": "ms"
+    },
+    {
+     "task": "A3",
+     "value": 0.67,
+     "runs": 7,
+     "found_in_text": true,
+     "unit": "ms"
+    },
+    {
+     "task": "A3",
+     "value": 11.89,
+     "runs": 1,
+     "found_in_text": false,
+     "unit": "ms"
+    },
+    {
+     "task": "A3",
+     "value": 16.18,
+     "runs": 1,
+     "found_in_text": false,
+     "unit": "ms"
+    }
+   ]
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/pull/3040#issuecomment-7231220453",
+   "author": "razormontana",
+   "date": "2026-11-28T00:49:41Z",
+   "kind": "result",
+   "tasks": [
+    "A5"
+   ],
+   "class": "nv-win",
+   "commit": "962cdca",
+   "prs": [
+    3040,
+    3042
+   ],
+   "provenance": "auto",
+   "measurements": [
+    {
+     "task": "A5",
+     "value": 17,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "fixtures"
+    }
+   ]
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/pull/3042#issuecomment-7231221092",
+   "author": "razormontana",
+   "date": "2026-11-28T00:49:44Z",
+   "kind": "result",
+   "tasks": [
+    "A5"
+   ],
+   "class": "nv-win",
+   "commit": "becdecf",
+   "prs": [
+    3040
+   ],
+   "provenance": "auto",
+   "measurements": [
+    {
+     "task": "A5",
+     "value": 3,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "tests"
+    },
+    {
+     "task": "A5",
+     "value": 17,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "fixtures"
+    }
+   ]
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/pull/3063#issuecomment-7231470525",
+   "author": "KOLESNiii",
+   "date": "2026-11-28T01:10:10Z",
+   "kind": "result",
+   "tasks": [
+    "A15"
+   ],
+   "class": "small-vram",
+   "commit": "89bcf0d",
+   "prs": [
+    3062,
+    3063
+   ],
+   "provenance": "auto",
+   "measurements": [
+    {
+     "task": "A15",
+     "value": 1467,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "tests"
+    },
+    {
+     "task": "A15",
+     "value": 1468,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "tests"
+    },
+    {
+     "task": "A15",
+     "value": 3,
+     "runs": 3,
+     "found_in_text": true,
+     "unit": "of 3 runs"
+    },
+    {
+     "task": "A15",
+     "value": 3,
+     "runs": 3,
+     "found_in_text": true,
+     "unit": "of 3 runs"
+    },
+    {
+     "task": "A15",
+     "value": 1490,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "frames"
+    },
+    {
+     "task": "A15",
+     "value": 1497,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "frames"
+    }
+   ]
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/pull/3042#issuecomment-7231598147",
+   "author": "JJAutoCompare",
+   "date": "2026-11-28T01:20:42Z",
+   "kind": "result",
+   "tasks": [
+    "A5"
+   ],
+   "class": "intel",
+   "commit": "becdecf",
+   "prs": [],
+   "provenance": "auto",
+   "measurements": [
+    {
+     "task": "A5",
+     "value": 3,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "tests"
+    },
+    {
+     "task": "A5",
+     "value": 0,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "tests"
+    },
+    {
+     "task": "A5",
+     "value": 320,
+     "runs": 4,
+     "found_in_text": true,
+     "unit": "dwords"
+    },
+    {
+     "task": "A5",
+     "value": 192,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "dwords"
+    }
+   ]
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/pull/3063#issuecomment-7231893621",
+   "author": "andrewDoing",
+   "date": "2026-11-28T01:45:16Z",
+   "kind": "result",
+   "tasks": [
+    "A15"
+   ],
+   "class": "unknown",
+   "commit": "89bcf0d",
+   "prs": [],
+   "provenance": "auto",
+   "measurements": []
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/pull/3028#issuecomment-7232184520",
+   "author": "thehollowedone",
+   "date": "2026-11-28T02:10:43Z",
+   "kind": "offer",
+   "tasks": [],
+   "class": "unknown",
+   "commit": null,
+   "prs": [],
+   "provenance": "auto",
+   "measurements": []
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/pull/3028#issuecomment-7232220186",
+   "author": "throny",
+   "date": "2026-11-28T02:13:45Z",
+   "kind": "offer",
+   "tasks": [],
+   "class": "nv-win",
+   "commit": null,
+   "prs": [],
+   "provenance": "auto",
+   "measurements": []
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/pull/3028#issuecomment-7232259271",
+   "author": "thehollowedone",
+   "date": "2026-11-28T02:17:10Z",
+   "kind": "result",
+   "tasks": [
+    "A10"
+   ],
+   "class": "nv-win",
+   "commit": "571aea4",
+   "prs": [],
+   "provenance": "auto",
+   "measurements": [
+    {
+     "task": "A10",
+     "value": 1512,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "tests"
+    },
+    {
+     "task": "A10",
+     "value": 1,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "tests"
+    },
+    {
+     "task": "A10",
+     "value": 47,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "tests"
+    },
+    {
+     "task": "A10",
+     "value": 1,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "passed"
+    },
+    {
+     "task": "A10",
+     "value": 1,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "failed"
+    }
+   ]
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/pull/3042#issuecomment-7232367112",
+   "author": "CharlyRien",
+   "date": "2026-11-28T02:26:46Z",
+   "kind": "result",
+   "tasks": [
+    "A5"
+   ],
+   "class": "nv-win",
+   "commit": "becdecf",
+   "prs": [
+    3040
+   ],
+   "provenance": "auto",
+   "measurements": [
+    {
+     "task": "A5",
+     "value": 1486,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "tests"
+    },
+    {
+     "task": "A5",
+     "value": 22,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "tests"
+    },
+    {
+     "task": "A5",
+     "value": 1723,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "frames"
+    },
+    {
+     "task": "A5",
+     "value": 1648,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "frames"
+    },
+    {
+     "task": "A5",
+     "value": 29921,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "MB"
+    },
+    {
+     "task": "A5",
+     "value": 35416,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "MB"
+    }
+   ]
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/pull/3040#issuecomment-7232397194",
+   "author": "thehollowedone",
+   "date": "2026-11-28T02:29:30Z",
+   "kind": "other",
+   "tasks": [],
+   "class": "nv-win",
+   "commit": null,
+   "prs": [
+    3040,
+    3042
+   ],
+   "provenance": "auto",
+   "measurements": []
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/pull/3028#issuecomment-7232407138",
+   "author": "throny",
+   "date": "2026-11-28T02:30:24Z",
+   "kind": "result",
+   "tasks": [
+    "A10"
+   ],
+   "class": "nv-win",
+   "commit": "571aea4",
+   "prs": [
+    1665,
+    2424,
+    2547
+   ],
+   "provenance": "auto",
+   "measurements": [
+    {
+     "task": "A10",
+     "value": 1512,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "tests"
+    },
+    {
+     "task": "A10",
+     "value": 1,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "tests"
+    },
+    {
+     "task": "A10",
+     "value": 47,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "tests"
+    },
+    {
+     "task": "A10",
+     "value": 1512,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "tests"
+    }
+   ]
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/pull/3038#issuecomment-7232458020",
+   "author": "thehollowedone",
+   "date": "2026-11-28T02:34:47Z",
+   "kind": "other",
+   "tasks": [],
+   "class": "nv-win",
+   "commit": null,
+   "prs": [],
+   "provenance": "auto",
+   "measurements": []
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/pull/3063#issuecomment-7232750767",
+   "author": "KOLESNiii",
+   "date": "2026-11-28T03:02:06Z",
+   "kind": "answer",
+   "tasks": [],
+   "class": "small-vram",
+   "commit": "89bcf0d",
+   "prs": [],
+   "provenance": "auto",
+   "measurements": []
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/pull/3062#issuecomment-7233072615",
+   "author": "andrewDoing",
+   "date": "2026-11-28T03:26:19Z",
+   "kind": "result",
+   "tasks": [
+    "A14"
+   ],
+   "class": "nv-win",
+   "commit": "e9e84e8",
+   "prs": [],
+   "provenance": "auto",
+   "measurements": [
+    {
+     "task": "A14",
+     "value": 3,
+     "runs": 3,
+     "found_in_text": true,
+     "unit": "runs"
+    },
+    {
+     "task": "A14",
+     "value": 20,
+     "runs": 2,
+     "found_in_text": true,
+     "unit": "ms"
+    }
+   ]
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/pull/3063#issuecomment-7234078144",
+   "author": "andrewDoing",
+   "date": "2026-11-28T04:30:02Z",
+   "kind": "result",
+   "tasks": [
+    "A15"
+   ],
+   "class": "nv-win",
+   "commit": "89bcf0d",
+   "prs": [],
+   "provenance": "auto",
+   "measurements": [
+    {
+     "task": "A15",
+     "value": 25,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "tests"
+    },
+    {
+     "task": "A15",
+     "value": 0,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "tests"
+    },
+    {
+     "task": "A15",
+     "value": 1,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "tests"
+    }
+   ]
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/issues/3011#issuecomment-7234800079",
+   "author": "throny",
+   "date": "2026-11-28T05:39:03Z",
+   "kind": "other",
+   "tasks": [],
+   "class": "nv-win",
+   "commit": null,
+   "prs": [],
+   "provenance": "auto",
+   "measurements": []
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/issues/3011#issuecomment-7236158614",
+   "author": "throny",
+   "date": "2026-11-28T07:46:56Z",
+   "kind": "other",
+   "tasks": [
+    "A4"
+   ],
+   "class": "nv-win",
+   "commit": null,
+   "prs": [
+    2572,
+    3008,
+    3028
+   ],
+   "provenance": "auto",
+   "measurements": []
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/issues/3011#issuecomment-7236448330",
+   "author": "afpruivo",
+   "date": "2026-11-28T08:13:51Z",
+   "kind": "correction",
+   "tasks": [
+    "A2"
+   ],
+   "class": "nv-win",
+   "commit": "54225f5",
+   "prs": [
+    609,
+    2551,
+    2794,
+    3003,
+    3006
+   ],
+   "provenance": "auto",
+   "measurements": [
+    {
+     "task": "A2",
+     "value": 167.1,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "ms"
+    },
+    {
+     "task": "A2",
+     "value": 144.7,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "ms"
+    },
+    {
+     "task": "A2",
+     "value": 147.8,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "ms"
+    },
+    {
+     "task": "A2",
+     "value": 25,
+     "runs": 16,
+     "found_in_text": true,
+     "unit": "ms"
+    },
+    {
+     "task": "A2",
+     "value": 0.11,
+     "runs": 16,
+     "found_in_text": true,
+     "unit": "ms"
+    },
+    {
+     "task": "A2",
+     "value": 19.5,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "ms"
+    },
+    {
+     "task": "A2",
+     "value": 0.055,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "ms"
+    },
+    {
+     "task": "A2",
+     "value": 8.4,
+     "runs": 16,
+     "found_in_text": true,
+     "unit": "ms"
+    },
+    {
+     "task": "A2",
+     "value": 8,
+     "runs": 16,
+     "found_in_text": true,
+     "unit": "ms"
+    },
+    {
+     "task": "A2",
+     "value": 7.2,
+     "runs": 16,
+     "found_in_text": true,
+     "unit": "ms"
+    },
+    {
+     "task": "A2",
+     "value": 5,
+     "runs": 16,
+     "found_in_text": true,
+     "unit": "ms"
+    },
+    {
+     "task": "A2",
+     "value": 4.3,
+     "runs": 16,
+     "found_in_text": true,
+     "unit": "ms"
+    }
+   ]
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/pull/3026#issuecomment-7236774521",
+   "author": "Aniseto",
+   "date": "2026-11-28T08:44:02Z",
+   "kind": "result",
+   "tasks": [
+    "A9"
+   ],
+   "class": "nv-win",
+   "commit": "94fdaa3",
+   "prs": [],
+   "provenance": "auto",
+   "measurements": [
+    {
+     "task": "A9",
+     "value": 4,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "tests"
+    },
+    {
+     "task": "A9",
+     "value": 1,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "tests"
+    }
+   ]
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/pull/3042#issuecomment-7236957106",
+   "author": "Aniseto",
+   "date": "2026-11-28T09:01:02Z",
+   "kind": "result",
+   "tasks": [
+    "A5"
+   ],
+   "class": "nv-win",
+   "commit": "becdecf",
+   "prs": [],
+   "provenance": "auto",
+   "measurements": [
+    {
+     "task": "A5",
+     "value": 22,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "tests"
+    },
+    {
+     "task": "A5",
+     "value": 0,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "tests"
+    }
+   ]
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/pull/3028#issuecomment-7239248205",
+   "author": "tiagonleal",
+   "date": "2026-11-28T12:28:11Z",
+   "kind": "other",
+   "tasks": [],
+   "class": "nv-win",
+   "commit": null,
+   "prs": [
+    2959
+   ],
+   "provenance": "auto",
+   "measurements": []
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/pull/3038#issuecomment-7240804193",
+   "author": "tiagonleal",
+   "date": "2026-11-28T14:37:07Z",
+   "kind": "progress",
+   "tasks": [
+    "A13"
+   ],
+   "class": "nv-win",
+   "commit": "d098726",
+   "prs": [],
+   "provenance": "auto",
+   "measurements": []
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/issues/3011#issuecomment-7240830757",
+   "author": "throny",
+   "date": "2026-11-28T14:39:17Z",
+   "kind": "other",
+   "tasks": [],
+   "class": "nv-win",
+   "commit": null,
+   "prs": [],
+   "provenance": "auto",
+   "measurements": []
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/pull/3026#issuecomment-7241207516",
+   "author": "VolenNakov",
+   "date": "2026-11-28T15:06:37Z",
+   "kind": "result",
+   "tasks": [
+    "A9"
+   ],
+   "class": "nv-win",
+   "commit": "94fdaa3",
+   "prs": [],
+   "provenance": "auto",
+   "measurements": [
+    {
+     "task": "A9",
+     "value": 8232,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "s"
+    },
+    {
+     "task": "A9",
+     "value": 18167,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "s"
+    },
+    {
+     "task": "A9",
+     "value": 6330,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "s"
+    },
+    {
+     "task": "A9",
+     "value": 8681,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "s"
+    },
+    {
+     "task": "A9",
+     "value": 1005,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "count"
+    },
+    {
+     "task": "A9",
+     "value": 1682,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "count"
+    },
+    {
+     "task": "A9",
+     "value": 400,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "count"
+    },
+    {
+     "task": "A9",
+     "value": 4.2,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "GB"
+    },
+    {
+     "task": "A9",
+     "value": 6.4,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "GB"
+    },
+    {
+     "task": "A9",
+     "value": 0,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "count"
+    }
+   ]
+  }
+ ],
+ "findings": []
+}

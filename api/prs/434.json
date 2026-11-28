@@ -1,0 +1,1 @@
+{"pr":434,"status":"open","author":"Prime1997","area":"tests","intent":{"area":"tests","kind":"test","subject":"e2e: exercise SSE4a INSERTQ and EXTRQ through console title","keywords":["sse4a","insertq","extrq","bitfield","e2e-test"]},"files":2,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

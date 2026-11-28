@@ -1,0 +1,1 @@
+{"issue":2743,"area":"memory","intent":{"area":"memory","kind":"bug-report","subject":"D3D12.X: resource_at keeps a PC texture per placed view, 1 GB/min","keywords":["placed-resource","resource_at","reserved-texture","vram","host-memory","linux-radv"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

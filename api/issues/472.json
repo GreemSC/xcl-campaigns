@@ -1,0 +1,1 @@
+{"issue":472,"area":"shaders","intent":{"area":"shaders","kind":"bug-report","subject":"v_fma_f32 rounds twice on RDNA1 driver: mad() left unfused","keywords":["v_fma_f32","mad","fma","fp64","rdna1","contraction"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[676]}

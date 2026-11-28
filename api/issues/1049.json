@@ -1,0 +1,1 @@
+{"issue":1049,"area":"textures","intent":{"area":"textures","kind":"bug-report","subject":"Glyph-cache menu text drops letters black blocks on brightness HUD","keywords":["glyph-cache","render-target","cpu-filled","text-corruption","texture-skip","hud"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

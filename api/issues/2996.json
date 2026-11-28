@@ -1,0 +1,1 @@
+{"issue":2996,"area":"shaders","intent":{"area":"shaders","kind":"bug-report","subject":"AMD RDNA4 hive: RT compute DXIL compile stalls, skips cause GPU fault","keywords":["dxil","rdna4","xcl_pso_max_kb","xcl_rt_gate","dred","device-removed"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

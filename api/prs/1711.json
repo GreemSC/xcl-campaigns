@@ -1,0 +1,1 @@
+{"pr":1711,"status":"open","author":"b3IKK","area":"tooling","intent":{"area":"tooling","kind":"bugfix","subject":"xcl disasm exits 2 when --fssm write fails or has no path","keywords":["disasm","fssm","exit-code","save_fssm","print_xbox"]},"files":1,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

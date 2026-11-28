@@ -1,0 +1,1 @@
+{"pr":1172,"status":"open","author":"emirduran707","area":"input","intent":{"area":"input","kind":"bugfix","subject":"kbm: ignore buttons held when window gains focus","keywords":["gamepad-emu","focus","getasynckeystate","mouse-buttons","right-trigger"]},"files":1,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

@@ -1,0 +1,1 @@
+{"issue":284,"area":"memory","intent":{"area":"memory","kind":"bug-report","subject":"First run: coherent window stays 512 MB until uma_coherent.txt exists","keywords":["uma","coherent-window","uma_coherent","sparse-window","first-run","smoke-test"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[632]}

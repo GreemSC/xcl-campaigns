@@ -1,0 +1,1 @@
+{"issue":1455,"area":"pipelines","intent":{"area":"pipelines","kind":"feature","subject":"Proposal: RDNA2 compute interpreter as stand-in during PSO compile","keywords":["rdna2","compute-interpreter","pso-async","stand-in","compile-stall","gpu-interp"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

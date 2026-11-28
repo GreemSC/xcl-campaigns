@@ -1,0 +1,1 @@
+{"issue":2595,"area":"pipelines","intent":{"area":"pipelines","kind":"bug-report","subject":"RTX 3070: black window with 80k driver pipeline compiles queued","keywords":["pso","driver-compile","black-window","graphics-pipeline","dxil-cache","nvidia"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

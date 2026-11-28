@@ -1,0 +1,1 @@
+{"pr":1019,"status":"open","author":"ChalanaGimhanaX","area":"tooling","intent":{"area":"tooling","kind":"tooling","subject":"CI: run scripts/test_.py before the Rust build","keywords":["ci","github-actions","unittest","pr-check","python"]},"files":0,"fixes":[1000],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

@@ -1,0 +1,1 @@
+{"issue":542,"area":"memory","intent":{"area":"memory","kind":"bug-report","subject":"31 default DXC threads and 18 GB commit run Windows out of memory","keywords":["compile-threads","dxc","commit","title-memory","oom","xcl-dxc-threads"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

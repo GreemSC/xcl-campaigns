@@ -1,0 +1,1 @@
+{"issue":2033,"area":"tooling","intent":{"area":"tooling","kind":"bug-report","subject":"First Cargo build after DXIL source deletion keeps stale fingerprint","keywords":["cargo","rerun-if-changed","build-script","fingerprint","shader-cache","dxil"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[2047]}

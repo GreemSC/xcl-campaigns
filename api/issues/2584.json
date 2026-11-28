@@ -1,0 +1,1 @@
+{"issue":2584,"area":"shaders","intent":{"area":"shaders","kind":"bug-report","subject":"HLSL Wave32 pixel masks lose s21 carry on WQM triangle edges","keywords":["wave32","v_add_co_u32","carry","wqm","liveness","hlsl-pixel"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[2781]}

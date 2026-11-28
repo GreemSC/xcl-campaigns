@@ -1,0 +1,1 @@
+{"pr":2681,"status":"open","author":"luckyteagirl","area":"tooling","intent":{"area":"tooling","kind":"bugfix","subject":"Skip commented-out rows when generating the GDK table","keywords":["gen_gdk_table","comments","quote-aware","gdk","python"]},"files":2,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

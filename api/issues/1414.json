@@ -1,0 +1,1 @@
+{"issue":1414,"area":"textures","intent":{"area":"textures","kind":"bug-report","subject":"Typed buffer loads past format channels and dst_sel differ from RDNA2","keywords":["fmt_comp","dst_sel","mtbuf","mubuf","buffer-format","swizzle"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[1423]}

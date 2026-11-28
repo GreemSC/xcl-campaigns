@@ -1,0 +1,1 @@
+{"issue":1751,"area":"rendering","intent":{"area":"rendering","kind":"feature","subject":"Proposal: opt-in host DXR BLAS/TLAS and inline RayQuery traversal","keywords":["dxr","rayquery","bvh","acceleration-structure","bvh-builder","inline-raytrace"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[1815]}

@@ -1,0 +1,1 @@
+{"issue":554,"area":"rendering","intent":{"area":"rendering","kind":"bug-report","subject":"Small window shows jagged text: DWM bilinear downscale of 4K present","keywords":["present","bilinear","downscale","area-filter","swap-chain","dxgi-scaling"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

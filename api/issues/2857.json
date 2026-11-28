@@ -1,0 +1,1 @@
+{"issue":2857,"area":"other","intent":{"area":"other","kind":"other","subject":"Design proposal: GPU profile resolver from live DXGI/D3D12 queries","keywords":["gpu-profile","resolver","dxgi","d3d12","quirk-patch","shader-cache"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

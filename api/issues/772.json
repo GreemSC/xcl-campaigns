@@ -1,0 +1,1 @@
+{"issue":772,"area":"shaders","intent":{"area":"shaders","kind":"bug-report","subject":"ds_bpermute_b32 wave64 cross-half lane mapping may differ on RDNA2","keywords":["ds_bpermute_b32","wave64","rdna2","lane-permute","cross-half"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[1022]}

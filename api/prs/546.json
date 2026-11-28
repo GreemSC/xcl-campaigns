@@ -1,0 +1,1 @@
+{"pr":546,"status":"open","author":"WebIdentity1","area":"tests","intent":{"area":"tests","kind":"test","subject":"Tests: run both console wave sizes in per-instruction GPU helpers","keywords":["wave64","wave32","nvidia","hlsl","direct-dxil","lane63"]},"files":1,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

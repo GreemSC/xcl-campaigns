@@ -1,0 +1,1 @@
+{"issue":1125,"area":"linux-wine","intent":{"area":"linux-wine","kind":"bug-report","subject":"under_wine() overwrites GetLastError via failed GetProcAddress","keywords":["under_wine","getlasterror","getprocaddress","wine_get_version","setlasterror"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[1128]}

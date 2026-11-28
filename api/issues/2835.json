@@ -1,0 +1,1 @@
+{"issue":2835,"area":"shaders","intent":{"area":"shaders","kind":"bug-report","subject":"Compute S# constants lost after branch samples use sampler heap 0","keywords":["sampler-const","sampler-heap","constant_samplers","compute","s_movreld","block-start"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

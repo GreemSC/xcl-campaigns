@@ -1,0 +1,1 @@
+{"issue":2196,"area":"tooling","intent":{"area":"tooling","kind":"bug-report","subject":"coverage_gate omits --validate so its validator_failed check is dead","keywords":["coverage_gate","validate","validator_failed","direct_sweep","coverage-baseline","translate_mode"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[2202]}

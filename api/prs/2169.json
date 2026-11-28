@@ -1,0 +1,1 @@
+{"pr":2169,"status":"open","author":"alexdeliu","area":"tests","intent":{"area":"tests","kind":"test","subject":"Tests: VOP3/VOP3P cross-backend and cross-adapter VALU fuzzer","keywords":["valu-fuzz","vop3p","rdna2","dxil","hlsl","fuzz"]},"files":2,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

@@ -1,0 +1,1 @@
+{"issue":1390,"area":"other","intent":{"area":"other","kind":"bug-report","subject":"XAsync entry points dereference null XAsyncBlock before validation","keywords":["xasync","xasyncblock","null-check","xgameruntime","access-violation"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[1406]}

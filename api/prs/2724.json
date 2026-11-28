@@ -1,0 +1,1 @@
+{"pr":2724,"status":"open","author":"luckyteagirl","area":"tooling","intent":{"area":"tooling","kind":"bugfix","subject":"Scripts: validate GDK table GUIDs before generation","keywords":["gdk-table","guid","python","codegen","validation"]},"files":3,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

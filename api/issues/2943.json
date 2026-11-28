@@ -1,0 +1,1 @@
+{"issue":2943,"area":"storage","intent":{"area":"storage","kind":"bug-report","subject":"GetDiskFreeSpaceW/A report host capacity for PLS quota paths","keywords":["getdiskfreespace","getdiskfreespaceex","pls","cluster-geometry","quota","vfs"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[3030]}

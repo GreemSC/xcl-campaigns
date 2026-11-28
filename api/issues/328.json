@@ -1,0 +1,1 @@
+{"issue":328,"area":"audio","intent":{"area":"audio","kind":"bug-report","subject":"XAudio2: stale voice-pointer reuse (ABA) on engine release","keywords":["xaudio2","create_source_voice","destroy_voice","aba","voice-pointer","decoded-voice"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[456]}

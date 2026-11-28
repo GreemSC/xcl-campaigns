@@ -1,0 +1,1 @@
+{"issue":2839,"area":"rendering","intent":{"area":"rendering","kind":"bug-report","subject":"D3D12.X: preparation::run leaks ACTIVE/SCREEN if ensure_window fails","keywords":["ensure-window","preparation","wm-paint","active-flag","window-thread","kbm-attach"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[2845,2847]}

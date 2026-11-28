@@ -1,0 +1,1 @@
+{"issue":324,"area":"storage","intent":{"area":"storage","kind":"bug-report","subject":"XGameSave: failed XGameSaveSubmitUpdate leaves update half applied","keywords":["gamesave","atomic-update","partial-write","submit-update","blob-rename"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[543]}

@@ -1,0 +1,1 @@
+{"issue":1360,"area":"gpu-sync","intent":{"area":"gpu-sync","kind":"bug-report","subject":"term() treats S_SETPC_B64 as fallthrough in multi-block ES+GS geometry","keywords":["s_setpc_b64","term","f_indirect","geometry","structured-span","es-gs"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[1375]}

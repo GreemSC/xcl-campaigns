@@ -1,0 +1,1 @@
+{"issue":2421,"area":"saves","intent":{"area":"saves","kind":"bug-report","subject":"blob_enumeration test: DirEntry::metadata may return stale file size","keywords":["direntry-metadata","ntfs","gamesave","file-size","movefileexw"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[2521]}

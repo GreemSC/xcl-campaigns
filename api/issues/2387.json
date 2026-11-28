@@ -1,0 +1,1 @@
+{"issue":2387,"area":"shaders","intent":{"area":"shaders","kind":"bug-report","subject":"direct_sweep reports translator panics as timeouts","keywords":["direct-sweep","recv-timeout","mpsc","panic","disconnected","translate-mode"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

@@ -1,0 +1,1 @@
+{"schema":"xcl-campaigns/v2/file","generated_at":"2026-11-28T15:19:27Z","synced_until":"2026-11-28T15:18:48Z","ai_fields":["subject"],"data":{"path":"crates/xcl/src/gpu/tdr.rs","open_prs":[{"number":2748,"author":"Raul-Paiva","subject":"Log whether a D3D12 device removal was Windows GPU timeout (TDR)"}]}}

@@ -1,0 +1,1 @@
+{"issue":326,"area":"saves","intent":{"area":"saves","kind":"bug-report","subject":"XGameSave: long container names make folder creation fail","keywords":["xgamesave","container-name","path-length","create-dir","enc-name","e-fail"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[481,492]}

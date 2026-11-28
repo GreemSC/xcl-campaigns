@@ -1,0 +1,1 @@
+{"issue":2401,"area":"rendering","intent":{"area":"rendering","kind":"bug-report","subject":"dev_create_descriptor_heap_x dereferences NULL ppv on S_FALSE","keywords":["create_descriptor_heap","null-ppv","s_false","d3d12x","descriptor-heap"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[2444]}

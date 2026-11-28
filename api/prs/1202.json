@@ -1,0 +1,1 @@
+{"pr":1202,"status":"open","author":"b3IKK","area":"other","intent":{"area":"other","kind":"bugfix","subject":"XGameRuntime: avoid signed overflow in XUserCompare","keywords":["xusercompare","signed-overflow","isize","pointer-compare","xgameruntime"]},"files":1,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

@@ -1,0 +1,1 @@
+{"issue":1855,"area":"tooling","intent":{"area":"tooling","kind":"feature","subject":"Opt-in artifact directory and manifest for scripts/smoke.ps1 runs","keywords":["smoke-ps1","artifacts","manifest","xcl-press-at","dxil-cache","world-entry"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[1863]}

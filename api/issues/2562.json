@@ -1,0 +1,1 @@
+{"issue":2562,"area":"tooling","intent":{"area":"tooling","kind":"feature","subject":"Run AMD RGA and NVIDIA Nsight analyzers on shader artifact manifests","keywords":["rga","nsight","dxil","shader-analyzer","manifest","vgpr"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

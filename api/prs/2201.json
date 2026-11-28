@@ -1,0 +1,1 @@
+{"pr":2201,"status":"open","author":"nar001","area":"other","intent":{"area":"other","kind":"refactor","subject":"Replace fetch_update with try_update in d3d12x and xgameruntime","keywords":["fetch_update","try_update","d3d12x","xgameruntime","real-rs"]},"files":2,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

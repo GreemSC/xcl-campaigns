@@ -1,0 +1,1 @@
+{"issue":2366,"area":"saves","intent":{"area":"saves","kind":"bug-report","subject":"blobs_of misses uppercase XCLTMP temp files on Windows","keywords":["blobs_of","ignore-ascii-case","ntfs","gamesave","xcltmp","temp-files"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[2373]}

@@ -1,0 +1,1 @@
+{"issue":2883,"area":"pipelines","intent":{"area":"pipelines","kind":"question","subject":"Verify cost of eager disk path hashing on compute PSO RAM-cache hits","keywords":["compute-pso","dxil","fnv64","driver-cache","disk-path","ram-cache"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[2909,2998]}

@@ -1,0 +1,1 @@
+{"pr":1570,"status":"open","author":"Rj45n","area":"tests","intent":{"area":"tests","kind":"test","subject":"Tests: cover v_fma_mix half selection, modifiers and clamp","keywords":["v_fma_mix","mixlo_mixhi","op_sel","neg_hi","clamp","f16_halves"]},"files":1,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

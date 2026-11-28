@@ -1,0 +1,1 @@
+{"issue":1161,"area":"textures","intent":{"area":"textures","kind":"bug-report","subject":"format_bytes returns 4 for 16-bit packed formats 133, 134 and 136","keywords":["format_bytes","b5g6r5","b5g5r5a1","b4g4r4a4","typed-buffer","stride"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[1165]}

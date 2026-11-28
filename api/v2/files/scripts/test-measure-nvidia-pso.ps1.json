@@ -1,0 +1,1 @@
+{"schema":"xcl-campaigns/v2/file","generated_at":"2026-11-28T15:19:27Z","synced_until":"2026-11-28T15:18:48Z","ai_fields":["subject"],"data":{"path":"scripts/test-measure-nvidia-pso.ps1","open_prs":[{"number":1849,"author":"Daydream3r","subject":"Scripts: measure NVIDIA PSO creation with temporary cache-off profile"}]}}

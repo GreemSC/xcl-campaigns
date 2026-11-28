@@ -1,0 +1,1 @@
+{"pr":557,"status":"open","author":"wileyGray","area":"tooling","intent":{"area":"tooling","kind":"tooling","subject":"Add offline triage_d3d12.py for unknown D3D12.X slots and IIDs","keywords":["triage","d3d12x","iid","slot","log-parsing","report"]},"files":3,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

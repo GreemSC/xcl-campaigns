@@ -1,0 +1,1 @@
+{"issue":576,"area":"other","intent":{"area":"other","kind":"bug-report","subject":"XAsync: stale work item, closed queue handle, early wait return","keywords":["xasync","xtaskqueue","work-item","completion-callback","xasyncgetstatus"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

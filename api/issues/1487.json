@@ -1,0 +1,1 @@
+{"issue":1487,"area":"tests","intent":{"area":"tests","kind":"bug-report","subject":"Parallel library tests hit access violation 0xC0000005 on Windows","keywords":["access-violation","test-threads","parallel-tests","readback","shared-state","big-compile"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[1600,1628,1671]}

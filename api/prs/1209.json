@@ -1,0 +1,1 @@
+{"pr":1209,"status":"open","author":"anakatt","area":"other","intent":{"area":"other","kind":"bugfix","subject":"Reject non-finite mouse_sensitivity values in xcl run config","keywords":["mouse_sensitivity","f32","nan","infinity","boot-json","config"]},"files":1,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

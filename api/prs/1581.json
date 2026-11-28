@@ -1,0 +1,1 @@
+{"pr":1581,"status":"open","author":"b3IKK","area":"audio","intent":{"area":"audio","kind":"bugfix","subject":"XMA2 skip_packets 0xFF EOF sentinel no longer decremented","keywords":["xma2","skip-packets","eof-sentinel","advance-stream","packet-header"]},"files":1,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

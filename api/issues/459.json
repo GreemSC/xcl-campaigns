@@ -1,0 +1,1 @@
+{"issue":459,"area":"other","intent":{"area":"other","kind":"performance","subject":"Perf: SIMD candidates in sparse scan, XMA IMDCT and sample conversion","keywords":["simd","avx2","sse2","imdct","sparse-scan"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

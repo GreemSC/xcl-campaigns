@@ -1,0 +1,1 @@
+{"issue":1407,"area":"shaders","intent":{"area":"shaders","kind":"bug-report","subject":"Log chosen wave mode per PSO class at first compile","keywords":["wave-mode","wave32","wave64","pso","diagnostics","lane-remap"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[1410]}

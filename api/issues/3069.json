@@ -1,0 +1,1 @@
+{"issue":3069,"area":"gpu-sync","intent":{"area":"gpu-sync","kind":"bug-report","subject":"Deadlock between PAGES and COPY_SCRATCH locks during flush_zero_tiles","keywords":["deadlock","lock-order","copy-scratch","flush-zero-tiles","d3d12","late-release"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[3111]}

@@ -1,0 +1,1 @@
+{"pr":1166,"status":"open","author":"b3IKK","area":"shaders","intent":{"area":"shaders","kind":"bugfix","subject":"Zero VDATA on out-of-bounds buffer_atomic__x2 with GLC set","keywords":["buffer_atomic","x2","glc","oob","vdata","atomic64"]},"files":2,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

@@ -1,0 +1,1 @@
+{"pr":1159,"status":"open","author":"b3IKK","area":"shaders","intent":{"area":"shaders","kind":"bugfix","subject":"Accept 32-bit SSRC0 in salu64 for s_bfm_b64 (m0, exec_hi, s105)","keywords":["s_bfm_b64","salu64","ssrc0","read64","m0","sgpr-operand"]},"files":2,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

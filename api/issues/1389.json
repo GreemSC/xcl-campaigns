@@ -1,0 +1,1 @@
+{"issue":1389,"area":"other","intent":{"area":"other","kind":"bug-report","subject":"XGameRuntime use-after-free in device association callbacks","keywords":["xuser","association","use-after-free","unregister","task-queue","callback"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[1418]}

@@ -1,0 +1,1 @@
+{"issue":161,"area":"loader","intent":{"area":"loader","kind":"bug-report","subject":"Early init int3: pack-name table is empty when validator runs","keywords":["pack-name","joaat","directstorage","e_nointerface","gameinput","int3"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

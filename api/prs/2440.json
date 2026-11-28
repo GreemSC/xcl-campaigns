@@ -1,0 +1,1 @@
+{"pr":2440,"status":"open","author":"venetanji","area":"tests","intent":{"area":"tests","kind":"test","subject":"Tests: exercise direct geometry in expanded heap windows","keywords":["heap-windows","dxil-direct","ngg","legacy-gs","wave64"]},"files":1,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

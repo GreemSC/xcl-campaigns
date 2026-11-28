@@ -1,0 +1,1 @@
+{"issue":2389,"area":"memory","intent":{"area":"memory","kind":"bug-report","subject":"D3D12.X: sync_title_buffers re-syncs buffer mirrors on every draw","keywords":["sync_title_buffers","virtualquery","index-buffer","vertex-buffer","write-watch","drawindexed"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

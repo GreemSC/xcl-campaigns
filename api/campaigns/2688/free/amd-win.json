@@ -1,0 +1,1 @@
+{"campaign":2688,"class":"amd-win","reference_commit":null,"measurements_needing_this_class":[{"task":"A9","title":"Test suite check of nvidia-dev and amd-dev branches on the AMD Linux Wine lane","need":1,"commits_so_far":[],"planned_by":[],"need_after_planned":1}],"not_for_this_class":[],"newer_version":"api/v2/campaigns/2688/free/amd-win.json","free_code_tasks":["C6","A5"]}

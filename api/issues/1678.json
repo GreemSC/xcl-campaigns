@@ -1,0 +1,1 @@
+{"issue":1678,"area":"other","intent":{"area":"other","kind":"bug-report","subject":"RTX 4060: black screen then access violation after first menu","keywords":["rtx-4060","black-screen","access-violation","nvidia","write-at-null"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

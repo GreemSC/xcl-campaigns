@@ -1,0 +1,1 @@
+{"issue":679,"area":"shaders","intent":{"area":"shaders","kind":"bug-report","subject":"v_fma_legacy_f32 returns -0 for zero product plus -0, should be +0","keywords":["v_fma_legacy_f32","v_fmac_legacy_f32","signed-zero","fma-legacy","emit"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

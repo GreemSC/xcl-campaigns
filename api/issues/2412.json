@@ -1,0 +1,1 @@
+{"issue":2412,"area":"shaders","intent":{"area":"shaders","kind":"bug-report","subject":"Direct DXIL: s_sendmsg MSG_GS_DONE drops GS emit/cut operations","keywords":["s_sendmsg","msg_gs_done","geometry","emit-cut","gs-emit","dxil"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[2485,2494,2509]}

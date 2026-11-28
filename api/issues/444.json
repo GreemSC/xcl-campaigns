@@ -1,0 +1,1 @@
+{"issue":444,"area":"network","intent":{"area":"network","kind":"bug-report","subject":"XCL_NETWORK0 leaves ConnectEx connecting via WSAIoctl","keywords":["connectex","wsaioctl","xcl-network","connect","netoff","completion-port"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[462]}

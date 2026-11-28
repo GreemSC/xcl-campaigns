@@ -1,0 +1,1 @@
+{"issue":2461,"area":"rendering","intent":{"area":"rendering","kind":"bug-report","subject":"Descriptor heap binding order and UAV clear/null desc bugs in d3d12x","keywords":["descriptor-heaps","root-signature","clear-uav","null-uav","copy-descriptors","heap-directly-indexed"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

@@ -1,0 +1,1 @@
+{"issue":2386,"area":"audio","intent":{"area":"audio","kind":"bug-report","subject":"XAudio2 GetState leaks freed DecodedBuffer in current_buffer_context","keywords":["xaudio2","getstate","use-after-free","buffer-context","race"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[2410]}

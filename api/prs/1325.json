@@ -1,0 +1,1 @@
+{"pr":1325,"status":"open","author":"anakatt","area":"other","intent":{"area":"other","kind":"performance","subject":"Borrow gamertag components instead of copying to temporary String","keywords":["gamertag","utf-8","borrow","char-count","xgameruntime"]},"files":1,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

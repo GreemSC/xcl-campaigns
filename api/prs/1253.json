@@ -1,0 +1,1 @@
+{"pr":1253,"status":"open","author":"anakatt","area":"storage","intent":{"area":"storage","kind":"bugfix","subject":"Keep NUL-named title data paths writable on Windows","keywords":["nul","null-device","windows-reserved","path-name","directory-create"]},"files":1,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

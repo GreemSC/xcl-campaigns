@@ -1,0 +1,1 @@
+{"schema":"xcl-campaigns/v2/file","generated_at":"2026-11-28T15:19:27Z","synced_until":"2026-11-28T15:18:48Z","ai_fields":["subject"],"data":{"path":"crates/xcl/src/gpu/recomp/code_loads.rs","open_prs":[{"number":2229,"author":"MacieGx","subject":"Recompiler: s_getpc_b64 loads read the programs constant data"}]}}

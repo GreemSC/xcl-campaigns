@@ -1,0 +1,1 @@
+{"issue":664,"area":"shaders","intent":{"area":"shaders","kind":"bug-report","subject":"xcl disasm drops VOP3 modifiers, EXP targets and VINTRP attributes","keywords":["vop3","neg-abs","omod","exp-target","vintrp","disasm"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[687,706]}

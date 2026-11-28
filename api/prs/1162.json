@@ -1,0 +1,1 @@
+{"pr":1162,"status":"open","author":"b3IKK","area":"shaders","intent":{"area":"shaders","kind":"bugfix","subject":"Map SDSTnull (125) to Dst::Null in ENC_SOPK scalar ops","keywords":["sopk","sdst-null","s_addk_i32","s_movk_i32","dst-null","hlsl"]},"files":2,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

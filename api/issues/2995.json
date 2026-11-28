@@ -1,0 +1,1 @@
+{"issue":2995,"area":"shaders","intent":{"area":"shaders","kind":"bug-report","subject":"Offline compute precompile uses zero PSO flags, misses runtime cache","keywords":["compute","pso-flags","precompile","disk-cache","offline-shaders","descriptor-parity"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[3001]}

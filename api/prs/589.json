@@ -1,0 +1,1 @@
+{"pr":589,"status":"open","author":"luna020924","area":"tooling","intent":{"area":"tooling","kind":"bugfix","subject":"smoke.ps1: show stderr and exit code when a run exits early","keywords":["smoke-ps1","stderr","exit-code","xcl-toml","startup-error"]},"files":2,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

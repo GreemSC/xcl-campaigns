@@ -1,0 +1,1 @@
+{"issue":2088,"area":"pipelines","intent":{"area":"pipelines","kind":"bug-report","subject":"Swarm: reduce cold PSO compile time to first playable frame","keywords":["cold-pso","dxil","compact-dispatch","branch-targets","startup-manifest","nvidia"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

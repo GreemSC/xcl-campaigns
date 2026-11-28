@@ -1,0 +1,1 @@
+{"pr":558,"status":"open","author":"amazedturnip","area":"shaders","intent":{"area":"shaders","kind":"test","subject":"Tests: Xbox shader container, FSSM and pack parsing contracts","keywords":["xdat","xbch","fssm","zlib","is_data_block","dxil"]},"files":1,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

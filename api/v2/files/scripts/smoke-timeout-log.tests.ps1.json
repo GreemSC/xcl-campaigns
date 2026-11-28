@@ -1,0 +1,1 @@
+{"schema":"xcl-campaigns/v2/file","generated_at":"2026-11-28T15:19:27Z","synced_until":"2026-11-28T15:18:48Z","ai_fields":["subject"],"data":{"path":"scripts/smoke-timeout-log.tests.ps1","open_prs":[{"number":1270,"author":"vladbondarenko97","subject":"smoke.ps1: read xcl.log from data dir when a timed-out run is killed"}]}}

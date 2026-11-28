@@ -1,0 +1,1 @@
+{"schema":"xcl-campaigns/v2/file","generated_at":"2026-11-28T15:19:27Z","synced_until":"2026-11-28T15:18:48Z","ai_fields":["subject"],"data":{"path":"crates/xcl-gui/src/main.rs","open_prs":[{"number":1719,"author":"nikitronick-crypto","subject":"Add xcl-gui crate: egui window to run XCL, watch logs, precompile"}]}}

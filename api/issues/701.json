@@ -1,0 +1,1 @@
+{"issue":701,"area":"shaders","intent":{"area":"shaders","kind":"bug-report","subject":"Recompiler: first structured form runs code jumps skip, skips else","keywords":["structured-form","jump-skip","else-branch","emit-structured","control-flow"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[765]}

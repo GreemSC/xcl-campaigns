@@ -1,0 +1,1 @@
+{"issue":2944,"area":"saves","intent":{"area":"saves","kind":"bug-report","subject":"XGameSave delete reports S_OK when a handle blocks a container blob","keywords":["xgamesave","delete-container","sharing-violation","file-share-delete","hresult-0x80070020"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[3019]}

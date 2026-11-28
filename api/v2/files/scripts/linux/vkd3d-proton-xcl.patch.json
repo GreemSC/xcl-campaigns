@@ -1,0 +1,1 @@
+{"schema":"xcl-campaigns/v2/file","generated_at":"2026-11-28T15:19:27Z","synced_until":"2026-11-28T15:18:48Z","ai_fields":["subject"],"data":{"path":"scripts/linux/vkd3d-proton-xcl.patch","open_prs":[{"number":775,"author":"gccody","subject":"Build vkd3d-proton against dxil-spirv 53aac41 to fix compute hangs"}]}}

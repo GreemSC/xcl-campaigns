@@ -1,0 +1,1 @@
+{"issue":1164,"area":"gpu-sync","intent":{"area":"gpu-sync","kind":"bug-report","subject":"Title hits assert 0x80000003 after 170 s black screen in world","keywords":["wait64","gate-timeout","cross-queue","nvidia","pso-wait"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

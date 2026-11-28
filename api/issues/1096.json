@@ -1,0 +1,1 @@
+{"issue":1096,"area":"shaders","intent":{"area":"shaders","kind":"bug-report","subject":"Shader compile: NVIDIA driver 100 s per 18k-instruction CS","keywords":["dxc","dxil","nvidia","shader-compile","compile-time","opt-level"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

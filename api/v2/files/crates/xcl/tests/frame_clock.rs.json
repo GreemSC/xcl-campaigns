@@ -1,0 +1,1 @@
+{"schema":"xcl-campaigns/v2/file","generated_at":"2026-11-28T15:19:27Z","synced_until":"2026-11-28T15:18:48Z","ai_fields":["subject"],"data":{"path":"crates/xcl/tests/frame_clock.rs","open_prs":[{"number":2367,"author":"amazedturnip","subject":"Add integration tests for D3D12.X frame clock events and statistics"}]}}

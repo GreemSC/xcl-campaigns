@@ -1,0 +1,1 @@
+{"schema":"xcl-campaigns/v2/file","generated_at":"2026-11-28T15:19:27Z","synced_until":"2026-11-28T15:18:48Z","ai_fields":["subject"],"data":{"path":"crates/xcl/tests/d3d12_reserved_tiling_and_features.rs","open_prs":[{"number":1786,"author":"Vadson159","subject":"Tests: CheckFeatureSupport, reserved resource and tiling host parity"}]}}

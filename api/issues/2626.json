@@ -1,0 +1,1 @@
+{"issue":2626,"area":"shaders","intent":{"area":"shaders","kind":"bug-report","subject":"Device removed on DRED page fault at GPU VA 0x0 in compute dispatch","keywords":["device-removed","dred","page-fault","compute-dispatch","executeindirect","amd-rdna4"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

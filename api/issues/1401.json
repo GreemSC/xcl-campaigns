@@ -1,0 +1,1 @@
+{"issue":1401,"area":"crash-reporting","intent":{"area":"crash-reporting","kind":"bug-report","subject":"Null write crash at menu-to-world transition on RTX 4080 Super","keywords":["null-write","access-violation","wave32","menu-transition","0xc0000005","fade"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

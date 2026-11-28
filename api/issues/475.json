@@ -1,0 +1,1 @@
+{"issue":475,"area":"gpu-sync","intent":{"area":"gpu-sync","kind":"bug-report","subject":"Unmapped title texture tiles may race with submitted draws","keywords":["unmap-superseded","tile-mapping","fence","vram","submitted-draws"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[594]}

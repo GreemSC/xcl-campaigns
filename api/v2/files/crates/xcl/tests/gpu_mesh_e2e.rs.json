@@ -1,0 +1,1 @@
+{"schema":"xcl-campaigns/v2/file","generated_at":"2026-11-28T15:19:27Z","synced_until":"2026-11-28T15:18:48Z","ai_fields":["subject"],"data":{"path":"crates/xcl/tests/gpu_mesh_e2e.rs","open_prs":[{"number":977,"author":"ChalanaGimhanaX","subject":"Add game-free GPU tests for two-pass MS and ES+GS PSO hooks"}]}}

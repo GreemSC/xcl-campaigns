@@ -1,0 +1,1 @@
+{"issue":529,"area":"rendering","intent":{"area":"rendering","kind":"bug-report","subject":"Plan: pass-through vertex shader path for GPUs without mesh shaders","keywords":["mesh-shader","vertex-shader","pass-through","two-pass","rdna1","vertex-pulling"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

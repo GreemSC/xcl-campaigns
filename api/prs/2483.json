@@ -1,0 +1,1 @@
+{"pr":2483,"status":"open","author":"anes66","area":"tests","intent":{"area":"tests","kind":"test","subject":"Tests: cover XG copy argument forms across pitched subresources","keywords":["xg","vtable","copy-argument","pitch","subresource","stack-slot"]},"files":1,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

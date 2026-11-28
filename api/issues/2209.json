@@ -1,0 +1,1 @@
+{"issue":2209,"area":"audio","intent":{"area":"audio","kind":"bug-report","subject":"Audio is static from the first menu sound on integration-main","keywords":["opus","audio-output","static-noise","decode","xopus","wav-dump"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

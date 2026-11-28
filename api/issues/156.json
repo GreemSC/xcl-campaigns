@@ -1,0 +1,1 @@
+{"issue":156,"area":"pipelines","intent":{"area":"pipelines","kind":"bug-report","subject":"RTX 5070: graphics PSO builds stall in nvgpucomp64 on large DXIL","keywords":["nvgpucomp64","dxil","wave64","pso-compile","chad-xdsp","xmemmap-scatter"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[214]}

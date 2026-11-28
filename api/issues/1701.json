@@ -1,0 +1,1 @@
+{"issue":1701,"area":"linux-wine","intent":{"area":"linux-wine","kind":"bug-report","subject":"Proton: swapped console vtables break vkd3d-proton, shared fences hang","keywords":["vkd3d-proton","lpvtbl","shared-fence","write-watch","wine","proton"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

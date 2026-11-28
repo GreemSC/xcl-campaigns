@@ -1,0 +1,1 @@
+{"issue":962,"area":"input","intent":{"area":"input","kind":"bug-report","subject":"Mouse look ignores absolute-position mouse input (RDP, VMs)","keywords":["wm_input","raw_input","mouse_move_absolute","kbm","rdp","absolute"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

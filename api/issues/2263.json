@@ -1,0 +1,1 @@
+{"issue":2263,"area":"tooling","intent":{"area":"tooling","kind":"bug-report","subject":"HIGHENTROPYVA opt-out reaches only the bin, not integration tests","keywords":["high-entropy-va","build-rs","link-arg","integration-tests","rustc-link-arg","aslr"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[2292]}

@@ -1,0 +1,1 @@
+{"issue":2932,"area":"storage","intent":{"area":"storage","kind":"bug-report","subject":"GetDiskFreeSpaceA misdecodes OEM-encoded console paths","keywords":["getdiskfreespacea","oem-codepage","setfileapistooem","getdiskfreespaceexa","file-api","acp"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[2949]}

@@ -1,0 +1,1 @@
+{"pr":1181,"status":"open","author":"LANgmas","area":"tests","intent":{"area":"tests","kind":"test","subject":"Tests: report missing XCL_SAMPLE_ data as SKIPPED, not silent ok","keywords":["xcl_sample","test-skip","sample-data","test.ps1","skipped"]},"files":6,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

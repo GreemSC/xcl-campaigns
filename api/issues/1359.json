@@ -1,0 +1,1 @@
+{"issue":1359,"area":"textures","intent":{"area":"textures","kind":"bug-report","subject":"title_textures COM use-after-free on concurrent res_release","keywords":["d3d12","addref","use-after-free","res_release","title_textures","refcount"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[1404,1527]}

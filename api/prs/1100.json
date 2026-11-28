@@ -1,0 +1,1 @@
+{"pr":1100,"status":"open","author":"akimfomin","area":"tests","intent":{"area":"tests","kind":"test","subject":"Add GPU test comparing FMA abs/neg/clamp against Scarlett Layer","keywords":["fma","abs","neg","clamp","wave64","oracle"]},"files":1,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

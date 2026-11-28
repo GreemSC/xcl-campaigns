@@ -1,0 +1,1 @@
+{"issue":2632,"area":"tests","intent":{"area":"tests","kind":"bug-report","subject":"13 tests fail on RX 9070 XT at amd-dev 6a0bb5b test binary aborts","keywords":["test-abort","pso-worker","misaligned-pointer","windows-core","rx-9070-xt","amd-dev"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

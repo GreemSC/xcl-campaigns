@@ -1,0 +1,1 @@
+{"issue":1889,"area":"shaders","intent":{"area":"shaders","kind":"bug-report","subject":"Per-lane DxilIr ballot and read_lane skip tails update, bad PHI preds","keywords":["ballot","read-lane","spin-exchange","phi-predecessor","split-wave64"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

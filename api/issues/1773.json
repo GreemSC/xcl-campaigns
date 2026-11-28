@@ -1,0 +1,1 @@
+{"issue":1773,"area":"memory","intent":{"area":"memory","kind":"bug-report","subject":"D3D12.X video memory high: title memory and textures mirrored to VRAM","keywords":["vram","sparse-window","d32s8","pool-heap","texture-copy"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[2573]}

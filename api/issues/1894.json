@@ -1,0 +1,1 @@
+{"issue":1894,"area":"shaders","intent":{"area":"shaders","kind":"bug-report","subject":"Direct DXIL: TG_SIZE truncation, alloca align 0 and PSV0 TGSM size","keywords":["tg-size","alloca","inalloca","psv0","double-extensions"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

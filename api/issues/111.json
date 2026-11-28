@@ -1,0 +1,1 @@
+{"issue":111,"area":"shaders","intent":{"area":"shaders","kind":"bug-report","subject":"f16 add/sub/FMA under directed rounding double-rounded through f32","keywords":["f16","round-mode","rtz","double-rounding","v_add_f16","v_fma_f16"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[842]}

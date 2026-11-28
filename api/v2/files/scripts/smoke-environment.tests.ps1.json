@@ -1,0 +1,1 @@
+{"schema":"xcl-campaigns/v2/file","generated_at":"2026-11-28T15:19:27Z","synced_until":"2026-11-28T15:18:48Z","ai_fields":["subject"],"data":{"path":"scripts/smoke-environment.tests.ps1","open_prs":[{"number":521,"author":"wileyGray","subject":"Scripts: restore XCL_ environment in smoke.ps1 after child starts"}]}}

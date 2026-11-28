@@ -1,0 +1,1 @@
+{"issue":1394,"area":"memory","intent":{"area":"memory","kind":"bug-report","subject":"mem_heap_release frees HEAP_UMA block before in-flight GPU work ends","keywords":["heap_uma","mem_heap_release","late_release","uma-free","sparse-free","placed-resource"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[1457]}

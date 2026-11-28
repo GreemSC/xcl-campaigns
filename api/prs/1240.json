@@ -1,0 +1,1 @@
+{"pr":1240,"status":"open","author":"AlpPesen","area":"audio","intent":{"area":"audio","kind":"performance","subject":"acphal: AVX2 i16-to-f32 PCM conversion with scalar fallback","keywords":["avx2","i16-to-f32","acphal","simd","pcm","opus"]},"files":1,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

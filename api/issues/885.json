@@ -1,0 +1,1 @@
+{"issue":885,"area":"shaders","intent":{"area":"shaders","kind":"bug-report","subject":"VGPR tracking misses non-sequential MIMG NSA address registers","keywords":["vgpr_uses","mimg","nsa","vaddr","max_vgpr","rdna2"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

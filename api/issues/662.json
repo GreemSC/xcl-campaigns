@@ -1,0 +1,1 @@
+{"issue":662,"area":"crash-reporting","intent":{"area":"crash-reporting","kind":"bug-report","subject":"XG CopyFromSubresource arg shift causes memcpy AV, then null write","keywords":["copyfromsubresource","copy_from","row-pitch","argument-shift","null-write","wait64bitvaluex"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

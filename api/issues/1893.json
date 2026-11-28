@@ -1,0 +1,1 @@
+{"issue":1893,"area":"memory","intent":{"area":"memory","kind":"bug-report","subject":"Direct DXIL raw buffer bounds checks wrap 32-bit and escape OOB","keywords":["raw-buffer","bounds-check","wraparound","buffer-atomic","s-buffer-load"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

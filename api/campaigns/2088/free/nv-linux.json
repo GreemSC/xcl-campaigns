@@ -1,0 +1,1 @@
+{"campaign":2088,"class":"nv-linux","reference_commit":null,"measurements_needing_this_class":[{"task":"A6","title":"Integration test of the merged #2088 close-out PR shortlist on main","need":1,"commits_so_far":[],"planned_by":[],"need_after_planned":1}],"not_for_this_class":[],"newer_version":"api/v2/campaigns/2088/free/nv-linux.json","free_code_tasks":["A13"]}

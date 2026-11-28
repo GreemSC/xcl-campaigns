@@ -1,0 +1,1 @@
+{"schema":"xcl-campaigns/v2/file","generated_at":"2026-11-28T15:19:27Z","synced_until":"2026-11-28T15:18:48Z","ai_fields":["subject"],"data":{"path":"deny.toml","open_prs":[{"number":276,"author":"sombraSoft","subject":"CI: add cargo-deny licence, bans and sources check"},{"number":599,"author":"Kaairim","subject":"CI: check dependency licenses and sources with cargo-deny"}]}}

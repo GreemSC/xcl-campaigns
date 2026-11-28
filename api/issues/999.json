@@ -1,0 +1,1 @@
+{"issue":999,"area":"storage","intent":{"area":"storage","kind":"bug-report","subject":"VFS: plain read opens check the file system three times before open","keywords":["open-decision","vfs","metadata","createfilew","read-path"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[1092]}

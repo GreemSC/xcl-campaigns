@@ -1,0 +1,1 @@
+{"issue":2214,"area":"tooling","intent":{"area":"tooling","kind":"bug-report","subject":"Pin Rust toolchain and use --locked in CI and scripts/test.ps1","keywords":["rust-toolchain","cargo-locked","rust-version","msrv","ci-pin","cargo-lock"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[2295]}

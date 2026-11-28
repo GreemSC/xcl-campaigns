@@ -1,0 +1,1 @@
+{"issue":2396,"area":"textures","intent":{"area":"textures","kind":"performance","subject":"upload only subresources that changed title-texture pages touch","keywords":["subresource","detile","mip-level","subresources_of_all","gfx10-layout"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

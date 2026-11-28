@@ -1,0 +1,1 @@
+{"pr":566,"status":"open","author":"wileyGray","area":"tooling","intent":{"area":"tooling","kind":"tooling","subject":"triage_d3d12.py: add --baseline and --fail-on-new comparison","keywords":["triage","d3d12","baseline","fail-on-new","slot","iid"]},"files":3,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

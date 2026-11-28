@@ -1,0 +1,1 @@
+{"issue":2586,"area":"storage","intent":{"area":"storage","kind":"feature","subject":"Opt-in DX12 compute BCPack offload for DirectStorage BC textures","keywords":["bcpack","directstorage","bc7","dx12-compute","bc1-bc5"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

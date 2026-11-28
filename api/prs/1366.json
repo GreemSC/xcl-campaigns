@@ -1,0 +1,1 @@
+{"pr":1366,"status":"open","author":"Vadson159","area":"tests","intent":{"area":"tests","kind":"test","subject":"Add GPU integration tests for RDNA2 DPP16, DPP8 and SDWA ops","keywords":["dpp16","dpp8","sdwa","vopc","wave32","dxc"]},"files":1,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

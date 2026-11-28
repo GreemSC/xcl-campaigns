@@ -1,0 +1,1 @@
+{"issue":940,"area":"textures","intent":{"area":"textures","kind":"bug-report","subject":"Reserved R32G8X24_TYPELESS depth textures refused, moved to arena","keywords":["reserved-resource","r32g8x24","depth-stencil","arena-fallback","debug-layer","tiled-resource"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[1342]}

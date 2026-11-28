@@ -1,0 +1,1 @@
+{"issue":1508,"area":"rendering","intent":{"area":"rendering","kind":"bug-report","subject":"Crash 0x80000003 at game_scarlett_master.exe+0x2474606 after setup","keywords":["d3d12-xs","unimplemented","0x80000003","breakpoint","setup-menu","console-ext"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

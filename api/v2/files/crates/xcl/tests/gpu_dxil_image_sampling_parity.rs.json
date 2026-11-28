@@ -1,0 +1,1 @@
+{"schema":"xcl-campaigns/v2/file","generated_at":"2026-11-28T15:19:27Z","synced_until":"2026-11-28T15:18:48Z","ai_fields":["subject"],"data":{"path":"crates/xcl/tests/gpu_dxil_image_sampling_parity.rs","open_prs":[{"number":2276,"author":"Vadson159","subject":"Add DXIL vs HLSL GPU parity tests for MIMG image ops"}]}}

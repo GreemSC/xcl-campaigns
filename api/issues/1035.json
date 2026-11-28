@@ -1,0 +1,1 @@
+{"issue":1035,"area":"pipelines","intent":{"area":"pipelines","kind":"bug-report","subject":"Pipeline preload compute build never ends memory grows until OOM","keywords":["pso-preload","compute","dxil-spirv","memory-leak","xcl-pso-pre","used-pipelines"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

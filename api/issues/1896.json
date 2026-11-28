@@ -1,0 +1,1 @@
+{"issue":1896,"area":"shaders","intent":{"area":"shaders","kind":"bug-report","subject":"dxc cached_only leaks TLS on panic shaders --direct misreports panics","keywords":["cached-only","thread-local","dxc-defer","recv-timeout","catch-unwind"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

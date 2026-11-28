@@ -1,0 +1,1 @@
+{"issue":3084,"area":"kernel","intent":{"area":"kernel","kind":"bug-report","subject":"Crash at +0x4dbd74d: -1 index after skipped ExecuteIndirect calls","keywords":["executeindirect","out-of-range","indirect-args","access-violation","shader-heap","nvidia"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

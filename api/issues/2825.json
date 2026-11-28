@@ -1,0 +1,1 @@
+{"issue":2825,"area":"memory","intent":{"area":"memory","kind":"feature","subject":"Memory: decommit idle sparse-window CPU copies, read back on touch","keywords":["sparse-window","decommit","write-watch","gpu-tile","readback","commit"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

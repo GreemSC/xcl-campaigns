@@ -1,0 +1,1 @@
+{"pr":1140,"status":"open","author":"anakatt","area":"tooling","intent":{"area":"tooling","kind":"bugfix","subject":"disasm: exit with code 2 when --fssm output cannot be written","keywords":["disasm","fssm","exit-code","write-error","cli"]},"files":2,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

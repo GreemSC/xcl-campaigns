@@ -1,0 +1,1 @@
+{"issue":2992,"area":"network","intent":{"area":"network","kind":"bug-report","subject":"Default XCL_NETWORK to off so crash dumps aren't uploaded by default","keywords":["xcl_network","netoff","minidump","crash-dump","network-block","default-off"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

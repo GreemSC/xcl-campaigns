@@ -1,0 +1,1 @@
+{"issue":577,"area":"storage","intent":{"area":"storage","kind":"bug-report","subject":"VFS: CREATE_ALWAYS on a directory or write under a file leaves overlay","keywords":["create-always","overlay","whiteout","create-dir","find-first-file"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[644,761]}

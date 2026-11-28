@@ -1,0 +1,1 @@
+{"pr":612,"status":"open","author":"Kalmarv","area":"network","intent":{"area":"network","kind":"bugfix","subject":"netoff: hook WSASendMsg so XCL_NETWORK0 refuses non-loopback sends","keywords":["wsasendmsg","netoff","sendto","ws2_32","xcl_network"]},"files":1,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

@@ -1,0 +1,1 @@
+{"issue":2606,"area":"pipelines","intent":{"area":"pipelines","kind":"bug-report","subject":"Graphics stream projection drops extended state like depth bounds","keywords":["depth-bounds","stencil-mask","depth-bias","view-instancing","pso-stream"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

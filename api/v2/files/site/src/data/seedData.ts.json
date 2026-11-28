@@ -1,0 +1,1 @@
+{"schema":"xcl-campaigns/v2/file","generated_at":"2026-11-28T15:19:27Z","synced_until":"2026-11-28T15:18:48Z","ai_fields":["subject"],"data":{"path":"site/src/data/seedData.ts","open_prs":[{"number":2045,"author":"mokkamokacaffe","subject":"Add PR triage dashboard as a static GitHub Pages site"}]}}

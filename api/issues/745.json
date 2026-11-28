@@ -1,0 +1,1 @@
+{"issue":745,"area":"pipelines","intent":{"area":"pipelines","kind":"bug-report","subject":"Black screen, 12K skipped draws and crash on world load (RTX 5050)","keywords":["skipped-draws","black-screen","pipelines","page-file","sparse","0xc0000409"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

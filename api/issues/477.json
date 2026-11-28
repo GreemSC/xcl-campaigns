@@ -1,0 +1,1 @@
+{"issue":477,"area":"shaders","intent":{"area":"shaders","kind":"bug-report","subject":"Access violation in ucrtbase.dll after creating raytracing shaders","keywords":["access-violation","raytracing","ucrtbase","0xc0000005","world-graphics","crash"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[684]}

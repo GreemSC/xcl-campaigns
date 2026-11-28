@@ -1,0 +1,1 @@
+{"issue":1337,"area":"memory","intent":{"area":"memory","kind":"bug-report","subject":"Fixed 13,824 MB title memory budget exhausts 8 GB card at 80 s","keywords":["title_memory_budget_mb","vram-budget","e_outofmemory","device-removed","lockhart","tdr"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[1450,1595]}

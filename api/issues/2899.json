@@ -1,0 +1,1 @@
+{"issue":2899,"area":"pipelines","intent":{"area":"pipelines","kind":"bug-report","subject":"Linux NVIDIA: no present 325 s after world load, then Xid 109","keywords":["xid-109","ctx-switch","compute-pso","device-lost","dxil-spirv","copy-from"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

@@ -1,0 +1,1 @@
+{"pr":583,"status":"open","author":"zohaiblazuli","area":"tooling","intent":{"area":"tooling","kind":"bugfix","subject":"Scripts: literal paths in smoke test for square brackets","keywords":["powershell","wildcard","literal-path","smoke-ps1","brackets"]},"files":2,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

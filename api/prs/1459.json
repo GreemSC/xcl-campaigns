@@ -1,0 +1,1 @@
+{"pr":1459,"status":"open","author":"Vadson159","area":"tests","intent":{"area":"tests","kind":"test","subject":"Add DXC and GPU tests for RDNA2 V_CMP, V_CMPX, SAVEEXEC, CBRANCH","keywords":["v_cmp","v_cmpx","saveexec","wrexec","cbranch","v_cndmask"]},"files":1,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

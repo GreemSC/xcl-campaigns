@@ -1,0 +1,1 @@
+{"schema":"xcl-campaigns/v2/file","generated_at":"2026-11-28T15:19:27Z","synced_until":"2026-11-28T15:18:48Z","ai_fields":["subject"],"data":{"path":"scripts/test-test-threads.tests.ps1","open_prs":[{"number":2676,"author":"luckyteagirl","subject":"Let test.ps1 honor caller thread overrides via RUST_TEST_THREADS"}]}}

@@ -1,0 +1,1 @@
+{"issue":1905,"area":"shaders","intent":{"area":"shaders","kind":"bug-report","subject":"DXIL GPU fuzz tests fail with E_OUTOFMEMORY on RTX 5060","keywords":["e_outofmemory","create_compute_pso","dxil-fuzz","rtx-5060","fuzz-tests","compute-pipeline"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[1919]}

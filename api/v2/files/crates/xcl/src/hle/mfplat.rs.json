@@ -1,0 +1,1 @@
+{"schema":"xcl-campaigns/v2/file","generated_at":"2026-11-28T15:19:27Z","synced_until":"2026-11-28T15:18:48Z","ai_fields":["subject"],"data":{"path":"crates/xcl/src/hle/mfplat.rs","open_prs":[{"number":1677,"author":"eizispark","subject":"mfplat: bridge ID3D12Device before ResetDevice, reuse D3D11 companion"}]}}

@@ -1,0 +1,1 @@
+{"schema":"xcl-campaigns/v2/file","generated_at":"2026-11-28T15:19:27Z","synced_until":"2026-11-28T15:18:48Z","ai_fields":["subject"],"data":{"path":"crates/xcl/tests/rdna2_decode.rs","open_prs":[{"number":858,"author":"mastrr9","subject":"Add RDNA2 decoder test suite: lengths, literals, encode/decode"}]}}

@@ -1,0 +1,1 @@
+{"issue":695,"area":"other","intent":{"area":"other","kind":"bug-report","subject":"Title 1.0.2.1 traps on int3 at +0x4dcbc9d when a 96 KiB stream fills","keywords":["int3","stream-full","account-prompt","0x80000003","shared-stream","packet-append"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[887,1233]}

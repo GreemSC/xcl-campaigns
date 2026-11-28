@@ -1,0 +1,1 @@
+{"schema":"xcl-campaigns/v2/file","generated_at":"2026-11-28T15:19:27Z","synced_until":"2026-11-28T15:18:48Z","ai_fields":["subject"],"data":{"path":"crates/xcl/tests/gpu_dxil_lowering.rs","open_prs":[{"number":1658,"author":"Vadson159","subject":"Tests: GPU and DXIL validation for direct RDNA2-to-DXIL lowering"}]}}

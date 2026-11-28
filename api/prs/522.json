@@ -1,0 +1,1 @@
+{"pr":522,"status":"open","author":"TG0000","area":"memory","intent":{"area":"memory","kind":"performance","subject":"UMA: running totals for used/sparse_used, window-bounded alloc_in","keywords":["uma","used-bytes","sparse-used","alloc-in","free-map"]},"files":1,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

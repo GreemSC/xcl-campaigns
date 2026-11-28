@@ -1,0 +1,1 @@
+{"pr":811,"status":"open","author":"upipibi","area":"shaders","intent":{"area":"shaders","kind":"bugfix","subject":"SDWA sgpr and vgpr register uses read from the extension dword","keywords":["sdwa","rdna2","sgpr-uses","v_cmp_sdwa","vcc-write","sdst"]},"files":2,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

@@ -1,0 +1,1 @@
+{"pr":941,"status":"open","author":"ChalanaGimhanaX","area":"tests","intent":{"area":"tests","kind":"test","subject":"Add game-free GPU tests for graphics PSO hooks","keywords":["graphics-pso","vs","ps","rect-list","async-pso","synthetic-shader"]},"files":1,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

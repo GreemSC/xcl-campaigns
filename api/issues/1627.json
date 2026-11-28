@@ -1,0 +1,1 @@
+{"issue":1627,"area":"crash-reporting","intent":{"area":"crash-reporting","kind":"bug-report","subject":"XCL exits with code -1073740791 (0xc0000409) on a GTX 1660 Super","keywords":["exit-code","0xc0000409","gtx-1660","fast-fail","win10"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

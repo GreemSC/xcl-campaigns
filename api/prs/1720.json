@@ -1,0 +1,1 @@
+{"pr":1720,"status":"open","author":"b3IKK","area":"shaders","intent":{"area":"shaders","kind":"bugfix","subject":"v_pack_b32_f16 applies abs and neg modifiers to the picked half","keywords":["v_pack_b32_f16","abs","neg","op_sel","sign-bit","dxil"]},"files":4,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

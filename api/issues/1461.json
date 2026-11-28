@@ -1,0 +1,1 @@
+{"issue":1461,"area":"linux-wine","intent":{"area":"linux-wine","kind":"bug-report","subject":"Under Wine, exe TLS DETACH never runs report.json stale at exit","keywords":["tls-callback","dll_process_detach","wine","report-json","terminate-process","write-final"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[1479]}

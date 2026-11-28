@@ -1,0 +1,1 @@
+{"pr":128,"status":"open","author":"gbuyssens","area":"shaders","intent":{"area":"shaders","kind":"bugfix","subject":"Recompiler: f16 add/sub/fma round once under directed s_round_mode","keywords":["f16","round-mode","fma","binary16","omod"]},"files":2,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

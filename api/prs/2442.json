@@ -1,0 +1,1 @@
+{"pr":2442,"status":"open","author":"Ahmet-Dedeler","area":"docs","intent":{"area":"docs","kind":"docs","subject":"Docs: mingw-w64 build on macOS and running under CrossOver","keywords":["mingw-w64","macos","crossover","d3dmetal","wine","cross-build"]},"files":1,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

@@ -1,0 +1,1 @@
+{"pr":2432,"status":"open","author":"madaraXor","area":"textures","intent":{"area":"textures","kind":"feature","subject":"D3D12.X: texture read-backs written as PNG images","keywords":["texel-image","png","readback","dxgi-format","unorm","float-scale"]},"files":11,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

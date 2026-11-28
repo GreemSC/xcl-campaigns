@@ -1,0 +1,1 @@
+{"schema":"xcl-campaigns/v2/file","generated_at":"2026-11-28T15:19:27Z","synced_until":"2026-11-28T15:18:48Z","ai_fields":["subject"],"data":{"path":"crates/xcl/tests/gpu_dispatch_split_e2e.rs","open_prs":[{"number":2487,"author":"microwave805","subject":"Add GPU e2e tests for direct compute dispatch splitting"}]}}

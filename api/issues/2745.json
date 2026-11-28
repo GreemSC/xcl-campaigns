@@ -1,0 +1,1 @@
+{"issue":2745,"area":"pipelines","intent":{"area":"pipelines","kind":"bug-report","subject":"Compact lowering makes valid ordinary split chains whole-only","keywords":["compact-emission","dispatch-split","partitioner","alloca","whole-pso","dxil"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

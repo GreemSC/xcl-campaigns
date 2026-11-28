@@ -1,0 +1,1 @@
+{"issue":2250,"area":"tooling","intent":{"area":"tooling","kind":"bug-report","subject":"coverage_gate: empty sweep can erase the coverage baseline","keywords":["coverage-gate","baseline","empty-sweep","update-flag","scripts"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[2253]}

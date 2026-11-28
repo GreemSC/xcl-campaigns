@@ -1,0 +1,1 @@
+{"schema":"xcl-campaigns/v2/file","generated_at":"2026-11-28T15:19:27Z","synced_until":"2026-11-28T15:18:48Z","ai_fields":["subject"],"data":{"path":"crates/xcl/tests/inspect_e2e.rs","open_prs":[{"number":1260,"author":"anakatt","subject":"PE loader: report malformed imports during inspection"}]}}

@@ -1,0 +1,1 @@
+{"issue":2601,"area":"pipelines","intent":{"area":"pipelines","kind":"bug-report","subject":"D3D12.X: rejected PSO blob read can delete a replacement cache file","keywords":["pso-cache","driver-blob","unlink-race","shader-cache","cache-invalidation","pso-refusal"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[2614]}

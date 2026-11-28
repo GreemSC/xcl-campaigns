@@ -1,0 +1,1 @@
+{"issue":3070,"area":"pipelines","intent":{"area":"pipelines","kind":"bug-report","subject":"Shader preparation stops with 1 refused pipeline on RTX 5080","keywords":["shader-prep","refused-pipeline","precompile","dxil","driver-cache","wave32"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

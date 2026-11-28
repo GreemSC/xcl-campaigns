@@ -1,0 +1,1 @@
+{"issue":2900,"area":"shaders","intent":{"area":"shaders","kind":"bug-report","subject":"Shaders: translated cache keeps every old identity's folder","keywords":["translated-cache","pso-identity","cache-pruning","dxil-cache","disk-usage"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

@@ -1,0 +1,1 @@
+{"pr":43,"status":"open","author":"Lum7nt","area":"textures","intent":{"area":"textures","kind":"feature","subject":"Add MSAA texture placement and XG layout for D2Msaa images","keywords":["msaa","d2msaa","texture-layout","xg","sample-count"]},"files":7,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

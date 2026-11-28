@@ -1,0 +1,1 @@
+{"pr":1823,"status":"open","author":"Ctrl-Alt-Haze","area":"tests","intent":{"area":"tests","kind":"test","subject":"Test direct DXIL vs HLSL parity for VOP3P, movrel, 64-bit VALU","keywords":["v_pk_add","movrel","v_dot4","f64","dxil-parity","wave32"]},"files":1,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

@@ -1,0 +1,1 @@
+{"pr":2655,"status":"open","author":"luckyteagirl","area":"tooling","intent":{"area":"tooling","kind":"bugfix","subject":"Print unbounded BVH descriptor ranges as ASCII text","keywords":["bvh","cp1252","unicode","dxbc","rts0","unbounded"]},"files":2,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

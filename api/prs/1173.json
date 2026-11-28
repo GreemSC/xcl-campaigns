@@ -1,0 +1,1 @@
+{"pr":1173,"status":"open","author":"anakatt","area":"tooling","intent":{"area":"tooling","kind":"bugfix","subject":"Keep dot-only title names below data root in xcl run launcher","keywords":["launcher","data-root","path-sanitize","dot-dot","xcl-toml"]},"files":2,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

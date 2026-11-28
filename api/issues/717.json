@@ -1,0 +1,1 @@
+{"issue":717,"area":"tooling","intent":{"area":"tooling","kind":"bug-report","subject":"smoke block reports a black title as healthy no lit-frame check","keywords":["smoke.ps1","pr_check.py","frame-dump","black-frame","xcl-smoke","report-json"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[747]}

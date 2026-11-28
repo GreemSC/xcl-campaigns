@@ -1,0 +1,1 @@
+{"issue":1268,"area":"textures","intent":{"area":"textures","kind":"bug-report","subject":"Per-texture CreateReservedResource stalls render thread on AMD","keywords":["createreservedresource","reserved-resource","tile-mapping","amd","place_on_pages","streamed-textures"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[2436]}

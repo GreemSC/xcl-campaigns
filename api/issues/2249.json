@@ -1,0 +1,1 @@
+{"issue":2249,"area":"rendering","intent":{"area":"rendering","kind":"question","subject":"Proposal: read-only redundant-pass profiler and frame-budget governor","keywords":["frame-pacing","frame-clock","redundant-pass","profiler","shading-rate","present-interval"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

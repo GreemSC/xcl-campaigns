@@ -1,0 +1,1 @@
+{"schema":"xcl-campaigns/v2/file","generated_at":"2026-11-28T15:19:27Z","synced_until":"2026-11-28T15:18:48Z","ai_fields":["subject"],"data":{"path":"crates/xcl/src/gpu/recomp/dxc_process.rs","open_prs":[{"number":1638,"author":"marquezinii","subject":"XCL_DXC_PROCESS: run DXC compiles in capped worker processes"}]}}

@@ -1,0 +1,1 @@
+{"issue":106,"area":"loader","intent":{"area":"loader","kind":"bug-report","subject":"Audit: static TLS, VEH, dump_threads and PE loader edge cases","keywords":["static-tls","tls-alignment","veh","dump-threads","pe-reloc"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

@@ -1,0 +1,1 @@
+{"pr":1467,"status":"open","author":"Ayoub-devv","area":"shaders","intent":{"area":"shaders","kind":"test","subject":"Add test that disassembles the v_madak_f32 Xbox extension encoding","keywords":["v_madak_f32","madak","rdna2","disassembly","vop2"]},"files":1,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

@@ -1,0 +1,1 @@
+{"schema":"xcl-campaigns/v2/file","generated_at":"2026-11-28T15:19:27Z","synced_until":"2026-11-28T15:18:48Z","ai_fields":["subject"],"data":{"path":"crates/xcl/src/gpu/recomp/pso/offline_cold_profile.rs","open_prs":[{"number":2767,"author":"kotekompotek","subject":"Share translated DXIL via Arc across repeated pipeline builds"}]}}

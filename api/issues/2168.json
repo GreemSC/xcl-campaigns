@@ -1,0 +1,1 @@
+{"issue":2168,"area":"shaders","intent":{"area":"shaders","kind":"bug-report","subject":"HLSL backend fast-math drops -0 in f16 and changes v_sin/v_cos on AMD","keywords":["fast-math","hlsl","dxc","gis","v_sin_f32","neg-zero"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

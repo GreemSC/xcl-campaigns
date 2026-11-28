@@ -1,0 +1,1 @@
+{"issue":1895,"area":"shaders","intent":{"area":"shaders","kind":"bug-report","subject":"Direct DXIL wave64 VS/PS ignores split_wave64, poisons split1 cache","keywords":["direct-dxil","split-wave64","upper-lanes","disk-cache","xcl-direct-dxil"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

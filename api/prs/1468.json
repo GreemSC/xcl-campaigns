@@ -1,0 +1,1 @@
+{"pr":1468,"status":"open","author":"Royalflamejlh","area":"tooling","intent":{"area":"tooling","kind":"bugfix","subject":"CLI: --help or -h after a command prints the usage and exits 0","keywords":["cli","help","usage","argv","exit-code"]},"files":2,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

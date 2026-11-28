@@ -1,0 +1,1 @@
+{"issue":722,"area":"storage","intent":{"area":"storage","kind":"bug-report","subject":"XGameSave: saves with blob past MAX_PATH fail in MoveFileExW","keywords":["max-path","movefileexw","verbatim-path","xgamesave","long-path","replace-file"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[1846]}

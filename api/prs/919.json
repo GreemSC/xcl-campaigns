@@ -1,0 +1,1 @@
+{"pr":919,"status":"open","author":"Koro4e","area":"tests","intent":{"area":"tests","kind":"test","subject":"Tests: pin xcl CLI exit codes and error messages","keywords":["exit-code","cli","stderr","usage","inspect"]},"files":1,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

@@ -1,0 +1,1 @@
+{"schema":"xcl-campaigns/v2/file","generated_at":"2026-11-28T15:19:27Z","synced_until":"2026-11-28T15:18:48Z","ai_fields":["subject"],"data":{"path":"crates/xcl/tests/gpu_recomp_permlane.rs","open_prs":[{"number":478,"author":"Vadson159","subject":"Tests: GPU verification for V_PERMLANE16_B32 and V_PERMLANEX16_B32"}]}}

@@ -1,0 +1,1 @@
+{"issue":2954,"area":"shaders","intent":{"area":"shaders","kind":"bug-report","subject":"Buffer range check ignores OOB_SELECT past-stride stores are kept","keywords":["oob_select","buffer-range","num_records","stride","mubuf"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

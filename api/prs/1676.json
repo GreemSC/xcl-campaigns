@@ -1,0 +1,1 @@
+{"pr":1676,"status":"open","author":"eizispark","area":"other","intent":{"area":"other","kind":"bugfix","subject":"XGameRuntime: keep embedded URLs in XSTS canonical query paths","keywords":["xsign","canonical-url","bcrypt","cng-handles","query-string"]},"files":1,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

@@ -1,0 +1,1 @@
+{"issue":2232,"area":"tooling","intent":{"area":"tooling","kind":"bug-report","subject":"PR smoke gate compares blocks without gpu, driver, or build checks","keywords":["smoke-check","gpu-mismatch","driver-version","debug-release","pr-check"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[2235,2351]}

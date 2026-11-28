@@ -1,0 +1,1 @@
+{"pr":764,"status":"open","author":"Abuudiii","area":"tests","intent":{"area":"tests","kind":"test","subject":"Tests: legacy DXIL structurizer memory growth repro shader","keywords":["dxil","spirv","structurizer","legacy-mode","dxc","synthetic-hlsl"]},"files":2,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

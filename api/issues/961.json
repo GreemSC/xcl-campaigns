@@ -1,0 +1,1 @@
+{"issue":961,"area":"storage","intent":{"area":"storage","kind":"bug-report","subject":"classify_with passes UNC paths before checking a UNC game root","keywords":["vfs","unc","classify-with","game-root","write-protect","network-share"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[1077]}

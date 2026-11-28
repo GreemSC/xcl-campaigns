@@ -1,0 +1,1 @@
+{"issue":2497,"area":"kernel","intent":{"area":"kernel","kind":"bug-report","subject":"Patch CLZERO clearing loops to a plain-store stub after first fault","keywords":["clzero","illegal-instruction","hot-patch","clwb","loop-rewrite","eh.rs"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[3082]}

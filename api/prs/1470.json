@@ -1,0 +1,1 @@
+{"pr":1470,"status":"open","author":"b3IKK","area":"audio","intent":{"area":"audio","kind":"bugfix","subject":"XAudio2: honor requested alignment for APU addresses in ApuAlloc","keywords":["apu_alloc","alignment","xaudio2","find_free_range","acphal"]},"files":1,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

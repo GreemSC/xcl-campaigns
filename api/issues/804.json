@@ -1,0 +1,1 @@
+{"issue":804,"area":"memory","intent":{"area":"memory","kind":"feature","subject":"Proposal: DXGI-aware retention for empty D3D12.X texture heaps","keywords":["texture-heap","heap-trim","dxgi-budget","vram","copytilemappings","hysteresis"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

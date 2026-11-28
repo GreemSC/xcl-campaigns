@@ -1,0 +1,1 @@
+{"pr":1859,"status":"open","author":"WASDeKeys","area":"tests","intent":{"area":"tests","kind":"bugfix","subject":"Skip d32s8 VRAM test on adapters under 8 GB VRAM","keywords":["vram","d32s8","dxgi","test-skip","video-memory","mutex-poison"]},"files":1,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

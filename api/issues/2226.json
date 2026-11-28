@@ -1,0 +1,1 @@
+{"issue":2226,"area":"tooling","intent":{"area":"tooling","kind":"bug-report","subject":"pr_check: main smoke baseline may be old, dirty, or duplicated","keywords":["pr_check","smoke-baseline","is_main_ancestor","uncommitted","xcl-smoke","main-tip"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[2230,2406]}

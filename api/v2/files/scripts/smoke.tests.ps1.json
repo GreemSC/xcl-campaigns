@@ -1,0 +1,1 @@
+{"schema":"xcl-campaigns/v2/file","generated_at":"2026-11-28T15:19:27Z","synced_until":"2026-11-28T15:18:48Z","ai_fields":["subject"],"data":{"path":"scripts/smoke.tests.ps1","open_prs":[{"number":282,"author":"NiiRoZz","subject":"smoke.ps1: test the gpu line from report.json, fallback and counts"}]}}

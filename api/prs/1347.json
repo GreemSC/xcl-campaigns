@@ -1,0 +1,1 @@
+{"pr":1347,"status":"open","author":"ebarr24","area":"tests","intent":{"area":"tests","kind":"bugfix","subject":"Wait for final deferred CPU dword store before test reads","keywords":["cpu_writes","deferred-write","acquire-load","flaky-test","dword"]},"files":1,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

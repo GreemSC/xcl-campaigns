@@ -1,0 +1,1 @@
+{"issue":499,"area":"rendering","intent":{"area":"rendering","kind":"bug-report","subject":"D3D12 device hung on title texture upload frame dump crashes UMD","keywords":["device-hung","0x887a0006","frame-dump","nvwgf2umx","texture-upload","readback"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

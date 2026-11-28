@@ -1,0 +1,356 @@
+{
+ "last_pass_started": "2026-11-28T15:17:39Z",
+ "pass_seconds": 58.2,
+ "last_github_read": "2026-11-28T15:18:48Z",
+ "github_rate_left": 4963,
+ "campaign_messages_waiting_for_ai": 0,
+ "intent_cards_waiting": 0,
+ "duplicate_groups_waiting_for_ai_check": false,
+ "errors": {},
+ "step_seconds": {
+  "collect": 5.7,
+  "roadmap_refs": 0.0,
+  "extract": 0.0,
+  "render_early": 6.1,
+  "classify": 12.0,
+  "intent": 4.2,
+  "check": 2.4,
+  "triage": 0.3,
+  "findings": 0.2,
+  "progress": 10.3,
+  "hardware": 3.0,
+  "walls": 7.9,
+  "render": 6.1
+ },
+ "adoption": {
+  "since_announcement": "2026-11-24T16:22:00Z",
+  "users": 37,
+  "users_by_first_use": [
+   {
+    "login": "DTsordas",
+    "first": "2026-11-24T16:41:14Z",
+    "signals": [
+     "block"
+    ]
+   },
+   {
+    "login": "Sergentval",
+    "first": "2026-11-24T16:46:28Z",
+    "signals": [
+     "block",
+     "cites",
+     "link"
+    ]
+   },
+   {
+    "login": "speed-y",
+    "first": "2026-11-24T16:56:31Z",
+    "signals": [
+     "block",
+     "link"
+    ]
+   },
+   {
+    "login": "zGLados",
+    "first": "2026-11-24T16:59:47Z",
+    "signals": [
+     "cites"
+    ]
+   },
+   {
+    "login": "Fran-co-F",
+    "first": "2026-11-24T17:20:17Z",
+    "signals": [
+     "block",
+     "link"
+    ]
+   },
+   {
+    "login": "ClosetPie107",
+    "first": "2026-11-24T17:24:59Z",
+    "signals": [
+     "block"
+    ]
+   },
+   {
+    "login": "Pipodi",
+    "first": "2026-11-24T17:26:34Z",
+    "signals": [
+     "block"
+    ]
+   },
+   {
+    "login": "Kalkaro",
+    "first": "2026-11-24T17:33:54Z",
+    "signals": [
+     "block"
+    ]
+   },
+   {
+    "login": "kole07139",
+    "first": "2026-11-24T17:36:38Z",
+    "signals": [
+     "block",
+     "cites"
+    ]
+   },
+   {
+    "login": "St5sz2Jk",
+    "first": "2026-11-24T17:37:14Z",
+    "signals": [
+     "cites"
+    ]
+   },
+   {
+    "login": "throny",
+    "first": "2026-11-24T17:42:12Z",
+    "signals": [
+     "block",
+     "cites",
+     "link"
+    ]
+   },
+   {
+    "login": "MatyEjsr",
+    "first": "2026-11-24T17:45:38Z",
+    "signals": [
+     "cites"
+    ]
+   },
+   {
+    "login": "KaliemSB",
+    "first": "2026-11-24T18:09:13Z",
+    "signals": [
+     "block"
+    ]
+   },
+   {
+    "login": "Retried",
+    "first": "2026-11-24T18:10:56Z",
+    "signals": [
+     "block"
+    ]
+   },
+   {
+    "login": "bielfreedom",
+    "first": "2026-11-24T18:21:58Z",
+    "signals": [
+     "block"
+    ]
+   },
+   {
+    "login": "Frtuchinno",
+    "first": "2026-11-24T18:38:21Z",
+    "signals": [
+     "block"
+    ]
+   },
+   {
+    "login": "philip-roy-jones",
+    "first": "2026-11-24T18:43:10Z",
+    "signals": [
+     "block",
+     "link"
+    ]
+   },
+   {
+    "login": "notdxbi",
+    "first": "2026-11-24T18:48:42Z",
+    "signals": [
+     "block",
+     "link"
+    ]
+   },
+   {
+    "login": "vitor127wt",
+    "first": "2026-11-24T18:50:34Z",
+    "signals": [
+     "block",
+     "link"
+    ]
+   },
+   {
+    "login": "HKEY-Funk-Machine",
+    "first": "2026-11-24T18:57:44Z",
+    "signals": [
+     "block"
+    ]
+   },
+   {
+    "login": "brandostrong",
+    "first": "2026-11-24T19:24:03Z",
+    "signals": [
+     "block",
+     "link"
+    ]
+   },
+   {
+    "login": "Decodere",
+    "first": "2026-11-24T19:41:31Z",
+    "signals": [
+     "block"
+    ]
+   },
+   {
+    "login": "gustavsi",
+    "first": "2026-11-24T20:01:23Z",
+    "signals": [
+     "cites"
+    ]
+   },
+   {
+    "login": "Placebola",
+    "first": "2026-11-24T20:12:03Z",
+    "signals": [
+     "block",
+     "link"
+    ]
+   },
+   {
+    "login": "xADEL",
+    "first": "2026-11-24T20:16:16Z",
+    "signals": [
+     "block",
+     "link"
+    ]
+   },
+   {
+    "login": "foxehoscar",
+    "first": "2026-11-24T21:45:42Z",
+    "signals": [
+     "block",
+     "link"
+    ]
+   },
+   {
+    "login": "itsSio",
+    "first": "2026-11-25T08:25:12Z",
+    "signals": [
+     "block",
+     "link"
+    ]
+   },
+   {
+    "login": "schoperena",
+    "first": "2026-11-25T12:08:52Z",
+    "signals": [
+     "block"
+    ]
+   },
+   {
+    "login": "joeypercia",
+    "first": "2026-11-25T12:09:58Z",
+    "signals": [
+     "block",
+     "cites",
+     "link"
+    ]
+   },
+   {
+    "login": "razormontana",
+    "first": "2026-11-25T21:47:12Z",
+    "signals": [
+     "cites"
+    ]
+   },
+   {
+    "login": "MacieGx",
+    "first": "2026-11-25T22:32:19Z",
+    "signals": [
+     "cites"
+    ]
+   },
+   {
+    "login": "Royalflamejlh",
+    "first": "2026-11-26T01:48:35Z",
+    "signals": [
+     "block",
+     "cites",
+     "link"
+    ]
+   },
+   {
+    "login": "KDenKC",
+    "first": "2026-11-26T03:41:28Z",
+    "signals": [
+     "cites"
+    ]
+   },
+   {
+    "login": "jennydeth",
+    "first": "2026-11-26T08:26:56Z",
+    "signals": [
+     "cites"
+    ]
+   },
+   {
+    "login": "zohaiblazuli",
+    "first": "2026-11-26T10:25:17Z",
+    "signals": [
+     "cites"
+    ]
+   },
+   {
+    "login": "coolpersonnn",
+    "first": "2026-11-26T10:52:59Z",
+    "signals": [
+     "block",
+     "link"
+    ]
+   },
+   {
+    "login": "crazymanjared",
+    "first": "2026-11-26T18:31:29Z",
+    "signals": [
+     "cites"
+    ]
+   }
+  ],
+  "users_per_day": {
+   "2026-11-24": 26,
+   "2026-11-25": 12,
+   "2026-11-26": 8,
+   "2026-11-27": 1,
+   "2026-11-28": 1
+  }
+ },
+ "ai_usage_last_hour": {
+  "claude-haiku-5-5": {
+   "calls": 102,
+   "input_tokens": 238,
+   "cache_read_tokens": 421594,
+   "cache_write_tokens": 444998,
+   "output_tokens": 160821,
+   "api_price_equivalent_usd": 0.174
+  },
+  "claude-sonnet-5-5": {
+   "calls": 22,
+   "input_tokens": 44,
+   "cache_read_tokens": 19514,
+   "cache_write_tokens": 81528,
+   "output_tokens": 10347,
+   "api_price_equivalent_usd": 0.432
+  }
+ },
+ "ai_usage_last_24h": {
+  "claude-haiku-5-5": {
+   "calls": 1856,
+   "input_tokens": 4178,
+   "cache_read_tokens": 6161303,
+   "cache_write_tokens": 5421264,
+   "output_tokens": 2303632,
+   "api_price_equivalent_usd": 2.298
+  },
+  "claude-sonnet-5-5": {
+   "calls": 194,
+   "input_tokens": 388,
+   "cache_read_tokens": 284095,
+   "cache_write_tokens": 572216,
+   "output_tokens": 111725,
+   "api_price_equivalent_usd": 3.435
+  }
+ },
+ "findings_waiting_for_ai": 0,
+ "pages_mode": "workflow",
+ "last_publish": "2026-11-28 15:17 UTC"
+}

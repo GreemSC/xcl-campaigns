@@ -1,0 +1,1 @@
+{"issue":1651,"area":"tests","intent":{"area":"tests","kind":"bug-report","subject":"heap-window test fails under XCL_REQUIRE_GPU: opt-in skip is a panic","keywords":["skip_test","xcl_require_gpu","heap-windows","mesh","gpu-skip","xcl_heap_windows"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[1666,1690]}

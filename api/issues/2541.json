@@ -1,0 +1,1 @@
+{"issue":2541,"area":"tooling","intent":{"area":"tooling","kind":"bug-report","subject":"Audit direct DXIL metadata and legalization against DXC/LLVM","keywords":["dxil","dxc","metadata","legalization","validator","dx.op"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

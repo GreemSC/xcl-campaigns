@@ -1,0 +1,1 @@
+{"issue":1525,"area":"pipelines","intent":{"area":"pipelines","kind":"bug-report","subject":"Preflight WaveLaneCountMax  32 before split-wave64 compute PSOs","keywords":["wavelanecountmax","wavesize","wave64","wave32","pso","preflight"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

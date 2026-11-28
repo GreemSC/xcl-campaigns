@@ -1,0 +1,1 @@
+{"issue":1358,"area":"gpu-sync","intent":{"area":"gpu-sync","kind":"bug-report","subject":"alloc_reset frees UMA/sparse blocks while busy allocator is kept aside","keywords":["alloc_reset","alloc_pool","uma","pending","sparse-free","allocator-reset"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[1422]}

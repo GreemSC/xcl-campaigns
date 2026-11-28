@@ -1,0 +1,1 @@
+{"issue":2465,"area":"input","intent":{"area":"input","kind":"bug-report","subject":"GameInput: DualShock 4 Bluetooth ReadFile fails on 128-byte buffer","keywords":["dualshock4","bluetooth","readfile","hid-caps","input-report","hidclass"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[2525,2546]}

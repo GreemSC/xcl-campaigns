@@ -1,0 +1,1 @@
+{"issue":1805,"area":"pipelines","intent":{"area":"pipelines","kind":"bug-report","subject":"Direct DXIL pipelines workers overflow their 512 MB stack under Wine","keywords":["direct-dxil","stack-overflow","dxil-spirv","subgroup-shuffle","recursion","wine"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[1852]}

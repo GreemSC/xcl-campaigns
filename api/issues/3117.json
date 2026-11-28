@@ -1,0 +1,1 @@
+{"issue":3117,"area":"rendering","intent":{"area":"rendering","kind":"question","subject":"Measures XCL_TWO_PASS_BATCH1 on RTX 3090 asks about default","keywords":["two_pass_batch","d3d12","direct-queue","mesh-draws","barriers","rtx-3090"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

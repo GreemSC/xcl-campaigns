@@ -1,0 +1,1 @@
+{"pr":2769,"status":"open","author":"Saksukella","area":"shaders","intent":{"area":"shaders","kind":"bugfix","subject":"Enforce LOOP_BUDGET at loop headers in per-lane lowering","keywords":["loop_budget","loop-header","per-lane","dxil","tdr","ssa"]},"files":3,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

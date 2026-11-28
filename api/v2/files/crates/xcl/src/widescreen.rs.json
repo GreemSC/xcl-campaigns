@@ -1,0 +1,1 @@
+{"schema":"xcl-campaigns/v2/file","generated_at":"2026-11-28T15:19:27Z","synced_until":"2026-11-28T15:18:48Z","ai_fields":["subject"],"data":{"path":"crates/xcl/src/widescreen.rs","open_prs":[{"number":735,"author":"MrCheese5","subject":"PE loader: render_resolution patches RAGE modes to screen aspect"}]}}

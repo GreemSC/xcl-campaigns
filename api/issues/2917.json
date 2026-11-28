@@ -1,0 +1,1 @@
+{"issue":2917,"area":"shaders","intent":{"area":"shaders","kind":"bug-report","subject":"D3D12 device removed (0x887A0005) at loading screen on RTX 3090","keywords":["d3d12","device-removed","0x887a0005","rtx-3090","pipeline"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

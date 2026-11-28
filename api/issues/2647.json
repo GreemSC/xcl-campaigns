@@ -1,0 +1,1 @@
+{"issue":2647,"area":"shaders","intent":{"area":"shaders","kind":"bug-report","subject":"Per-lane wave32 compute hangs GPU two wave64 programs run very slow","keywords":["per-lane","wave32","wave64","exec-mask","xid-109","compute"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

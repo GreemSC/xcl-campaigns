@@ -1,0 +1,1 @@
+{"issue":550,"area":"crash-reporting","intent":{"area":"crash-reporting","kind":"bug-report","subject":"Access violation in VCRUNTIME140.dll after accepting EULA on RTX 5060","keywords":["vcruntime140","access-violation","eula","rtx-5060-ti","wave32"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

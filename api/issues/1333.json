@@ -1,0 +1,1 @@
+{"issue":1333,"area":"gpu-sync","intent":{"area":"gpu-sync","kind":"bug-report","subject":"Device lost after 60k live PSOs with D3D12 kernel memory failure","keywords":["pso","device-lost","background-pipelines","kernel-memory","d3d12-debug"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

@@ -1,0 +1,1 @@
+{"issue":697,"area":"memory","intent":{"area":"memory","kind":"feature","subject":"Plan more than 4 memory windows for title memory, heap form only","keywords":["memory-windows","xcl-w","uma","sparse-heap","window-count","gpu-memory"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

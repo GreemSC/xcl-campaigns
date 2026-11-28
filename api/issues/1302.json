@@ -1,0 +1,1 @@
+{"issue":1302,"area":"crash-reporting","intent":{"area":"crash-reporting","kind":"bug-report","subject":"Unhandled xgameruntime exception 0xc0000005 on first frames","keywords":["access-violation","xgameruntime","null-read","unhandled-exception","crash"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

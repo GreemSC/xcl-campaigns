@@ -1,0 +1,1 @@
+{"issue":2600,"area":"shaders","intent":{"area":"shaders","kind":"bug-report","subject":"Shaders: warm graphics DXIL variants that runtime translation selects","keywords":["dxil","xcl_direct_dxil","static-sampler","shader-warmup","direct-translation","pso-cache"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

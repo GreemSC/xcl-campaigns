@@ -1,0 +1,1 @@
+{"issue":1409,"area":"shaders","intent":{"area":"shaders","kind":"bug-report","subject":"XCL_SAFE_BARRIER missing from shader cache bypass and key","keywords":["xcl_safe_barrier","s_barrier","cache_allowed","shader-cache","group-barrier"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[1413]}

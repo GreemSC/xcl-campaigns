@@ -1,0 +1,1 @@
+{"pr":1757,"status":"open","author":"NemesisDawn","area":"shaders","intent":{"area":"shaders","kind":"bugfix","subject":"Key HLSL dumps by program offset within each FSSM","keywords":["hlsl-dump","fssm","program-offset","dump-key","shader-hash"]},"files":2,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

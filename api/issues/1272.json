@@ -1,0 +1,1 @@
+{"issue":1272,"area":"tests","intent":{"area":"tests","kind":"bug-report","subject":"predication_e2e fails under vkd3d-proton: copies not predicated","keywords":["predication","copybufferregion","vkd3d-proton","conditional-rendering","predicate"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

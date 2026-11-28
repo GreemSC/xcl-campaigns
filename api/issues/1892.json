@@ -1,0 +1,1 @@
+{"issue":1892,"area":"shaders","intent":{"area":"shaders","kind":"bug-report","subject":"Direct DXIL compute_deps memo poisoning on cyclic phis and loops","keywords":["compute-deps","view-id-state","psv0","memoization","phi-cycle"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

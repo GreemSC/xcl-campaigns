@@ -1,0 +1,1 @@
+{"issue":1392,"area":"storage","intent":{"area":"storage","kind":"bug-report","subject":"DirectStorage execute allocates GiB buffers before validating requests","keywords":["directstorage","dstorage","oom","source-size","bcpack","phys-pages"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[1438]}

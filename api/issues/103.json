@@ -1,0 +1,1 @@
+{"issue":103,"area":"rendering","intent":{"area":"rendering","kind":"bug-report","subject":"Audit: PresentX planes, HDR color space, queue lockout, frame handles","keywords":["presentx","multi-plane","hdr10","setcolorspace1","frame-stats","qpc-timestamp"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

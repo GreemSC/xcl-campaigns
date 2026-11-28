@@ -1,0 +1,1 @@
+{"pr":1155,"status":"open","author":"anakatt","area":"memory","intent":{"area":"memory","kind":"bugfix","subject":"Size executable arenas for requests above 64 KiB in alloc_code","keywords":["alloc_code","virtualalloc","arena","alignment","overflow"]},"files":1,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

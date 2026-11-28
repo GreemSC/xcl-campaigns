@@ -1,0 +1,1 @@
+{"schema":"xcl-campaigns/v2/file","generated_at":"2026-11-28T15:19:27Z","synced_until":"2026-11-28T15:18:48Z","ai_fields":["subject"],"data":{"path":".agents/skills/xcl-d3d12/SKILL.md","open_prs":[{"number":271,"author":"mattpsvreis","subject":"Docs: agent skills for each XCL subsystem in .agents/skills"}]}}

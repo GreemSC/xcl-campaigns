@@ -1,0 +1,1 @@
+{"issue":2115,"area":"tests","intent":{"area":"tests","kind":"bug-report","subject":"fuzz_validate_and_gpu_1 mismatches on AMD RDNA2-4 (seeds 722, 540)","keywords":["dxil","wavereadlanefirst","amd","fuzz","switch","driver-bug"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

@@ -1,0 +1,1 @@
+{"issue":1452,"area":"gpu-sync","intent":{"area":"gpu-sync","kind":"bug-report","subject":"Device removal after Wait64BitValueX with no producer title watchdog","keywords":["wait64bitvaluex","qnone","device-removed","queue-wait","watchdog","pso-compile"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

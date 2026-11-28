@@ -1,0 +1,1 @@
+{"issue":2746,"area":"shaders","intent":{"area":"shaders","kind":"bug-report","subject":"Skip reload analysis when compact direct DXIL emission is chosen","keywords":["reload-analysis","compact-emission","dxil","scalar-load","fixed-point","kernel"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[2766]}

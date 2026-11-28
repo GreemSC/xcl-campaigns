@@ -1,0 +1,1 @@
+{"issue":3044,"area":"pipelines","intent":{"area":"pipelines","kind":"bug-report","subject":"NVIDIA: cached pipeline blobs bake static-sampler slots, sample wrong","keywords":["static-sampler","cached-blob","pipeline-cache","d3d12","nvidia","sampler-order"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

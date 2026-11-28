@@ -1,0 +1,1 @@
+{"pr":2534,"status":"open","author":"Decodere","area":"shaders","intent":{"area":"shaders","kind":"bugfix","subject":"Fix rm_sqrt negative denormal result route rm_mad through by_mode","keywords":["rm_sqrt","rm_mad","by_mode","denormal","qnan","dxil"]},"files":2,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

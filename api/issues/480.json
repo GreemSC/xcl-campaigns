@@ -1,0 +1,1 @@
+{"issue":480,"area":"tests","intent":{"area":"tests","kind":"question","subject":"Compare XCL tiling and CheckFeatureSupport with the host D3D12 driver","keywords":["getresourcetiling","checkfeaturesupport","d3d12","tiled-resources","reserved-resource","tile-shape"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

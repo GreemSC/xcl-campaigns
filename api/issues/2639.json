@@ -1,0 +1,1 @@
+{"issue":2639,"area":"memory","intent":{"area":"memory","kind":"bug-report","subject":"Bound host staging memory and reclaim idle buffers during world load","keywords":["staging-budget","upload-detile","commit-peak","world-load","backpressure","buffer-pool"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

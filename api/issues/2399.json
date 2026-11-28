@@ -1,0 +1,1 @@
+{"issue":2399,"area":"other","intent":{"area":"other","kind":"bug-report","subject":"XGameRuntime QueryApiImpl caches short PC vtable, leaks COM refs","keywords":["query-api-impl","forward-alias","com-refcount","vtable","toctou","xgameruntime"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[2623]}

@@ -1,0 +1,1 @@
+{"pr":1880,"status":"open","author":"microwave805","area":"tests","intent":{"area":"tests","kind":"refactor","subject":"e2e: escape raw NUL bytes in testtitle byte-string literals","keywords":["nul-byte","escape","testtitle","byte-string","cstring"]},"files":1,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

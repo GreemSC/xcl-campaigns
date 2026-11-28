@@ -1,0 +1,1 @@
+{"schema":"xcl-campaigns/v2/file","generated_at":"2026-11-28T15:19:27Z","synced_until":"2026-11-28T15:18:48Z","ai_fields":["subject"],"data":{"path":"crates/xcl/tests/gpu_dxil_lds_wide_d16_parity.rs","open_prs":[{"number":2093,"author":"ramon-victor","subject":"Tests: DXIL vs HLSL GPU parity for LDS wide, D16 and ADDTID ops"}]}}

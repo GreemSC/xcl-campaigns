@@ -1,0 +1,1 @@
+{"pr":932,"status":"open","author":"Kadthicu","area":"docs","intent":{"area":"docs","kind":"docs","subject":"README: document DXC DLL search order and dxil.dll load attempt","keywords":["dxc","dll-search-order","readme","dxil.dll","xcl_dxc_dir"]},"files":0,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

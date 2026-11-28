@@ -1,0 +1,1 @@
+{"issue":1031,"area":"memory","intent":{"area":"memory","kind":"bug-report","subject":"D3D12.X: queue method 31 CopyPageMappingsBatchX is still stubbed","keywords":["copy-page-mappings","page-mapping","gpu-view","mirrors","tile-heap","queue-method"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

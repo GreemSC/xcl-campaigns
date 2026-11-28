@@ -1,0 +1,1 @@
+{"issue":1897,"area":"textures","intent":{"area":"textures","kind":"bug-report","subject":"D3D12X unmap_superseded unmaps tiles without GPU sync and races remap","keywords":["sparse-tiles","unmap-superseded","remap-if-unmapped","update-tile-mappings","race"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

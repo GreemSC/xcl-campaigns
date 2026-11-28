@@ -1,0 +1,1 @@
+{"issue":1388,"area":"storage","intent":{"area":"storage","kind":"bug-report","subject":"MergedFind TOCTOU use-after-free and unchecked vfs_hooks pointers","keywords":["mergedfind","findnextfile","findclose","toctou","dwsize"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[1662]}

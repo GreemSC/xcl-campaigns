@@ -1,0 +1,1 @@
+{"pr":1271,"status":"open","author":"b3IKK","area":"shaders","intent":{"area":"shaders","kind":"bugfix","subject":"Atomic fmin/fmax: leave memory unchanged on NaN operands","keywords":["fmin","fmax","nan","global-atomic","minnum","maxnum"]},"files":2,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

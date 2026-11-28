@@ -1,0 +1,1 @@
+{"issue":2561,"area":"tooling","intent":{"area":"tooling","kind":"feature","subject":"Add XCL_PIX marker text with translated shader hashes per pipeline","keywords":["pix","d3d12-marker","pipeline-label","dred","xcl-pix","shader-hash"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

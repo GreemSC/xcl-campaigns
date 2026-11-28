@@ -1,0 +1,1 @@
+{"pr":1339,"status":"open","author":"b3IKK","area":"textures","intent":{"area":"textures","kind":"bugfix","subject":"D3D12.X: force MipLevels1 for MSAA descriptors in image_d3d12","keywords":["msaa","miplevels","image_d3d12","d2msaa","overflow"]},"files":1,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

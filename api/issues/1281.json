@@ -1,0 +1,1 @@
+{"issue":1281,"area":"shaders","intent":{"area":"shaders","kind":"bug-report","subject":"v_cmp_class_f32 applies abs/neg via float ops, flushing denormals","keywords":["v_cmp_class_f32","abs","neg","sign-bit","denormal","fclass"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[1306]}

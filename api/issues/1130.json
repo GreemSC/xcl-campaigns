@@ -1,0 +1,1 @@
+{"issue":1130,"area":"rendering","intent":{"area":"rendering","kind":"bug-report","subject":"is_adopted misaligned usize deref on GetCustomHeapProperties buffer","keywords":["is_adopted","read_unaligned","misaligned","heap-properties","getcustomheapproperties","alignment"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[1139]}

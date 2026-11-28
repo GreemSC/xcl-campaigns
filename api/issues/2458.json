@@ -1,0 +1,1 @@
+{"issue":2458,"area":"shaders","intent":{"area":"shaders","kind":"bug-report","subject":"Per-lane: bridged V_CMP ignores EXEC NULL SDST clobbers EXEC","keywords":["v-cmp","exec","per-lane","sdst-null","lane-masks","bridge"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

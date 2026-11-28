@@ -1,0 +1,1 @@
+{"issue":1282,"area":"shaders","intent":{"area":"shaders","kind":"bug-report","subject":"v_min/v_max f32/f16 and 3-op forms ignore -0.0  +0.0 ordering","keywords":["v_min_f32","v_max_f32","signed-zero","fmin","fmax","dxil"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

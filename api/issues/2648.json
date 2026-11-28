@@ -1,0 +1,1 @@
+{"issue":2648,"area":"pipelines","intent":{"area":"pipelines","kind":"bug-report","subject":"GTA VI 1.0.2.1 stalls at 0 fps after mesh pipelines are refused","keywords":["mesh-shader","amplification","dstorage","bcpack","e_access_violation","0x89240009"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

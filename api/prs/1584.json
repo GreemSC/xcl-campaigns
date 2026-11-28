@@ -1,0 +1,1 @@
+{"pr":1584,"status":"open","author":"Pipodi","area":"shaders","intent":{"area":"shaders","kind":"performance","subject":"Cap structured HLSL indentation at 8 levels","keywords":["indent","max-indent","hlsl","emit-structured","dxc","whitespace"]},"files":2,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

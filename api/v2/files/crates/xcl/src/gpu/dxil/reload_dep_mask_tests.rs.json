@@ -1,0 +1,1 @@
+{"schema":"xcl-campaigns/v2/file","generated_at":"2026-11-28T15:19:27Z","synced_until":"2026-11-28T15:18:48Z","ai_fields":["subject"],"data":{"path":"crates/xcl/src/gpu/dxil/reload_dep_mask_tests.rs","open_prs":[{"number":2761,"author":"amazedturnip","subject":"Precompute u128 dependency masks for DXIL reload invalidation"}]}}

@@ -1,0 +1,1 @@
+{"issue":2682,"area":"storage","intent":{"area":"storage","kind":"bug-report","subject":"VFS: MAXIMUM_ALLOWED open treated as read, bypasses overlay","keywords":["maximum_allowed","write_access","createfilew","copy-on-write","overlay","is_write"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[2694,2708,2850]}

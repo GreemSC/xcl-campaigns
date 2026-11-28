@@ -1,0 +1,1 @@
+{"issue":2456,"area":"rendering","intent":{"area":"rendering","kind":"bug-report","subject":"PresentX compositor leaks DXGI back-buffer RTV refs, strips SRGB","keywords":["presentx","compositor","rtv-leak","resizebuffers","srgb","com-addref"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

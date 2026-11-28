@@ -1,0 +1,1 @@
+{"issue":2990,"area":"memory","intent":{"area":"memory","kind":"bug-report","subject":"Access violations reading GPU-visible VA on RX 7800 XT in cutscenes","keywords":["access-violation","gpu-visible","gpu-va","amd-dev","cutscene","0xc0000005"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

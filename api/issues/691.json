@@ -1,0 +1,1 @@
+{"issue":691,"area":"loader","intent":{"area":"loader","kind":"bug-report","subject":"PE loader: export ordinal base plus index overflows u32 in from_pe","keywords":["export-ordinal","checked-add","pe-export","overflow","ordinal-base"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[700]}

@@ -1,0 +1,1 @@
+{"pr":787,"status":"open","author":"Lucasyudi","area":"tests","intent":{"area":"tests","kind":"test","subject":"Skip GPU f64 tests on adapters without double-precision support","keywords":["f64","f64-doubles","d3dmetal","d3d12_options","skip-reason"]},"files":2,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

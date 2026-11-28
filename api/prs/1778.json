@@ -1,0 +1,1 @@
+{"pr":1778,"status":"open","author":"thiagocalile","area":"tests","intent":{"area":"tests","kind":"test","subject":"Tests: GPU parity for direct DXIL vs HLSL wave, LDS and MIMG ops","keywords":["dxil","rdna2","wave64","dpp","lds-atomics","mimg"]},"files":1,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

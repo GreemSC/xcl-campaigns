@@ -1,0 +1,1 @@
+{"issue":320,"area":"memory","intent":{"area":"memory","kind":"bug-report","subject":"Retail title uses 6.4 GB VRAM on an 8 GB RTX 2080","keywords":["vram","overcommit","memory-usage","host-traffic","8gb","turing"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

@@ -1,0 +1,1 @@
+{"issue":3166,"area":"rendering","intent":{"area":"rendering","kind":"bug-report","subject":"D3D12.X: failed mid-list split submits unrecorded standby","keywords":["command-list","createcommandlist1","device-removed","dxgi-invalid-call","mid-list-split"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[3167]}

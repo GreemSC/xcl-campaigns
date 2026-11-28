@@ -1,0 +1,1 @@
+{"pr":1275,"status":"open","author":"anakatt","area":"loader","intent":{"area":"loader","kind":"bugfix","subject":"Accept XML whitespace before end-tag terminator in manifest parser","keywords":["manifest","xml","closing-tag","whitespace","xcl-run"]},"files":1,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

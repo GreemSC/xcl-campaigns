@@ -1,0 +1,1 @@
+{"issue":2863,"area":"storage","intent":{"area":"storage","kind":"feature","subject":"DirectStorage: plan for opt-in on-disk cache of unpacked requests","keywords":["dstorage","unpack-cache","zlib","bcpack","adler-32","xcl_dstorage_cache"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

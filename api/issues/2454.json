@@ -1,0 +1,1 @@
+{"issue":2454,"area":"shaders","intent":{"area":"shaders","kind":"bug-report","subject":"ShaderCache byte underflow when evicting dispatch_chain entries","keywords":["shadercache","dispatch-chain","eviction","usize-underflow","byte-accounting","pso-cache"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[2475]}

@@ -1,0 +1,1 @@
+{"issue":2464,"area":"shaders","intent":{"area":"shaders","kind":"bug-report","subject":"Recompiler: reload, lower_image and partition correctness bugs","keywords":["sdwa","vopc-sdst","reload-elision","getdimensions","image-sample-lod","tier-exact"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

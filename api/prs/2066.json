@@ -1,0 +1,1 @@
+{"pr":2066,"status":"open","author":"upipibi","area":"shaders","intent":{"area":"shaders","kind":"bugfix","subject":"Recompiler: honor ADD_TID_ENABLE for buffer V# lane indexing","keywords":["add_tid","idxen","buffer-vsharp","mubuf","lane-index","dxil"]},"files":3,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

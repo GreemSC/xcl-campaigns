@@ -1,0 +1,1 @@
+{"pr":3092,"status":"open","author":"Prime1997","area":"memory","intent":{"area":"memory","kind":"bugfix","subject":"Memory: use a 2 MiB grain for allocator page size two","keywords":["xmemalloc","page-size","alignment","2mib","kernelx","allocator"]},"files":2,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

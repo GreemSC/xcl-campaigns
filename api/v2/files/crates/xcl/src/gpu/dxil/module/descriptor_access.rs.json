@@ -1,0 +1,1 @@
+{"schema":"xcl-campaigns/v2/file","generated_at":"2026-11-28T15:19:27Z","synced_until":"2026-11-28T15:18:48Z","ai_fields":["subject"],"data":{"path":"crates/xcl/src/gpu/dxil/module/descriptor_access.rs","open_prs":[{"number":2795,"author":"ZekkJJ","subject":"Classify direct resource-heap slot dependencies in emitted DXIL"}]}}

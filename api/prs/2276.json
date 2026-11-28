@@ -1,0 +1,1 @@
+{"pr":2276,"status":"open","author":"Vadson159","area":"tests","intent":{"area":"tests","kind":"test","subject":"Add DXIL vs HLSL GPU parity tests for MIMG image ops","keywords":["mimg","image-sample","gather4","dxil","hlsl-parity","image-atomic"]},"files":1,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

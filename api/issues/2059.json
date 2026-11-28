@@ -1,0 +1,1 @@
+{"issue":2059,"area":"storage","intent":{"area":"storage","kind":"bug-report","subject":"DirectStorage byte counter includes failed reads","keywords":["dstorage","counters","failed-read","bytes-delivered","eof"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[2094,2159]}

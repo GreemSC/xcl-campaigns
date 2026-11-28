@@ -1,0 +1,1 @@
+{"issue":2737,"area":"shaders","intent":{"area":"shaders","kind":"bug-report","subject":"Precompile pipeline counts mix native creation with XCL disk reuse","keywords":["precompile","pso","disk-cache","blob","made-reused","cache-summary"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

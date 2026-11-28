@@ -1,0 +1,1 @@
+{"issue":1361,"area":"shaders","intent":{"area":"shaders","kind":"bug-report","subject":"Em::scratch uses VADDR base for GFX10.30 SADDR 0x7F ST mode","keywords":["scratch","saddr","flat-scratch","gfx10.30","st-mode","vaddr"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[1365]}

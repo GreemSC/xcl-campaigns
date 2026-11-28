@@ -1,0 +1,1 @@
+{"issue":2741,"area":"shaders","intent":{"area":"shaders","kind":"feature","subject":"Record and prewarm chain-ABI whole PSOs demanded before world entry","keywords":["chain-abi","whole-pso","prewarm","dispatch-chain","pso-cache","indirect-dispatch"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

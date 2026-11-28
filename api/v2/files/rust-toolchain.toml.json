@@ -1,0 +1,1 @@
+{"schema":"xcl-campaigns/v2/file","generated_at":"2026-11-28T15:19:27Z","synced_until":"2026-11-28T15:18:48Z","ai_fields":["subject"],"data":{"path":"rust-toolchain.toml","open_prs":[{"number":2295,"author":"WASDeKeys","subject":"Pin Rust toolchain to 1.96.0 and enforce Cargo.lock in CI"}]}}

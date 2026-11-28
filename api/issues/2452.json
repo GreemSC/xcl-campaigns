@@ -1,0 +1,1 @@
+{"issue":2452,"area":"storage","intent":{"area":"storage","kind":"feature","subject":"RFC: GPU compute BCPack decode and Gfx10 detile offload in HLSL","keywords":["bcpack","hlsl","compute-offload","gfx10-detile","descriptor-heap","rans"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

@@ -1,0 +1,1 @@
+{"issue":1659,"area":"other","intent":{"area":"other","kind":"bug-report","subject":"Crash: write to address 0x0 in game code when loading after menus","keywords":["access-violation","null-write","unhandled-exception","rtx-5070","load-crash"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

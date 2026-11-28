@@ -1,0 +1,1 @@
+{"pr":2032,"status":"open","author":"Decodere","area":"audio","intent":{"area":"audio","kind":"bugfix","subject":"Accept mixed stereo/mono XMA2 stream layouts in from_xma2_wfx","keywords":["xma2","xaudio2","stream-config","xma2wfx","mono-stereo"]},"files":1,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

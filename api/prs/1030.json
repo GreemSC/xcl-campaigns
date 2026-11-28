@@ -1,0 +1,1 @@
+{"pr":1030,"status":"open","author":"AlpPesen","area":"audio","intent":{"area":"audio","kind":"performance","subject":"XAudio2: AVX2+FMA path for XMA2 ImdctPlan::imdct_half","keywords":["avx2","fma","imdct","xma2","simd","target-feature"]},"files":1,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

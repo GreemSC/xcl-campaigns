@@ -1,0 +1,1 @@
+{"issue":582,"area":"rendering","intent":{"area":"rendering","kind":"bug-report","subject":"D3D12 write-watch look scans 1.5 GiB per submit with 4 pages written","keywords":["write-watch","getwritewatch","read-only","sparse-tiles","page-guard","d3d12"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

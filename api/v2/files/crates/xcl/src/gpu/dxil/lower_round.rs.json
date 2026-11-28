@@ -1,0 +1,1 @@
+{"schema":"xcl-campaigns/v2/file","generated_at":"2026-11-28T15:19:27Z","synced_until":"2026-11-28T15:18:48Z","ai_fields":["subject"],"data":{"path":"crates/xcl/src/gpu/dxil/lower_round.rs","open_prs":[{"number":2534,"author":"Decodere","subject":"Fix rm_sqrt negative denormal result route rm_mad through by_mode"}]}}

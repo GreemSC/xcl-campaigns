@@ -1,0 +1,1 @@
+{"pr":829,"status":"open","author":"mastrr9","area":"tests","intent":{"area":"tests","kind":"test","subject":"Tests: instruction decode checks for EXTRQ, CLWB, RDPID, CLZERO","keywords":["extrq","insertq","clwb","clzero","rdpid","modrm"]},"files":1,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

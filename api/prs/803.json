@@ -1,0 +1,1 @@
+{"pr":803,"status":"open","author":"upipibi","area":"shaders","intent":{"area":"shaders","kind":"bugfix","subject":"Recompiler: v_swaprel_b32 takes destination index from M025:16","keywords":["v_swaprel_b32","m0","movrel","vop1","index"]},"files":2,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

@@ -1,0 +1,1 @@
+{"pr":1148,"status":"open","author":"bmjask","area":"tests","intent":{"area":"tests","kind":"test","subject":"Tests: add synthetic Criterion core and format benchmarks","keywords":["criterion","benchmark","decoder","pe-parser","descriptors"]},"files":3,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

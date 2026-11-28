@@ -1,0 +1,1 @@
+{"issue":1511,"area":"textures","intent":{"area":"textures","kind":"bug-report","subject":"Detile title textures faster: CPU copies runs, GPU detiles","keywords":["detile","tiling","texture-upload","detile-level","compute","perf"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

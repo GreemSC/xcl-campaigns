@@ -1,0 +1,1 @@
+{"issue":2003,"area":"pipelines","intent":{"area":"pipelines","kind":"bug-report","subject":"Crash in vkCreateGraphicsPipelines with driver blob and NVIDIA cache","keywords":["vkcreatepipelines","nvidia","driver-cache","pso-cache","vkd3d-proton","linux"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

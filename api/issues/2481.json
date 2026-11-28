@@ -1,0 +1,1 @@
+{"issue":2481,"area":"audio","intent":{"area":"audio","kind":"bug-report","subject":"Wine: XMA2 source voice GetState returns null context at first call","keywords":["xaudio2","xma2","getstate","wine","buffer-context"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

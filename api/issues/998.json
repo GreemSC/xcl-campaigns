@@ -1,0 +1,1 @@
+{"issue":998,"area":"storage","intent":{"area":"storage","kind":"bug-report","subject":"VFS handle delete of game file restores original no whiteout added","keywords":["setfileinfo","filedispositioninfo","delete-on-close","whiteout","overlay","vfs"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[1054]}

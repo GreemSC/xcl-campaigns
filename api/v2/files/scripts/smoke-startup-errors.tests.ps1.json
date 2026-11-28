@@ -1,0 +1,1 @@
+{"schema":"xcl-campaigns/v2/file","generated_at":"2026-11-28T15:19:27Z","synced_until":"2026-11-28T15:18:48Z","ai_fields":["subject"],"data":{"path":"scripts/smoke-startup-errors.tests.ps1","open_prs":[{"number":589,"author":"luna020924","subject":"smoke.ps1: show stderr and exit code when a run exits early"}]}}

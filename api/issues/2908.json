@@ -1,0 +1,1 @@
+{"issue":2908,"area":"textures","intent":{"area":"textures","kind":"bug-report","subject":"D3D12.X: CopyTiles ignores the placed linear buffer prefix","keywords":["copytiles","placed-buffer","linear-offset","tiled","dma-list"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[2953]}

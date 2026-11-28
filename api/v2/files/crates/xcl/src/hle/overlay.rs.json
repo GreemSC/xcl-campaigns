@@ -1,0 +1,1 @@
+{"schema":"xcl-campaigns/v2/file","generated_at":"2026-11-28T15:19:27Z","synced_until":"2026-11-28T15:18:48Z","ai_fields":["subject"],"data":{"path":"crates/xcl/src/hle/overlay.rs","open_prs":[{"number":450,"author":"ryosen0","subject":"D3D12.X: XCL_OVERLAY draws fps and stats panel into the frame"}]}}

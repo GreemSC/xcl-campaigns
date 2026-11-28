@@ -1,0 +1,1 @@
+{"issue":1668,"area":"memory","intent":{"area":"memory","kind":"bug-report","subject":"D3D12.X: E_OUTOFMEMORY on 64th command queue after submit and release","keywords":["command-queue","queue-release","e_outofmemory","lifetime","id3d12commandqueue"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[1691]}

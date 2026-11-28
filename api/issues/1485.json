@@ -1,0 +1,1 @@
+{"issue":1485,"area":"shaders","intent":{"area":"shaders","kind":"bug-report","subject":"64-bit image atomics with DMASK 0x3 run as 32-bit atomics","keywords":["image-atomic","dmask","int64-atomic","interlocked","atomic-cmpswap","uint64"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[1533,1541,1551]}

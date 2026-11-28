@@ -1,0 +1,1 @@
+{"issue":2784,"area":"memory","intent":{"area":"memory","kind":"bug-report","subject":"Crash: null pointer read at game_scarlett_master.exe+0x2a251f4","keywords":["null-pointer","access-violation","c0000005","vtable","game-crash"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

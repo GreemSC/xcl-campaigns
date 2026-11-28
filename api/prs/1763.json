@@ -1,0 +1,1 @@
+{"pr":1763,"status":"open","author":"BetterJdue","area":"tests","intent":{"area":"tests","kind":"test","subject":"Tests: RDNA2 program generator for synthetic compile-time benchmark","keywords":["rdna2","compile-bench","wave32","wave64","exec-mask"]},"files":2,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

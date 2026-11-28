@@ -1,0 +1,1 @@
+{"issue":1585,"area":"memory","intent":{"area":"memory","kind":"bug-report","subject":"Retail title hits video memory exhaustion account screen empty","keywords":["video-memory","title-memory","oom","0x8007000e","xuser"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

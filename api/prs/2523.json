@@ -1,0 +1,1 @@
+{"pr":2523,"status":"open","author":"oni-swr","area":"pipelines","intent":{"area":"pipelines","kind":"bugfix","subject":"D3D12.X: MakeResident and Evict unwrap stand-in pipelines","keywords":["makeresident","evict","d3d12x","standin","residency","pso"]},"files":2,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

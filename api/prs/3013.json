@@ -1,0 +1,1 @@
+{"pr":3013,"status":"open","author":"Anon64","area":"shaders","intent":{"area":"shaders","kind":"bugfix","subject":"tile_level skips out-of-range elements instead of panicking","keywords":["tile-level","bounds-check","tiling","slice-bounds","panic"]},"files":1,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

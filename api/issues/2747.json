@@ -1,0 +1,1 @@
+{"issue":2747,"area":"shaders","intent":{"area":"shaders","kind":"bug-report","subject":"Precompute SGPR masks for scalar-load invalidation in reload.rs","keywords":["sgpr-mask","scalar-load","reload","dxil","invalidation","dependency-mask"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[2761]}

@@ -1,0 +1,1 @@
+{"issue":575,"area":"textures","intent":{"area":"textures","kind":"bug-report","subject":"Image heap index clamp: console T# faults on RADV (SQC page fault)","keywords":["heap-index","resourcedescriptorheap","page-fault","device-removed","nonuniformresourceindex","t-sharp"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[610]}

@@ -1,0 +1,1 @@
+{"issue":2140,"area":"linux-wine","intent":{"area":"linux-wine","kind":"bug-report","subject":"Title 1.0.2.1 ends its run at +0x4da6315 on vkd3d-proton 3.2.0","keywords":["vkd3d-proton","failfast","retail-title","pipeline-cache","nvidia","wine-proton"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

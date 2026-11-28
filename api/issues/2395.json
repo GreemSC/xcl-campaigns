@@ -1,0 +1,1 @@
+{"issue":2395,"area":"textures","intent":{"area":"textures","kind":"performance","subject":"hash only written pages of title textures with per-page hashes","keywords":["per-page-hash","content-hash","write-watch","dirty-pages","title-texture"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[2484]}

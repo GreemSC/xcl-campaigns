@@ -1,0 +1,1 @@
+{"issue":1640,"area":"memory","intent":{"area":"memory","kind":"other","subject":"GPU heaps in host memory: residency, readback and wait-release data","keywords":["host-memory","write-combined","vram-copy","write-watch","wait-release","residency"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

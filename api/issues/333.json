@@ -1,0 +1,1 @@
+{"issue":333,"area":"memory","intent":{"area":"memory","kind":"bug-report","subject":"Retail title asserts 0x80000003 (E_OUTOFMEMORY) during world loading","keywords":["e_outofmemory","vram-budget","world-loading","assert","0x80000003","rtx-2070"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

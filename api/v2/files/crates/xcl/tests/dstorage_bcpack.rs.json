@@ -1,0 +1,1 @@
+{"schema":"xcl-campaigns/v2/file","generated_at":"2026-11-28T15:19:27Z","synced_until":"2026-11-28T15:18:48Z","ai_fields":["subject"],"data":{"path":"crates/xcl/tests/dstorage_bcpack.rs","open_prs":[{"number":1047,"author":"gloger2003","subject":"Tests: successful BCPack BC1 requests through the DirectStorage queue"}]}}

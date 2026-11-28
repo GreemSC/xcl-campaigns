@@ -1,0 +1,1 @@
+{"issue":1408,"area":"storage","intent":{"area":"storage","kind":"bug-report","subject":"Same-window copies skip scratch buffer while last submission runs","keywords":["copy-scratch","memory-copy","fence-mark","scratch-budget","d3d12-x"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

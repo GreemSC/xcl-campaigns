@@ -1,0 +1,1 @@
+{"schema":"xcl-campaigns/v2/file","generated_at":"2026-11-28T15:19:27Z","synced_until":"2026-11-28T15:18:48Z","ai_fields":["subject"],"data":{"path":"crates/xcl/src/hle/d3d12x/real/chain_whole_capture.rs","open_prs":[{"number":2786,"author":"Decodere","subject":"Add env-gated first-demand capture sidecar for Chain::whole fallbacks"}]}}

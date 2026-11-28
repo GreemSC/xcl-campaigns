@@ -1,0 +1,1 @@
+{"schema":"xcl-campaigns/v2/file","generated_at":"2026-11-28T15:19:27Z","synced_until":"2026-11-28T15:18:48Z","ai_fields":["subject"],"data":{"path":"scripts/inspect_dxil_semantics.py","open_prs":[{"number":2575,"author":"luckyteagirl","subject":"Add DXIL semantic inspector script and DXC comparison fixtures"}]}}

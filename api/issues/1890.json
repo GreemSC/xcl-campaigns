@@ -1,0 +1,1 @@
+{"issue":1890,"area":"shaders","intent":{"area":"shaders","kind":"bug-report","subject":"Direct DXIL top_vgpr truncates movrel and swaprel VGPR range","keywords":["movrel","swaprel","top-vgpr","per-lane","vgpr-range"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[2037]}

@@ -1,0 +1,1 @@
+{"pr":2851,"status":"open","author":"guinpereira","area":"other","intent":{"area":"other","kind":"bugfix","subject":"eh: unwind thread dump while thread is suspended","keywords":["unwind","thread-dump","suspend-thread","resumethread","ntdll"]},"files":1,"fixes":[2689],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

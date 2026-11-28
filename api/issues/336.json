@@ -1,0 +1,1 @@
+{"issue":336,"area":"shaders","intent":{"area":"shaders","kind":"bug-report","subject":"Recompiler: wave64 VS/PS votes taken per half on 32-lane waves","keywords":["wave64","wave32","vote","exec-mask","vccz"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

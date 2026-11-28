@@ -1,0 +1,1 @@
+{"issue":2958,"area":"tests","intent":{"area":"tests","kind":"bug-report","subject":"xcl run exits 2 without a D3D12 device, e2e title does not run","keywords":["d3d12","pipeline-device","startup-preparation","e2e","device-less"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[2983]}

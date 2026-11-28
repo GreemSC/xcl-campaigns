@@ -1,0 +1,1 @@
+{"issue":963,"area":"input","intent":{"area":"input","kind":"bug-report","subject":"Mouse velocity whips after gamepad unread for over 100 ms","keywords":["dt_clamp","velocity","kbm","mouse_delta","stick","smoothing"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[1066]}

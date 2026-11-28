@@ -1,0 +1,1 @@
+{"pr":1171,"status":"open","author":"emirduran707","area":"tooling","intent":{"area":"tooling","kind":"feature","subject":"Warn about unknown xcl.toml keys and tables on xcl run","keywords":["unknown_keys","xcl.toml","serde","config","typo","warning"]},"files":2,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

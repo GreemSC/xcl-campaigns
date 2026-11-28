@@ -1,0 +1,1 @@
+{"schema":"xcl-campaigns/v2/file","generated_at":"2026-11-28T15:19:27Z","synced_until":"2026-11-28T15:18:48Z","ai_fields":["subject"],"data":{"path":"crates/xcl/tests/sparse_readback_cpu_writes.rs","open_prs":[{"number":1847,"author":"gloger2003","subject":"Keep pending CPU writes during sparse readback"}]}}

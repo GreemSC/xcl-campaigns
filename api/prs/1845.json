@@ -1,0 +1,1 @@
+{"pr":1845,"status":"open","author":"emirduran707","area":"shaders","intent":{"area":"shaders","kind":"bugfix","subject":"Bridge non-native DPP16/DPP8 VALU ops in per-lane form","keywords":["dpp16","dpp8","valu","exec-mask","bridge","wave-reduce"]},"files":4,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

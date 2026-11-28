@@ -1,0 +1,1 @@
+{"pr":2000,"status":"open","author":"MiguelMachado-dev","area":"shaders","intent":{"area":"shaders","kind":"bugfix","subject":"Track four image resource SGPRs with R128 set in MIMG","keywords":["mimg","r128","sgpr","image-load","wave32","srsrc"]},"files":3,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

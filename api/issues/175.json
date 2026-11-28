@@ -1,0 +1,1 @@
+{"issue":175,"area":"linux-wine","intent":{"area":"linux-wine","kind":"bug-report","subject":"Replaced vtables make vkd3d-proton reject XCL objects under Wine","keywords":["vtable","vkd3d-proton","lpvtbl","shared-fence","wine","proxy"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[793,794,867,871,877,2477]}

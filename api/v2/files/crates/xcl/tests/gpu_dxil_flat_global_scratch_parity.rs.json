@@ -1,0 +1,1 @@
+{"schema":"xcl-campaigns/v2/file","generated_at":"2026-11-28T15:19:27Z","synced_until":"2026-11-28T15:18:48Z","ai_fields":["subject"],"data":{"path":"crates/xcl/tests/gpu_dxil_flat_global_scratch_parity.rs","open_prs":[{"number":2143,"author":"HumanlyDev","subject":"Add DXIL vs HLSL parity tests for FLAT, GLOBAL, SCRATCH memory ops"}]}}

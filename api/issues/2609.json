@@ -1,0 +1,1 @@
+{"issue":2609,"area":"pipelines","intent":{"area":"pipelines","kind":"bug-report","subject":"Repeated compute PSO builds copy whole translated DXIL on every hit","keywords":["dxil","arc","shader-cache","compute-pso","clone"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[2767]}

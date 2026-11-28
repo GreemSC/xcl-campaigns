@@ -1,0 +1,1 @@
+{"pr":669,"status":"open","author":"Tjabooo","area":"tooling","intent":{"area":"tooling","kind":"tooling","subject":"Ignore vkd3d-proton pipeline cache files in .gitignore","keywords":["gitignore","vkd3d-proton","pipeline-cache","wine","untracked"]},"files":1,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

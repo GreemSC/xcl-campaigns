@@ -1,0 +1,1 @@
+{"issue":2719,"area":"gpu-sync","intent":{"area":"gpu-sync","kind":"bug-report","subject":"Bridged Wait64BitValueX with prodqNone hangs device removed on 3060","keywords":["wait64bitvaluex","wait-before-signal","fence-producer","device-removed","rtx-3060","texture-level-pages"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

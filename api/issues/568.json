@@ -1,0 +1,1 @@
+{"issue":568,"area":"network","intent":{"area":"network","kind":"bug-report","subject":"XCL_NETWORK0 still binds UDP 3074 on all interfaces via bind","keywords":["netoff","bind","ws2_32","udp","loopback","firewall"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[570]}

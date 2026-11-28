@@ -1,0 +1,2565 @@
+{
+ "campaign": 3041,
+ "status": "auto",
+ "updated": "2026-11-28 15:19 UTC",
+ "reference_commit": null,
+ "note": "Typed data only. Before acting: pick a free task or a cell with need > 0 for your hardware class.",
+ "tasks": [
+  {
+   "id": "A1",
+   "type": "code",
+   "title": "Write merge_queue.py gates: draft, conflicts, checks, reports, duplicates, reviews",
+   "holders": [],
+   "teams": [],
+   "conflict": false,
+   "stale_holders": [],
+   "prs": [],
+   "prs_mentioned": [],
+   "results": 0
+  },
+  {
+   "id": "A2",
+   "type": "code",
+   "title": "List nvidia-dev/amd-dev PRs separately, gated on description check only, and marked",
+   "holders": [
+    "throny"
+   ],
+   "teams": [
+    [
+     "throny"
+    ]
+   ],
+   "conflict": false,
+   "stale_holders": [],
+   "prs": [
+    {
+     "number": 2951,
+     "status": "open",
+     "cited_by": 1
+    }
+   ],
+   "prs_mentioned": [
+    2604,
+    2605,
+    2705,
+    2755,
+    2768,
+    2769,
+    2770,
+    2782,
+    2788,
+    2794,
+    2796,
+    2817,
+    2859,
+    2860,
+    2886,
+    2898,
+    2913,
+    2987,
+    2999,
+    3037,
+    3039
+   ],
+   "results": 0
+  },
+  {
+   "id": "A3",
+   "type": "code",
+   "title": "Rank listed PRs by importance, evidence, risk and age, printing score parts",
+   "holders": [
+    "throny"
+   ],
+   "teams": [
+    [
+     "throny"
+    ]
+   ],
+   "conflict": false,
+   "stale_holders": [],
+   "prs": [
+    {
+     "number": 2951,
+     "status": "open",
+     "cited_by": 1
+    }
+   ],
+   "prs_mentioned": [
+    2604,
+    2605,
+    2705,
+    2755,
+    2768,
+    2769,
+    2770,
+    2782,
+    2788,
+    2794,
+    2796,
+    2817,
+    2859,
+    2860,
+    2886,
+    2898,
+    2913,
+    2987,
+    2999,
+    3037,
+    3039
+   ],
+   "results": 0
+  },
+  {
+   "id": "A4",
+   "type": "code",
+   "title": "Parse merge-check claims and checks from PR comments (6h expiry, stale head/base)",
+   "holders": [
+    "throny"
+   ],
+   "teams": [
+    [
+     "throny"
+    ]
+   ],
+   "conflict": false,
+   "stale_holders": [],
+   "prs": [],
+   "prs_mentioned": [
+    2755,
+    3023,
+    3024,
+    3025
+   ],
+   "results": 0
+  },
+  {
+   "id": "A5",
+   "type": "code",
+   "title": "Show free, full, and disagreeing merge-check slots per PR in the list",
+   "holders": [
+    "throny"
+   ],
+   "teams": [
+    [
+     "throny"
+    ]
+   ],
+   "conflict": false,
+   "stale_holders": [],
+   "prs": [
+    {
+     "number": 2951,
+     "status": "open",
+     "cited_by": 1
+    }
+   ],
+   "prs_mentioned": [
+    2604,
+    2605,
+    2705,
+    2755,
+    2768,
+    2769,
+    2770,
+    2782,
+    2788,
+    2794,
+    2796,
+    2817,
+    2859,
+    2860,
+    2886,
+    2898,
+    2913,
+    2987,
+    2999,
+    3037,
+    3039
+   ],
+   "results": 0
+  },
+  {
+   "id": "A6",
+   "type": "code",
+   "title": "Publish queue as replaceable issue comments, with counts of not yet reasons",
+   "holders": [
+    "throny"
+   ],
+   "teams": [
+    [
+     "throny"
+    ]
+   ],
+   "conflict": false,
+   "stale_holders": [],
+   "prs": [
+    {
+     "number": 2951,
+     "status": "open",
+     "cited_by": 1
+    }
+   ],
+   "prs_mentioned": [
+    2604,
+    2605,
+    2705,
+    2755,
+    2768,
+    2769,
+    2770,
+    2782,
+    2788,
+    2794,
+    2796,
+    2817,
+    2859,
+    2860,
+    2886,
+    2898,
+    2913,
+    2987,
+    2999,
+    3037,
+    3039
+   ],
+   "results": 0
+  },
+  {
+   "id": "A7",
+   "type": "code",
+   "title": "Schedule list refresh several times a day",
+   "holders": [],
+   "teams": [],
+   "conflict": false,
+   "stale_holders": [],
+   "prs": [],
+   "prs_mentioned": [],
+   "results": 0
+  },
+  {
+   "id": "A8",
+   "type": "code",
+   "title": "Document merge-check claim and report format for contributors",
+   "holders": [],
+   "teams": [],
+   "conflict": false,
+   "stale_holders": [],
+   "prs": [],
+   "prs_mentioned": [],
+   "results": 0
+  },
+  {
+   "id": "A9",
+   "type": "code",
+   "title": "Fix Windows no-GPU CI with test-only PRs in the nvidia-dev queue",
+   "holders": [
+    "Kalmarv"
+   ],
+   "teams": [
+    [
+     "Kalmarv"
+    ]
+   ],
+   "conflict": false,
+   "stale_holders": [],
+   "prs": [],
+   "prs_mentioned": [
+    2771,
+    2773,
+    2788,
+    2837
+   ],
+   "results": 2
+  },
+  {
+   "id": "A10",
+   "type": "measure",
+   "title": "Report merge-check status and gate weaknesses for open PRs",
+   "holders": [],
+   "teams": [],
+   "conflict": false,
+   "stale_holders": [],
+   "prs": [],
+   "prs_mentioned": [
+    253,
+    608,
+    671,
+    1072,
+    1082,
+    1151,
+    1486,
+    1599,
+    1631,
+    1663,
+    1665,
+    1683,
+    1691,
+    1768,
+    1790,
+    1860,
+    1878,
+    1911,
+    1919,
+    1945,
+    1946,
+    1967,
+    1980,
+    2060,
+    2103,
+    2123,
+    2131,
+    2132,
+    2221,
+    2333,
+    2365,
+    2369,
+    2398,
+    2419,
+    2446,
+    2476,
+    2534,
+    2552,
+    2558,
+    2568,
+    2759,
+    2781,
+    2793,
+    2910,
+    2918,
+    2959,
+    2960,
+    3057,
+    3085
+   ],
+   "results": 4
+  },
+  {
+   "id": "A11",
+   "type": "measure",
+   "title": "Check nvidia-dev world run after merge and investigate cold-start stall",
+   "holders": [],
+   "teams": [],
+   "conflict": false,
+   "stale_holders": [],
+   "prs": [
+    {
+     "number": 3116,
+     "status": "open",
+     "cited_by": 1
+    }
+   ],
+   "prs_mentioned": [
+    684,
+    2705,
+    2782,
+    2794,
+    2860,
+    2898,
+    2921,
+    3003,
+    3005,
+    3007
+   ],
+   "results": 2
+  },
+  {
+   "id": "A12",
+   "type": "code",
+   "title": "Apply #142 quad sample mask behind XCL_SAMPLE_MASK=1 (D3D12.X)",
+   "holders": [
+    "CharlyRien"
+   ],
+   "teams": [
+    [
+     "CharlyRien"
+    ]
+   ],
+   "conflict": false,
+   "stale_holders": [],
+   "prs": [],
+   "prs_mentioned": [
+    1274,
+    1428,
+    2181
+   ],
+   "results": 0
+  },
+  {
+   "id": "A13",
+   "type": "code",
+   "title": "Add D3D12.X GPU-view memory windows behind XCL_VIEW_MEM=1",
+   "holders": [
+    "CharlyRien"
+   ],
+   "teams": [
+    [
+     "CharlyRien"
+    ]
+   ],
+   "conflict": false,
+   "stale_holders": [],
+   "prs": [
+    {
+     "number": 3097,
+     "status": "open",
+     "cited_by": 2
+    },
+    {
+     "number": 3096,
+     "status": "open",
+     "cited_by": 1
+    }
+   ],
+   "prs_mentioned": [
+    637,
+    1055,
+    2384
+   ],
+   "results": 4
+  },
+  {
+   "id": "A14",
+   "type": "code",
+   "title": "Submit amd-dev PRs to merge-check queue with importance and test notes",
+   "holders": [
+    "Saksukella"
+   ],
+   "teams": [
+    [
+     "Saksukella"
+    ]
+   ],
+   "conflict": false,
+   "stale_holders": [],
+   "prs": [
+    {
+     "number": 2755,
+     "status": "open",
+     "cited_by": 1
+    },
+    {
+     "number": 3023,
+     "status": "open",
+     "cited_by": 1
+    },
+    {
+     "number": 3024,
+     "status": "open",
+     "cited_by": 1
+    },
+    {
+     "number": 3025,
+     "status": "open",
+     "cited_by": 1
+    }
+   ],
+   "prs_mentioned": [],
+   "results": 0
+  },
+  {
+   "id": "A15",
+   "type": "code",
+   "title": "Fix NVIDIA device loss from lazy-level texture tile mapping",
+   "holders": [
+    "throny"
+   ],
+   "teams": [
+    [
+     "throny"
+    ]
+   ],
+   "conflict": false,
+   "stale_holders": [],
+   "prs": [],
+   "prs_mentioned": [
+    2572,
+    2981,
+    3124
+   ],
+   "results": 1
+  }
+ ],
+ "grid": [
+  {
+   "task": "A10",
+   "class": "nv-win",
+   "authors": [
+    "throny"
+   ],
+   "commits": [
+    "e429936"
+   ],
+   "need": 0,
+   "class_wanted": true,
+   "any_hardware": false,
+   "planned": []
+  },
+  {
+   "task": "A10",
+   "class": "nv-linux",
+   "authors": [],
+   "commits": [],
+   "need": 1,
+   "class_wanted": true,
+   "any_hardware": false,
+   "planned": []
+  },
+  {
+   "task": "A10",
+   "class": "amd-win",
+   "authors": [],
+   "commits": [],
+   "need": 1,
+   "class_wanted": true,
+   "any_hardware": false,
+   "planned": []
+  },
+  {
+   "task": "A10",
+   "class": "amd-radv",
+   "authors": [],
+   "commits": [],
+   "need": 1,
+   "class_wanted": true,
+   "any_hardware": false,
+   "planned": []
+  },
+  {
+   "task": "A10",
+   "class": "intel",
+   "authors": [],
+   "commits": [],
+   "need": 1,
+   "class_wanted": true,
+   "any_hardware": false,
+   "planned": []
+  },
+  {
+   "task": "A10",
+   "class": "small-vram",
+   "authors": [],
+   "commits": [],
+   "need": 1,
+   "class_wanted": true,
+   "any_hardware": false,
+   "planned": []
+  },
+  {
+   "task": "A11",
+   "class": "nv-win",
+   "authors": [
+    "throny"
+   ],
+   "commits": [
+    "54225f5"
+   ],
+   "need": 0,
+   "class_wanted": true,
+   "any_hardware": false,
+   "planned": []
+  },
+  {
+   "task": "A11",
+   "class": "nv-linux",
+   "authors": [],
+   "commits": [],
+   "need": 1,
+   "class_wanted": true,
+   "any_hardware": false,
+   "planned": []
+  },
+  {
+   "task": "A11",
+   "class": "amd-win",
+   "authors": [],
+   "commits": [],
+   "need": 0,
+   "class_wanted": false,
+   "any_hardware": false,
+   "planned": []
+  },
+  {
+   "task": "A11",
+   "class": "amd-radv",
+   "authors": [],
+   "commits": [],
+   "need": 0,
+   "class_wanted": false,
+   "any_hardware": false,
+   "planned": []
+  },
+  {
+   "task": "A11",
+   "class": "intel",
+   "authors": [],
+   "commits": [],
+   "need": 0,
+   "class_wanted": false,
+   "any_hardware": false,
+   "planned": []
+  },
+  {
+   "task": "A11",
+   "class": "small-vram",
+   "authors": [],
+   "commits": [],
+   "need": 1,
+   "class_wanted": true,
+   "any_hardware": false,
+   "planned": []
+  }
+ ],
+ "commits_used": [
+  [
+   "fc2e9e9",
+   7
+  ],
+  [
+   "fe2d5b7",
+   6
+  ],
+  [
+   "d1be810",
+   3
+  ],
+  [
+   "e429936",
+   2
+  ],
+  [
+   "8956fb4",
+   2
+  ],
+  [
+   "fe7a852",
+   2
+  ],
+  [
+   "f9cfb95",
+   2
+  ],
+  [
+   "0bab2ef",
+   1
+  ],
+  [
+   "4c6207d",
+   1
+  ],
+  [
+   "ba9d1f9",
+   1
+  ],
+  [
+   "2c501cf",
+   1
+  ],
+  [
+   "ba92a2a",
+   1
+  ],
+  [
+   "54225f5",
+   1
+  ]
+ ],
+ "messages": [
+  {
+   "source": "https://github.com/xcl-dev/xcl/issues/3041",
+   "author": "throny",
+   "date": "2026-11-27T16:47:21Z",
+   "kind": "other",
+   "tasks": [
+    "A8"
+   ],
+   "class": "unknown",
+   "commit": null,
+   "prs": [
+    1607,
+    3041
+   ],
+   "provenance": "auto",
+   "measurements": []
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/issues/3041#issuecomment-7223672452",
+   "author": "throny",
+   "date": "2026-11-27T16:47:24Z",
+   "kind": "tool",
+   "tasks": [
+    "A6"
+   ],
+   "class": "unknown",
+   "commit": null,
+   "prs": [],
+   "provenance": "auto",
+   "measurements": [
+    {
+     "task": "A6",
+     "value": 211,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "PRs"
+    }
+   ]
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/issues/3041#issuecomment-7223673169",
+   "author": "throny",
+   "date": "2026-11-27T16:47:27Z",
+   "kind": "progress",
+   "tasks": [
+    "A2",
+    "A3",
+    "A5",
+    "A6"
+   ],
+   "class": "unknown",
+   "commit": null,
+   "prs": [
+    2604,
+    2605,
+    2705,
+    2755,
+    2768,
+    2769,
+    2770,
+    2782,
+    2788,
+    2794,
+    2796,
+    2817,
+    2859,
+    2860,
+    2886,
+    2898,
+    2913,
+    2951,
+    2987,
+    2999,
+    3037,
+    3039
+   ],
+   "provenance": "auto",
+   "measurements": [
+    {
+     "task": "A2",
+     "value": 31,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "PRs"
+    },
+    {
+     "task": "A2",
+     "value": 7,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "PRs"
+    },
+    {
+     "task": "A6",
+     "value": 548,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "PRs"
+    },
+    {
+     "task": "A6",
+     "value": 369,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "PRs"
+    },
+    {
+     "task": "A6",
+     "value": 230,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "PRs"
+    },
+    {
+     "task": "A6",
+     "value": 159,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "PRs"
+    },
+    {
+     "task": "A6",
+     "value": 65,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "PRs"
+    },
+    {
+     "task": "A6",
+     "value": 4,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "PRs"
+    }
+   ]
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/issues/3041#issuecomment-7224200376",
+   "author": "KOLESNiii",
+   "date": "2026-11-27T17:15:15Z",
+   "kind": "question",
+   "tasks": [],
+   "class": "unknown",
+   "commit": null,
+   "prs": [],
+   "provenance": "auto",
+   "measurements": []
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/issues/3041#issuecomment-7224446898",
+   "author": "Kalmarv",
+   "date": "2026-11-27T17:28:32Z",
+   "kind": "result",
+   "tasks": [
+    "A9"
+   ],
+   "class": "unknown",
+   "commit": "d1be810",
+   "prs": [
+    2771,
+    2773,
+    2788,
+    2837
+   ],
+   "provenance": "auto",
+   "measurements": [
+    {
+     "task": null,
+     "value": 40,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "binaries"
+    },
+    {
+     "task": null,
+     "value": 1699,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "tests"
+    }
+   ]
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/issues/3041#issuecomment-7225290125",
+   "author": "throny",
+   "date": "2026-11-27T18:15:01Z",
+   "kind": "answer",
+   "tasks": [],
+   "class": "unknown",
+   "commit": null,
+   "prs": [],
+   "provenance": "auto",
+   "measurements": []
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/issues/3041#issuecomment-7225964436",
+   "author": "throny",
+   "date": "2026-11-27T18:52:46Z",
+   "kind": "other",
+   "tasks": [],
+   "class": "unknown",
+   "commit": null,
+   "prs": [],
+   "provenance": "auto",
+   "measurements": []
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/issues/3041#issuecomment-7227837520",
+   "author": "Kalmarv",
+   "date": "2026-11-27T20:47:08Z",
+   "kind": "pr",
+   "tasks": [
+    "A9"
+   ],
+   "class": "unknown",
+   "commit": "d1be810",
+   "prs": [
+    2771,
+    2773,
+    2788,
+    2837
+   ],
+   "provenance": "auto",
+   "measurements": []
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/issues/3041#issuecomment-7228780922",
+   "author": "throny",
+   "date": "2026-11-27T21:49:04Z",
+   "kind": "result",
+   "tasks": [
+    "A9"
+   ],
+   "class": "unknown",
+   "commit": "d1be810",
+   "prs": [
+    2771,
+    2773,
+    2788,
+    2837
+   ],
+   "provenance": "auto",
+   "measurements": [
+    {
+     "task": "A9",
+     "value": 1827,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "tests"
+    },
+    {
+     "task": "A9",
+     "value": 5,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "tests"
+    },
+    {
+     "task": "A9",
+     "value": 48,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "tests"
+    },
+    {
+     "task": "A9",
+     "value": 1824,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "tests"
+    },
+    {
+     "task": "A9",
+     "value": 8,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "tests"
+    },
+    {
+     "task": "A9",
+     "value": 48,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "tests"
+    }
+   ]
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/pull/3076",
+   "author": "CharlyRien",
+   "date": "2026-11-27T22:14:55Z",
+   "kind": "pr",
+   "tasks": [
+    "A12"
+   ],
+   "class": "nv-win",
+   "commit": "0bab2ef",
+   "prs": [
+    1274,
+    1428,
+    2181
+   ],
+   "provenance": "auto",
+   "measurements": [
+    {
+     "task": null,
+     "value": 2133,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "tests"
+    },
+    {
+     "task": null,
+     "value": 9,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "tests"
+    },
+    {
+     "task": null,
+     "value": 48,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "tests"
+    },
+    {
+     "task": null,
+     "value": 1473,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "tests"
+    },
+    {
+     "task": null,
+     "value": 346,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "lines"
+    },
+    {
+     "task": null,
+     "value": 1852,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "frames"
+    },
+    {
+     "task": null,
+     "value": 2442,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "frames"
+    },
+    {
+     "task": null,
+     "value": 75.8,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "%"
+    },
+    {
+     "task": null,
+     "value": 603,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "frames"
+    },
+    {
+     "task": null,
+     "value": 1751,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "frames"
+    },
+    {
+     "task": null,
+     "value": 1744,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "frames"
+    },
+    {
+     "task": null,
+     "value": 0,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "count"
+    }
+   ]
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/pull/3076#issuecomment-7229648268",
+   "author": "JJAutoCompare",
+   "date": "2026-11-27T22:49:35Z",
+   "kind": "result",
+   "tasks": [],
+   "class": "intel",
+   "commit": "4c6207d",
+   "prs": [],
+   "provenance": "auto",
+   "measurements": [
+    {
+     "task": null,
+     "value": 7,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "tests"
+    },
+    {
+     "task": null,
+     "value": 3072,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "pixels"
+    },
+    {
+     "task": null,
+     "value": 12,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "draws"
+    },
+    {
+     "task": null,
+     "value": 6,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "masks"
+    }
+   ]
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/issues/3041#issuecomment-7230339376",
+   "author": "throny",
+   "date": "2026-11-27T23:41:53Z",
+   "kind": "result",
+   "tasks": [
+    "A10"
+   ],
+   "class": "unknown",
+   "commit": null,
+   "prs": [
+    671,
+    1072,
+    1486,
+    1599,
+    1663,
+    1665,
+    1691,
+    1768,
+    1790,
+    1860,
+    1945,
+    1967,
+    1980,
+    2103,
+    2333,
+    2365,
+    2446,
+    2552,
+    2558,
+    2568,
+    2759,
+    2793,
+    2910,
+    2918
+   ],
+   "provenance": "auto",
+   "measurements": [
+    {
+     "task": null,
+     "value": 70,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "count"
+    },
+    {
+     "task": null,
+     "value": 46,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "count"
+    },
+    {
+     "task": null,
+     "value": 13,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "count"
+    }
+   ]
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/issues/3041#issuecomment-7232177753",
+   "author": "throny",
+   "date": "2026-11-28T02:10:08Z",
+   "kind": "result",
+   "tasks": [
+    "A11"
+   ],
+   "class": "unknown",
+   "commit": "ba9d1f9",
+   "prs": [
+    684,
+    2705,
+    2782,
+    2794,
+    2860,
+    2898,
+    2921,
+    3005
+   ],
+   "provenance": "auto",
+   "measurements": [
+    {
+     "task": "A11",
+     "value": 12,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "s"
+    },
+    {
+     "task": "A11",
+     "value": 18,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "s"
+    },
+    {
+     "task": "A11",
+     "value": 11,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "s"
+    },
+    {
+     "task": "A11",
+     "value": 280,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "s"
+    },
+    {
+     "task": "A11",
+     "value": 277,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "s"
+    },
+    {
+     "task": "A11",
+     "value": 154,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "s"
+    },
+    {
+     "task": "A11",
+     "value": 78,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "presents/min"
+    },
+    {
+     "task": "A11",
+     "value": 119,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "presents/min"
+    },
+    {
+     "task": "A11",
+     "value": 137,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "presents/min"
+    }
+   ]
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/issues/3041#issuecomment-7233706471",
+   "author": "throny",
+   "date": "2026-11-28T04:06:53Z",
+   "kind": "result",
+   "tasks": [
+    "A10"
+   ],
+   "class": "unknown",
+   "commit": "e429936",
+   "prs": [
+    2959,
+    2960,
+    3057,
+    3085
+   ],
+   "provenance": "auto",
+   "measurements": [
+    {
+     "task": "A10",
+     "value": 9,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "tests"
+    },
+    {
+     "task": "A10",
+     "value": 2126,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "tests"
+    },
+    {
+     "task": "A10",
+     "value": 0,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "tests"
+    },
+    {
+     "task": "A10",
+     "value": 1512,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "tests"
+    },
+    {
+     "task": "A10",
+     "value": 11,
+     "runs": null,
+     "found_in_text": false,
+     "unit": "merges"
+    },
+    {
+     "task": "A10",
+     "value": 325,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "commits"
+    },
+    {
+     "task": "A10",
+     "value": 246,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "commits"
+    }
+   ]
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/pull/3096",
+   "author": "CharlyRien",
+   "date": "2026-11-28T05:07:08Z",
+   "kind": "pr",
+   "tasks": [],
+   "class": "nv-win",
+   "commit": "8956fb4",
+   "prs": [
+    3096,
+    3097
+   ],
+   "provenance": "auto",
+   "measurements": [
+    {
+     "task": null,
+     "value": 2128,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "tests"
+    },
+    {
+     "task": null,
+     "value": 9,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "tests"
+    },
+    {
+     "task": null,
+     "value": 48,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "tests"
+    },
+    {
+     "task": null,
+     "value": 1853,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "frames"
+    },
+    {
+     "task": null,
+     "value": 2442,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "frames"
+    },
+    {
+     "task": null,
+     "value": 75.9,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "%"
+    },
+    {
+     "task": null,
+     "value": 247,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "frames"
+    },
+    {
+     "task": null,
+     "value": 235,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "frames"
+    },
+    {
+     "task": null,
+     "value": 31959,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "MB"
+    },
+    {
+     "task": null,
+     "value": 31737,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "MB"
+    }
+   ]
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/pull/3097",
+   "author": "CharlyRien",
+   "date": "2026-11-28T05:07:31Z",
+   "kind": "pr",
+   "tasks": [
+    "A13"
+   ],
+   "class": "nv-win",
+   "commit": "fe2d5b7",
+   "prs": [
+    637,
+    1055,
+    2384,
+    3096,
+    3097
+   ],
+   "provenance": "auto",
+   "measurements": [
+    {
+     "task": "A13",
+     "value": 1840,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "frames"
+    },
+    {
+     "task": "A13",
+     "value": 2442,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "frames"
+    },
+    {
+     "task": "A13",
+     "value": 75.3,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "%"
+    },
+    {
+     "task": "A13",
+     "value": 34071,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "MB"
+    },
+    {
+     "task": "A13",
+     "value": 1796,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "frames"
+    },
+    {
+     "task": "A13",
+     "value": 34821,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "MB"
+    },
+    {
+     "task": "A13",
+     "value": 14,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "tiles"
+    },
+    {
+     "task": "A13",
+     "value": 1278,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "tiles"
+    },
+    {
+     "task": "A13",
+     "value": 3.2,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "s"
+    },
+    {
+     "task": "A13",
+     "value": 2137,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "tests"
+    }
+   ]
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/pull/3097#issuecomment-7234675624",
+   "author": "andrewDoing",
+   "date": "2026-11-28T05:26:57Z",
+   "kind": "result",
+   "tasks": [],
+   "class": "unknown",
+   "commit": "fe7a852",
+   "prs": [],
+   "provenance": "auto",
+   "measurements": [
+    {
+     "task": null,
+     "value": 1.1,
+     "runs": 2,
+     "found_in_text": true,
+     "unit": "s"
+    },
+    {
+     "task": null,
+     "value": 64,
+     "runs": 2,
+     "found_in_text": true,
+     "unit": "KiB"
+    }
+   ]
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/pull/3097#issuecomment-7234814860",
+   "author": "andrewDoing",
+   "date": "2026-11-28T05:40:31Z",
+   "kind": "other",
+   "tasks": [],
+   "class": "unknown",
+   "commit": "fe7a852",
+   "prs": [],
+   "provenance": "auto",
+   "measurements": []
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/pull/3097#issuecomment-7234979397",
+   "author": "andrewDoing",
+   "date": "2026-11-28T05:56:28Z",
+   "kind": "result",
+   "tasks": [],
+   "class": "nv-win",
+   "commit": "2c501cf",
+   "prs": [],
+   "provenance": "auto",
+   "measurements": [
+    {
+     "task": null,
+     "value": 1,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "count"
+    },
+    {
+     "task": null,
+     "value": 2,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "count"
+    },
+    {
+     "task": null,
+     "value": 3,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "count"
+    },
+    {
+     "task": null,
+     "value": 2,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "count"
+    }
+   ]
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/pull/3097#issuecomment-7235047906",
+   "author": "CharlyRien",
+   "date": "2026-11-28T06:03:06Z",
+   "kind": "result",
+   "tasks": [],
+   "class": "nv-win",
+   "commit": "f9cfb95",
+   "prs": [
+    1055
+   ],
+   "provenance": "auto",
+   "measurements": [
+    {
+     "task": null,
+     "value": 3.2,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "s"
+    },
+    {
+     "task": null,
+     "value": 7,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "tests"
+    }
+   ]
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/pull/3097#issuecomment-7235143573",
+   "author": "andrewDoing",
+   "date": "2026-11-28T06:12:03Z",
+   "kind": "result",
+   "tasks": [],
+   "class": "nv-win",
+   "commit": "f9cfb95",
+   "prs": [],
+   "provenance": "auto",
+   "measurements": [
+    {
+     "task": null,
+     "value": 4,
+     "runs": 4,
+     "found_in_text": true,
+     "unit": "runs"
+    },
+    {
+     "task": null,
+     "value": 0,
+     "runs": 2,
+     "found_in_text": true,
+     "unit": "tiles"
+    },
+    {
+     "task": null,
+     "value": 1,
+     "runs": 2,
+     "found_in_text": true,
+     "unit": "tiles"
+    },
+    {
+     "task": null,
+     "value": 2,
+     "runs": 2,
+     "found_in_text": true,
+     "unit": "bytes"
+    },
+    {
+     "task": null,
+     "value": 1,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "runs"
+    },
+    {
+     "task": null,
+     "value": 64,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "KiB"
+    }
+   ]
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/pull/3096#issuecomment-7235162166",
+   "author": "JJAutoCompare",
+   "date": "2026-11-28T06:13:47Z",
+   "kind": "result",
+   "tasks": [],
+   "class": "intel",
+   "commit": "ba92a2a",
+   "prs": [],
+   "provenance": "auto",
+   "measurements": [
+    {
+     "task": null,
+     "value": 3,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "tests"
+    },
+    {
+     "task": null,
+     "value": 0,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "tests"
+    }
+   ]
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/pull/3096#issuecomment-7236582915",
+   "author": "Aniseto",
+   "date": "2026-11-28T08:26:19Z",
+   "kind": "result",
+   "tasks": [],
+   "class": "nv-win",
+   "commit": "8956fb4",
+   "prs": [],
+   "provenance": "auto",
+   "measurements": [
+    {
+     "task": null,
+     "value": 2,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "tests"
+    }
+   ]
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/pull/3097#issuecomment-7236672246",
+   "author": "CharlyRien",
+   "date": "2026-11-28T08:34:36Z",
+   "kind": "progress",
+   "tasks": [
+    "A13"
+   ],
+   "class": "nv-win",
+   "commit": "fe2d5b7",
+   "prs": [
+    3096
+   ],
+   "provenance": "auto",
+   "measurements": []
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/issues/3041#issuecomment-7236697580",
+   "author": "ClosetPie107",
+   "date": "2026-11-28T08:36:59Z",
+   "kind": "result",
+   "tasks": [
+    "A10"
+   ],
+   "class": "unknown",
+   "commit": null,
+   "prs": [
+    1607,
+    1631,
+    2132
+   ],
+   "provenance": "auto",
+   "measurements": [
+    {
+     "task": "A10",
+     "value": 72,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "heads"
+    },
+    {
+     "task": "A10",
+     "value": 18,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "PRs"
+    },
+    {
+     "task": "A10",
+     "value": 4,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "heads"
+    },
+    {
+     "task": "A10",
+     "value": 9,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "heads"
+    },
+    {
+     "task": "A10",
+     "value": 55,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "heads"
+    }
+   ]
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/pull/3096#issuecomment-7236921788",
+   "author": "CharlyRien",
+   "date": "2026-11-28T08:57:39Z",
+   "kind": "answer",
+   "tasks": [],
+   "class": "nv-win",
+   "commit": null,
+   "prs": [],
+   "provenance": "auto",
+   "measurements": []
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/issues/3041#issuecomment-7237456561",
+   "author": "Saksukella",
+   "date": "2026-11-28T09:46:28Z",
+   "kind": "pr",
+   "tasks": [
+    "A14"
+   ],
+   "class": "unknown",
+   "commit": null,
+   "prs": [
+    2755,
+    2996,
+    3023,
+    3024,
+    3025
+   ],
+   "provenance": "auto",
+   "measurements": []
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/pull/3116",
+   "author": "throny",
+   "date": "2026-11-28T10:11:12Z",
+   "kind": "pr",
+   "tasks": [
+    "A15"
+   ],
+   "class": "nv-win",
+   "commit": "fc2e9e9",
+   "prs": [
+    505,
+    2572,
+    2981,
+    3041
+   ],
+   "provenance": "auto",
+   "measurements": [
+    {
+     "task": null,
+     "value": 0,
+     "runs": 10,
+     "found_in_text": true,
+     "unit": "losses"
+    },
+    {
+     "task": null,
+     "value": 4,
+     "runs": 10,
+     "found_in_text": true,
+     "unit": "losses"
+    },
+    {
+     "task": null,
+     "value": 131000,
+     "runs": 10,
+     "found_in_text": true,
+     "unit": "textures"
+    },
+    {
+     "task": null,
+     "value": 1,
+     "runs": 10,
+     "found_in_text": true,
+     "unit": "hits"
+    },
+    {
+     "task": null,
+     "value": 76,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "s"
+    },
+    {
+     "task": null,
+     "value": 3479,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "frames"
+    },
+    {
+     "task": null,
+     "value": 3470,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "frames"
+    },
+    {
+     "task": null,
+     "value": 3391,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "frames"
+    },
+    {
+     "task": null,
+     "value": 0,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "removals"
+    },
+    {
+     "task": null,
+     "value": 20602,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "MB"
+    }
+   ]
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/issues/3041#issuecomment-7237732888",
+   "author": "throny",
+   "date": "2026-11-28T10:11:34Z",
+   "kind": "result",
+   "tasks": [
+    "A11"
+   ],
+   "class": "nv-win",
+   "commit": "54225f5",
+   "prs": [
+    3003,
+    3005,
+    3007,
+    3116
+   ],
+   "provenance": "auto",
+   "measurements": [
+    {
+     "task": "A11",
+     "value": 1512,
+     "runs": 4,
+     "found_in_text": true,
+     "unit": "tests"
+    },
+    {
+     "task": "A11",
+     "value": 4,
+     "runs": 2,
+     "found_in_text": true,
+     "unit": "tests"
+    },
+    {
+     "task": "A11",
+     "value": 132,
+     "runs": 4,
+     "found_in_text": true,
+     "unit": "tests"
+    },
+    {
+     "task": "A11",
+     "value": 20,
+     "runs": 4,
+     "found_in_text": true,
+     "unit": "tests"
+    }
+   ]
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/pull/3097#issuecomment-7237766140",
+   "author": "Aniseto",
+   "date": "2026-11-28T10:14:27Z",
+   "kind": "result",
+   "tasks": [
+    "A13"
+   ],
+   "class": "nv-win",
+   "commit": "fe2d5b7",
+   "prs": [],
+   "provenance": "auto",
+   "measurements": [
+    {
+     "task": "A13",
+     "value": 6,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "tests"
+    },
+    {
+     "task": "A13",
+     "value": 0,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "tests"
+    }
+   ]
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/issues/3041#issuecomment-7237870015",
+   "author": "throny",
+   "date": "2026-11-28T10:23:52Z",
+   "kind": "plan",
+   "tasks": [
+    "A4"
+   ],
+   "class": "nv-win",
+   "commit": null,
+   "prs": [
+    1607,
+    2755,
+    3023,
+    3024,
+    3025
+   ],
+   "provenance": "auto",
+   "measurements": []
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/pull/3097#issuecomment-7237893686",
+   "author": "minimalhipster990",
+   "date": "2026-11-28T10:26:04Z",
+   "kind": "result",
+   "tasks": [
+    "A13"
+   ],
+   "class": "nv-win",
+   "commit": "fe2d5b7",
+   "prs": [
+    3097
+   ],
+   "provenance": "auto",
+   "measurements": [
+    {
+     "task": "A13",
+     "value": 1811,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "presents"
+    },
+    {
+     "task": "A13",
+     "value": 1868,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "presents"
+    },
+    {
+     "task": "A13",
+     "value": 4779,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "tiles"
+    },
+    {
+     "task": "A13",
+     "value": 35511,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "MB"
+    },
+    {
+     "task": "A13",
+     "value": 36549,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "MB"
+    },
+    {
+     "task": "A13",
+     "value": 298,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "MB"
+    },
+    {
+     "task": "A13",
+     "value": 3048,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "count"
+    },
+    {
+     "task": "A13",
+     "value": 1530,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "frames"
+    },
+    {
+     "task": "A13",
+     "value": 1456,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "frames"
+    }
+   ]
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/pull/3116#issuecomment-7238029829",
+   "author": "DarkPanda69",
+   "date": "2026-11-28T10:38:45Z",
+   "kind": "result",
+   "tasks": [],
+   "class": "amd-win",
+   "commit": "fc2e9e9",
+   "prs": [],
+   "provenance": "auto",
+   "measurements": [
+    {
+     "task": null,
+     "value": 23,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "passed"
+    }
+   ]
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/pull/3116#issuecomment-7238133814",
+   "author": "KDenKC",
+   "date": "2026-11-28T10:48:22Z",
+   "kind": "plan",
+   "tasks": [],
+   "class": "nv-win",
+   "commit": "fc2e9e9",
+   "prs": [],
+   "provenance": "auto",
+   "measurements": []
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/pull/3097#issuecomment-7238223133",
+   "author": "CharlyRien",
+   "date": "2026-11-28T10:56:41Z",
+   "kind": "answer",
+   "tasks": [],
+   "class": "nv-win",
+   "commit": null,
+   "prs": [],
+   "provenance": "auto",
+   "measurements": []
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/pull/3116#issuecomment-7238580419",
+   "author": "fromthemoonx",
+   "date": "2026-11-28T11:28:57Z",
+   "kind": "result",
+   "tasks": [],
+   "class": "nv-win",
+   "commit": "fc2e9e9",
+   "prs": [],
+   "provenance": "auto",
+   "measurements": [
+    {
+     "task": null,
+     "value": 1909,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "tests"
+    },
+    {
+     "task": null,
+     "value": 1,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "tests"
+    },
+    {
+     "task": null,
+     "value": 48,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "tests"
+    },
+    {
+     "task": null,
+     "value": 3,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "tests"
+    },
+    {
+     "task": null,
+     "value": 1772,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "tests"
+    },
+    {
+     "task": null,
+     "value": 6,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "tests"
+    }
+   ]
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/pull/3116#issuecomment-7238663420",
+   "author": "thehollowedone",
+   "date": "2026-11-28T11:36:29Z",
+   "kind": "other",
+   "tasks": [],
+   "class": "nv-win",
+   "commit": "fc2e9e9",
+   "prs": [
+    2572
+   ],
+   "provenance": "auto",
+   "measurements": [
+    {
+     "task": null,
+     "value": 1,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "passed"
+    },
+    {
+     "task": null,
+     "value": 0,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "failed"
+    }
+   ]
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/pull/3097#issuecomment-7238751358",
+   "author": "minimalhipster990",
+   "date": "2026-11-28T11:44:28Z",
+   "kind": "result",
+   "tasks": [
+    "A13"
+   ],
+   "class": "nv-win",
+   "commit": "fe2d5b7",
+   "prs": [
+    3097
+   ],
+   "provenance": "auto",
+   "measurements": [
+    {
+     "task": "A13",
+     "value": 4938,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "count"
+    },
+    {
+     "task": "A13",
+     "value": 4086,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "count"
+    },
+    {
+     "task": "A13",
+     "value": 308,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "MB"
+    },
+    {
+     "task": "A13",
+     "value": 1668,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "count"
+    },
+    {
+     "task": "A13",
+     "value": 1658,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "count"
+    },
+    {
+     "task": "A13",
+     "value": 4.001,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "s"
+    },
+    {
+     "task": "A13",
+     "value": 5.525,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "s"
+    },
+    {
+     "task": "A13",
+     "value": 2,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "count"
+    }
+   ]
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/issues/3041#issuecomment-7239227471",
+   "author": "throny",
+   "date": "2026-11-28T12:26:21Z",
+   "kind": "result",
+   "tasks": [
+    "A10"
+   ],
+   "class": "nv-win",
+   "commit": "e429936",
+   "prs": [
+    253,
+    608,
+    1082,
+    1151,
+    1599,
+    1683,
+    1878,
+    1911,
+    1919,
+    1946,
+    2060,
+    2123,
+    2131,
+    2221,
+    2369,
+    2398,
+    2419,
+    2476,
+    2534,
+    2781,
+    2959,
+    3093
+   ],
+   "provenance": "auto",
+   "measurements": [
+    {
+     "task": "A10",
+     "value": 18,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "PRs"
+    },
+    {
+     "task": "A10",
+     "value": 9,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "tests"
+    },
+    {
+     "task": "A10",
+     "value": 1,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "tests"
+    }
+   ]
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/pull/3116#issuecomment-7239384518",
+   "author": "thehollowedone",
+   "date": "2026-11-28T12:40:03Z",
+   "kind": "result",
+   "tasks": [],
+   "class": "nv-win",
+   "commit": "fc2e9e9",
+   "prs": [
+    3116
+   ],
+   "provenance": "auto",
+   "measurements": [
+    {
+     "task": null,
+     "value": 0,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "passed"
+    },
+    {
+     "task": null,
+     "value": 1,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "passed"
+    },
+    {
+     "task": null,
+     "value": 28,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "passed"
+    },
+    {
+     "task": null,
+     "value": 1,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "ignored"
+    },
+    {
+     "task": null,
+     "value": 1907,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "passed"
+    },
+    {
+     "task": null,
+     "value": 3,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "failed"
+    },
+    {
+     "task": null,
+     "value": 1908,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "passed"
+    },
+    {
+     "task": null,
+     "value": 3,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "failed"
+    },
+    {
+     "task": null,
+     "value": 48,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "ignored"
+    },
+    {
+     "task": null,
+     "value": 26,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "skip notices"
+    }
+   ]
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/issues/3041#issuecomment-7239693060",
+   "author": "throny",
+   "date": "2026-11-28T13:06:16Z",
+   "kind": "progress",
+   "tasks": [
+    "A4"
+   ],
+   "class": "nv-win",
+   "commit": null,
+   "prs": [],
+   "provenance": "auto",
+   "measurements": []
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/pull/3097#issuecomment-7239789656",
+   "author": "minimalhipster990",
+   "date": "2026-11-28T13:14:04Z",
+   "kind": "result",
+   "tasks": [
+    "A13"
+   ],
+   "class": "nv-win",
+   "commit": "fe2d5b7",
+   "prs": [
+    3097
+   ],
+   "provenance": "auto",
+   "measurements": [
+    {
+     "task": "A13",
+     "value": 1822,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "frames"
+    },
+    {
+     "task": "A13",
+     "value": 1776,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "frames"
+    },
+    {
+     "task": "A13",
+     "value": 1024,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "MiB"
+    },
+    {
+     "task": "A13",
+     "value": 1521,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "MiB"
+    },
+    {
+     "task": "A13",
+     "value": 42435,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "uploads"
+    },
+    {
+     "task": "A13",
+     "value": 25064,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "tiles"
+    },
+    {
+     "task": "A13",
+     "value": 0.799,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "r"
+    },
+    {
+     "task": "A13",
+     "value": 0.953,
+     "runs": 1,
+     "found_in_text": true,
+     "unit": "r"
+    },
+    {
+     "task": "A13",
+     "value": 94.528,
+     "runs": 2,
+     "found_in_text": true,
+     "unit": "s"
+    },
+    {
+     "task": "A13",
+     "value": 119.397,
+     "runs": 2,
+     "found_in_text": true,
+     "unit": "s"
+    }
+   ]
+  },
+  {
+   "source": "https://github.com/xcl-dev/xcl/pull/3116#issuecomment-7241195639",
+   "author": "KDenKC",
+   "date": "2026-11-28T15:05:42Z",
+   "kind": "result",
+   "tasks": [
+    "A15"
+   ],
+   "class": "nv-win",
+   "commit": "fc2e9e9",
+   "prs": [
+    3124
+   ],
+   "provenance": "auto",
+   "measurements": [
+    {
+     "task": "A15",
+     "value": 1900,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "tests"
+    },
+    {
+     "task": "A15",
+     "value": 7,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "tests"
+    },
+    {
+     "task": "A15",
+     "value": 48,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "tests"
+    },
+    {
+     "task": "A15",
+     "value": 30,
+     "runs": null,
+     "found_in_text": true,
+     "unit": "tests"
+    }
+   ]
+  }
+ ],
+ "findings": []
+}

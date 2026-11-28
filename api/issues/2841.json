@@ -1,0 +1,1 @@
+{"issue":2841,"area":"textures","intent":{"area":"textures","kind":"bug-report","subject":"D3D12.X: detile_level faults on borrowed title memory in a worker","keywords":["title_bytes","detile_level","readable","borrowed-slice","unmapped-page","copy-from-slice"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

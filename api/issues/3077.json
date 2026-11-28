@@ -1,0 +1,1 @@
+{"issue":3077,"area":"shaders","intent":{"area":"shaders","kind":"bug-report","subject":"Shader precompile has no per-program limit OOM at 23000/26503","keywords":["shader-precompile","dxc","out-of-memory","time-limit","memory-limit","0x8007000e"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

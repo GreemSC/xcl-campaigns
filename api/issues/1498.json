@@ -1,0 +1,1 @@
+{"issue":1498,"area":"crash-reporting","intent":{"area":"crash-reporting","kind":"bug-report","subject":"Crash reporter hangs after device removal, leaving 0-byte minidump","keywords":["minidump","device-removal","unhandled-exception","watchdog","zero-byte-dump"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

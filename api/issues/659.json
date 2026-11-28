@@ -1,0 +1,1 @@
+{"issue":659,"area":"shaders","intent":{"area":"shaders","kind":"bug-report","subject":"f32 to UNORM/SNORM conversions round twice instead of once","keywords":["v_cvt_pknorm_u16_f32","unorm16","snorm16","f32-rounding","double-rounding"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[683]}

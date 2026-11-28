@@ -1,0 +1,1 @@
+{"pr":1194,"status":"open","author":"b3IKK","area":"shaders","intent":{"area":"shaders","kind":"bugfix","subject":"IMAGE_STORE D16 sign-extends lanes for SINT textures","keywords":["image_store","d16","sint","sign-extend","rwtexture","i16"]},"files":2,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

@@ -1,0 +1,1 @@
+{"schema":"xcl-campaigns/v2/file","generated_at":"2026-11-28T15:19:27Z","synced_until":"2026-11-28T15:18:48Z","ai_fields":["subject"],"data":{"path":"crates/xcl/src/hle/d3d12x/watch_trap.rs","open_prs":[{"number":2934,"author":"Kalmarv","subject":"D3D12: XCL_WATCH_TRAP skips cold blocks in GetWriteWatch looks"}]}}

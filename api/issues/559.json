@@ -1,0 +1,1 @@
+{"issue":559,"area":"shaders","intent":{"area":"shaders","kind":"bug-report","subject":"XCL_DXC_ARGS ignored on cached DXC path DXIL cache key omits args","keywords":["dxc-args","dxil-cache","cache-key","compile-cached","dxc"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[591]}

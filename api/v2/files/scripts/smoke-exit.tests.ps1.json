@@ -1,0 +1,1 @@
+{"schema":"xcl-campaigns/v2/file","generated_at":"2026-11-28T15:19:27Z","synced_until":"2026-11-28T15:18:48Z","ai_fields":["subject"],"data":{"path":"scripts/smoke-exit.tests.ps1","open_prs":[{"number":1760,"author":"NemesisDawn","subject":"Scripts: set smoke.ps1 timeout flag from child process wait result"}]}}

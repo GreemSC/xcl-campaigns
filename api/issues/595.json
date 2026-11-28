@@ -1,0 +1,1 @@
+{"issue":595,"area":"loader","intent":{"area":"loader","kind":"bug-report","subject":"Provided D3D12Core.dll ignored pipelines fail, then access crash","keywords":["d3d12core","agility-sdk","vsh","pipeline-failed","access-violation"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

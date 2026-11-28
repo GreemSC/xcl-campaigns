@@ -1,0 +1,1 @@
+{"pr":1149,"status":"open","author":"emirduran707","area":"audio","intent":{"area":"audio","kind":"bugfix","subject":"XAudio2: XMA voices report zero BytesRequired to the title","keywords":["xaudio2","xma","bytesrequired","pass-start","xmawma"]},"files":1,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

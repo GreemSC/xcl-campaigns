@@ -1,0 +1,1 @@
+{"issue":2607,"area":"pipelines","intent":{"area":"pipelines","kind":"bug-report","subject":"Console compute stream drops FLAGS subobject before native PSO create","keywords":["compute-pso","pso-flags","stream-subobject","cache-key","d3d12-stream"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[2693]}

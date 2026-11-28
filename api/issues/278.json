@@ -1,0 +1,1 @@
+{"issue":278,"area":"other","intent":{"area":"other","kind":"bug-report","subject":"Console CPU: ClzeroLoop ModRM match, loop semantics, CLWB race","keywords":["clzero","clwb","clzeroloop","is-writable","hot-patch"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

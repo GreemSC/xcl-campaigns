@@ -1,0 +1,1 @@
+{"pr":1258,"status":"open","author":"b3IKK","area":"shaders","intent":{"area":"shaders","kind":"bugfix","subject":"Sign-extend 32-bit literals for 64-bit signed integer operands","keywords":["literal","sign-extend","i64","lit64","v-cmp-i64","rdna2"]},"files":2,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

@@ -1,0 +1,1 @@
+{"schema":"xcl-campaigns/v2/file","generated_at":"2026-11-28T15:19:27Z","synced_until":"2026-11-28T15:18:48Z","ai_fields":["subject"],"data":{"path":"crates/xcl/tests/sparse_queue_waits.rs","open_prs":[{"number":603,"author":"Kalmarv","subject":"Test that a cross-queue wait on a later signal does not hang"}]}}

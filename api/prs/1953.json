@@ -1,0 +1,1 @@
+{"pr":1953,"status":"open","author":"sombraSoft","area":"shaders","intent":{"area":"shaders","kind":"feature","subject":"Read DXIL bitcode with abbreviations and BLOCKINFO","keywords":["bitreader","llvm-bitstream","blockinfo","char6","dxil-bitcode"]},"files":2,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

@@ -1,0 +1,1 @@
+{"issue":2840,"area":"gpu-sync","intent":{"area":"gpu-sync","kind":"bug-report","subject":"D3D12.X: title_fences holds raw ID3D12Fence pointers, use-after-free","keywords":["title-fences","id3d12fence","use-after-free","addref","sync-graph","prune-fence"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[2843]}

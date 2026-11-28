@@ -1,0 +1,1 @@
+{"issue":1040,"area":"memory","intent":{"area":"memory","kind":"bug-report","subject":"D3D12.X: last Release frees unified-memory block and tiles in use","keywords":["res-release","late-release","unified-memory","sparse-tiles","held-resource"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[1070]}

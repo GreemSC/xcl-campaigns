@@ -1,0 +1,1 @@
+{"issue":2455,"area":"pipelines","intent":{"area":"pipelines","kind":"bug-report","subject":"Stand-in PSO pointers passed unresolved to MakeResident and Evict","keywords":["makeresident","evict","storepipeline","standin","residency","pipeline-library"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

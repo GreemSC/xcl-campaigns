@@ -1,0 +1,1 @@
+{"pr":1554,"status":"open","author":"amazedturnip","area":"tests","intent":{"area":"tests","kind":"test","subject":"Tests: verify RDNA2 BVH box16, paired triangles, trace culling","keywords":["bvh","box16","paired-triangle","trace_scene","tmax","rdna2"]},"files":1,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

@@ -1,0 +1,1 @@
+{"issue":105,"area":"shaders","intent":{"area":"shaders","kind":"bug-report","subject":"GPU recompiler: PS helper lanes in ballot, cube arrays, 4 GiB carry","keywords":["ballot","wqm","helper-lanes","texturecubearray","window-carry","dxc-gis"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

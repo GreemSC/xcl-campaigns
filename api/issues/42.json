@@ -1,0 +1,1 @@
+{"issue":42,"area":"tooling","intent":{"area":"tooling","kind":"bug-report","subject":"GPU test results on RTX 3080 and RDNA2 iGPU 3 iGPU failures","keywords":["wave64","mesh-shader","xcl-adapter","gpu-tests","d3d12-dll"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

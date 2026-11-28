@@ -1,0 +1,1 @@
+{"issue":989,"area":"gpu-sync","intent":{"area":"gpu-sync","kind":"bug-report","subject":"alloc_reset resets a busy allocator after failed replacement","keywords":["command-allocator","title-reset","alloc-pool","createcommandallocator","reset"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[994]}

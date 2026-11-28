@@ -1,0 +1,1 @@
+{"issue":2400,"area":"shaders","intent":{"area":"shaders","kind":"bug-report","subject":"Direct DXIL scratch address ignores SVE, mishandles SADDR/ADDR","keywords":["scratch","flat-scratch","sve","saddr","rdna2","lower-mem"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[2514]}

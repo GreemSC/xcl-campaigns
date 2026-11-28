@@ -1,0 +1,1 @@
+{"schema":"xcl-campaigns/v2/campaign-findings","generated_at":"2026-11-28T15:19:27Z","synced_until":"2026-11-28T15:18:48Z","data":{"campaign":2688,"title":"RAM and VRAM use down, towards stable 30 FPS on AMD and NVIDIA","status":"draft","reference_commit":null,"issue_url":"https://github.com/xcl-dev/xcl/issues/2688","task":"M3","cells":[]}}

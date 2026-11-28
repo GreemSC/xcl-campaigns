@@ -1,0 +1,1 @@
+{"schema":"xcl-campaigns/v2/file","generated_at":"2026-11-28T15:19:27Z","synced_until":"2026-11-28T15:18:48Z","ai_fields":["subject"],"data":{"path":"crates/xcl/src/hle/d3d12x/sparse/gpu_view.rs","open_prs":[{"number":3112,"author":"iggyvilla","subject":"Add opt-in XCL_SPARSE_VRAM_CAP_MB to spill sparse pools to system RAM"}]}}

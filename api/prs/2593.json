@@ -1,0 +1,1 @@
+{"pr":2593,"status":"open","author":"SergeAx","area":"other","intent":{"area":"other","kind":"bugfix","subject":"Keep copied methods per vtable in real::class_for lookup","keywords":["vtable","class_for","command-list","heap-address","copied"]},"files":1,"fixes":[2588],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

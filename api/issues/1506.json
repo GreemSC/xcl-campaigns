@@ -1,0 +1,1 @@
+{"issue":1506,"area":"tooling","intent":{"area":"tooling","kind":"bug-report","subject":"PR checks refuse a crash-fix PR when main's smoke run did not end","keywords":["pr-check","smoke-ps1","frames-shown","none-logged","crash-fix"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[1750]}

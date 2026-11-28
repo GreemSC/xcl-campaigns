@@ -1,0 +1,1 @@
+{"issue":2939,"area":"shaders","intent":{"area":"shaders","kind":"bug-report","subject":"Avoid second compute PSO create after successful stale-cache probe","keywords":["cachedpso","compute-pso","pipeline-cache","stale-blob","cs-create","precompile"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[2940]}

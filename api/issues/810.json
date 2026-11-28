@@ -1,0 +1,1 @@
+{"issue":810,"area":"tests","intent":{"area":"tests","kind":"bug-report","subject":"pls_quota test expects PATH_NOT_FOUND, Wine returns FILE_NOT_FOUND","keywords":["getdiskfreespaceex","pls-quota","wine","error-code","path-not-found"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[2415]}

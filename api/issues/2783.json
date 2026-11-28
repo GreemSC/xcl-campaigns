@@ -1,0 +1,1 @@
+{"issue":2783,"area":"loader","intent":{"area":"loader","kind":"bug-report","subject":"Null ID3D12Heap::GetDesc leaves Flags field unwritten","keywords":["getdesc","d3d12-heap-desc","heap-flags","zero-desc","null-backend"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[2802,2846]}

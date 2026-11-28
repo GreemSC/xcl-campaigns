@@ -1,0 +1,1 @@
+{"issue":970,"area":"textures","intent":{"area":"textures","kind":"bug-report","subject":"D3D12.X: depth buffers used as UAVs get null views, writes dropped","keywords":["depth-stencil","uav","null-view","shadow-map","typeless-format"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[1027,1063]}

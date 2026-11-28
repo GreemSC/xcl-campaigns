@@ -1,0 +1,1 @@
+{"issue":104,"area":"memory","intent":{"area":"memory","kind":"bug-report","subject":"Audit: D3D12.X overlapping VRAM arenas, upload sync, predication","keywords":["vram-arena","predication","queue-shifted","title-textures","gdk-slots","id3d12heap"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

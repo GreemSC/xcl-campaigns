@@ -1,0 +1,1 @@
+{"issue":2942,"area":"audio","intent":{"area":"audio","kind":"bug-report","subject":"XAudio2 Discontinuity() leaves Opus decoder on previous stream","keywords":["xaudio2","discontinuity","opus","end-of-stream","decoder-reset"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[3071]}

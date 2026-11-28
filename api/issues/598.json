@@ -1,0 +1,1 @@
+{"issue":598,"area":"network","intent":{"area":"network","kind":"bug-report","subject":"Title 1.0.2.1: null read at +0xb5a5f8 after auth token refusals","keywords":["xuser","auth-token","null-deref","access-violation","xbox-live"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

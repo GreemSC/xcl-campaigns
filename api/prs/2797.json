@@ -1,0 +1,1 @@
+{"pr":2797,"status":"open","author":"Wolf1098","area":"storage","intent":{"area":"storage","kind":"feature","subject":"Support launching games from UNC network share paths","keywords":["unc","network-share","canonical-path","absolute-path","smb","vfs"]},"files":2,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

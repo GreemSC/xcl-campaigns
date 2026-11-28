@@ -1,0 +1,1 @@
+{"pr":1728,"status":"open","author":"hajduzsolt","area":"audio","intent":{"area":"audio","kind":"bugfix","subject":"XAudio2: retain incomplete XMA frame continuations","keywords":["xma2","bit-reservoir","continuation","xaudio2","packet-decode"]},"files":1,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

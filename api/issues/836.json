@@ -1,0 +1,1 @@
+{"issue":836,"area":"loader","intent":{"area":"loader","kind":"bug-report","subject":"IAT and TLS index writes lack header-range bounds check","keywords":["iat","tls-index","size-of-headers","pe-parse","manual-map","hardening"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[854]}

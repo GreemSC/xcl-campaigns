@@ -1,0 +1,1 @@
+{"issue":767,"area":"shaders","intent":{"area":"shaders","kind":"bug-report","subject":"Cubemap IMAGE_SAMPLE_D gradients reduced to one LOD lose footprint","keywords":["image_sample_d","cubemap","anisotropic","samplelevel","texturecubearray","gradient"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[778]}

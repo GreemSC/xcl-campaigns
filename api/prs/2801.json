@@ -1,0 +1,1 @@
+{"pr":2801,"status":"open","author":"MacieGx","area":"memory","intent":{"area":"memory","kind":"tooling","subject":"Log buffers placed outside memory windows and their first use","keywords":["d3d12","placement","sparse","logging","vram","first-use"]},"files":5,"fixes":[],"overlaps":[],"why":[],"check":null,"redoes_merged":[],"redo_check":null,"other_prs_fixing_same_issue":[]}

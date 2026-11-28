@@ -1,0 +1,1 @@
+{"issue":262,"area":"gpu-sync","intent":{"area":"gpu-sync","kind":"bug-report","subject":"Sparse windows: CPU-write uploads race title queue writes (1047)","keywords":["sparse-buffer","debug-layer-1047","cross-queue","simultaneous-access","upload-queue","deadlock"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

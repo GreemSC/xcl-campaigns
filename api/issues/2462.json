@@ -1,0 +1,1 @@
+{"issue":2462,"area":"rendering","intent":{"area":"rendering","kind":"bug-report","subject":"XCL_DRED leaks memory: list reset and kickoff bypass dred::reset","keywords":["dred","reset-pc","kickoff-x","mark-pipeline","memory-leak","d3d12"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[2510]}

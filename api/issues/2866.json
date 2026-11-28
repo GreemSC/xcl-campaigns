@@ -1,0 +1,1 @@
+{"issue":2866,"area":"rendering","intent":{"area":"rendering","kind":"bug-report","subject":"Black screen at world load after loading screen, retail 1.0.2.1","keywords":["world-load","black-screen","d3d12","commandlist10","pso","rx-9070-xt"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

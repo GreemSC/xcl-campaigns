@@ -1,0 +1,1 @@
+{"issue":2617,"area":"pipelines","intent":{"area":"pipelines","kind":"bug-report","subject":"D3D12.X: GPU hang after put-off dispatches when PSO waits are bounded","keywords":["put-off","pso-wait","device-removed","submit-defer","gpu-hang","xcl-pso-wait-ms"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}

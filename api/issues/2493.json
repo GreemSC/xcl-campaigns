@@ -1,0 +1,1 @@
+{"issue":2493,"area":"storage","intent":{"area":"storage","kind":"bug-report","subject":"UE5 pak async read completes without I/O, LZ4 UncompressMemory fails","keywords":["pak","async-read","lz4","uncompress","unreal-engine","file-io"]},"duplicates":[],"check":null,"why":[],"open_prs_fixing_it":[]}
